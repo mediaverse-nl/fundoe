@@ -15,16 +15,16 @@ Route::get('/', 'WelcomeController')->name('home');
 Route::get('/home', 'WelcomeController');
 
 Route::group(['namespace' => 'Site', 'as' => 'site.'], function () {
-    Route::get('/c-{id}', 'CategoryController@show');
+    Route::get('/c-{id}', 'CategoryController@show')->name('category.show');
     Route::get('/activiteiten', 'ActivityController@index');
-    Route::get('/activiteit/{title}-{id}', 'ActivityController@show');
+    Route::get('/activiteit/{title}-{id}', 'ActivityController@show')->name('activity.show');
     Route::post('/review', 'ReviewController@store');
     Route::post('/comment', 'CommentController@store');
-    Route::get('/cart', 'CartController@index');
+    Route::get('/cart', 'CartController@index')->name('cart.index');
     Route::get('/order', 'CartController@create');
     Route::get('/order-aanmaken', 'CartController@store');
     Route::post('/order-{id}', 'CartController@show');
-    Route::get('/contact', 'ContactController@show');
+    Route::get('/contact', 'ContactController@index')->name('contact.index');
     Route::post('/contact', 'ContactController@store');
     Route::get('/algemene-voorwaarden', 'PageController@terms');
     Route::get('/privacy-en-cookiebeleid', 'PageController@policy');

@@ -2,7 +2,7 @@
 <html lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    {{--<meta http-equiv="X-UA-Compatible" content="IE=edge">--}}
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
@@ -22,14 +22,15 @@
     @stack('css')
 
 </head>
-<body>
-    <div id="app">
+<body class="d-flex flex-column">
+
+    <div class="flex-fill">
         @include('componets.menu-top-fixed')
 
         @yield('content')
-
-        @include('componets.footer')
     </div>
+
+    @include('componets.footer')
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
