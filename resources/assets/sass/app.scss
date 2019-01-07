@@ -1,13 +1,17 @@
 
 // Fonts
 @import url("https://fonts.googleapis.com/css?family=Noto+Sans");
-@import "~font-awesome/scss/font-awesome";
 
 // Variables
 @import "variables";
 
 // Bootstrap
 @import "~bootstrap/dist/css/bootstrap.min";
+
+// Fontawesome
+@import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "~@fortawesome/fontawesome-free/scss/solid.scss";
+@import "~@fortawesome/fontawesome-free/scss/brands.scss";
 
 // Base
 @import "site/components/base";

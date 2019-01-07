@@ -26,8 +26,9 @@ Route::group(['namespace' => 'Site', 'as' => 'site.'], function () {
     Route::post('/order-{id}', 'CartController@show');
     Route::get('/contact', 'ContactController@index')->name('contact.index');
     Route::post('/contact', 'ContactController@store');
-    Route::get('/algemene-voorwaarden', 'PageController@terms');
-    Route::get('/privacy-en-cookiebeleid', 'PageController@policy');
+    Route::get('/over-ons', 'PageController@about')->name('about');
+    Route::get('/algemene-voorwaarden', 'PageController@terms')->name('terms');
+    Route::get('/privacy-en-cookiebeleid', 'PageController@policy')->name('privacy');
 
     //user panel
     Route::group(['prefix' => 'panel', 'namespace' => 'Auth', 'as' => 'auth.'], function () {

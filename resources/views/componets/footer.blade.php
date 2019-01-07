@@ -23,20 +23,20 @@
             <div class="col-md-3 mb-md-0 mb-3">
 
                 <!-- Links -->
-                <h5 class="text-uppercase">Links</h5>
+                <h5 class="text-uppercase">Menu</h5>
 
                 <ul class="list-unstyled">
                     <li>
+                        <a href="{!! route('home') !!}">Home</a>
+                    </li>
+                    <li>
+                        <a href="{!! route('site.about') !!}">Over ons</a>
+                    </li>
+                    {{--<li>--}}
+                        {{--<a href="#!">Link 3</a>--}}
+                    {{--</li>--}}
+                    <li>
                         <a href="{!! route('site.contact.index') !!}">Contact</a>
-                    </li>
-                    <li>
-                        <a href="#!">Link 2</a>
-                    </li>
-                    <li>
-                        <a href="#!">Link 3</a>
-                    </li>
-                    <li>
-                        <a href="#!">Link 4</a>
                     </li>
                 </ul>
 
@@ -47,20 +47,17 @@
             <div class="col-md-3 mb-md-0 mb-3">
 
                 <!-- Links -->
-                <h5 class="text-uppercase">Links</h5>
+                <h5 class="text-uppercase">Volg ons</h5>
 
                 <ul class="list-unstyled">
                     <li>
-                        <a href="#!">Link 1</a>
+                        <a href="#!"><i class="fa-fw fab fa-facebook"></i> Facebook</a>
                     </li>
                     <li>
-                        <a href="#!">Link 2</a>
+                        <a href="#!"><i class="fa-fw fab fa-twitter-square"></i> Twitter</a>
                     </li>
                     <li>
-                        <a href="#!">Link 3</a>
-                    </li>
-                    <li>
-                        <a href="#!">Link 4</a>
+                        <a href="#!"><i class="fa-fw fab fa-instagram"></i> instagram</a>
                     </li>
                 </ul>
 
@@ -74,8 +71,21 @@
     <!-- Footer Links -->
 
     <!-- Copyright -->
-    <div class="footer-copyright text-center py-3">© 2018 Copyright:
-        <a href="#"> Fundoe.nl</a>
+    <div class="footer-copyright ">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <p class="text-left">
+                        <a href="{!! route('site.terms') !!}">Voorwaarden </a> |
+                        <a href="{!! route('site.privacy') !!}">Privacy </a>
+                    </p>
+                </div>
+                <div class="col">
+                    <p class="text-right"> © 2018 Copyright:<a href="#"> Fundoe.nl</a></p>
+                </div>
+            </div>
+
+        </div>
     </div>
     <!-- Copyright -->
 
