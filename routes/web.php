@@ -41,7 +41,8 @@ Route::group(['prefix' => 'panel', 'namespace' => 'Auth', 'as' => 'auth.'], func
 });
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.', 'middleware' => 'admin'], function () {
-    Route::get('/dashboard', 'DashboardController')->name('dashboard');
+    Route::get('/', 'DashboardController')->name('dashboard');
+    Route::get('/dashboard', 'DashboardController');
     Route::resource('category', 'CategoryController');
     Route::resource('user', 'UserController');
     Route::resource('review', 'ReviewController');
@@ -49,7 +50,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.', 'mi
     Route::resource('order', 'OrderController');
     Route::resource('activity', 'ActivityController');
 
-    Route::resource('text-editor', 'TextController');
+    Route::patch('editor/{id}/update', 'TextController@update')->name('text-editor.update');
+    Route::resource('editor', 'TextController', ['only' => ['index', 'edit']]);
     Route::resource('seo-manager', 'SEOController');
     Route::get('file-manager', 'FileManagerController@index')->name('file-manager.index');
 

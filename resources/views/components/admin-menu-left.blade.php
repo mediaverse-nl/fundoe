@@ -46,8 +46,8 @@
             {{--<span class="nav-link-text">Orders</span>--}}
         {{--</a>--}}
     {{--</li>--}}
-    {{--<li class="nav-item {{Request::is('admin/text-editor*') ? 'active' : ''}}">--}}
-        {{--<a class="nav-link" href="{{route('admin.text-editor.index')}}">--}}
+    {{--<li class="nav-item {{Request::is('admin/editor*') ? 'active' : ''}}">--}}
+        {{--<a class="nav-link" href="{{route('admin.editor.index')}}">--}}
             {{--<i class="fa fa-fw fa-font"></i>--}}
             {{--<span class="nav-link-text">Texts</span>--}}
         {{--</a>--}}
