@@ -170,3 +170,17 @@
     padding: 50px 0px;
   }
 }
+
+.product-cards{
+  .spliter-bar::after{
+    content: '|';
+    display: inline-block;
+    margin: 0 7px;
+    font-size: 0.9em;
+    color: #ccc;
+  }
+  .spliter-bar:last-child:after
+  {
+    content: '';
+  }
+}

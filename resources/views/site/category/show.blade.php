@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="container">
+    <div class="container product-cards">
         <div class="row">
             <div class="col-sm-3">
                 <p>Filter</p>
@@ -68,13 +68,19 @@
 
                     @for($x = 0; $x <= 10; $x++)
 
-                        <div class="col-4" style="padding: 10px 10px">
+                        <div class="col-12" style="padding: 10px 10px">
                             <div class="card">
-                                <img class="card-img-top" src="http://placehold.it/700x400" alt="Card image cap">
+                                <img class="card-img-top" src="http://placehold.it/700x400" alt="Card image cap" height="210px;">
                                 <div class="card-body">
                                     <h5 class="card-title">Card title</h5>
                                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <a href="{!! route('site.activity.show', ['title-name', 1]) !!}" class="btn btn-primary">Go somewhere</a>
+                                    <a href="{!! route('site.activity.show', ['title-name', 1]) !!}" class="btn btn-sm btn-primary">Lees meer</a>
+                                    <footer class="post-footer d-flex align-items-center" style="margin-top: 10px;">
+                                        <div class="row">
+                                            <div class="splitter-bar"><i class="fas fa-clock"></i> 2 months ago</div>
+                                            <div class="splitter-bar"><i class="fas fa-comments"></i> 2 reviews</div>
+                                        </div>
+                                   </footer>
                                 </div>
                             </div>
                         </div>
@@ -90,7 +96,7 @@
 @endsection
 
 @push('css')
-
+    <link href="{{ asset('/css/site/category.css') }}" rel="stylesheet">
 @endpush
 
 @push('js')

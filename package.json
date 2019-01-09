@@ -18,10 +18,10 @@
     "laravel-mix": "0.*",
     "lodash": "^4.17.4",
     "popper": "^1.0.1",
-    "vue": "^2.1.10"
+    "datatables": "^1.10.18",
+    "datatables.net-bs4": "^1.10.19",
+    "popper.js": "^1.14.6",
+    "startbootstrap-sb-admin": "^5.0.2"
   },
-  "dependencies": {
-    "font-awesome": "^4.7.0",
-    "popper.js": "^1.14.6"
-  }
+  "dependencies": {}
 }

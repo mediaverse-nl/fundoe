@@ -1,26 +1,28 @@
-footer{
-  background: #191919;
-  //margin-top: 25px;
-}
-
-footer{
-  .main-container{
-    padding: 40px 15px;
+body >{
+  footer{
+    background: #191919;
+    //margin-top: 25px;
   }
 
-  p, a{
-    color: #aaa;
-  }
-  h5{
-    color: #ffffff;
-  }
+  footer{
+    .main-container{
+      padding: 40px 15px;
+    }
 
-  .footer-copyright{
-    background: #000;
-    color: #ffffff;
-    padding: 15px 0px 5px 0px;
-  }
-  .footer-copyright a{
-    color: #fff !important;
+    p, a{
+      color: #aaa;
+    }
+    h5{
+      color: #ffffff;
+    }
+
+    .footer-copyright{
+      background: #000;
+      color: #ffffff;
+      padding: 15px 0px 5px 0px;
+    }
+    .footer-copyright a{
+      color: #fff !important;
+    }
   }
 }

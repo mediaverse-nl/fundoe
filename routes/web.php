@@ -29,18 +29,19 @@ Route::group(['namespace' => 'Site', 'as' => 'site.'], function () {
     Route::get('/over-ons', 'PageController@about')->name('about');
     Route::get('/algemene-voorwaarden', 'PageController@terms')->name('terms');
     Route::get('/privacy-en-cookiebeleid', 'PageController@policy')->name('privacy');
-
-    //user panel
-    Route::group(['prefix' => 'panel', 'namespace' => 'Auth', 'as' => 'auth.'], function () {
-        Route::get('/bestellingen', 'OrderController@index');
-        Route::get('/bestelling-{id}', 'OrderController@show');
-        Route::get('/account', 'UserController@show');
-        Route::post('/account-wijzigen', 'UserController@update');
-    });
 });
 
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], function () {
-    Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+//user panel
+Route::group(['prefix' => 'panel', 'namespace' => 'Auth', 'as' => 'auth.'], function () {
+    Route::get('/', 'PanelController')->name('panel');
+    Route::get('/bestellingen', 'OrderController@index')->name('order.index');
+    Route::get('/bestelling-{id}', 'OrderController@show')->name('order.show');
+    Route::get('/account-wijzigen', 'UserController@edit')->name('account.edit');
+    Route::post('/account-update', 'UserController@update')->name('account.update');
+});
+
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.', 'middleware' => 'admin'], function () {
+    Route::get('/dashboard', 'DashboardController')->name('dashboard');
     Route::resource('category', 'CategoryController');
     Route::resource('user', 'UserController');
     Route::resource('review', 'ReviewController');

@@ -15,9 +15,9 @@ class UserController extends Controller
         $this->user = $user;
     }
 
-    public function index()
+    public function edit()
     {
-        return view('');
+        return view('auth.user.edit');
     }
 }
 

@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -26,4 +27,17 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function admin($redirect = true)
+    {
+        if (Auth::user()->admin == 1){
+            return true;
+        }
+
+        if ($redirect == true){
+            return abort('403');
+        }else{
+            return false;
+        }
+    }
 }

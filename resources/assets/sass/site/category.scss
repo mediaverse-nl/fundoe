@@ -1,0 +1,17 @@
+.product-cards{
+  .splitter-bar i{
+    color: #212529;
+  }
+  .splitter-bar::before{
+    content: '|';
+    display: inline-block;
+    margin: 0 7px;
+    font-size: 0.9em;
+    color: #ccc;
+  }
+
+  .splitter-bar:first-child:before
+  {
+    content: '';
+  }
+}

@@ -5,5 +5,9 @@
   "/css/admin/app.css": "/css/admin/app.css",
   "/css/site/register.css": "/css/site/register.css",
   "/css/site/reset.css": "/css/site/reset.css",
-  "/css/site/activity.css": "/css/site/activity.css"
+  "/css/site/activity.css": "/css/site/activity.css",
+  "/css/auth/app.css": "/css/auth/app.css",
+  "/js/auth/app.js": "/js/auth/app.js",
+  "/css/site/category.css": "/css/site/category.css",
+  "/js/admin/app.js": "/js/admin/app.js"
 }

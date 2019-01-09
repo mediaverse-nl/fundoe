@@ -6,8 +6,15 @@ body{
 }
 
 body  {
-  //.flex-fill{
-  //  margin-bottom: 50px;
-  //}
+  a{
+    color: #212529;
+    text-decoration: none;
+  }
 }
+
+*:focus {
+  outline:none !important;
+  box-shadow: none !important;
+}
+
 

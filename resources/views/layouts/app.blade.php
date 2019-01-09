@@ -25,12 +25,12 @@
 <body class="d-flex flex-column">
 
     <div class="flex-fill">
-        @include('componets.menu-top-fixed')
+        @include('components.menu-top-fixed')
 
         @yield('content')
     </div>
 
-    @include('componets.footer')
+    @include('components.footer')
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
