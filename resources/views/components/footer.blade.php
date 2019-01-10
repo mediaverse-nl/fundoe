@@ -11,8 +11,8 @@
             <div class="col-md-6 mt-md-0 mt-3">
 
                 <!-- Content -->
-                <h5 class="text-uppercase">Footer Content</h5>
-                <p>Here you can use rows and columns here to organize your footer content.</p>
+                <h5 class="text-uppercase">{!! Editor('footer_title', 'text', false, 'Footer Content') !!}</h5>
+                <p>{!! Editor('footer_title_description', 'richtext', false, 'Here you can use rows and columns here to organize your footer content.') !!}</p>
 
             </div>
             <!-- Grid column -->
