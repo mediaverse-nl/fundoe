@@ -68,9 +68,4 @@
 
 @push('js')
     <script src="{{ asset('/js/auth/app.js') }}"></script>
-    <script>
-        $(document).ready( function () {
-            $('#table_id').DataTable();
-        } );
-    </script>
 @endpush

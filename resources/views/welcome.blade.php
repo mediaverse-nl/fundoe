@@ -20,22 +20,8 @@
             <!-- /.col-lg-3 -->
 
             <div class="col-lg-9">
-                {!! Editor('welcome_title_paragraph', 'richtext', false, '
-                @text
 
-sadassadsdasad asdasdasd asd
-
-sdasdas
-                sadasd
-                Bacon ipsum dolor amet meatloaf capicola buffalo turducken cupim pork belly sirloin strip steak bacon picanha kevin bresaola swine kielbasa. Pork belly spare ribs biltong, flank turducken filet mignon hamburger shoulder tenderloin pork loin picanha. Jerky beef ribs brisket biltong, frankfurter alcatra fatback pig meatball sausage turkey doner tongue corned beef pork loin. Tail t-bone bacon spare ribs, flank porchetta venison. Jerky beef jowl tri-tip. Brisket spare ribs pork chop filet mignon strip steak doner. Ham corned beef ground round chicken pork chop.', ['mentions'=>['text' => 'text tekst 1', 'text2' => 'text tekst 3' ]]) !!}
-
-                {!! Editor('welcome_title_paragraph4', 'richtext', false, '
-                @text
-
-
-sdasdas
-                sadasd
-                Bacon ipsum dolor amet meatloaf capicola buffalo turducken cupim pork belly sirloin strip steak bacon picanha kevin bresaola swine kielbasa. Pork belly spare ribs biltong, flank turducken filet mignon hamburger shoulder tenderloin pork loin picanha. Jerky beef ribs brisket biltong, frankfurter alcatra fatback pig meatball sausage turkey doner tongue corned beef pork loin. Tail t-bone bacon spare ribs, flank porchetta venison. Jerky beef jowl tri-tip. Brisket spare ribs pork chop filet mignon strip steak doner. Ham corned beef ground round chicken pork chop.', ['mentions'=>['text' => 'text tekst 1', 'text2' => 'text tekst 3' ]]) !!}
+                {!! Editor('welcome', 'richtext', false, '@text sadasd Bacon ss ipsum dolor amet meatloaf capicola buffalo.', ['mentions'=>['text' => 'text tekst 1', 'text2' => 'text tekst 3' ]]) !!}
 
                 <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
                     <ol class="carousel-indicators">

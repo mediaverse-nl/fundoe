@@ -11,6 +11,8 @@
 |
 */
 
+use App\Http\Requests\Api\Admin\TextUpdateRequest;
+
 Route::get('/', 'WelcomeController')->name('home');
 Route::get('/home', 'WelcomeController');
 
@@ -63,3 +65,13 @@ Auth::routes();
 
 Route::get('/redirect', 'Auth\SocialAuthFacebookController@redirect')->name('facebook.login.redirect');
 Route::get('/callback', 'Auth\SocialAuthFacebookController@callback')->name('facebook.login.callback');
+
+
+Route::post('api/text-editor-{id}', function(TextUpdateRequest $request, $id) {
+    $text = \App\Text::findOrFail($id);
+
+    $text->update(['text' => $request->text]);
+
+    return response()
+        ->json('ok', 200);
+});

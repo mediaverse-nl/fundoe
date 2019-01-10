@@ -63,6 +63,7 @@
         </div>
     </div>
 
+
     {{--{!! $text->text_type !!}--}}
     @if($text->text_type == 'richtext')
         @component('components.rich-textarea-editor', ['option' => $text->options()])

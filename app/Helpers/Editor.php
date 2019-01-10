@@ -17,13 +17,19 @@ if (!function_exists('Editor')) {
         $editor = $text->where('key_name',  '=', $key);
         $text = $editor->first();
         $textType ? $textType : 'text';
+        $readableText = '';
 
-//        dd($text->text);
-        $editor->updateOrCreate (['key_name' => $key], [
+        if($editor->count() == 1){
+            $readableText = $text->text;
+        }elseif(!empty($value)){
+            $readableText = $value;
+        }
+
+        $editor->updateOrCreate(['key_name' => $key], [
             'key_name' => $key,
             'text_type' => $textType,
             'option' => json_encode($options),
-            'text' => $editor->count() == 1 ? $text->text : ($value ? : ''),
+            'text' => $readableText
         ]);
 
         if(Auth::check() && $hideEditorBtn == false){
@@ -33,11 +39,10 @@ if (!function_exists('Editor')) {
 
         if (isset($options)) {
             foreach ($options['mentions'] as $key => $v) {
-                dd($key, $v);
-                $text = str_replace('@'.$key, $v, $text);
+                $readableText = str_replace('@'.$key, $v, $readableText);
             }
         }
 
-        return $text;
+        return $readableText;
     }
 }

@@ -8,5 +8,6 @@
   "/css/site/activity.css": "/css/site/activity.css",
   "/css/site/category.css": "/css/site/category.css",
   "/js/admin/app.js": "/js/admin/app.js",
-  "/js/auth/app.js": "/js/auth/app.js"
+  "/js/auth/app.js": "/js/auth/app.js",
+  "/css/auth/app.css": "/css/auth/app.css"
 }

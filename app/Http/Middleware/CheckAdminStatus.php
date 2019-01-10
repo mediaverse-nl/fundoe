@@ -16,8 +16,10 @@ class CheckAdminStatus
      */
     public function handle($request, Closure $next)
     {
-//        if (Auth::user()->admin()) {
-            return $next($request);
-//        }
+        if (Auth::check()) {
+            if ( Auth::user()){
+                return $next($request);
+            }
+        }
     }
 }

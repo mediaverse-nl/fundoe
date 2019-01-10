@@ -10446,9 +10446,6 @@ return jQuery;
 
 window.$ = window.jQuery = __webpack_require__(1);
 
-__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"datatables.net\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"datatables.net-bs4\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-
 /***/ }),
 
 /***/ 46:
