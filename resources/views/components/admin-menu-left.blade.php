@@ -6,18 +6,6 @@
             <span class="nav-link-text">Dashboard</span>
         </a>
     </li>
-    {{--<li class="nav-item {{Request::is('admin/detail*') ? 'active' : ''}}">--}}
-        {{--<a class="nav-link" href="{{route('admin.detail.index')}}">--}}
-            {{--<i class="fa fa-fw fa-info"></i>--}}
-            {{--<span class="nav-link-text">Details</span>--}}
-        {{--</a>--}}
-    {{--</li>--}}
-    {{--<li class="nav-item {{Request::is('admin/brand*') ? 'active' : ''}}">--}}
-        {{--<a class="nav-link" href="{{route('admin.brand.index')}}">--}}
-            {{--<i class="fa fa-fw fa-car"></i>--}}
-            {{--<span class="nav-link-text">Brands</span>--}}
-        {{--</a>--}}
-    {{--</li>--}}
 
     {{--<li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Components">--}}
         {{--<a class="nav-link nav-link-collapse {{Request::is('admin/product*') ? '' : 'collapsed'}}" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion" aria-expanded="false">--}}
@@ -65,26 +53,26 @@
         {{--</a>--}}
     {{--</li>--}}
 
-    {{--<li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Components">--}}
-        {{--<a class="nav-link  nav-link-collapse {{Request::is('admin/faq*') ? '' : 'collapsed'}}" data-toggle="collapse" href="#faqComponents" data-parent="#exampleAccordion" aria-expanded="false">--}}
-            {{--<i class="fa fa-fw fa-question"></i>--}}
-            {{--<span class="nav-link-text">FAQ</span>--}}
-        {{--</a>--}}
-        {{--<ul class="sidenav-second-level collapse {{Request::is('admin/faq*') ? 'show' : ''}}" id="faqComponents" style="">--}}
-            {{--<li class="{{Request::is('admin/faq/create') ? '' : (Request::is('admin/faq*') ? 'active' : '')}}">--}}
-                {{--<a href="{{route('admin.faq.index')}}">--}}
-                    {{--<i class="fa fa-fw fa-list"></i>--}}
-                    {{--<span class="nav-link-text">index</span>--}}
-                {{--</a>--}}
-            {{--</li>--}}
-            {{--<li class="{{Request::is('admin/faq/create') ? 'active' : ''}}">--}}
-                {{--<a href="{{route('admin.faq.create')}}">--}}
-                    {{--<i class="fa fa-fw fa-plus"></i>--}}
-                    {{--<span class="nav-link-text">create</span>--}}
-                {{--</a>--}}
-            {{--</li>--}}
-        {{--</ul>--}}
-    {{--</li>--}}
+    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Components">
+        <a class="nav-link nav-link-collapse {{Request::is('admin/faq*') ? '' : 'collapsed'}}" data-toggle="collapse" href="#faqComponents" data-parent="#exampleAccordion" aria-expanded="false">
+            <i class="fa fa-fw fa-question"></i>
+            <span class="nav-link-text">FAQ</span>
+        </a>
+        <ul class="sidenav-second-level collapse {{Request::is('admin/faq*') ? 'show' : ''}}" id="faqComponents" style="">
+            <li class="{{Request::is('admin/faq/create') ? '' : (Request::is('admin/faq*') ? 'active' : '')}}">
+                <a href="{{route('admin.faq.index')}}">
+                    <i class="fa fa-fw fa-list"></i>
+                    <span class="nav-link-text">index</span>
+                </a>
+            </li>
+            <li class="{{Request::is('admin/faq/create') ? 'active' : ''}}">
+                <a href="{{route('admin.faq.create')}}">
+                    <i class="fa fa-fw fa-plus"></i>
+                    <span class="nav-link-text">create</span>
+                </a>
+            </li>
+        </ul>
+    </li>
 
 </ul>
 

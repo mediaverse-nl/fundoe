@@ -39,9 +39,11 @@ Route::group(['prefix' => 'panel', 'namespace' => 'Auth', 'as' => 'auth.'], func
     Route::get('/bestellingen', 'OrderController@index')->name('order.index');
     Route::get('/bestelling-{id}', 'OrderController@show')->name('order.show');
     Route::get('/account-wijzigen', 'UserController@edit')->name('account.edit');
-    Route::post('/account-update', 'UserController@update')->name('account.update');
+    Route::patch('/watchwoord-update', 'UserController@password')->name('account.password');
+    Route::patch('/gegevens-update', 'UserController@info')->name('account.info');
 });
 
+//admin
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.', 'middleware' => 'admin'], function () {
     Route::get('/', 'DashboardController')->name('dashboard');
     Route::get('/dashboard', 'DashboardController');
@@ -52,6 +54,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.', 'mi
     Route::resource('order', 'OrderController');
     Route::resource('activity', 'ActivityController');
 
+    Route::resource('faq', 'FaqController');
     Route::patch('editor/{id}/update', 'TextController@update')->name('text-editor.update');
     Route::resource('editor', 'TextController', ['only' => ['index', 'edit']]);
     Route::resource('seo-manager', 'SEOController');
