@@ -29,6 +29,7 @@ Route::group(['namespace' => 'Site', 'as' => 'site.'], function () {
     Route::get('/contact', 'ContactController@index')->name('contact.index');
     Route::post('/contact', 'ContactController@store');
     Route::get('/over-ons', 'PageController@about')->name('about');
+    Route::get('/faq', 'PageController@faq')->name('faq');
     Route::get('/algemene-voorwaarden', 'PageController@terms')->name('terms');
     Route::get('/privacy-en-cookiebeleid', 'PageController@policy')->name('privacy');
 });
@@ -64,11 +65,13 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.', 'mi
     Route::get('pdf/downloadInvoice{id}', 'PDFController@downloadInvoice')->name('pdf.downloadInvoice');
 });
 
-Auth::routes();
+Route::group(['prefix' => 'admin/laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
+});
 
+Auth::routes();
 Route::get('/redirect', 'Auth\SocialAuthFacebookController@redirect')->name('facebook.login.redirect');
 Route::get('/callback', 'Auth\SocialAuthFacebookController@callback')->name('facebook.login.callback');
-
 
 Route::post('api/text-editor-{id}', function(TextUpdateRequest $request, $id) {
     $text = \App\Text::findOrFail($id);

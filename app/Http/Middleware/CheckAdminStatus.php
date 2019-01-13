@@ -3,7 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
-//use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class CheckAdminStatus
 {
@@ -16,10 +16,10 @@ class CheckAdminStatus
      */
     public function handle($request, Closure $next)
     {
-//        if (Auth::check()) {
-//            if ( Auth::user()){
-                return $next($request);
-//            }
-//        }
+        if (Auth::user() &&  Auth::user()->admin == 1) {
+            return $next($request);
+        }
+
+        return redirect('/');
     }
 }

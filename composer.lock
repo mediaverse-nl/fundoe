@@ -1,11 +1,64 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "552c64dfa1cc61868d4cb789556fb010",
+    "content-hash": "5efcc8221a9f4d2cf559573c39c66772",
     "packages": [
+        {
+            "name": "artesaos/seotools",
+            "version": "0.10.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/artesaos/seotools.git",
+                "reference": "6cdd1787aa36ac0c1a63155fb84a27934f426c93"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/artesaos/seotools/zipball/6cdd1787aa36ac0c1a63155fb84a27934f426c93",
+                "reference": "6cdd1787aa36ac0c1a63155fb84a27934f426c93",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/config": "~5",
+                "illuminate/support": "~5",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^0.9.4",
+                "orchestra/testbench": "~3.0",
+                "phpspec/phpspec": "2.1.x",
+                "phpunit/phpunit": "^4.0|^5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Artesaos\\SEOTools\\": "src/SEOTools/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Vinicius",
+                    "email": "luiz.vinicius73@gmail.com"
+                }
+            ],
+            "description": "SEO Tools for Laravel and Lumen",
+            "keywords": [
+                "laravel5",
+                "lumen",
+                "metatags",
+                "opengraph",
+                "seo",
+                "seotools",
+                "webmaster"
+            ],
+            "time": "2016-10-27T03:03:45+00:00"
+        },
         {
             "name": "browner12/helpers",
             "version": "v2.0.0",
@@ -2608,16 +2661,16 @@
         },
         {
             "name": "unisharp/laravel-filemanager",
-            "version": "v2.0.0-alpha7",
+            "version": "v2.0.0-alpha6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/UniSharp/laravel-filemanager.git",
-                "reference": "f25ea4d4f4e782fc20e690d121daacf1539ae032"
+                "reference": "4af4e857d9d000c24a59bb4b223cdc4eee2d8b26"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/UniSharp/laravel-filemanager/zipball/f25ea4d4f4e782fc20e690d121daacf1539ae032",
-                "reference": "f25ea4d4f4e782fc20e690d121daacf1539ae032",
+                "url": "https://api.github.com/repos/UniSharp/laravel-filemanager/zipball/4af4e857d9d000c24a59bb4b223cdc4eee2d8b26",
+                "reference": "4af4e857d9d000c24a59bb4b223cdc4eee2d8b26",
                 "shasum": ""
             },
             "require": {
@@ -2679,7 +2732,7 @@
                 "tinymce",
                 "upload"
             ],
-            "time": "2018-12-05T14:33:04+00:00"
+            "time": "2018-11-30T04:04:36+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

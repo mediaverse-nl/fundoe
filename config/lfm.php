@@ -30,20 +30,15 @@ return [
     // setting it to false show `error-file-exist` error and stop upload
     'over_write_on_duplicate'  => false,
 
-    // behavior on files with identical name
-    // setting it to true cause old file replace with new one
-    // setting it to false show `error-file-exist` error and stop upload
-    'over_write_on_duplicate' => false,
-
     /*
     |--------------------------------------------------------------------------
     | Multi-User Mode
     |--------------------------------------------------------------------------
      */
 
-    'allow_multi_user'         => true,
+    'allow_multi_user'         => false,
 
-    'allow_share_folder'       => true,
+    'allow_share_folder'       => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -66,7 +61,7 @@ return [
         'file'  => [
             'folder_name'  => 'files',
             'startup_view' => 'grid',
-            'max_size'     => 50000, // size in KB
+            'max_size'     => 50000,
             'valid_mime'   => [
                 'image/jpeg',
                 'image/pjpeg',
@@ -78,7 +73,7 @@ return [
         'image' => [
             'folder_name'  => 'photos',
             'startup_view' => 'list',
-            'max_size'     => 50000, // size in KB
+            'max_size'     => 50000,
             'valid_mime'   => [
                 'image/jpeg',
                 'image/pjpeg',

@@ -1,25 +1,6 @@
 @push('css')
     <!-- include summernote css -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet">
-
-    <style>
-        .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
-            color: #495057;
-            background-color: #F5F5F5 !important;
-            border-color: #dee2e6 #dee2e6 #fff;
-            border-bottom: 1px solid #F5F5F5;
-            border-radius: 0px;
-        }
-        .nav-tabs .nav-link {
-            border: 1px solid transparent;
-            border-top-left-radius:0px;
-            border-top-right-radius:0px;
-        }
-        .note-editor.note-frame {
-            border: 1px  solid #dee2e6 !important;
-            /*border-top: none !important;*/
-        }
-    </style>
 @endpush
 
 @push('scripts')
@@ -56,7 +37,6 @@
             $('.summernote').summernote({
                 placeholder: "Type anything here...",
                 tabsize: 2,
-                height: 350,
                 buttons: {
                     lfm: LFMButton
                 },

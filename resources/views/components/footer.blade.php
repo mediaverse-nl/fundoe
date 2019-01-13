@@ -32,9 +32,9 @@
                     <li>
                         <a href="{!! route('site.about') !!}">Over ons</a>
                     </li>
-                    {{--<li>--}}
-                        {{--<a href="#!">Link 3</a>--}}
-                    {{--</li>--}}
+                    <li>
+                        <a href="{!! route('site.faq') !!}">F.A.Q.</a>
+                    </li>
                     <li>
                         <a href="{!! route('site.contact.index') !!}">Contact</a>
                     </li>

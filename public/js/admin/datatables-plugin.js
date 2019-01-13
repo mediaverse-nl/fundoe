@@ -1,9 +1,11 @@
 // Call the dataTables jQuery plugin
 $(document).ready(function() {
-  $('#dataTable').DataTable({
-      "columnDefs": [ {
-          "targets": 'no-sort',
-          "orderable": false
-      } ]
-  } );
+    if ($("#dataTable").length ) {
+      $('#dataTable').DataTable({
+          "columnDefs": [ {
+              "targets": 'no-sort',
+              "orderable": false
+          } ]
+      } );
+    }
 });

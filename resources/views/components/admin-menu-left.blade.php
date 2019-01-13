@@ -40,18 +40,24 @@
             {{--<span class="nav-link-text">Texts</span>--}}
         {{--</a>--}}
     {{--</li>--}}
-    {{--<li class="nav-item {{Request::is('admin/seo-manager*') ? 'active' : ''}}" disabled>--}}
-        {{--<a class="nav-link" href="{{route('admin.seo-manager.index')}}">--}}
-            {{--<i class="fa fa-fw fa-search"></i>--}}
-            {{--<span class="nav-link-text">SEO</span>--}}
-        {{--</a>--}}
-    {{--</li>--}}
-    {{--<li class="nav-item {{Request::is('admin/file-manager*') ? 'active' : ''}}">--}}
-        {{--<a class="nav-link" href="{{route('admin.file-manager.index')}}">--}}
-            {{--<i class="fa fa-fw fa-image"></i>--}}
-            {{--<span class="nav-link-text">Images</span>--}}
-        {{--</a>--}}
-    {{--</li>--}}
+    <li class="nav-item {{Request::is('admin/category*') ? 'active' : ''}}">
+        <a class="nav-link" href="{{route('admin.category.index')}}">
+            <i class="fa fa-fw fa-search"></i>
+            <span class="nav-link-text">Category</span>
+        </a>
+    </li>
+    <li class="nav-item {{Request::is('admin/seo-manager*') ? 'active' : ''}}">
+        <a class="nav-link" href="{{route('admin.seo-manager.index')}}">
+            <i class="fa fa-fw fa-search"></i>
+            <span class="nav-link-text">SEO</span>
+        </a>
+    </li>
+    <li class="nav-item {{Request::is('admin/file-manager*') ? 'active' : ''}}">
+        <a class="nav-link" href="{{route('admin.file-manager.index')}}">
+            <i class="fa fa-fw fa-image"></i>
+            <span class="nav-link-text">Images</span>
+        </a>
+    </li>
 
     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Components">
         <a class="nav-link nav-link-collapse {{Request::is('admin/faq*') ? '' : 'collapsed'}}" data-toggle="collapse" href="#faqComponents" data-parent="#exampleAccordion" aria-expanded="false">

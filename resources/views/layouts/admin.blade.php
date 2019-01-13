@@ -4,8 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="mediaverse.nl">
 
     <title>Admin panel</title>
 
@@ -14,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css?family=K2D" rel="stylesheet">
     <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <!-- Page level plugin CSS-->
-    <link href="/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+    <link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <!-- Custom styles for this template-->
     <link href="/css/admin/sb-admin.css" rel="stylesheet">
 
@@ -56,7 +55,30 @@
         ::-webkit-scrollbar-thumb {
             background: #343A40;
         }
-
+        .no-js #loader { display: none;  }
+        .js #loader { display: block; position: absolute; left: 100px; top: 0; }
+        .se-pre-con {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9998;
+            background: #FFFFFF !important;
+        }
+        .se-pre-con > span {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -50px 0px 0px -50px;
+            height: 8%;
+            width: 8%;
+            z-index: 9999;
+        }
+        .se-pre-con > span img {
+            width: 100%;
+            height: auto;
+        }
     </style>
     <!-- Styles -->
     @stack("css")
@@ -64,12 +86,12 @@
 </head>
 <body class="{{Auth()->check() ? '' : 'bg-dark'}} fixed-nav sticky-footer" id="page-top">
 
-{{--@include('components.notification')--}}
+@include('components.page-loader')
 
 @if(Auth()->check())
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav" style="">
-        <a class="navbar-brand" href="index.html">Admin Panel 2.1.2</a>
+        <a class="navbar-brand" href="{!! route('admin.dashboard') !!}">Admin Panel 2.1.2</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" style="">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -86,7 +108,6 @@
 
             @yield('content')
         </div>
-
     </div>
 
     <!-- Sticky Footer -->
@@ -135,19 +156,30 @@
 <!-- Bootstrap core JavaScript-->
 <script src="/vendor/jquery/jquery.min.js"></script>
 <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+<script>
+    $(document).ready(function() {
+        var LoaderElement = function(){
+            $(".se-pre-con").fadeOut("slow");
+        };
+        $(window).on("load", function (e) {
+            LoaderElement();
+        });
+        setInterval(function() {
+            LoaderElement();
+        }, 1000);
+    });
+</script>
 <!-- Core plugin JavaScript-->
 <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <!-- Page level plugin JavaScript-->
 <script src="/vendor/chart.js/Chart.min.js"></script>
-<script src="/vendor/datatables/jquery.dataTables.js"></script>
-<script src="/vendor/datatables/dataTables.bootstrap4.js"></script>
-
-<!-- Custom scripts for all pages-->
+<script src="/vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 <script src="/js/admin/datatables-plugin.js"></script>
 <script src="/js/admin/sb-admin.min.js"></script>
 
+<!-- Custom scripts for all pages-->
 @stack("scripts")
 
 </body>
