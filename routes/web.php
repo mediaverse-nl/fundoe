@@ -35,7 +35,7 @@ Route::group(['namespace' => 'Site', 'as' => 'site.'], function () {
 });
 
 //user panel
-Route::group(['prefix' => 'panel', 'namespace' => 'Auth', 'as' => 'auth.'], function () {
+Route::group(['prefix' => 'panel', 'namespace' => 'Auth', 'as' => 'auth.', 'middleware' => 'auth'], function () {
     Route::get('/', 'PanelController')->name('panel');
     Route::get('/bestellingen', 'OrderController@index')->name('order.index');
     Route::get('/bestelling-{id}', 'OrderController@show')->name('order.show');
@@ -65,7 +65,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.', 'mi
     Route::get('pdf/downloadInvoice{id}', 'PDFController@downloadInvoice')->name('pdf.downloadInvoice');
 });
 
-Route::group(['prefix' => 'admin/laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+Route::group(['prefix' => 'admin/laravel-filemanager', 'middleware' => ['web', 'auth', 'admin']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });
 

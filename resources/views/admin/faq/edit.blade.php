@@ -6,13 +6,14 @@
 
 @section('content')
     <div class="row">
-        <div class="col-12">
+        <div class="col-12 col-md-6 col-lg-6">
             <div class="card">
                 <div class="card-header">
                     edit frequently asked questions (FAQ) item
                 </div>
                 <div class="card-body">
                     {!! Form::model($faq, ['route' => ['admin.faq.update', $faq->id], 'method' => 'PATCH']) !!}
+                        {!! Form::hidden('id', $faq->id) !!}
 
                         <div class="form-group">
                             {!! Form::label('title', 'Title') !!}
@@ -26,7 +27,6 @@
                             @include('components.error', ['field' => 'description'])
                         </div>
                         <button class="btn btn-warning" type="submit">Save</button>
-                        {{--<a href="" class="btn btn-danger">Cancel</a>--}}
 
                     {!! Form::close() !!}
 

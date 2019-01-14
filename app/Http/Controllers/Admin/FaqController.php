@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Faq;
+use App\Http\Requests\Admin\FaqStoreRequest;
 use App\Http\Requests\Admin\FaqUpdateRequest;
+use App\Notifications\OrderNotification;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -45,7 +47,7 @@ class FaqController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(FaqUpdateRequest $request)
+    public function store(FaqStoreRequest $request)
     {
         $faq = $this->faq;
 
@@ -86,6 +88,8 @@ class FaqController extends Controller
         $faq->description = $request->description;
 
         $faq->save();
+
+        auth()->user()->notify(new OrderNotification($faq));
 
         return redirect()->route('admin.faq.index');
     }

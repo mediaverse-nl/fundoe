@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class FaqUpdateRequest extends FormRequest
+class FaqStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class FaqUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|min:1|max:200|unique:faq,title,'.$this->id,
+            'title' => 'required|min:1|max:200|unique:faq,title',
             'description' => 'required|min:1|max:2000'
         ];
     }

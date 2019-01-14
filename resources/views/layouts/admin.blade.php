@@ -71,8 +71,8 @@
             top: 50%;
             left: 50%;
             margin: -50px 0px 0px -50px;
-            height: 8%;
-            width: 8%;
+            height: 45px;
+            width: 45px;
             z-index: 9999;
         }
         .se-pre-con > span img {
@@ -166,7 +166,7 @@
         });
         setInterval(function() {
             LoaderElement();
-        }, 1000);
+        }, 500);
     });
 </script>
 <!-- Core plugin JavaScript-->
