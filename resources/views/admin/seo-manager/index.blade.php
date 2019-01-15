@@ -20,10 +20,10 @@
                 {{--<td>61</td>--}}
                 {{--<td>2011/04/25</td>--}}
                 <td>
-                    {{--<a href="{{route('admin.product.edit', $product->id)}}">--}}
+                    {{--<a href="{{route('admin.activity.edit', $activity->id)}}">--}}
                     {{--<i class="fas fa-edit"></i>--}}
                     {{--</a>--}}
-                    {{--<a href="{{route('admin.product.edit', $product->id)}}">--}}
+                    {{--<a href="{{route('admin.activity.edit', $activity->id)}}">--}}
                     {{--<i class="fas fa-trash"></i>--}}
                     {{--</a>--}}
                 </td>

@@ -13,13 +13,13 @@
             {{--<span class="nav-link-text">Products</span>--}}
         {{--</a>--}}
         {{--<ul class="sidenav-second-level collapse {{Request::is('admin/product*') ? 'show' : ''}}" id="collapseComponents" style="">--}}
-            {{--<li class="{{Request::is('admin/product/create') ? '' : (Request::is('admin/product*') ? 'active' : '')}}">--}}
-                {{--<a href="{{route('admin.product.index')}}">--}}
+            {{--<li class="{{Request::is('admin/activity/create') ? '' : (Request::is('admin/activity*') ? 'active' : '')}}">--}}
+                {{--<a href="{{route('admin.activity.index')}}">--}}
                     {{--<i class="fa fa-fw fa-list"></i>--}}
                     {{--<span class="nav-link-text">index</span>--}}
                 {{--</a>--}}
             {{--</li>--}}
-            {{--<li class="{{Request::is('admin/product/create') ? 'active' : ''}}">--}}
+            {{--<li class="{{Request::is('admin/activity/create') ? 'active' : ''}}">--}}
                 {{--<a href="{{route('admin.product.create')}}">--}}
                     {{--<i class="fa fa-fw fa-plus"></i>--}}
                     {{--<span class="nav-link-text">create</span>--}}
@@ -28,12 +28,12 @@
         {{--</ul>--}}
     {{--</li>--}}
 
-    {{--<li class="nav-item {{Request::is('admin/order*') ? 'active' : ''}}">--}}
-        {{--<a class="nav-link" href="{{route('admin.order.index')}}">--}}
-            {{--<i class="fa fa-fw fa-inbox"></i>--}}
-            {{--<span class="nav-link-text">Orders</span>--}}
-        {{--</a>--}}
-    {{--</li>--}}
+    <li class="nav-item {{Request::is('admin/activity*') ? 'active' : ''}}">
+        <a class="nav-link" href="{{route('admin.activity.index')}}">
+            <i class="fa fa-fw fa-university"></i>
+            <span class="nav-link-text">Activity</span>
+        </a>
+    </li>
     {{--<li class="nav-item {{Request::is('admin/editor*') ? 'active' : ''}}">--}}
         {{--<a class="nav-link" href="{{route('admin.editor.index')}}">--}}
             {{--<i class="fa fa-fw fa-font"></i>--}}
@@ -42,7 +42,7 @@
     {{--</li>--}}
     <li class="nav-item {{Request::is('admin/category*') ? 'active' : ''}}">
         <a class="nav-link" href="{{route('admin.category.index')}}">
-            <i class="fa fa-fw fa-search"></i>
+            <i class="fa fa-fw fa-bars"></i>
             <span class="nav-link-text">Category</span>
         </a>
     </li>

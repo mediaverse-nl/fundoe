@@ -11,49 +11,59 @@
                 <i class="fa fa-fw fa-circle"></i>
             </span>
         </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown" style="width: 350px;">
             <h6 class="dropdown-header">New Alerts:</h6>
             <div class="dropdown-divider"></div>
-            @foreach (auth()->user()->unreadNotifications as $n)
-                <a class="dropdown-item" href="#">
-                    @if(str_contains($n->data['subject'], 'Updated'))
-                        <span class="text-warning">
-                            <strong>
-                                <i class="fa fa-edit fa-fw"></i>{!! $n->data['subject'] !!}
-                            </strong>
-                        </span>
-                        <span class="small float-right text-muted">{!! $n->created_at->format('d-m-Y h:i') !!}</span>
-                        <div class="dropdown-message small">{!! $n->data['description'] !!}</div>
-                    @elseif(str_contains($n->data['subject'], 'Created'))
-                        <span class="text-success">
-                            <strong>
-                                <i class="fa fa-plus fa-fw"></i>{!! $n->data['subject'] !!}
-                            </strong>
-                        </span>
-                        <span class="small float-right text-muted">{!! $n->created_at->format('d-m-Y h:i') !!}</span>
-                        <div class="dropdown-message small">{!! $n->data['description'] !!}</div>
-                    @elseif(str_contains($n->data['subject'], 'Deleted'))
-                        <span class="text-danger">
-                            <strong>
-                                <i class="fa fa-trash fa-fw"></i>{!! $n->data['subject'] !!}
-                            </strong>
-                        </span>
-                        <span class="small float-right text-muted">{!! $n->created_at->format('d-m-Y h:i') !!}</span>
-                        <div class="dropdown-message small">{!! $n->data['description'] !!}</div>
-                    @else
-                        <span class="text-primary">
-                            <strong>
-                                <i class="fa fa-info fa-fw"></i>{!! $n->data['subject'] !!}
-                            </strong>
-                        </span>
-                        <span class="small float-right text-muted">{!! $n->created_at->format('d-m-Y h:i') !!}</span>
-                        <div class="dropdown-message small">{!! $n->data['description'] !!}</div>
+            @if(count(auth()->user()->unreadNotifications) >= 1)
+                @foreach (auth()->user()->unreadNotifications as $n)
+                    <a class="dropdown-item" href="#">
+                        @if(str_contains($n->data['subject'], 'Updated'))
+                            <span class="text-warning">
+                                <strong>
+                                    <i class="fa fa-edit fa-fw"></i>{!! $n->data['subject'] !!}
+                                </strong>
+                            </span>
+                            <span class="small float-right text-muted">{!! $n->created_at->format('d-m-Y h:i') !!}</span>
+                            <div class="dropdown-message small">{!! $n->data['description'] !!}</div>
+                        @elseif(str_contains($n->data['subject'], 'Created'))
+                            <span class="text-success">
+                                <strong>
+                                    <i class="fa fa-plus fa-fw"></i>{!! $n->data['subject'] !!}
+                                </strong>
+                            </span>
+                            <span class="small float-right text-muted">{!! $n->created_at->format('d-m-Y h:i') !!}</span>
+                            <div class="dropdown-message small">{!! $n->data['description'] !!}</div>
+                        @elseif(str_contains($n->data['subject'], 'Deleted'))
+                            <span class="text-danger">
+                                <strong>
+                                    <i class="fa fa-trash fa-fw"></i>{!! $n->data['subject'] !!}
+                                </strong>
+                            </span>
+                            <span class="small float-right text-muted">{!! $n->created_at->format('d-m-Y h:i') !!}</span>
+                            <div class="dropdown-message small">{!! $n->data['description'] !!}</div>
+                        @else
+                            <span class="text-primary">
+                                <strong>
+                                    <i class="fa fa-info fa-fw"></i>{!! $n->data['subject'] !!}
+                                </strong>
+                            </span>
+                            <span class="small float-right text-muted">{!! $n->created_at->format('d-m-Y h:i') !!}</span>
+                            <div class="dropdown-message small">{!! $n->data['description'] !!}</div>
+                        @endif
+                    </a>
+                    @if(!$loop->last)
+                        <div class="dropdown-divider"></div>
                     @endif
-                </a>
-                @if(!$loop->last)
-                    <div class="dropdown-divider"></div>
-                @endif
-            @endforeach
+                @endforeach
+            @else
+                <span class="text-dark" style="padding: .5rem 1.5rem;">
+                    <strong>
+                        There are no notification.
+                    </strong>
+                </span>
+                <span class="small float-right text-muted"></span>
+                {{--<div class="dropdown-message small" style="padding: .5rem 1.5rem;">sdddd</div>--}}
+            @endif
             <div class="dropdown-divider"></div>
             <a class="dropdown-item small" href="{!! route('admin.notification.index') !!}">View all alerts</a>
         </div>

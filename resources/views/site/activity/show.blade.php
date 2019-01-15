@@ -40,7 +40,7 @@
                                 </div>
                                 <p class="product-description">Suspendisse quos? Tempus cras iure temporibus? Eu laudantium cubilia sem sem! Repudiandae et! Massa senectus enim minim sociosqu delectus posuere.</p>
                                 <h4 class="price">Uur tarief: <span>$180</span></h4>
-                                {{--<p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p>--}}
+                                {{--<p class="vote"><strong>91%</strong> of buyers enjoyed this activity! <strong>(87 votes)</strong></p>--}}
 
                                 <div class="form-group">
                                     <label for="exampleFormControlSelect1">Datum</label>

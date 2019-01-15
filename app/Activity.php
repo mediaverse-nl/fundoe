@@ -9,4 +9,11 @@ class Activity extends Model
 {
     use Notifiable;
 
+    protected $primaryKey = 'id';
+
+    protected $table = 'activity';
+
+    public $timestamps = true;
+
+    protected $fillable = [];
 }

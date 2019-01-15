@@ -1,7 +1,8 @@
 <?php
 
-$edit_name = 'Wijzigen';
-$create_name = 'Aanmaken';
+$edit_name = 'Edit';
+$create_name = 'Create';
+$show_name = 'Show';
 
 // admin dashboard
 Breadcrumbs::register('admin.dashboard', function ($breadcrumbs) {
@@ -35,6 +36,22 @@ Breadcrumbs::register('admin.faq.create', function($breadcrumbs) use ($create_na
     $breadcrumbs->push($create_name, route('admin.faq.create'));
 });
 
+// dashboard > activity
+Breadcrumbs::register('admin.activity.index', function($breadcrumbs) {
+    $breadcrumbs->parent('admin.dashboard');
+    $breadcrumbs->push('Activity', route('admin.activity.index'));
+});
+// dashboard > activity > edit
+Breadcrumbs::register('admin.activity.edit', function($breadcrumbs, $model) use ($edit_name) {
+    $breadcrumbs->parent('admin.activity.index');
+    $breadcrumbs->push($edit_name, route('admin.activity.edit', $model->id));
+});
+// dashboard > activity > create
+Breadcrumbs::register('admin.activity.create', function($breadcrumbs) use ($create_name) {
+    $breadcrumbs->parent('admin.activity.index');
+    $breadcrumbs->push($create_name, route('admin.activity.create'));
+});
+
 // dashboard > category
 Breadcrumbs::register('admin.category.index', function($breadcrumbs) {
     $breadcrumbs->parent('admin.dashboard');
@@ -55,4 +72,15 @@ Breadcrumbs::register('admin.category.create', function($breadcrumbs) use ($crea
 Breadcrumbs::register('admin.image.index', function($breadcrumbs) {
     $breadcrumbs->parent('admin.dashboard');
     $breadcrumbs->push('Images Library', route('admin.file-manager.index'));
+});
+
+// dashboard > notification
+Breadcrumbs::register('admin.notification.index', function($breadcrumbs) {
+    $breadcrumbs->parent('admin.dashboard');
+    $breadcrumbs->push('Notification', route('admin.notification.index'));
+});
+// dashboard > notification > show
+Breadcrumbs::register('admin.notification.show', function($breadcrumbs, $model) use ($show_name) {
+    $breadcrumbs->parent('admin.notification.index');
+    $breadcrumbs->push($show_name, route('admin.notification.show', $model->id));
 });
