@@ -8,7 +8,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class OrderNotification extends Notification
+class UpdateModelNotification extends Notification
 {
     use Queueable;
 
@@ -35,7 +35,6 @@ class OrderNotification extends Notification
         return ['database'];
     }
 
-
     /**
      * @param $notifiable
      * @return array
@@ -43,24 +42,9 @@ class OrderNotification extends Notification
     public function toDatabase($notifiable)
     {
         return [
-            'from' => $this->message->name,
-            'name'=> $this->message->email,
-            'subject' => $this->message->subject,
+            'subject' => 'Updated',
+            'description' => 'Updated entry: <b>'.$this->model->getTable().'</b>',
             'model' => $this->model,
-            'created_at' => Carbon::parse('Y-m-d H'),
-        ];
-    }
-
-    /**
-     * Get the array representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return array
-     */
-    public function toArray($notifiable)
-    {
-        return [
-            //
         ];
     }
 }

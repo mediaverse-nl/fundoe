@@ -7,6 +7,13 @@ use Illuminate\Notifications\Notifiable;
 
 class Order extends Model
 {
-    use Notifiable;
+//    use Notifiable;
 
+    protected $table = 'order';
+
+    public $timestamps = true;
+
+    protected $fillable = [];
+
+    protected $dates = ['created_at', 'updated_at'];
 }

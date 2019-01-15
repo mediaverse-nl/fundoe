@@ -60,6 +60,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.', 'mi
     Route::resource('editor', 'TextController', ['only' => ['index', 'edit']]);
     Route::resource('seo-manager', 'SEOController');
     Route::get('file-manager', 'FileManagerController@index')->name('file-manager.index');
+    Route::get('notificaties', 'NotificationController@index')->name('notification.index');
 
     Route::get('pdf/streamInvoice/{id}', 'PDFController@streamInvoice')->name('pdf.streamInvoice');
     Route::get('pdf/downloadInvoice{id}', 'PDFController@downloadInvoice')->name('pdf.downloadInvoice');

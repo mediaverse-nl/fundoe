@@ -11,28 +11,28 @@
 
             @component('components.datatable')
                 @slot('head')
-                    <th>id</th>
-                    <th>detail</th>
+                    {{--<th>id</th>--}}
+                    <th>title</th>
                     <th class="no-sort"></th>
                 @endslot
 
                 @slot('table')
                     @foreach($faqs as $faq)
                         <tr>
-                            <td>{{$faq->id}}</td>
+                            {{--<td>{{$faq->id}}</td>--}}
                             <td>{{$faq->title}}</td>
                             <td>
-                                {{--@component('components.model', [--}}
-                                    {{--'id' => 'faqTableBtn'.$faq->id,--}}
-                                    {{--'title' => 'Delete',--}}
-                                    {{--'actionRoute' => route('admin.faq.destroy', $faq->id),--}}
-                                    {{--'btnClass' => 'rounded-circle delete',--}}
-                                    {{--'btnIcon' => 'fa fa-trash'--}}
-                                {{--])--}}
-                                    {{--@slot('description')--}}
-                                        {{--If u proceed u will delete all relations--}}
-                                    {{--@endslot--}}
-                                {{--@endcomponent--}}
+                                @component('components.model', [
+                                    'id' => 'faqTableBtn'.$faq->id,
+                                    'title' => 'Delete',
+                                    'actionRoute' => route('admin.faq.destroy', $faq->id),
+                                    'btnClass' => 'rounded-circle delete',
+                                    'btnIcon' => 'fa fa-trash'
+                                ])
+                                    @slot('description')
+                                        If u proceed u will delete all relations
+                                    @endslot
+                                @endcomponent
                                 <a href="{{route('admin.faq.edit', $faq->id)}}" class="rounded-circle edit">
                                     <i class="fa fa-edit"></i>
                                 </a>

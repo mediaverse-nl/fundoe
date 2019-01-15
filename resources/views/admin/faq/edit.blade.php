@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-12 col-md-6 col-lg-6">
+        <div class="col-12 col-md-9 col-lg-9">
             <div class="card">
                 <div class="card-header">
                     edit frequently asked questions (FAQ) item

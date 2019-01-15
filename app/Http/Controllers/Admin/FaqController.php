@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Faq;
 use App\Http\Requests\Admin\FaqStoreRequest;
 use App\Http\Requests\Admin\FaqUpdateRequest;
+use App\Notifications\DeleteModelNotification;
 use App\Notifications\OrderNotification;
+use App\Notifications\StoreModelNotification;
+use App\Notifications\UpdateModelNotification;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -56,6 +59,8 @@ class FaqController extends Controller
 
         $faq->save();
 
+        auth()->user()->notify(new StoreModelNotification($faq));
+
         return redirect()->route('admin.faq.index');
     }
 
@@ -89,7 +94,7 @@ class FaqController extends Controller
 
         $faq->save();
 
-        auth()->user()->notify(new OrderNotification($faq));
+        auth()->user()->notify(new UpdateModelNotification($faq));
 
         return redirect()->route('admin.faq.index');
     }
@@ -102,6 +107,13 @@ class FaqController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $faq = $this->faq->findOrFail($id);
+
+        $faq->delete();
+
+        auth()->user()->notify(new DeleteModelNotification($faq));
+
+        return redirect()
+            ->route('admin.faq.index');
     }
 }
