@@ -15,6 +15,12 @@ class CreateActivityTable extends Migration
     {
         Schema::create('activity', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('title', 60);
+            $table->string('description', 250);
+            $table->string('img', 20);
+            $table->float('price')->default(0.01);
+            $table->string('region', 45);
+            $table->dateTime('start_datetime');
             $table->timestamps();
         });
     }

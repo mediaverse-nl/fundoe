@@ -9,18 +9,36 @@
     <!-- DataTables Example -->
     @component('components.datatable', ['title' => 'activity'])
         @slot('head')
-            <th>Pagina</th>
-            <th>Position</th>
+            <th>id</th>
+            <th>activiteit</th>
+            <th>sold tickets</th>
+            <th>region</th>
+            <th>start_datetime</th>
+            <th>status</th>
+            <th class="no-sort"></th>
         @endslot
         @slot('table')
             @foreach($activities as $activity)
                 <tr>
+                    <td>{!! $activity->id !!}</td>
+                    <td>{!! $activity->title !!}</td>
+                    <td>1/35</td>
+                    <td>{!! $activity->region !!}</td>
+                    <td>{!! $activity->start_datetime !!}</td>
                     <td>
-                        <a href="{{route('admin.activity.edit', $activity)}}">
-                            <i class="fas fa-edit"></i>
-                        </a>
-                        <a href="{{route('admin.activity.edit', $activity)}}">
-                            <i class="fas fa-trash"></i>
+                        @component('components.model', [
+                                'id' => 'activityTableBtn'.$activity->id,
+                                'title' => 'Delete',
+                                'actionRoute' => route('admin.activity.destroy', $activity->id),
+                                'btnClass' => 'rounded-circle delete',
+                                'btnIcon' => 'fa fa-trash'
+                            ])
+                            @slot('description')
+                                If u proceed u will delete all relations
+                            @endslot
+                        @endcomponent
+                        <a href="{{route('admin.activity.edit', $activity->id)}}" class="rounded-circle edit">
+                            <i class="fa fa-edit"></i>
                         </a>
                     </td>
                 </tr>

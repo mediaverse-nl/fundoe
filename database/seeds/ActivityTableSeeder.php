@@ -1,5 +1,6 @@
 <?php
 
+use App\Activity;
 use Illuminate\Database\Seeder;
 
 class ActivityTableSeeder extends Seeder
@@ -11,19 +12,27 @@ class ActivityTableSeeder extends Seeder
      */
     public function run()
     {
-        \App\Activity::insert([[
-            'value' => 'sport',
-            'category_id' => null,
-            'order' => 1
+        Activity::insert([[
+            'title' => 'Zaal voetbal ',
+            'description' => 'asdadad asd asdas dsad sfaf aas',
+            'img' => 'dd',
+            'price' => 22.14,
+            'start_datetime' => \Carbon\Carbon::now()->toDateTimeString(),
+            'region' => 'Eindhoven'
         ], [
-            'value' => 'gaming',
-            'category_id' => null,
-            'order' => 3
-        ], [
-            'value' => 'culinair',
-            'category_id' => null,
-            'order' => 2
+            'title' => 'zaal badminton ',
+            'description' => 'asdadad asd asdas dsad sfaf aas',
+            'img' => 'dd',
+            'price' => 25.54,
+            'start_datetime' => \Carbon\Carbon::now()->toDateTimeString(),
+            'region' => 'Veldhoven'
+        ],[
+            'title' => 'buiten badminton ',
+            'description' => 'asdadad asd asdas dsad sfaf aas',
+            'img' => 'dd',
+            'price' => 25.54,
+            'start_datetime' => \Carbon\Carbon::now()->toDateTimeString(),
+            'region' => 'Eindhoven'
         ]]);
-
     }
 }
