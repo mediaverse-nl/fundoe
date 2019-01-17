@@ -12,7 +12,7 @@
             <th>id</th>
             <th>activiteit</th>
             <th>sold tickets</th>
-            <th>region</th>
+            <th>regions</th>
             <th>start_datetime</th>
             <th>status</th>
             <th class="no-sort"></th>
