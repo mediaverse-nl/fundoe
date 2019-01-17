@@ -28,11 +28,25 @@
         {{--</ul>--}}
     {{--</li>--}}
 
-    <li class="nav-item {{Request::is('admin/activity*') ? 'active' : ''}}">
-        <a class="nav-link" href="{{route('admin.activity.index')}}">
-            <i class="fa fa-fw fa-university"></i>
+    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Components">
+        <a class="nav-link nav-link-collapse {{Request::is('admin/activity*') ? '' : 'collapsed'}}" data-toggle="collapse" href="#activityComponents" data-parent="#exampleAccordion" aria-expanded="false">
+            <i class="fa fa-fw fa-question"></i>
             <span class="nav-link-text">Activity</span>
         </a>
+        <ul class="sidenav-second-level collapse {{Request::is('admin/activity*') ? 'show' : ''}}" id="activityComponents" style="">
+            <li class="{{Request::is('admin/activity/create') ? '' : (Request::is('admin/activity*') ? 'active' : '')}}">
+                <a href="{{route('admin.activity.index')}}">
+                    <i class="fa fa-fw fa-list"></i>
+                    <span class="nav-link-text">index</span>
+                </a>
+            </li>
+            <li class="{{Request::is('admin/activity/create') ? 'active' : ''}}">
+                <a href="{{route('admin.activity.create')}}">
+                    <i class="fa fa-fw fa-plus"></i>
+                    <span class="nav-link-text">create</span>
+                </a>
+            </li>
+        </ul>
     </li>
     {{--<li class="nav-item {{Request::is('admin/editor*') ? 'active' : ''}}">--}}
         {{--<a class="nav-link" href="{{route('admin.editor.index')}}">--}}

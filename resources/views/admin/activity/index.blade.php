@@ -25,6 +25,7 @@
                     <td>1/35</td>
                     <td>{!! $activity->region !!}</td>
                     <td>{!! $activity->start_datetime !!}</td>
+                    <td>{!! $activity->status !!}</td>
                     <td>
                         @component('components.model', [
                                 'id' => 'activityTableBtn'.$activity->id,

@@ -79,6 +79,9 @@
             width: 100%;
             height: auto;
         }
+        input, textarea{
+            border-radius: 0px !important;
+        }
     </style>
     <!-- Styles -->
     @stack("css")
@@ -178,6 +181,7 @@
 <script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 <script src="/js/admin/datatables-plugin.js"></script>
 <script src="/js/admin/sb-admin.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
 
 <!-- Custom scripts for all pages-->
 @stack("scripts")
