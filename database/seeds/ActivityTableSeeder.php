@@ -12,9 +12,12 @@ class ActivityTableSeeder extends Seeder
      */
     public function run()
     {
+        $categories = \App\Category::count();
+
         Activity::insert([[
             'title' => 'Zaal voetbal ',
             'description' => 'asdadad asd asdas dsad sfaf aas',
+            'category_id' => random_int(1, $categories),
             'img' => 'dd',
             'price' => 22.14,
             'start_datetime' => \Carbon\Carbon::now()->toDateTimeString(),
@@ -22,6 +25,7 @@ class ActivityTableSeeder extends Seeder
         ], [
             'title' => 'zaal badminton ',
             'description' => 'asdadad asd asdas dsad sfaf aas',
+            'category_id' => random_int(1, $categories),
             'img' => 'dd',
             'price' => 25.54,
             'start_datetime' => \Carbon\Carbon::now()->toDateTimeString(),
@@ -29,6 +33,7 @@ class ActivityTableSeeder extends Seeder
         ],[
             'title' => 'buiten badminton ',
             'description' => 'asdadad asd asdas dsad sfaf aas',
+            'category_id' => random_int(1, $categories),
             'img' => 'dd',
             'price' => 25.54,
             'start_datetime' => \Carbon\Carbon::now()->toDateTimeString(),

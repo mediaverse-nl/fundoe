@@ -15,7 +15,11 @@
                         Categorieen
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{!! route('site.category.show', 1) !!}">Action</a>
+                        @foreach($categoryMenu as $category)
+                            <a class="dropdown-item" href="{!! route('site.category.show', $category->id) !!}">
+                                {!! $category->value !!}
+                            </a>
+                        @endforeach
                     </div>
                 </li>
             </ul>

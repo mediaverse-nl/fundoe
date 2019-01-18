@@ -15,6 +15,8 @@ class CreateActivityTable extends Migration
     {
         Schema::create('activity', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('category_id')->unsigned();
+            $table->foreign('category_id')->references('id')->on('category');
             $table->string('title', 60);
             $table->string('description', 300);
             $table->string('img', 350);

@@ -17,6 +17,11 @@ class Category extends Model
 
     protected $fillable = ['value', 'category_id'];
 
+    public function activities()
+    {
+        return $this->hasMany('App\Activity','category_id', 'id');
+    }
+
     public function buildMenu($menu, $parentid = 0)
     {
         $result = null;

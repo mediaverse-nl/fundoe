@@ -21,6 +21,28 @@ class Activity extends Model
         'start_datetime',
     ];
 
+    public function events()
+    {
+        return $this->hasMany('App\Event', 'activity_id', 'id');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo('App\Category', 'category_id', 'id');
+    }
+
+    public function titleDash()
+    {
+        $string = strtolower($this->title);
+        $string = preg_replace("/[^a-z0-9_\s-]/", "", $string);
+        $string = preg_replace("/[\s-]+/", " ", $string);
+        $string = preg_replace("/[\s_]/", "-", $string);
+        if (substr($string,-1) == '-'){
+            $string = substr($string, 0, -1);
+        }
+        return $string;
+    }
+
     public function getImages()
     {
         $images = [];

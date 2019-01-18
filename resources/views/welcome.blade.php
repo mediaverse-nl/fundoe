@@ -181,7 +181,11 @@
 @endsection
 
 @push('css')
-
+    <style>
+        #myCarousel{
+            max-height: 500px;
+        }
+    </style>
 @endpush
 
 @push('js')

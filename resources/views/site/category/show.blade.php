@@ -66,26 +66,37 @@
 
                 <div class="row">
 
-                    @for($x = 0; $x <= 10; $x++)
+                    {!! $category !!}
+                    <br>
+                    @foreach($events as $event)
 
-                        <div class="col-12" style="padding: 10px 10px">
+
+                        <div class="col-6" style="padding: 10px 10px">
                             <div class="card">
                                 <img class="card-img-top" src="http://placehold.it/700x400" alt="Card image cap" height="210px;">
                                 <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                    <a href="{!! route('site.activity.show', ['title-name', 1]) !!}" class="btn btn-sm btn-primary">Lees meer</a>
-                                    <footer class="post-footer d-flex align-items-center" style="margin-top: 10px;">
-                                        <div class="row">
-                                            <div class="splitter-bar"><i class="fas fa-clock"></i> 2 months ago</div>
-                                            <div class="splitter-bar"><i class="fas fa-comments"></i> 2 reviews</div>
-                                        </div>
-                                   </footer>
+
+                                    <h5 class="card-title">{!! $event->activity->titleDash() !!}</h5>
+                                    <p class="card-text">{!! $event->activity->description !!}</p>
+                                    <a href="{!! route('site.activity.show', [$event->activity->titleDash(), $event->id]) !!}" class="btn btn-sm btn-primary">Lees meer</a>
+
+                                    <br>
+                                    <small>duur: {!! $event->diffInTime()!!}</small>
+                                    <br>
+                                    <small>{!! $event->startToEnd() !!}</small>
+                                    <br>
+                                    <small>{!! $event->remainingTimeToStart() !!}</small>
+                                    {{--<footer class="post-footer d-flex align-items-center" style="margin-top: 10px;">--}}
+                                        {{--<div class="row">--}}
+                                            {{--<div class="splitter-bar"><i class="fas fa-clock"></i> 2 months ago</div>--}}
+                                            {{--<div class="splitter-bar"><i class="fas fa-comments"></i> 2 reviews</div>--}}
+                                        {{--</div>--}}
+                                   {{--</footer>--}}
                                 </div>
                             </div>
                         </div>
 
-                    @endfor
+                    @endforeach
                 </div>
 
             </div>
