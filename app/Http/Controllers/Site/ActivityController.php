@@ -17,6 +17,11 @@ class ActivityController extends Controller
 
     public function show($id, $title = null)
     {
-        return view('site.activity.show');
+        $activity = $this->activity->findOrFail($id);
+
+        return view('site.activity.show')
+            ->with('activity', $activity);
     }
+
+
 }

@@ -36,7 +36,7 @@
                                         <span class="fa fa-star"></span>
                                         <span class="fa fa-star"></span>
                                     </div>
-                                    <span class="review-no">41 reviews</span>
+                                    <span class="review-no">{!! $activity !!} reviews</span>
                                 </div>
                                 <p class="product-description">Suspendisse quos? Tempus cras iure temporibus? Eu laudantium cubilia sem sem! Repudiandae et! Massa senectus enim minim sociosqu delectus posuere.</p>
                                 <h4 class="price">Uur tarief: <span>$180</span></h4>

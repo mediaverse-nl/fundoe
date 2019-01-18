@@ -21,14 +21,15 @@ class CategoryController extends Controller
     public function show($id)
     {
         $category = $this->category->findOrFail($id);
+        $categories = $this->category->get();
 
-//        $category->activities
         $events = $this->event->whereHas('activity', function ($q) use ($category) {
             $q->where('category_id', '=', $category->id);
-        })->get();
+        })->orderBy('start_datetime', 'asc')->get();
 
         return view('site.category.show')
             ->with('events', $events)
+            ->with('categories', $categories)
             ->with('category', $category);
     }
 }

@@ -21,9 +21,14 @@ class Activity extends Model
         'start_datetime',
     ];
 
-    public function events()
+    public function event()
     {
         return $this->hasMany('App\Event', 'activity_id', 'id');
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany('App\Review', 'review_id', 'id');
     }
 
     public function category()

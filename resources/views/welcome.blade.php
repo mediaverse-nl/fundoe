@@ -182,8 +182,16 @@
 
 @push('css')
     <style>
-        #myCarousel{
+        .carousel-inner{
             max-height: 500px;
+        }
+        .carousel-inner .carousel-item{
+            max-height: 500px;
+        }
+        .carousel-item img{
+            height: 500px !important;
+            object-position: center !important;
+            object-fit: cover !important;
         }
     </style>
 @endpush

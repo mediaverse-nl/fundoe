@@ -12,6 +12,8 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
+        $faker = Faker\Factory::create();
+
         User::create([
             'name' => 'admin',
             'email' => 'admin@admin.com',
@@ -19,9 +21,9 @@ class UserTableSeeder extends Seeder
             'admin' => 1
         ]);
 
-        for ($i=0; $i < 3; $i++) {
+        for ($i=0; $i < 10; $i++) {
             User::create([
-                'name' => str_random(8),
+                'name' => $faker->name,
                 'email' => str_random(12).'@mail.com',
                 'password' => bcrypt('asdasd')
             ]);

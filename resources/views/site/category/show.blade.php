@@ -3,11 +3,23 @@
 @section('content')
 
     <div class="container product-cards">
+        <br>
         <div class="row">
             <div class="col-sm-3">
-                <p>Filter</p>
+                {{--<p>Filter</p>--}}
+
+                <div class="list-group">
+                    @foreach($categories as $cate)
+                        <a href="{!! route('site.category.show', $cate->id) !!}" class="list-group-item{!! $category->id != $cate->id ? '' : ' active' !!}" style="">
+                            {!! $cate->value!!} <span class="float-right badge badge-light round"></span>
+                        </a>
+                    @endforeach
+                </div>
+
+                <br>
 
                 <div class="card">
+
                     <article class="card-group-item">
                         <header class="card-header">
                             <h6 class="title">Range input </h6>
@@ -66,10 +78,7 @@
 
                 <div class="row">
 
-                    {!! $category !!}
-                    <br>
                     @foreach($events as $event)
-
 
                         <div class="col-6" style="padding: 10px 10px">
                             <div class="card">
@@ -77,15 +86,23 @@
                                 <div class="card-body">
 
                                     <h5 class="card-title">{!! $event->activity->titleDash() !!}</h5>
-                                    <p class="card-text">{!! $event->activity->description !!}</p>
-                                    <a href="{!! route('site.activity.show', [$event->activity->titleDash(), $event->id]) !!}" class="btn btn-sm btn-primary">Lees meer</a>
-
+                                    <p class="card-text text-truncate">{!! $event->activity->description !!}</p>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <a href="{!! route('site.activity.show', [$event->activity->titleDash(), $event->id]) !!}" class="btn btn-sm btn-primary">
+                                                Lees meer
+                                            </a>
+                                        </div>
+                                        <div class="col-6">
+                                            <h2 class="pull-right">€ {!! $event->activity->price !!}<small> p.p.</small></h2>
+                                        </div>
+                                    </div>
                                     <br>
-                                    <small>duur: {!! $event->diffInTime()!!}</small>
+                                    <small class="text-muted">duur: {!! $event->diffInTime()!!}</small>
                                     <br>
-                                    <small>{!! $event->startToEnd() !!}</small>
+                                    <small class="text-muted">{!! $event->startToEnd() !!}</small>
                                     <br>
-                                    <small>{!! $event->remainingTimeToStart() !!}</small>
+                                    <small class="text-muted">{!! $event->remainingTimeToStart() !!}</small>
                                     {{--<footer class="post-footer d-flex align-items-center" style="margin-top: 10px;">--}}
                                         {{--<div class="row">--}}
                                             {{--<div class="splitter-bar"><i class="fas fa-clock"></i> 2 months ago</div>--}}
