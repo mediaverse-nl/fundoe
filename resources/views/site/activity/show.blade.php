@@ -36,7 +36,7 @@
                                         <span class="fa fa-star"></span>
                                         <span class="fa fa-star"></span>
                                     </div>
-                                    <span class="review-no">{!! $activity !!} reviews</span>
+                                    <span class="review-no">{!! $event !!} reviews</span>
                                 </div>
                                 <p class="product-description">Suspendisse quos? Tempus cras iure temporibus? Eu laudantium cubilia sem sem! Repudiandae et! Massa senectus enim minim sociosqu delectus posuere.</p>
                                 <h4 class="price">Uur tarief: <span>$180</span></h4>
@@ -91,31 +91,25 @@
 
     <div class="container-fluid review-container">
         <div class="row">
-            <div class="col-2">
 
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="card-link">Card link</a>
-                        <a href="#" class="card-link">Another link</a>
+            @foreach($event->activity->reviews as $review)
+
+                <div class="col-3">
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{!! $review !!}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                            <p class="card-text">{!! $review->text !!}</p>
+                            <a href="#" class="card-link">
+                                <small class="text-muted">&#9733; &#9733; &#9733; &#9732; &#9734;</small>
+                            </a>
+                            <a href="#" class="card-link">Another link</a>
+                        </div>
                     </div>
+
                 </div>
-
-            </div>
-            <div class="col-2">
-
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="card-link">Card link</a>
-                        <a href="#" class="card-link">Another link</a>
-                    </div>
-                </div>
-
+            @endforeach
             </div>
         </div>
     </div>

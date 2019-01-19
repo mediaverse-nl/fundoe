@@ -19,7 +19,7 @@ Route::get('/home', 'WelcomeController');
 Route::group(['namespace' => 'Site', 'as' => 'site.'], function () {
     Route::get('/c-{id}', 'CategoryController@show')->name('category.show');
     Route::get('/activiteiten', 'ActivityController@index');
-    Route::get('/activiteit/{title}-{id}', 'ActivityController@show')->name('activity.show');
+    Route::get('{title}/activiteit-{id}', 'ActivityController@show')->name('activity.show');
     Route::post('/review', 'ReviewController@store');
     Route::post('/comment', 'CommentController@store');
     Route::get('/cart', 'CartController@index')->name('cart.index');

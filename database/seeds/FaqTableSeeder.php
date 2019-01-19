@@ -11,15 +11,17 @@ class FaqTableSeeder extends Seeder
      */
     public function run()
     {
+        $faker = Faker\Factory::create();
+
         \App\Faq::insert([[
             'title' => 'Hoe maak ik een account?',
-            'description' => 'asdadad asd asdas dsad sfaf aas',
+            'description' => $faker->text(220),
         ], [
             'title' => 'Hoe log ik in',
-            'description' => 'asdadad asd asdas dsad sfaf aas',
+            'description' => $faker->text(150),
         ],[
             'title' => 'Kan ik events delen?',
-            'description' => 'Ja zeker.',
+            'description' => $faker->text(200),
         ]]);
     }
 }

@@ -27,7 +27,14 @@ class Event extends Model
     public function diffInTime()
     {
         return $this->start_datetime
-            ->diffInHours($this->end_datetime);
+            ->diffInMinutes($this->end_datetime);
+    }
+
+    public function timeToOrder()
+    {
+        $time = $this->start_datetime->addDays(-2);
+
+        return $time;
     }
 
     public function startToEnd($format_start = 'd M Y - H:m', $format_end = 'H:m')

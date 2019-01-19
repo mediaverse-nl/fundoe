@@ -28,7 +28,7 @@ class Activity extends Model
 
     public function reviews()
     {
-        return $this->hasMany('App\Review', 'review_id', 'id');
+        return $this->hasMany('App\Review', 'activity_id', 'id');
     }
 
     public function category()
@@ -48,13 +48,19 @@ class Activity extends Model
         return $string;
     }
 
-    public function getImages()
+    public function getImages($amount = '*')
     {
         $images = [];
 
         if(!empty($this->img)){
-            foreach (explode(',', $this->img) as $image){
-                $images[] = $image;
+            $i = 1;
+            foreach (explode(',', $this->img) as $image) {
+                if ($amount == '*'){
+                    $images[] = $image;
+                }elseif ($i <= $amount){
+                    $images[] = $image;
+                }
+                $i++;
             }
         }else{
             $images = null;
