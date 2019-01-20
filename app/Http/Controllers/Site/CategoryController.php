@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Site;
 
 use App\Category;
 use App\Event;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -22,10 +23,13 @@ class CategoryController extends Controller
     {
         $category = $this->category->findOrFail($id);
         $categories = $this->category->get();
+        $from = $this->event->ableToOrderDate();
 
         $events = $this->event->whereHas('activity', function ($q) use ($category) {
             $q->where('category_id', '=', $category->id);
-        })->orderBy('start_datetime', 'asc')->get();
+        })
+        ->whereDate('start_datetime', '>=', $from)
+        ->orderBy('start_datetime', 'asc')->get();
 
         return view('site.category.show')
             ->with('events', $events)

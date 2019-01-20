@@ -82,43 +82,55 @@
 
                         <div class="col-6" style="padding: 10px 10px">
                             <div class="card">
-                                <img class="card-img-top" src="http://placehold.it/700x400" alt="Card image cap" height="210px;">
+                                <img class="card-img-top" src="{!! $event->activity->thumbnail() !!}" alt="Card image cap" height="210px;">
+                                <div class="text-center" style="width: 100% !important; background: black; padding-top: 5px;">
+                                    <h3 class="text-muted text-center" style="color: rgba(255, 255, 255, 0.5);" data-countdown="{!! $event->timeToOrder('Y/m/d H:i:s') !!}">{!! $event->timeToOrder('Y/m/d H:i:s') !!}</h3>
+                                </div>
                                 <div class="card-body">
 
-                                    <h5 class="card-title">{!! $event->activity !!}</h5>
                                     <h5 class="card-title">{!! $event->activity->title !!}</h5>
                                     <p class="card-text truncateOpt">{!! $event->activity->description !!}</p>
                                     <div class="row">
-                                        <div class="col-6">
-                                            <a href="{!! route('site.activity.show', [$event->activity->titleDash(), $event->id]) !!}" class="btn btn-sm btn-primary">
+                                        <div class="col-5">
+                                            <a href="{!! route('site.activity.show', [$event->activity->titleDash(), $event->id]) !!}" class="btn btn-sm btn-block btn-primary">
                                                 Lees meer
                                             </a>
+                                            <a href="{!! route('site.activity.show', [$event->activity->titleDash(), $event->id]) !!}" class="btn btn-sm btn-block btn-primary">
+                                                boek nu
+                                            </a>
+                                            <br>
+                                            <small class="text-muted">{!! $event->start_datetime->format('d-m h:i') !!}</small>
                                         </div>
-                                        <div class="col-6">
-                                            <h2 class="pull-right">€ {!! $event->activity->price !!}<small> p.p.</small></h2>
+                                        <div class="col-7">
+                                            <h2 class="pull-right">€ {!! $event->activity->price !!}<small style="font-size: 15px;"> p.p.</small></h2>
                                         </div>
                                     </div>
-                                    <br>
-                                    <small class="text-muted">duur: {!! $event->diffInTime()!!}</small>
-                                    <br>
-                                    <small class="text-muted" data-countdown="{!! $event->startDatetime('Y/m/d H:i:s') !!}">{!! $event->startToEnd() !!}</small>
-                                    <br>
-                                    <br>
-                                    <small class="text-muted" data-countdown="{!! $event->timeToOrder('Y/m/d H:i:s') !!}">{!! $event->timeToOrder('Y/m/d H:i:s') !!}</small>
-                                    <br>
-                                    <small class="text-muted">{!! $event->remainingTimeToStart() !!}</small>
-                                    {{--<footer class="post-footer d-flex align-items-center" style="margin-top: 10px;">--}}
-                                        {{--<div class="row">--}}
-                                            {{--<div class="splitter-bar"><i class="fas fa-clock"></i> 2 months ago</div>--}}
-                                            {{--<div class="splitter-bar"><i class="fas fa-comments"></i> 2 reviews</div>--}}
-                                        {{--</div>--}}
-                                   {{--</footer>--}}
-                                    {{--<div id="getting-started"></div>--}}
+                                    {{--<br>--}}
+                                    {{--<span class="badge badge-success"><i class="fa fa-clock"></i> {!! $event->diffInTime()!!}min</span>--}}
 
-                                    {{--<div data-countdown="2019/01/20"></div>--}}
-                                    {{--<div data-countdown="2019/02/01"></div>--}}
-                                    {{--<div data-countdown="2019/02/11"></div>--}}
-                                    {{--<div data-countdown="2019/01/19"></div>--}}
+                                    {{--<small class="text-muted"></small>--}}
+                                    {{--<br>--}}
+                                    {{--<small class="text-muted" data-countdown="{!! $event->timeToOrder('Y/m/d H:i:s') !!}">{!! $event->timeToOrder() !!}</small>--}}
+                                    {{--<small class="text-muted" >{!! $event->timeToOrder() !!}</small>--}}
+                                    {{--<br>--}}
+                                    {{--<span class="badge badge-success"><i class="fa fa-clock"></i>{!! $event->diffInTime()!!}min</span>--}}
+                                    {{--<br>--}}
+                                    {{--<br>--}}
+                                    {{--<small class="text-muted">{!! $event->remainingTimeToStart() !!}</small>--}}
+                                    {{--<br>--}}
+                                    <footer class="post-footer d-flex align-items-center" style="margin-top: 10px;">
+                                        <div class="row">
+                                            <div class="splitter-bar">
+                                                <i class="fas fa-clock"></i> {!! $event->diffInTime()!!}min
+                                            </div>
+                                            <div class="splitter-bar">
+                                                <i class="fas fa-comments"></i> {!! $event->activity->reviews->count('id') !!} reviews
+                                            </div>
+                                            <div class="splitter-bar">
+                                                <i class="fas fa-star"></i> {!! number_format($event->activity->reviews->avg('rating'), 1) !!}/5
+                                            </div>
+                                        </div>
+                                    </footer>
                                 </div>
                             </div>
                         </div>
@@ -156,7 +168,7 @@
             $('[data-countdown]').each(function() {
                 var $this = $(this), finalDate = $(this).data('countdown');
                 $this.countdown(finalDate, function(event) {
-                    $this.html(event.strftime('%D days %H:%M:%S'));
+                    $this.html(event.strftime('%D dagen %H:%M:%S'));
                 });
             });
         });

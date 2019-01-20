@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
@@ -12,6 +13,8 @@ class Event extends Model
     protected $primaryKey = 'id';
 
     protected $table = 'event';
+
+    protected $daysBeforeClosing = 2;
 
     public $timestamps = true;
 
@@ -32,7 +35,14 @@ class Event extends Model
 
     public function timeToOrder()
     {
-        $time = $this->start_datetime->addDays(-2);
+        $time = $this->start_datetime->addDays(-(int)$this->daysBeforeClosing);
+
+        return $time;
+    }
+
+    public function ableToOrderDate()
+    {
+        $time = Carbon::now()->addDays($this->daysBeforeClosing);
 
         return $time;
     }

@@ -27,7 +27,7 @@
 
                             </div>
                             <div class="details col-md-6">
-                                <h3 class="product-title">men's shoes fashion</h3>
+                                <h3 class="product-title">{!! $event->activity->title !!}</h3>
                                 <div class="rating">
                                     <div class="stars">
                                         <span class="fa fa-star checked"></span>
@@ -39,23 +39,13 @@
                                     <span class="review-no">{!! $event !!} reviews</span>
                                 </div>
                                 <p class="product-description">Suspendisse quos? Tempus cras iure temporibus? Eu laudantium cubilia sem sem! Repudiandae et! Massa senectus enim minim sociosqu delectus posuere.</p>
-                                <h4 class="price">Uur tarief: <span>$180</span></h4>
+                                <h4 class="price">Prijs p.p. <span>{!! $event->activity->price !!}</span></h4>
                                 {{--<p class="vote"><strong>91%</strong> of buyers enjoyed this activity! <strong>(87 votes)</strong></p>--}}
 
                                 <div class="form-group">
                                     <label for="exampleFormControlSelect1">Datum</label>
                                     <select class="form-control" id="exampleFormControlSelect1">
                                         <option>19-1-2018</option>
-                                        <option>60 min</option>
-                                        <option>75 min</option>
-                                        <option>90 min</option>
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="exampleFormControlSelect1">Duur</label>
-                                    <select class="form-control" id="exampleFormControlSelect1">
-                                        <option>45 min</option>
                                         <option>60 min</option>
                                         <option>75 min</option>
                                         <option>90 min</option>
@@ -98,7 +88,7 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">{!! $review !!}</h5>
+                            <h5 class="card-title">{!! $review->user->name !!}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
                             <p class="card-text">{!! $review->text !!}</p>
                             <a href="#" class="card-link">

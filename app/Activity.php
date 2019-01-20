@@ -48,7 +48,7 @@ class Activity extends Model
         return $string;
     }
 
-    public function getImages($amount = '*')
+    public function images($amount = '*')
     {
         $images = [];
 
@@ -69,4 +69,8 @@ class Activity extends Model
         return $images;
     }
 
+    public function thumbnail()
+    {
+        return $this->images(1)[0];
+    }
 }
