@@ -15,9 +15,25 @@ class CreateOrderTable extends Migration
     {
         Schema::create('order', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->nullable()->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->float('price');
+             $table->integer('event_id')->unsigned();
+            $table->foreign('event_id')->references('id')->on('event_id');
+            $table->string('country');
+            $table->string('state');
+            $table->string('city');
+            $table->string('postal_code');
+            $table->string('address');
+            $table->string('address_number');
+            $table->string('name');
+            $table->string('email');
+            $table->string('telephone');
+            $table->integer('ticket_amount');
+            $table->float('total_paid', 8, 2);
+            $table->float('administration_cost', 8, 2);
+            $table->string('payment_id');
+            $table->string('payment_method');
+            $table->string('status')->default('paid');
             $table->timestamps();
         });
     }

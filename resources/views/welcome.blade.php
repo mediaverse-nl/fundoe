@@ -59,17 +59,19 @@
 
                 <h2 class="my-4">Categorieen</h2>
                 <div class="list-group">
-                    <a href="#" class="list-group-item">Category 1</a>
-                    <a href="#" class="list-group-item">Category 2</a>
-                    <a href="#" class="list-group-item">Category 3</a>
+                    @foreach($categories as $category)
+                        <a href="{!! route('site.category.show', $category->id) !!}" class="list-group-item">{!! $category->value !!}</a>
+                    @endforeach
                 </div>
 
             </div>
             <!-- /.col-lg-3 -->
 
             <div class="col-lg-9">
-                <br>
+                <h2 class="my-4">Populaire events</h2>
+
                 <div class="row">
+
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="card h-100">
                             <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
@@ -117,6 +119,11 @@
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <h2 class="my-4">Beste reviews</h2>
+
+                <div class="row">
 
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="card h-100">

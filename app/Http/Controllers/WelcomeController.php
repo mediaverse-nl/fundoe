@@ -2,12 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
+use App\Event;
 use Artesaos\SEOTools\Traits\SEOTools;
-use Illuminate\Http\Request;
 
 class WelcomeController extends Controller
 {
     use SEOTools;
+
+    protected $event;
+    protected $category;
+
+    public function __construct(Event $event, Category $category)
+    {
+        $this->event = $event;
+        $this->category = $category;
+    }
 
     public function __invoke()
     {
@@ -24,6 +34,16 @@ class WelcomeController extends Controller
         $this->seo()->twitter()
             ->setSite(Editor('seo_twitter_username', 'text', true, '@username'));
 
-        return view('welcome');
+        $categories = $this->category->get();
+        $from = $this->event->ableToOrderDate();
+
+        $events = $this->event
+            ->whereDate('start_datetime', '>=', $from)
+            ->orderBy('start_datetime', 'asc')
+            ->get();
+
+        return view('welcome')
+            ->with('events', $events)
+            ->with('categories', $categories);
     }
 }

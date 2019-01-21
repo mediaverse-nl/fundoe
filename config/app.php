@@ -64,7 +64,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Europe/Amsterdam',
 
     /*
     |--------------------------------------------------------------------------
@@ -175,6 +175,8 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Artesaos\SEOTools\Providers\SEOToolsServiceProvider::class,
+        Mollie\Laravel\MollieServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
 
 
         /*
@@ -245,6 +247,10 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
 
         'SEO' => Artesaos\SEOTools\Facades\SEOTools::class,
+
+        'Mollie' => Mollie\Laravel\Facades\Mollie::class,
+
+        'PDF' => Barryvdh\DomPDF\Facade::class,
     ],
 
 ];

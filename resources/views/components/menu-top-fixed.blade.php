@@ -73,11 +73,6 @@
                     </li>
                 @endif
 
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('site.cart.index') }}">
-                        <i class="fa fa-shopping-cart" style="color: #fff;"></i>
-                    </a>
-                </li>
             </ul>
 
         </div>

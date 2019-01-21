@@ -22,10 +22,8 @@ Route::group(['namespace' => 'Site', 'as' => 'site.'], function () {
     Route::get('{title}/activiteit-{id}', 'ActivityController@show')->name('activity.show');
     Route::post('/review', 'ReviewController@store');
     Route::post('/comment', 'CommentController@store');
-    Route::get('/cart', 'CartController@index')->name('cart.index');
-    Route::get('/order', 'CartController@create');
-    Route::get('/order-aanmaken', 'CartController@store');
-    Route::post('/order-{id}', 'CartController@show');
+    Route::get('/order-aanmaken', 'OrderController@store');
+    Route::post('/order-{id}', 'OrderController@show');
     Route::get('/contact', 'ContactController@index')->name('contact.index');
     Route::post('/contact', 'ContactController@store');
     Route::get('/over-ons', 'PageController@about')->name('about');
@@ -48,6 +46,7 @@ Route::group(['prefix' => 'panel', 'namespace' => 'Auth', 'as' => 'auth.', 'midd
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.', 'middleware' => 'admin'], function () {
     Route::get('/', 'DashboardController')->name('dashboard');
     Route::get('/dashboard', 'DashboardController');
+    Route::resource('event', 'EventController');
     Route::resource('category', 'CategoryController');
     Route::resource('user', 'UserController');
     Route::resource('review', 'ReviewController');

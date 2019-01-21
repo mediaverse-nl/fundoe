@@ -22,7 +22,46 @@
 
                     <article class="card-group-item">
                         <header class="card-header">
-                            <h6 class="title">Range input </h6>
+                            <h6 class="title">Datum range</h6>
+                        </header>
+                        <div class="filter-content">
+                            <div class="card-body">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label>Min</label>
+                                        <input type="number" class="form-control" id="inputEmail4" placeholder="$0">
+                                    </div>
+                                    <div class="form-group col-md-6 text-right">
+                                        <label>Max</label>
+                                        <input type="number" class="form-control" placeholder="$1,0000">
+                                    </div>
+                                </div>
+
+                            </div> <!-- card-body.// -->
+                        </div>
+                    </article> <!-- card-group-item.// -->
+                        <header class="card-header">
+                            <h6 class="title">Locatie </h6>
+                        </header>
+                        <div class="filter-content">
+                            <div class="card-body">
+                                <div class="custom-control custom-checkbox">
+                                    <span class="float-right badge badge-light round">52</span>
+                                    <input type="checkbox" class="custom-control-input" id="Check1">
+                                    <label class="custom-control-label" for="Check1">Eindhoven</label>
+                                </div> <!-- form-check.// -->
+
+                                <div class="custom-control custom-checkbox">
+                                    <span class="float-right badge badge-light round">132</span>
+                                    <input type="checkbox" class="custom-control-input" id="Check2">
+                                    <label class="custom-control-label" for="Check2">Veldhoven</label>
+                                </div> <!-- form-check.// -->
+
+                            </div> <!-- card-body.// -->
+                        </div>
+                    </article> <!-- card-group-item.// -->
+                        <header class="card-header">
+                            <h6 class="title">Rating </h6>
                         </header>
                         <div class="filter-content">
                             <div class="card-body">
@@ -38,8 +77,8 @@
                                 </div>
                             </div> <!-- card-body.// -->
                         </div>
-                    </article> <!-- card-group-item.// -->
-                    <article class="card-group-item">
+                    {{--</article> <!-- card-group-item.// -->--}}
+                    {{--<article class="card-group-item">--}}
                         <header class="card-header">
                             <h6 class="title">Selection </h6>
                         </header>
@@ -95,11 +134,37 @@
                                             <a href="{!! route('site.activity.show', [$event->activity->titleDash(), $event->id]) !!}" class="btn btn-sm btn-block btn-primary">
                                                 Lees meer
                                             </a>
-                                            <a href="{!! route('site.activity.show', [$event->activity->titleDash(), $event->id]) !!}" class="btn btn-sm btn-block btn-primary">
-                                                boek nu
-                                            </a>
-                                            <br>
-                                            <small class="text-muted">{!! $event->start_datetime->format('d-m h:i') !!}</small>
+                                            {{--<a href="{!! route('site.activity.show', [$event->activity->titleDash(), $event->id]) !!}" class="btn btn-sm btn-block btn-primary">--}}
+                                                {{----}}
+                                            {{--</a>--}}
+                                            <!-- Large modal -->
+                                            <button type="button" class="btn btn-sm btn-block btn-primary" data-toggle="modal" data-target=".bd-modal-lg-{!! $event->activity->id !!}">boek nu</button>
+
+                                            <div class="modal fade bd-modal-lg-{!! $event->activity->id !!}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content">
+                                                        <!-- Modal Header -->
+                                                        {{--<div class="modal-header">--}}
+                                                            {{--<h4 class="modal-title">Modal Heading</h4>--}}
+                                                            {{--<button type="button" class="close" data-dismiss="modal">&times;</button>--}}
+                                                        {{--</div>--}}
+
+                                                        <!-- Modal body -->
+                                                        <div class="modal-body">
+
+
+                                                            {!! $event !!}
+                                                        </div>
+
+                                                        <!-- Modal footer -->
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{--{!! \Carbon\Carbon::setLocale('nl') !!}--}}
+
                                         </div>
                                         <div class="col-7">
                                             <h2 class="pull-right">€ {!! $event->activity->price !!}<small style="font-size: 15px;"> p.p.</small></h2>
