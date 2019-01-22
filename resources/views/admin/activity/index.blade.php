@@ -13,7 +13,7 @@
             <th>activiteit</th>
             <th>sold tickets</th>
             <th>regions</th>
-            <th>start_datetime</th>
+            <th>events running</th>
             <th>status</th>
             <th class="no-sort"></th>
         @endslot
@@ -22,9 +22,9 @@
                 <tr>
                     <td>{!! $activity->id !!}</td>
                     <td>{!! $activity->title !!}</td>
-                    <td>1/35</td>
+                    <td>1/{!! $activity->min_number_of_people !!}~{!! $activity->max_number_of_people !!}</td>
                     <td>{!! $activity->region !!}</td>
-                    <td>{!! $activity->start_datetime !!}</td>
+                    <td> 1x</td>
                     <td>{!! $activity->status !!}</td>
                     <td>
                         @component('components.model', [
