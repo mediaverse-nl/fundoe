@@ -27,21 +27,20 @@
                         <div class="filter-content">
                             <div class="card-body">
                                 <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <label>Min</label>
+                                    <div class="form-group col-md-12">
+                                        {{--<label>Min</label>--}}
                                         <input type="number" class="form-control" id="inputEmail4" placeholder="$0">
                                     </div>
-                                    <div class="form-group col-md-6 text-right">
-                                        <label>Max</label>
+                                    <div class="form-group col-md-12 text-right">
+                                        {{--<label>Max</label>--}}
                                         <input type="number" class="form-control" placeholder="$1,0000">
                                     </div>
                                 </div>
 
                             </div> <!-- card-body.// -->
                         </div>
-                    </article> <!-- card-group-item.// -->
                         <header class="card-header">
-                            <h6 class="title">Locatie </h6>
+                            <h6 class="title">Locaties </h6>
                         </header>
                         <div class="filter-content">
                             <div class="card-body">
@@ -59,9 +58,22 @@
 
                             </div> <!-- card-body.// -->
                         </div>
-                    </article> <!-- card-group-item.// -->
                         <header class="card-header">
                             <h6 class="title">Rating </h6>
+                        </header>
+                        <div class="filter-content">
+                            <div class="card-body">
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label for="" class="">0</label>
+                                        <label for="" class="pull-right">5</label>
+                                        <input style="width: 100% !important;" id="ex6" type="text" data-slider-min="0" data-slider-max="5" data-slider-step="0.5" data-slider-value="0"/>
+                                    </div>
+                                </div>
+                            </div> <!-- card-body.// -->
+                        </div>
+                        <header class="card-header">
+                            <h6 class="title">Prijs range </h6>
                         </header>
                         <div class="filter-content">
                             <div class="card-body">
@@ -75,38 +87,6 @@
                                         <input type="number" class="form-control" placeholder="$1,0000">
                                     </div>
                                 </div>
-                            </div> <!-- card-body.// -->
-                        </div>
-                    {{--</article> <!-- card-group-item.// -->--}}
-                    {{--<article class="card-group-item">--}}
-                        <header class="card-header">
-                            <h6 class="title">Selection </h6>
-                        </header>
-                        <div class="filter-content">
-                            <div class="card-body">
-                                <div class="custom-control custom-checkbox">
-                                    <span class="float-right badge badge-light round">52</span>
-                                    <input type="checkbox" class="custom-control-input" id="Check1">
-                                    <label class="custom-control-label" for="Check1">Samsung</label>
-                                </div> <!-- form-check.// -->
-
-                                <div class="custom-control custom-checkbox">
-                                    <span class="float-right badge badge-light round">132</span>
-                                    <input type="checkbox" class="custom-control-input" id="Check2">
-                                    <label class="custom-control-label" for="Check2">Black berry</label>
-                                </div> <!-- form-check.// -->
-
-                                <div class="custom-control custom-checkbox">
-                                    <span class="float-right badge badge-light round">17</span>
-                                    <input type="checkbox" class="custom-control-input" id="Check3">
-                                    <label class="custom-control-label" for="Check3">Samsung</label>
-                                </div> <!-- form-check.// -->
-
-                                <div class="custom-control custom-checkbox">
-                                    <span class="float-right badge badge-light round">7</span>
-                                    <input type="checkbox" class="custom-control-input" id="Check4">
-                                    <label class="custom-control-label" for="Check4">Other Brand</label>
-                                </div> <!-- form-check.// -->
                             </div> <!-- card-body.// -->
                         </div>
                     </article> <!-- card-group-item.// -->
@@ -212,6 +192,7 @@
 
 @push('css')
     <link href="{{ asset('/css/site/category.css') }}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.0/css/bootstrap-slider.min.css" rel="stylesheet">
     <style>
         .truncateOpt {
             overflow: hidden;
@@ -225,7 +206,8 @@
 
 @push('js')
     {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-countdown/2.1.0/js/jquery.plugin.min.js"></script>--}}
-    <script type="text/javascript" src="http://cdn.rawgit.com/hilios/jQuery.countdown/2.1.0/dist/jquery.countdown.min.js"></script>"
+    <script type="text/javascript" src="http://cdn.rawgit.com/hilios/jQuery.countdown/2.1.0/dist/jquery.countdown.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.0/bootstrap-slider.min.js"></script>
 
 
     <script type="text/javascript">
@@ -236,6 +218,13 @@
                     $this.html(event.strftime('%D dagen %H:%M:%S'));
                 });
             });
+
+
+            $("#ex6").slider({
+                tooltip: 'always'
+            });
+
         });
+
     </script>
 @endpush
