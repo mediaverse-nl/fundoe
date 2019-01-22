@@ -17,12 +17,15 @@ class CreateActivityTable extends Migration
             $table->increments('id');
             $table->integer('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('category');
+            $table->string('img', 350);
             $table->string('title', 60);
             $table->string('description', 300);
-            $table->string('img', 350);
-            $table->float('price')->default(0.01);
+            $table->string('location', 45)->nullable();
             $table->string('region', 45);
-            $table->dateTime('start_datetime');
+            $table->float('price_per_hour')->default(0.01);
+            $table->integer('max_number_of_people');
+            $table->integer('min_number_of_people');
+            $table->integer('min_duration');
             $table->timestamps();
         });
     }

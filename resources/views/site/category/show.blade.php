@@ -28,12 +28,10 @@
                             <div class="card-body">
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
-                                        {{--<label>Min</label>--}}
                                         <input type="number" class="form-control" id="inputEmail4" placeholder="$0">
                                     </div>
                                     <div class="form-group col-md-12 text-right">
-                                        {{--<label>Max</label>--}}
-                                        <input type="number" class="form-control" placeholder="$1,0000">
+                                        <input type="number" class="form-control" placeholder="$1,000">
                                     </div>
                                 </div>
 

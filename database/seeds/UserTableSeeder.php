@@ -18,14 +18,30 @@ class UserTableSeeder extends Seeder
             'name' => 'admin',
             'email' => 'admin@admin.com',
             'password' => bcrypt('asdasd'),
-            'admin' => 1
+            'admin' => 1,
+            'first_name' => $faker->firstName,
+            'last_name' => $faker->lastName,
+            'gender' => null,
+            'country' => $faker->country,
+            'city' => $faker->city,
+            'zipcode' => $faker->postcode,
+            'street_name' => $faker->streetName,
+            'street_nr' => $faker->buildingNumber,
         ]);
 
         for ($i=0; $i < 10; $i++) {
             User::create([
                 'name' => $faker->name,
-                'email' => str_random(12).'@mail.com',
-                'password' => bcrypt('asdasd')
+                'email' => $faker->name.'@mail.com',
+                'password' => bcrypt('asdasd'),
+                'first_name' => $faker->firstName,
+                'last_name' => $faker->lastName,
+                'gender' => null,
+                'country' => $faker->country,
+                'city' => $faker->city,
+                'zipcode' => $faker->postcode,
+                'street_name' => $faker->streetName,
+                'street_nr' => $faker->buildingNumber,
             ]);
         }
     }

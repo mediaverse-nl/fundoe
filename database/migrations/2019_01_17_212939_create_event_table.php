@@ -20,6 +20,7 @@ class CreateEventTable extends Migration
             $table->dateTime('start_datetime');
             $table->dateTime('end_datetime');
             $table->float('price');
+            $table->enum('target_group', ['kinderen', 'tieners', 'jongvolwassenen', 'volwassenen', 'ouderen', 'stelletjes', 'tedereen']);
             $table->timestamps();
             $table->softDeletes();
         });
