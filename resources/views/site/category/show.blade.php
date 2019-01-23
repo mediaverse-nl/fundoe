@@ -7,15 +7,15 @@
         <div class="row">
             <div class="col-sm-3">
                 {{--<p>Filter</p>--}}
-                {!! Form::open(['route' => ['site.category.show', $category->id], 'method' => 'get']) !!}
+                {!! Form::open(['route' => ['site.category.show', $category->id], 'method' => 'get', 'id' => 'filterForm']) !!}
 
 
                 <div class="list-group">
-                    @foreach($categories as $cate)
-                        <a href="{!! route('site.category.show', $cate->id) !!}" class="list-group-item{!! $category->id != $cate->id ? '' : ' active' !!}" style="">
-                            {!! $cate->value!!} <span class="float-right badge badge-light round"></span>
-                        </a>
-                    @endforeach
+                    {{--@foreach($categories as $cate)--}}
+                        {{--<a href="{!! route('site.category.show', $cate->id) !!}" class="list-group-item{!! $category->id != $cate->id ? '' : ' active' !!}" style="">--}}
+                            {{--{!! $cate->value!!} <span class="float-right badge badge-light round"></span>--}}
+                        {{--</a>--}}
+                    {{--@endforeach--}}
                 </div>
 
                 <br>
@@ -30,43 +30,53 @@
                             <div class="card-body">
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
+                                        <label for="">datum vanaf</label>
+                                        <div class="input-group date" id="datetimepicker2" data-target-input="nearest" style="margin-bottom: 5px;">
+                                            <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker" style="-moz-border-radius-bottomleft: .25rem;">
+                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                            </div>
+                                            {!! Form::text('start_datetime', null, ['class' => 'datetimepicker-input form-control'.(!$errors->has('start_datetime') ? '': ' is-invalid '), 'data-toggle' => 'datetimepicker', 'data-target' => '#datetimepicker2']) !!}
+                                        </div>
+                                        <label for="">datum t/m</label>
                                         <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
                                             <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker" style="-moz-border-radius-bottomleft: .25rem;">
                                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                             </div>
                                             {!! Form::text('start_datetime', null, ['class' => 'datetimepicker-input form-control'.(!$errors->has('start_datetime') ? '': ' is-invalid '), 'data-toggle' => 'datetimepicker', 'data-target' => '#datetimepicker2']) !!}
-                                        </div>                                    </div>
-                                    <div class="form-group col-md-12 text-right">
-                                        <input type="number" class="form-control" placeholder="$1,000">
-                                    </div>
-
-                                    <div class="input-group date" data-provide="datepicker">
-                                        <input type="text" class="form-control">
-                                        <div class="input-group-addon">
-                                            <span class="glyphicon glyphicon-th"></span>
                                         </div>
+
+
                                     </div>
                                 </div>
 
                             </div> <!-- card-body.// -->
                         </div>
                         <header class="card-header">
-                            <h6 class="title">Locaties </h6>
+                            <h6 class="title">Doel groep </h6>
                         </header>
                         <div class="filter-content">
                             <div class="card-body">
-                                <div class="custom-control custom-checkbox">
-                                    <span class="float-right badge badge-light round">52</span>
-                                    <input type="checkbox" class="custom-control-input" id="Check1">
-                                    <label class="custom-control-label" for="Check1">Eindhoven</label>
-                                </div> <!-- form-check.// -->
-
-                                <div class="custom-control custom-checkbox">
-                                    <span class="float-right badge badge-light round">132</span>
-                                    <input type="checkbox" class="custom-control-input" id="Check2">
-                                    <label class="custom-control-label" for="Check2">Veldhoven</label>
-                                </div> <!-- form-check.// -->
-
+                                @foreach($baseEvents->get()->groupBy('target_group') as $target)
+                                    <div class="custom-control custom-checkbox">
+                                        <span class="float-right badge badge-light round">{!! $target->count() !!}</span>
+                                        <input type="checkbox" name="groep[]" class="custom-control-input" value="{!! $target->first()->target_group  !!}" id="Check{!! $target->first()->id !!}" {!! \Illuminate\Support\Facades\Input::has('groep') ? (in_array($target->first()->target_group, \Illuminate\Support\Facades\Input::get('groep')) ? 'checked' : '') : 'no' !!}>
+                                        <label class="custom-control-label" for="Check{!! $target->first()->id !!}">{!! $target->first()->target_group !!}</label>
+                                    </div> <!-- form-check.// -->
+                                @endforeach
+                            </div> <!-- card-body.// -->
+                        </div>
+                        <header class="card-header">
+                            <h6 class="title">Regio's </h6>
+                        </header>
+                        <div class="filter-content">
+                            <div class="card-body">
+                                @foreach($baseActivity as $ba)
+                                    {{--<div class="custom-control custom-checkbox">--}}
+                                        {{--<span class="float-right badge badge-light round">{!! $ba->count() !!}</span>--}}
+                                        {{--<input type="checkbox" class="custom-control-input" id="Check{!! $ba->first()->id !!}">--}}
+                                        {{--<label class="custom-control-label" for="Check{!! $ba !!}">{!! $ba->first()->target_group !!}</label>--}}
+                                    {{--</div> <!-- form-check.// -->--}}
+                                @endforeach
                             </div> <!-- card-body.// -->
                         </div>
                         <header class="card-header">
@@ -91,7 +101,7 @@
                             <div class="card-body">
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
-                                        <br>
+                                        {{--<br>--}}
                                         <input style="width: 100% !important;" class="custom-range" type="hidden" data-slider-min="{!! number_format($events->min('price'),0) !!}" data-slider-max="{!! number_format($events->max('price'),0) !!}" data-slider-value="[{!! number_format($events->min('price'),0) !!},{!! number_format($events->max('price'),0) !!}]"/>
 
                                         {{--<label>Min</label>--}}
@@ -131,20 +141,17 @@
                                             <a href="{!! route('site.activity.show', [$event->activity->titleDash(), $event->id]) !!}" class="btn btn-sm btn-block btn-primary">
                                                 Lees meer
                                             </a>
-                                            {{--<a href="{!! route('site.activity.show', [$event->activity->titleDash(), $event->id]) !!}" class="btn btn-sm btn-block btn-primary">--}}
-                                                {{----}}
-                                            {{--</a>--}}
-                                            <!-- Large modal -->
+                                            {{--<!-- Large modal -->--}}
                                             <button type="button" class="btn btn-sm btn-block btn-primary" data-toggle="modal" data-target=".bd-modal-lg-{!! $event->activity->id !!}">boek nu</button>
 
                                             <div class="modal fade bd-modal-lg-{!! $event->activity->id !!}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog modal-lg">
                                                     <div class="modal-content">
                                                         <!-- Modal Header -->
-                                                        {{--<div class="modal-header">--}}
-                                                            {{--<h4 class="modal-title">Modal Heading</h4>--}}
-                                                            {{--<button type="button" class="close" data-dismiss="modal">&times;</button>--}}
-                                                        {{--</div>--}}
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title">Modal Heading</h4>
+                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        </div>
 
                                                         <!-- Modal body -->
                                                         <div class="modal-body">
@@ -164,8 +171,8 @@
 
                                         </div>
                                         <div class="col-7">
-                                            <h2 class="pull-right">€ {!! $event->price !!}<small style="font-size: 15px;"> p.p.</small></h2>
-                                            <small class="pull-right"><i class="fa fa-calendar-alt"></i> {!! $event->start_datetime->format('d-m-y h:i'); !!}</small>
+                                            <h2 class="pull-right">€ {!! number_format($event->price, 2) !!}<small style="font-size: 15px;"> p.p.</small></h2>
+                                            <small class="pull-right"><i class="fa fa-calendar-alt"></i> {!! $event->start_datetime->format('d-m-y h:i') !!}</small>
                                         </div>
                                     </div>
                                     {{--<br>--}}
@@ -212,6 +219,9 @@
     <link href="{{ asset('/css/site/category.css') }}" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.0/css/bootstrap-slider.min.css" rel="stylesheet">
     <style>
+        .filter-content .form-group{
+            margin-bottom: 0px;
+        }
         .truncateOpt {
             overflow: hidden;
             text-overflow: ellipsis;
@@ -304,6 +314,8 @@
 
             function submitForm(){
                 console.log('test');
+
+                $( "#filterForm" ).submit();
             }
 
             $('form').change(function() {

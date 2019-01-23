@@ -19,14 +19,9 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
 
-        view()->share('categoryMenu', Category::get());
-
-//        date_default_timezone_set('Europe/Amsterdam');
-//        Carbon::setLocale('nl');
-//        setlocale(LC_TIME, config('app.locale'));
-
-//        App::setLocale(LC_TIME, 'NL_nl');
-
+        if (!Schema::hasTable('category')) {
+            view()->share('categoryMenu', Category::get());
+        }
     }
 
     /**

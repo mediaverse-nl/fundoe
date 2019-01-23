@@ -24,11 +24,19 @@ class EventTableSeeder extends Seeder
                     'activity_id' => $activity->id,
                     'start_datetime' => $start,
                     'end_datetime' => $this->endTime($start),
+                    'target_group' => $this->getTargetGroup(),
                     'price' => (int)rand(20, 60).'.'.rand(10, 99),
                 ];
             }
             $events->insert($array);
         }
+    }
+
+    public function getTargetGroup()
+    {
+        $items = Event::getTargetGroup();
+
+        return $items[rand(0, count($items) - 1)];
     }
 
     public function startTime()

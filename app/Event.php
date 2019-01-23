@@ -83,4 +83,9 @@ class Event extends Model
         return str_replace('@number', $diff, $extent);
     }
 
+    public static function getTargetGroup()
+    {
+        return collect(['kinderen', 'tieners', 'jongvolwassenen', 'volwassenen', 'ouderen', 'stelletjes', 'iedereen'])->toArray();
+    }
+
 }
