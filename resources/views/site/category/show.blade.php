@@ -7,6 +7,8 @@
         <div class="row">
             <div class="col-sm-3">
                 {{--<p>Filter</p>--}}
+                {!! Form::open(['route' => ['site.category.show', $category->id], 'method' => 'get']) !!}
+
 
                 <div class="list-group">
                     @foreach($categories as $cate)
@@ -28,10 +30,21 @@
                             <div class="card-body">
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
-                                        <input type="number" class="form-control" id="inputEmail4" placeholder="$0">
-                                    </div>
+                                        <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
+                                            <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker" style="-moz-border-radius-bottomleft: .25rem;">
+                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                            </div>
+                                            {!! Form::text('start_datetime', null, ['class' => 'datetimepicker-input form-control'.(!$errors->has('start_datetime') ? '': ' is-invalid '), 'data-toggle' => 'datetimepicker', 'data-target' => '#datetimepicker2']) !!}
+                                        </div>                                    </div>
                                     <div class="form-group col-md-12 text-right">
                                         <input type="number" class="form-control" placeholder="$1,000">
+                                    </div>
+
+                                    <div class="input-group date" data-provide="datepicker">
+                                        <input type="text" class="form-control">
+                                        <div class="input-group-addon">
+                                            <span class="glyphicon glyphicon-th"></span>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -63,9 +76,10 @@
                             <div class="card-body">
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
-                                        <label for="" class="">0</label>
-                                        <label for="" class="pull-right">5</label>
-                                        <input style="width: 100% !important;" id="ex6" type="text" data-slider-min="0" data-slider-max="5" data-slider-step="0.5" data-slider-value="0"/>
+                                        {{--<label for="" class="">0</label>--}}
+                                        {{--<label for="" class="pull-right">5</label>--}}
+                                        <br>
+                                        <input style="width: 100% !important;"  class="custom-range" type="text" data-slider-min="0" data-slider-max="5" data-slider-step="0.5" data-slider-value="[0,5]"/>
                                     </div>
                                 </div>
                             </div> <!-- card-body.// -->
@@ -76,19 +90,24 @@
                         <div class="filter-content">
                             <div class="card-body">
                                 <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <label>Min</label>
-                                        <input type="number" class="form-control" id="inputEmail4" placeholder="$0">
+                                    <div class="form-group col-md-12">
+                                        <br>
+                                        <input style="width: 100% !important;" class="custom-range" type="hidden" data-slider-min="{!! number_format($events->min('price'),0) !!}" data-slider-max="{!! number_format($events->max('price'),0) !!}" data-slider-value="[{!! number_format($events->min('price'),0) !!},{!! number_format($events->max('price'),0) !!}]"/>
+
+                                        {{--<label>Min</label>--}}
+                                        {{--<input type="number" class="form-control" id="inputEmail4" placeholder="€{!! $events->min('price') !!}">--}}
                                     </div>
-                                    <div class="form-group col-md-6 text-right">
-                                        <label>Max</label>
-                                        <input type="number" class="form-control" placeholder="$1,0000">
-                                    </div>
+                                    {{--<div class="form-group col-md-6 text-right">--}}
+                                        {{--<label>Max</label>--}}
+                                        {{--<input type="number" class="form-control" placeholder="€{!! $events->max('price') !!}">--}}
+                                    {{--</div>--}}
                                 </div>
                             </div> <!-- card-body.// -->
                         </div>
                     </article> <!-- card-group-item.// -->
                 </div> <!-- card.// -->
+
+                {!! Form::close() !!}
 
             </div>
             <div class="col-9">
@@ -145,7 +164,8 @@
 
                                         </div>
                                         <div class="col-7">
-                                            <h2 class="pull-right">€ {!! $event->activity->price !!}<small style="font-size: 15px;"> p.p.</small></h2>
+                                            <h2 class="pull-right">€ {!! $event->price !!}<small style="font-size: 15px;"> p.p.</small></h2>
+                                            <small class="pull-right"><i class="fa fa-calendar-alt"></i> {!! $event->start_datetime->format('d-m-y h:i'); !!}</small>
                                         </div>
                                     </div>
                                     {{--<br>--}}
@@ -199,6 +219,47 @@
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
         }
+        .slider .tooltip.top {
+            margin-top: -36px;
+        }
+        .slider.slider-horizontal .tooltip {
+            -ms-transform: translateX(-50%);
+            transform: translateX(-50%);
+        }
+        .slider .tooltip {
+            pointer-events: none;
+        }
+        .tooltip.top {
+            padding: 5px 0;
+            margin-top: -3px;
+        }
+        .tooltip.in {
+            filter: alpha(opacity=90);
+            opacity: .9;
+        }
+        .tooltip {
+            position: absolute;
+            z-index: 1070;
+            display: block;
+            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 1.42857143;
+            text-align: left;
+            text-align: start;
+            text-decoration: none;
+            text-shadow: none;
+            text-transform: none;
+            letter-spacing: normal;
+            word-break: normal;
+            word-spacing: normal;
+            word-wrap: normal;
+            white-space: normal;
+            filter: alpha(opacity=0);
+            opacity: 0;
+            line-break: auto;
+        }
     </style>
 @endpush
 
@@ -206,7 +267,16 @@
     {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-countdown/2.1.0/js/jquery.plugin.min.js"></script>--}}
     <script type="text/javascript" src="http://cdn.rawgit.com/hilios/jQuery.countdown/2.1.0/dist/jquery.countdown.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.0/bootstrap-slider.min.js"></script>
+    {{--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>--}}
 
+    {{--<script type="text/javascript">--}}
+        {{--$(function () {--}}
+            {{--$('#datetimepicker2').datetimepicker({--}}
+                {{--locale: 'nl',--}}
+                {{--format: 'YYYY-MM-D HH:mm:ss'--}}
+            {{--});--}}
+        {{--});--}}
+    {{--</script>--}}
 
     <script type="text/javascript">
         $( document ).ready(function() {
@@ -218,10 +288,27 @@
             });
 
 
-            $("#ex6").slider({
+            $(".custom-range").slider({
                 tooltip: 'always'
             });
 
+            var timer;
+
+            function intervalTimer() {
+                if (timer) clearInterval(timer);
+                timer = setInterval(function() {
+                    clearInterval(timer);
+                    submitForm();
+                }, 1500);
+            }
+
+            function submitForm(){
+                console.log('test');
+            }
+
+            $('form').change(function() {
+                intervalTimer();
+            });
         });
 
     </script>

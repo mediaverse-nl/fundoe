@@ -20,7 +20,7 @@ class ActivityTableSeeder extends Seeder
         Activity::insert([[
             'title' => 'Zaal voetbal ',
             'description' => $faker->text(220),
-            'category_id' => random_int(1, $categories),
+            'category_id' => 1,
             'img' => $this->getImage(),
 //            'price' => 22.14,
 //            'start_datetime' => \Carbon\Carbon::now()->toDateTimeString(),
@@ -32,7 +32,7 @@ class ActivityTableSeeder extends Seeder
         ], [
             'title' => 'zaal badminton ',
             'description' => $faker->text(220),
-            'category_id' => random_int(1, $categories),
+            'category_id' => 2,
             'img' => $this->getImage(),
 //            'price' => 25.54,
 //            'start_datetime' => \Carbon\Carbon::now()->toDateTimeString(),
@@ -44,7 +44,7 @@ class ActivityTableSeeder extends Seeder
         ],[
             'title' => 'buiten badminton ',
             'description' => $faker->text(220),
-            'category_id' => random_int(1, $categories),
+            'category_id' => 3,
             'img' => $this->getImage(),
 //            'price' => 25.54,
 //            'start_datetime' => \Carbon\Carbon::now()->toDateTimeString(),
@@ -56,7 +56,7 @@ class ActivityTableSeeder extends Seeder
         ],[
             'title' => 'zaalvolleybal',
             'description' => $faker->text(220),
-            'category_id' => random_int(1, $categories),
+            'category_id' => 2,
             'img' => $this->getImage(),
 //            'price' => 12.45,
 //            'start_datetime' => \Carbon\Carbon::now()->toDateTimeString(),
