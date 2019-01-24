@@ -127,7 +127,6 @@
                     <small class="text-muted"> er is {!! $events->count() !!} resultaat gevonden.</small>
                 @endif
 
-
                 <div class="row">
 
                     @foreach($events as $event)
@@ -161,8 +160,6 @@
 
                                                         <!-- Modal body -->
                                                         <div class="modal-body">
-
-
                                                             {!! $event !!}
                                                         </div>
 
@@ -203,7 +200,7 @@
                                                 <i class="fas fa-comments"></i> {!! $event->activity->reviews->count('id') !!} reviews
                                             </div>
                                             <div class="splitter-bar">
-                                                <i class="fas fa-star"></i> {!! number_format($event->activity->reviews->avg('rating'), 1) !!}/5
+                                                <i class="fas fa-star"></i> {!! $event->activity->reviews->count('id') !== 0 ? number_format($event->activity->reviews->avg('rating'), 1).'/5' : 'n.v.t.' !!}
                                             </div>
                                         </div>
                                     </footer>
