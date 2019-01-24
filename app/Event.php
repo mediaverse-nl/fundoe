@@ -27,6 +27,32 @@ class Event extends Model
         return $this->belongsTo('App\Activity', 'activity_id', 'id');
     }
 
+    public function scopeReviewRating($q, $input)
+    {
+        if ($input){
+            $input = explode(',', $input);
+        }
+
+        $min = $input ? $input[0] : null;
+        $max = $input ? $input[1] : null;
+
+        if ($min || $max){
+//            return $q->whereHas('activity.reviews', function ($q) use ($min, $max) {
+//                $q->where('rating','>=',0);
+//                $q->where('rating','<=',5);
+//            });
+            $q->whereHas('activity.reviews', function($q) use ($min, $max) {
+                $q->havingRaw('AVG(rating) >= ?', [$min])
+                    ->havingRaw('AVG(rating) <= ?', [$max]);
+            });
+//                $q->having('event.activity.review', '>=', [$min]);
+//            $q->having('event.activity.review', '<=', [$max]);
+//            $q->having('AVG(event.activity.review) <= ', [$max]);
+        }
+
+
+    }
+
     public function diffInTime()
     {
         return $this->start_datetime

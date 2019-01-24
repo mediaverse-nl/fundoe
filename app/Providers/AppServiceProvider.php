@@ -19,7 +19,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
 
-        if (!Schema::hasTable('category')) {
+        if (Schema::hasTable('category')) {
             view()->share('categoryMenu', Category::get());
         }
     }

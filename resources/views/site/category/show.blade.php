@@ -11,11 +11,11 @@
 
 
                 <div class="list-group">
-                    {{--@foreach($categories as $cate)--}}
-                        {{--<a href="{!! route('site.category.show', $cate->id) !!}" class="list-group-item{!! $category->id != $cate->id ? '' : ' active' !!}" style="">--}}
-                            {{--{!! $cate->value!!} <span class="float-right badge badge-light round"></span>--}}
-                        {{--</a>--}}
-                    {{--@endforeach--}}
+                    @foreach($categories as $cate)
+                        <a href="{!! route('site.category.show', $cate->id) !!}" class="list-group-item{!! $category->id != $cate->id ? '' : ' active' !!}" style="">
+                            {!! $cate->value!!} <span class="float-right badge badge-light round"></span>
+                        </a>
+                    @endforeach
                 </div>
 
                 <br>
@@ -59,7 +59,7 @@
                                 @foreach($baseEvents->get()->groupBy('target_group') as $target)
                                     <div class="custom-control custom-checkbox">
                                         <span class="float-right badge badge-light round">{!! $target->count() !!}</span>
-                                        <input type="checkbox" name="groep[]" class="custom-control-input" value="{!! $target->first()->target_group  !!}" id="Check{!! $target->first()->id !!}" {!! \Illuminate\Support\Facades\Input::has('groep') ? (in_array($target->first()->target_group, \Illuminate\Support\Facades\Input::get('groep')) ? 'checked' : '') : 'no' !!}>
+                                        <input type="checkbox" name="groep[]" class="custom-control-input" value="{!! $target->first()->target_group  !!}" id="Check{!! $target->first()->id !!}" {!! \Illuminate\Support\Facades\Input::has('groep') ? (in_array($target->first()->target_group, \Illuminate\Support\Facades\Input::get('groep')) ? 'checked' : '') : '' !!}>
                                         <label class="custom-control-label" for="Check{!! $target->first()->id !!}">{!! $target->first()->target_group !!}</label>
                                     </div> <!-- form-check.// -->
                                 @endforeach
@@ -70,12 +70,11 @@
                         </header>
                         <div class="filter-content">
                             <div class="card-body">
-                                @foreach($baseActivity as $ba)
-                                    {{--<div class="custom-control custom-checkbox">--}}
-                                        {{--<span class="float-right badge badge-light round">{!! $ba->count() !!}</span>--}}
-                                        {{--<input type="checkbox" class="custom-control-input" id="Check{!! $ba->first()->id !!}">--}}
-                                        {{--<label class="custom-control-label" for="Check{!! $ba !!}">{!! $ba->first()->target_group !!}</label>--}}
-                                    {{--</div> <!-- form-check.// -->--}}
+                                @foreach($baseActivity->groupBy('region') as $re)
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" name="regios[]" class="custom-control-input" id="regio{!! $re->first()->id !!}" value="{!! $re->first()->region !!}" {!! \Illuminate\Support\Facades\Input::has('regios') ? (in_array($re->first()->region, \Illuminate\Support\Facades\Input::get('regios')) ? 'checked' : '') : 'nu' !!} />
+                                        <label class="custom-control-label" for="regio{!! $re->first()->id !!}">{!! $re->first()->region !!}</label>
+                                    </div> <!-- form-check.// -->
                                 @endforeach
                             </div> <!-- card-body.// -->
                         </div>
@@ -89,7 +88,7 @@
                                         {{--<label for="" class="">0</label>--}}
                                         {{--<label for="" class="pull-right">5</label>--}}
                                         <br>
-                                        <input style="width: 100% !important;"  class="custom-range" type="text" data-slider-min="0" data-slider-max="5" data-slider-step="0.5" data-slider-value="[0,5]"/>
+                                        <input style="width: 100% !important;"  class="custom-range" type="hidden" name="rating" data-slider-min="0" data-slider-max="5" data-slider-step="0.5" data-slider-value="[{!! \Illuminate\Support\Facades\Input::has('rating') ? \Illuminate\Support\Facades\Input::get('rating') : '0,5' !!}]" value="{!! \Illuminate\Support\Facades\Input::get('rating') !!}" />
                                     </div>
                                 </div>
                             </div> <!-- card-body.// -->
@@ -101,7 +100,7 @@
                             <div class="card-body">
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
-                                        {{--<br>--}}
+                                        <br>
                                         <input style="width: 100% !important;" class="custom-range" type="hidden" data-slider-min="{!! number_format($events->min('price'),0) !!}" data-slider-max="{!! number_format($events->max('price'),0) !!}" data-slider-value="[{!! number_format($events->min('price'),0) !!},{!! number_format($events->max('price'),0) !!}]"/>
 
                                         {{--<label>Min</label>--}}
@@ -121,6 +120,13 @@
 
             </div>
             <div class="col-9">
+
+                @if($events->count() > 1)
+                    <small class="text-muted"> er zijn {!! $events->count() !!} resultaten gevonden.</small>
+                @else
+                    <small class="text-muted"> er is {!! $events->count() !!} resultaat gevonden.</small>
+                @endif
+
 
                 <div class="row">
 

@@ -25,7 +25,7 @@ class CategoryController extends Controller
         $category = $this->category->findOrFail($id);
         $categories = $this->category->get();
         $from = $this->event->ableToOrderDate();
-        $baseActivity = [];
+        $baseActivity = $category->activities()->get();
 
         $baseEvents = $this->event
             ->whereHas('activity', function ($q) use ($category) {
@@ -38,22 +38,21 @@ class CategoryController extends Controller
             ->whereHas('activity', function ($q) use ($category) {
                 $q->where('category_id', '=', $category->id);
             })
-            ->whereHas('activity.reviews', function ($q) {
-//                $q->whereBetween('rating', [3,5]);
-            })
+            ->reviewRating(Input::get('rating'))
             ->whereDate('start_datetime', '>=', $from)
             ->orderBy('start_datetime', 'asc')
             ->where(function ($q){
-                if(Input::has('groep') && Input::get('groep') !== null)
+                if(Input::has('groep') && Input::get('groep') !== null){
                     $i = 1;
-                    foreach (Input::get('groep') as $i)
-                        if ($i == 1)
+                    foreach (Input::get('groep') as $i){
+                        if ($i == 1){
                             $q->where('target_group', '=', $i);
-                        else
+                        } else{
                             $q->orWhere('target_group', '=', $i);
-
-                    $i++;
-
+                        }
+                        $i++;
+                    }
+                }
             })
             ->get();
 
