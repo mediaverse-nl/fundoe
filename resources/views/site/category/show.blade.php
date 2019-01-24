@@ -9,10 +9,9 @@
                 {{--<p>Filter</p>--}}
                 {!! Form::open(['route' => ['site.category.show', $category->id], 'method' => 'get', 'id' => 'filterForm']) !!}
 
-
-                <div class="list-group">
+                <div class="list-group shadow bg-white" style="border-radius: 0px !important;">
                     @foreach($categories as $cate)
-                        <a href="{!! route('site.category.show', $cate->id) !!}" class="list-group-item{!! $category->id != $cate->id ? '' : ' active' !!}" style="">
+                        <a href="{!! route('site.category.show', $cate->id) !!}" class="list-group-item{!! $category->id != $cate->id ? '' : ' active' !!}" style="border-radius: 0px !important;">
                             {!! $cate->value!!} <span class="float-right badge badge-light round"></span>
                         </a>
                     @endforeach
@@ -20,121 +19,137 @@
 
                 <br>
 
-                <div class="card">
-
-                    <article class="card-group-item">
-                        <header class="card-header">
-                            <h6 class="title">Datum range</h6>
-                        </header>
-                        <div class="filter-content">
-                            <div class="card-body">
-                                <div class="form-row">
-                                    <div class="form-group col-md-12">
-                                        <label for="">datum vanaf</label>
-                                        <div class="input-group date" id="datetimepicker2" data-target-input="nearest" style="margin-bottom: 5px;">
-                                            <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker" style="-moz-border-radius-bottomleft: .25rem;">
-                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                            </div>
-                                            {!! Form::text('start_datetime', null, ['class' => 'datetimepicker-input form-control'.(!$errors->has('start_datetime') ? '': ' is-invalid '), 'data-toggle' => 'datetimepicker', 'data-target' => '#datetimepicker2']) !!}
+                <div class="card shadow bg-white" style="border-radius: 0px;">
+                    <header class="card-header">
+                        <h6 class="title">Datum range</h6>
+                    </header>
+                    <div class="filter-content">
+                        <div class="card-body" style="margin-top: -10px;">
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label for="">datum vanaf</label>
+                                    <div class="input-group date" id="datetimepicker2" data-target-input="nearest" style="margin-bottom: 5px;">
+                                        <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker" style="-moz-border-radius-bottomleft: .25rem;">
+                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                         </div>
-                                        <label for="">datum t/m</label>
-                                        <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
-                                            <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker" style="-moz-border-radius-bottomleft: .25rem;">
-                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                            </div>
-                                            {!! Form::text('start_datetime', null, ['class' => 'datetimepicker-input form-control'.(!$errors->has('start_datetime') ? '': ' is-invalid '), 'data-toggle' => 'datetimepicker', 'data-target' => '#datetimepicker2']) !!}
+                                        {!! Form::text('start_datetime', null, ['class' => 'datetimepicker-input form-control'.(!$errors->has('start_datetime') ? '': ' is-invalid '), 'data-toggle' => 'datetimepicker', 'data-target' => '#datetimepicker2']) !!}
+                                    </div>
+                                    <label for="">datum t/m</label>
+                                    <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
+                                        <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker" style="-moz-border-radius-bottomleft: .25rem;">
+                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                         </div>
-
-
+                                        {!! Form::text('start_datetime', null, ['class' => 'datetimepicker-input form-control'.(!$errors->has('start_datetime') ? '': ' is-invalid '), 'data-toggle' => 'datetimepicker', 'data-target' => '#datetimepicker2']) !!}
                                     </div>
                                 </div>
+                            </div>
+                        </div> <!-- card-body.// -->
+                    </div>
+                </div>
 
-                            </div> <!-- card-body.// -->
-                        </div>
-                        <header class="card-header">
-                            <h6 class="title">Doel groep </h6>
-                        </header>
-                        <div class="filter-content">
-                            <div class="card-body">
-                                @foreach($baseEvents->get()->groupBy('target_group') as $target)
-                                    <div class="custom-control custom-checkbox">
-                                        <span class="float-right badge badge-light round">{!! $target->count() !!}</span>
-                                        <input type="checkbox" name="groep[]" class="custom-control-input" value="{!! $target->first()->target_group  !!}" id="Check{!! $target->first()->id !!}" {!! \Illuminate\Support\Facades\Input::has('groep') ? (in_array($target->first()->target_group, \Illuminate\Support\Facades\Input::get('groep')) ? 'checked' : '') : '' !!}>
-                                        <label class="custom-control-label" for="Check{!! $target->first()->id !!}">{!! $target->first()->target_group !!}</label>
-                                    </div> <!-- form-check.// -->
-                                @endforeach
-                            </div> <!-- card-body.// -->
-                        </div>
-                        <header class="card-header">
-                            <h6 class="title">Regio's </h6>
-                        </header>
-                        <div class="filter-content">
-                            <div class="card-body">
-                                @foreach($baseActivity->groupBy('region') as $re)
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" name="regios[]" class="custom-control-input" id="regio{!! $re->first()->id !!}" value="{!! $re->first()->region !!}" {!! \Illuminate\Support\Facades\Input::has('regios') ? (in_array($re->first()->region, \Illuminate\Support\Facades\Input::get('regios')) ? 'checked' : '') : 'nu' !!} />
-                                        <label class="custom-control-label" for="regio{!! $re->first()->id !!}">{!! $re->first()->region !!}</label>
-                                    </div> <!-- form-check.// -->
-                                @endforeach
-                            </div> <!-- card-body.// -->
-                        </div>
-                        <header class="card-header">
-                            <h6 class="title">Rating </h6>
-                        </header>
-                        <div class="filter-content">
-                            <div class="card-body">
-                                <div class="form-row">
-                                    <div class="form-group col-md-12">
-                                        {{--<label for="" class="">0</label>--}}
-                                        {{--<label for="" class="pull-right">5</label>--}}
-                                        <br>
-                                        <input style="width: 100% !important;"  class="custom-range" type="hidden" name="rating" data-slider-min="0" data-slider-max="5" data-slider-step="0.5" data-slider-value="[{!! \Illuminate\Support\Facades\Input::has('rating') ? \Illuminate\Support\Facades\Input::get('rating') : '0,5' !!}]" value="{!! \Illuminate\Support\Facades\Input::get('rating') !!}" />
-                                    </div>
-                                </div>
-                            </div> <!-- card-body.// -->
-                        </div>
-                        <header class="card-header">
-                            <h6 class="title">Prijs range </h6>
-                        </header>
-                        <div class="filter-content">
-                            <div class="card-body">
-                                <div class="form-row">
-                                    <div class="form-group col-md-12">
-                                        <br>
-                                        <input style="width: 100% !important;" class="custom-range" type="hidden" data-slider-min="{!! number_format($events->min('price'),0) !!}" data-slider-max="{!! number_format($events->max('price'),0) !!}" data-slider-value="[{!! number_format($events->min('price'),0) !!},{!! number_format($events->max('price'),0) !!}]"/>
+                <br>
 
-                                        {{--<label>Min</label>--}}
-                                        {{--<input type="number" class="form-control" id="inputEmail4" placeholder="€{!! $events->min('price') !!}">--}}
-                                    </div>
-                                    {{--<div class="form-group col-md-6 text-right">--}}
-                                        {{--<label>Max</label>--}}
-                                        {{--<input type="number" class="form-control" placeholder="€{!! $events->max('price') !!}">--}}
-                                    {{--</div>--}}
+                <div class="card shadow bg-white">
+                    <header class="card-header">
+                        <h6 class="title">Doel groep </h6>
+                    </header>
+                    <div class="filter-content">
+                        <div class="card-body">
+                            @foreach($baseEvents->get()->groupBy('target_group') as $target)
+                                <div class="custom-control custom-checkbox">
+                                    <span class="float-right badge badge-light round">{!! $target->count() !!}</span>
+                                    <input type="checkbox" name="groep[]" class="custom-control-input" value="{!! $target->first()->target_group  !!}" id="Check{!! $target->first()->id !!}" {!! \Illuminate\Support\Facades\Input::has('groep') ? (in_array($target->first()->target_group, \Illuminate\Support\Facades\Input::get('groep')) ? 'checked' : '') : '' !!}>
+                                    <label class="custom-control-label" for="Check{!! $target->first()->id !!}">{!! $target->first()->target_group !!}</label>
+                                </div> <!-- form-check.// -->
+                            @endforeach
+                        </div> <!-- card-body.// -->
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="card shadow bg-white">
+                    <header class="card-header">
+                        <h6 class="title">Regio's </h6>
+                    </header>
+                    <div class="filter-content">
+                        <div class="card-body">
+                            @foreach($baseActivity->groupBy('region') as $re)
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" name="regios[]" class="custom-control-input" id="regio{!! $re->first()->id !!}" value="{!! $re->first()->region !!}" {!! \Illuminate\Support\Facades\Input::has('regios') ? (in_array($re->first()->region, \Illuminate\Support\Facades\Input::get('regios')) ? 'checked' : '') : 'nu' !!} />
+                                    <label class="custom-control-label" for="regio{!! $re->first()->id !!}">{!! $re->first()->region !!}</label>
+                                </div> <!-- form-check.// -->
+                            @endforeach
+                        </div> <!-- card-body.// -->
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="card shadow bg-white">
+                    <header class="card-header">
+                        <h6 class="title">Rating </h6>
+                    </header>
+                    <div class="filter-content">
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    {{--<label for="" class="">0</label>--}}
+                                    {{--<label for="" class="pull-right">5</label>--}}
+                                    <br>
+                                    <input style="width: 100% !important;"  class="custom-range" type="hidden" name="rating" data-slider-min="0" data-slider-max="5" data-slider-step="0.5" data-slider-value="[{!! \Illuminate\Support\Facades\Input::has('rating') ? \Illuminate\Support\Facades\Input::get('rating') : '0,5' !!}]" value="{!! \Illuminate\Support\Facades\Input::get('rating') !!}" />
                                 </div>
-                            </div> <!-- card-body.// -->
-                        </div>
-                    </article> <!-- card-group-item.// -->
+                            </div>
+                        </div> <!-- card-body.// -->
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="card shadow bg-white">
+                    <header class="card-header">
+                        <h6 class="title">Prijs range </h6>
+                    </header>
+                    <div class="filter-content">
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <br>
+                                    <input style="width: 100% !important;" class="custom-range" type="hidden" data-slider-min="{!! number_format($events->min('price'),0) !!}" data-slider-max="{!! number_format($events->max('price'),0) !!}" data-slider-value="[{!! number_format($events->min('price'),0) !!},{!! number_format($events->max('price'),0) !!}]"/>
+
+                                    {{--<label>Min</label>--}}
+                                    {{--<input type="number" class="form-control" id="inputEmail4" placeholder="€{!! $events->min('price') !!}">--}}
+                                </div>
+                                {{--<div class="form-group col-md-6 text-right">--}}
+                                    {{--<label>Max</label>--}}
+                                    {{--<input type="number" class="form-control" placeholder="€{!! $events->max('price') !!}">--}}
+                                {{--</div>--}}
+                            </div>
+                        </div> <!-- card-body.// -->
+                    </div>
                 </div> <!-- card.// -->
 
                 {!! Form::close() !!}
-
+                <br>
             </div>
             <div class="col-9">
 
-                @if($events->count() > 1)
-                    <small class="text-muted"> er zijn {!! $events->count() !!} resultaten gevonden.</small>
-                @else
-                    <small class="text-muted"> er is {!! $events->count() !!} resultaat gevonden.</small>
-                @endif
+                <div style="margin-top: -7px;">
+                    @if($events->count() > 1)
+                        <small class="text-muted"> er zijn {!! $events->count() !!} resultaten gevonden.</small>
+                    @else
+                        <small class="text-muted"> er is {!! $events->count() !!} resultaat gevonden.</small>
+                    @endif
+                </div>
 
                 <div class="row">
 
                     @foreach($events as $event)
 
-                        <div class="col-6" style="padding: 10px 10px">
-                            <div class="card">
-                                <img class="card-img-top" src="{!! $event->activity->thumbnail() !!}" alt="Card image cap" height="210px;">
-                                <div class="text-center" style="width: 100% !important; background: black; padding-top: 5px;">
+                        <div class="col-6 col-md-6" style="padding: 10px 10px">
+                            <div class="card shadow mb-5 bg-white" style="border-radius: 0px;" >
+                                <img class="card-img-top" src="{!! $event->activity->thumbnail() !!}" alt="Card image cap" height="210px;" style="border-radius: 0px">
+                                <div class="text-center" style="width: 100% !important; background: #eeeeee; padding-top: 5px;">
                                     <h3 class="text-muted text-center" style="color: rgba(255, 255, 255, 0.5);" data-countdown="{!! $event->timeToOrder('Y/m/d H:i:s') !!}">{!! $event->timeToOrder('Y/m/d H:i:s') !!}</h3>
                                 </div>
                                 <div class="card-body">

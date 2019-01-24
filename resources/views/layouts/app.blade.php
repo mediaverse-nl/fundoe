@@ -30,6 +30,9 @@
                 background-color: #cecece;
                 color: #eeeeee;
             }
+            .shadow{
+                box-shadow: 0 0.3rem 1.2rem rgba(0, 0, 0, 0.15) !important;
+            }
         </style>
     @endif
 
