@@ -16,6 +16,18 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+    <style>
+        .shadow{
+            /*box-shadow: 0 0.3rem 1.2rem rgba(0, 0, 0, 0.15) !important;*/
+        }
+        .card{
+            border-radius: 0px !important;
+        }
+        .card-header:first-child {
+            border-radius: 0px !important;
+        }
+    </style>
+
     @if(Auth::check() && Auth::user()->admin == 1)
         <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet">
         <style>
@@ -29,9 +41,6 @@
             .popover-content.note-children-container{
                 background-color: #cecece;
                 color: #eeeeee;
-            }
-            .shadow{
-                box-shadow: 0 0.3rem 1.2rem rgba(0, 0, 0, 0.15) !important;
             }
         </style>
     @endif
