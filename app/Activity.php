@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
@@ -34,6 +35,22 @@ class Activity extends Model
     public function category()
     {
         return $this->belongsTo('App\Category', 'category_id', 'id');
+    }
+
+    public function ableToOrderDate()
+    {
+        $time = Carbon::now()->addDays($this->daysBeforeClosing);
+
+        return $time;
+    }
+
+    public function currentlyRunningEvents()
+    {
+        $from = $this->ableToOrderDate();
+
+        return $this->event()
+            ->whereDate('start_datetime', '>=', $from)
+            ->count();
     }
 
     public function titleDash()

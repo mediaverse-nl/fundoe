@@ -7,6 +7,20 @@
         </a>
     </li>
 
+    <li class="nav-item {{Request::is('admin/user*') ? 'active' : ''}}">
+        <a class="nav-link" href="{{route('admin.user.index')}}">
+            <i class="fa fa-fw fa-users"></i>
+            <span class="nav-link-text">Users</span>
+        </a>
+    </li>
+
+    <li class="nav-item {{Request::is('admin/orders*') ? 'active' : ''}}">
+        <a class="nav-link" href="{{route('admin.order.index')}}">
+            <i class="fa fa-fw fa-inbox"></i>
+            <span class="nav-link-text">Orders</span>
+        </a>
+    </li>
+
     {{--<li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Components">--}}
         {{--<a class="nav-link nav-link-collapse {{Request::is('admin/product*') ? '' : 'collapsed'}}" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion" aria-expanded="false">--}}
             {{--<i class="fa fa-fw fa-wrench"></i>--}}
@@ -29,8 +43,29 @@
     {{--</li>--}}
 
     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Components">
+        <a class="nav-link nav-link-collapse {{Request::is('admin/event*') ? '' : 'collapsed'}}" data-toggle="collapse" href="#eventComponents" data-parent="#exampleAccordion" aria-expanded="false">
+            <i class="fa fa-fw fa-calendar"></i>
+            <span class="nav-link-text">Event</span>
+        </a>
+        <ul class="sidenav-second-level collapse {{Request::is('admin/event*') ? 'show' : ''}}" id="eventComponents" style="">
+            <li class="{{Request::is('admin/event/create') ? '' : (Request::is('admin/event*') ? 'active' : '')}}">
+                <a href="{{route('admin.event.index')}}">
+                    <i class="fa fa-fw fa-list"></i>
+                    <span class="nav-link-text">index</span>
+                </a>
+            </li>
+            <li class="{{Request::is('admin/event/create') ? 'active' : ''}}">
+                <a href="{{route('admin.event.create')}}">
+                    <i class="fa fa-fw fa-plus"></i>
+                    <span class="nav-link-text">create</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+
+    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Components">
         <a class="nav-link nav-link-collapse {{Request::is('admin/activity*') ? '' : 'collapsed'}}" data-toggle="collapse" href="#activityComponents" data-parent="#exampleAccordion" aria-expanded="false">
-            <i class="fa fa-fw fa-question"></i>
+            <i class="fa fa-fw fa-trophy"></i>
             <span class="nav-link-text">Activity</span>
         </a>
         <ul class="sidenav-second-level collapse {{Request::is('admin/activity*') ? 'show' : ''}}" id="activityComponents" style="">
@@ -68,7 +103,7 @@
     </li>
     <li class="nav-item {{Request::is('admin/file-manager*') ? 'active' : ''}}">
         <a class="nav-link" href="{{route('admin.file-manager.index')}}">
-            <i class="fa fa-fw fa-image"></i>
+            <i class="fa fa-fw fa-file"></i>
             <span class="nav-link-text">Images</span>
         </a>
     </li>

@@ -27,6 +27,11 @@ class Event extends Model
         return $this->belongsTo('App\Activity', 'activity_id', 'id');
     }
 
+    public function orders()
+    {
+        return $this->hasMany('App\Order', 'event_id', 'id');
+    }
+
     public function scopeReviewRating($q, $input)
     {
         if ($input){

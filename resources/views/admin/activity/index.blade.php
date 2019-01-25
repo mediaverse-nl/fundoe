@@ -24,7 +24,7 @@
                     <td>{!! $activity->title !!}</td>
                     <td>1/{!! $activity->min_number_of_people !!}~{!! $activity->max_number_of_people !!}</td>
                     <td>{!! $activity->region !!}</td>
-                    <td> 1x</td>
+                    <td>{!! $activity->currentlyRunningEvents() !!}x</td>
                     <td>{!! $activity->status !!}</td>
                     <td>
                         @component('components.model', [

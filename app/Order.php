@@ -16,4 +16,14 @@ class Order extends Model
     protected $fillable = [];
 
     protected $dates = ['created_at', 'updated_at'];
+
+    public function event()
+    {
+        return $this->belongsTo('App\Event', 'event_id', 'id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'user_id', 'id');
+    }
 }

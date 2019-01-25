@@ -2,22 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Activity;
-use App\Event;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class EventController extends Controller
+class NotificationController extends Controller
 {
-    protected $event;
-    protected $activity;
-
-    public function __construct(Event $event, Activity $activity)
-    {
-        $this->event = $event;
-        $this->activity = $activity;
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -25,10 +14,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = $this->event->get();
-
-        return view('admin.event.index')
-            ->with('events', $events);
+        //
     }
 
     /**
@@ -38,7 +24,7 @@ class EventController extends Controller
      */
     public function create()
     {
-        return view('admin.event.create');
+        //
     }
 
     /**
@@ -71,12 +57,7 @@ class EventController extends Controller
      */
     public function edit($id)
     {
-        $event = $this->event->findOrFail($id);
-        $activities = $this->activity->get();
-
-        return view('admin.event.edit')
-            ->with('activities', $activities)
-            ->with('event', $event);
+        //
     }
 
     /**
