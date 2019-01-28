@@ -98,7 +98,8 @@
                                     {{--<label for="" class="pull-right">5</label>--}}
                                     <div class="row">
                                         <div class="col-md-1"><span>1</span></div>
-                                        <div class="col-md-9" style="">                                    <input style="width: 100% !important;"  class="custom-range" type="hidden" name="rating" data-slider-min="0" data-slider-max="5" data-slider-step="0.5" data-slider-value="[{!! \Illuminate\Support\Facades\Input::has('rating') ? \Illuminate\Support\Facades\Input::get('rating') : '0,5' !!}]" value="{!! \Illuminate\Support\Facades\Input::get('rating') !!}" />
+                                        <div class="col-md-9" style="">
+                                            <input style="width: 100% !important;" class="custom-range" type="hidden" name="rating" data-slider-min="0" data-slider-max="5" data-slider-step="0.5" data-slider-value="[{!! \Illuminate\Support\Facades\Input::has('rating') ? \Illuminate\Support\Facades\Input::get('rating') : '0,5' !!}]" value="{!! \Illuminate\Support\Facades\Input::get('rating') !!}" />
                                         </div>
                                         <div class="col-md-1"><span>1</span></div>
                                     </div>

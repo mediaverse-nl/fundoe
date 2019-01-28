@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Activity;
 use App\Event;
+use App\Http\Requests\Admin\EventUpdateRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -49,7 +50,11 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $event = $this->event;
+
+//        $event
+
+        return redirect()->back();
     }
 
     /**
@@ -86,9 +91,19 @@ class EventController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EventUpdateRequest $request, $id)
     {
-        //
+        $event = $this->event->findOrFail($id);
+
+        $event->activity_id = $request->activity;
+        $event->start_datetime = $request->start_datetime;
+        $event->end_datetime = $request->end_datetime;
+        $event->price = $request->price;
+        $event->target_group = $request->target_group;
+
+        $event->save();
+
+        return redirect()->back();
     }
 
     /**

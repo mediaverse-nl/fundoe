@@ -116,7 +116,7 @@ class Event extends Model
 
     public static function getTargetGroup()
     {
-        return collect(['kinderen', 'tieners', 'jongvolwassenen', 'volwassenen', 'ouderen', 'stelletjes', 'iedereen'])->toArray();
+        return collect(['kinderen' => 'kinderen', 'tieners' => 'tieners', 'jongvolwassenen' => 'jongvolwassenen', 'volwassenen' => 'volwassenen', 'ouderen' => 'ouderen', 'stelletjes' => 'stelletjes', 'iedereen' => 'iedereen'])->toArray();
     }
 
 }

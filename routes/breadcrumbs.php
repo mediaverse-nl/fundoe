@@ -74,6 +74,22 @@ Breadcrumbs::register('admin.activity.create', function($breadcrumbs) use ($crea
     $breadcrumbs->push($create_name, route('admin.activity.create'));
 });
 
+// dashboard > event
+Breadcrumbs::register('admin.event.index', function($breadcrumbs) {
+    $breadcrumbs->parent('admin.dashboard');
+    $breadcrumbs->push('Events', route('admin.event.index'));
+});
+// dashboard > event > edit
+Breadcrumbs::register('admin.event.edit', function($breadcrumbs, $model) use ($edit_name) {
+    $breadcrumbs->parent('admin.event.index');
+    $breadcrumbs->push($edit_name, route('admin.event.edit', $model->id));
+});
+// dashboard > event > create
+Breadcrumbs::register('admin.event.create', function($breadcrumbs) use ($create_name) {
+    $breadcrumbs->parent('admin.event.index');
+    $breadcrumbs->push($create_name, route('admin.event.create'));
+});
+
 // dashboard > category
 Breadcrumbs::register('admin.category.index', function($breadcrumbs) {
     $breadcrumbs->parent('admin.dashboard');

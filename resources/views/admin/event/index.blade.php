@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 
 @section('breadcrumb')
-    {!! Breadcrumbs::render('admin.activity.index') !!}
+    {!! Breadcrumbs::render('admin.event.index') !!}
 @endsection
 
 @section('content')
 
     <!-- DataTables Example -->
-    @component('components.datatable', ['title' => 'events'])
+    @component('components.datatable')
         @slot('head')
             <th>id</th>
             <th>titel</th>

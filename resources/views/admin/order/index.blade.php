@@ -14,6 +14,7 @@
                     <th>id</th>
                     <th>name</th>
                     <th>email</th>
+                    <th>price</th>
                     <th class="no-sort"></th>
                 @endslot
 
@@ -23,6 +24,7 @@
                             <td>{{$order->id}}</td>
                             <td>{{$order->name}}</td>
                             <td>{{$order->email}}</td>
+                            <td>{{$order->amount_paid}}</td>
                             <td>
                                 @component('components.model', [
                                     'id' => 'orderTableBtn'.$order->id,

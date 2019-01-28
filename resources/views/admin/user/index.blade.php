@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('breadcrumb')
-    {!! Breadcrumbs::render('admin.faq.index') !!}
+    {!! Breadcrumbs::render('admin.user.index') !!}
 @endsection
 
 @section('content')

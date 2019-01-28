@@ -79,7 +79,7 @@
             width: 100%;
             height: auto;
         }
-        input, textarea{
+        input, textarea, select{
             border-radius: 0px !important;
         }
     </style>
