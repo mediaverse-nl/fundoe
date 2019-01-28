@@ -22,8 +22,9 @@ Route::group(['namespace' => 'Site', 'as' => 'site.'], function () {
     Route::get('{title}/activiteit-{id}', 'ActivityController@show')->name('activity.show');
     Route::post('/review', 'ReviewController@store');
     Route::post('/comment', 'CommentController@store');
-    Route::get('/order-aanmaken', 'OrderController@store');
-    Route::post('/order-{id}', 'OrderController@show');
+    Route::post('/groep-order-aanmaken', 'OrderController@storeGroup')->name('order.store.group');
+    Route::post('/publiek-order-aanmaken', 'OrderController@storePublic')->name('order.store.public');
+    Route::get('/order-{id}', 'OrderController@show')->name('order.show');
     Route::get('/contact', 'ContactController@index')->name('contact.index');
     Route::post('/contact', 'ContactController@store');
     Route::get('/over-ons', 'PageController@about')->name('about');

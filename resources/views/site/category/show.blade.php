@@ -150,82 +150,9 @@
 
                     @foreach($events as $event)
 
-                        <div class="col-6 col-md-6" style="padding: 10px 10px; border-radius: 0px;">
-                            <div class="card shadow-sm mb-5 bg-white" style="border-radius: 0px;" >
-                                <img class="card-img-top" src="{!! $event->activity->thumbnail() !!}" alt="Card image cap" height="210px;" style="border-radius: 0px">
-                                <div class="text-center" style="width: 100% !important; background: #eeeeee; padding-top: 5px;">
-                                    <h3 class="text-muted text-center" style="color: rgba(255, 255, 255, 0.5);" data-countdown="{!! $event->timeToOrder('Y/m/d H:i:s') !!}">{!! $event->timeToOrder('Y/m/d H:i:s') !!}</h3>
-                                </div>
-                                <div class="card-body">
+                        @component('components.event-card', ['event' => $event])
 
-                                    <h5 class="card-title">{!! $event->activity->title !!}</h5>
-                                    <p class="card-text truncateOpt">{!! $event->activity->description !!}</p>
-                                    <div class="row">
-                                        <div class="col-5">
-                                            <a href="{!! route('site.activity.show', [$event->activity->titleDash(), $event->id]) !!}" class="btn btn-sm btn-block btn-primary">
-                                                Lees meer
-                                            </a>
-                                            {{--<!-- Large modal -->--}}
-                                            <button type="button" class="btn btn-sm btn-block btn-primary" data-toggle="modal" data-target=".bd-modal-lg-{!! $event->activity->id !!}">boek nu</button>
-
-                                            <div class="modal fade bd-modal-lg-{!! $event->activity->id !!}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-lg">
-                                                    <div class="modal-content">
-                                                        <!-- Modal Header -->
-                                                        <div class="modal-header">
-                                                            <h4 class="modal-title">Modal Heading</h4>
-                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                        </div>
-
-                                                        <!-- Modal body -->
-                                                        <div class="modal-body">
-                                                            {!! $event !!}
-                                                        </div>
-
-                                                        <!-- Modal footer -->
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            {{--{!! \Carbon\Carbon::setLocale('nl') !!}--}}
-
-                                        </div>
-                                        <div class="col-7">
-                                            <h2 class="pull-right">€ {!! number_format($event->price, 2) !!}<small style="font-size: 15px;"> p.p.</small></h2>
-                                            <small class="pull-right"><i class="fa fa-calendar-alt"></i> {!! $event->start_datetime->format('d-m-y h:i') !!}</small>
-                                        </div>
-                                    </div>
-                                    {{--<br>--}}
-                                    {{--<span class="badge badge-success"><i class="fa fa-clock"></i> {!! $event->diffInTime()!!}min</span>--}}
-
-                                    {{--<small class="text-muted"></small>--}}
-                                    {{--<br>--}}
-                                    {{--<small class="text-muted" data-countdown="{!! $event->timeToOrder('Y/m/d H:i:s') !!}">{!! $event->timeToOrder() !!}</small>--}}
-                                    {{--<small class="text-muted" >{!! $event->timeToOrder() !!}</small>--}}
-                                    {{--<br>--}}
-                                    {{--<span class="badge badge-success"><i class="fa fa-clock"></i>{!! $event->diffInTime()!!}min</span>--}}
-                                    {{--<br>--}}
-                                    {{--<br>--}}
-                                    {{--<small class="text-muted">{!! $event->remainingTimeToStart() !!}</small>--}}
-                                    {{--<br>--}}
-                                    <footer class="post-footer d-flex align-items-center" style="margin-top: 10px;">
-                                        <div class="row">
-                                            <div class="splitter-bar">
-                                                <i class="fas fa-clock"></i> {!! $event->diffInTime()!!}min
-                                            </div>
-                                            <div class="splitter-bar">
-                                                <i class="fas fa-comments"></i> {!! $event->activity->reviews->count('id') !!} reviews
-                                            </div>
-                                            <div class="splitter-bar">
-                                                <i class="fas fa-star"></i> {!! $event->activity->reviews->count('id') !== 0 ? number_format($event->activity->reviews->avg('rating'), 1).'/5' : 'n.v.t.' !!}
-                                            </div>
-                                        </div>
-                                    </footer>
-                                </div>
-                            </div>
-                        </div>
+                        @endcomponent
 
                     @endforeach
                 </div>
@@ -333,7 +260,7 @@
             console.log('test');
             $( "#filterForm" ).submit();
         }
-        $('form').change(function() {
+        $('#filterForm').change(function() {
             intervalTimer();
         });
     });

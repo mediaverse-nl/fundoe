@@ -20,6 +20,28 @@ Breadcrumbs::register('admin.editor.edit', function ($breadcrumbs, $model) use (
     $breadcrumbs->push($edit_name, route('admin.editor.edit', $model->id));
 });
 
+// admin user index
+Breadcrumbs::register('admin.user.index', function ($breadcrumbs) {
+    $breadcrumbs->parent('admin.dashboard');
+    $breadcrumbs->push('Users', route('admin.user.index'));
+});
+// admin user edit
+Breadcrumbs::register('admin.user.edit', function ($breadcrumbs, $model) use ($edit_name) {
+    $breadcrumbs->parent('admin.user.index');
+    $breadcrumbs->push($edit_name, route('admin.user.edit', $model->id));
+});
+
+// admin order index
+Breadcrumbs::register('admin.order.index', function ($breadcrumbs) {
+    $breadcrumbs->parent('admin.dashboard');
+    $breadcrumbs->push('Orders', route('admin.order.index'));
+});
+// admin order edit
+Breadcrumbs::register('admin.order.edit', function ($breadcrumbs, $model) use ($edit_name) {
+    $breadcrumbs->parent('admin.order.index');
+    $breadcrumbs->push($edit_name, route('admin.order.edit', $model->id));
+});
+
 // dashboard > faq
 Breadcrumbs::register('admin.faq.index', function($breadcrumbs) {
     $breadcrumbs->parent('admin.dashboard');

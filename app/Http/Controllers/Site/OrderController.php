@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers\Site;
 
+use App\Activity;
 use App\Event;
+use App\Http\Requests\Site\GroupOrderStoreRequest;
+use App\Http\Requests\Site\OrderStoreRequest;
+use App\Http\Requests\Site\PublicOrderStoreRequest;
 use App\Mail\OrderConfirmation;
 use App\Order;
 use Illuminate\Http\Request;
@@ -20,11 +24,13 @@ class OrderController extends Controller
     protected $mollie;
     protected $order;
     protected $event;
+    protected $activity;
 
-    public function __construct(Order $order, Event $event)
+    public function __construct(Order $order, Event $event, Activity $activity)
     {
         $this->order = $order;
         $this->event = $event;
+        $this->activity = $activity;
         $this->mollie = Mollie::api();
     }
 
@@ -34,21 +40,56 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function storePublic(PublicOrderStoreRequest $request)
     {
-        $event = $this->event->findOrFail($request->event_id);
+        $event = $this->event->findOrFail($request->id);
 
         $order = $this->order;
-        $order->total_paid = $event->prijs;
+        $order->total_paid = $event->price * $request->tickets;
         $order->status = self::STATUS_PENDING;
-        $order->email = $request->email;
-        $order->ticket_amount = $request->aantal;
+        $order->user_id = auth()->user()->id;
+        $order->event_id = $event->id;
+        $order->email = auth()->user()->email;
+        $order->ticket_amount = $request->tickets;
         $order->save();
 
         $payment =  $this->mollie->payments()->create([
             "amount"      => number_format($order->total_paid,2),
             "description" => "Order Nr. ". $order->id,
-            "redirectUrl" => route('order.show', $order->id),
+            "redirectUrl" => route('site.order.show', $order->id),
+            'metadata'    => [
+                'order_id' => $order->id,
+            ],
+        ]);
+
+        $order->update(['payment_id' => $payment->id]);
+
+        // redirect customer to Mollie checkout page
+        return redirect($payment->getPaymentUrl(), 303);
+    }
+
+    public function storeGroup(GroupOrderStoreRequest $request)
+    {
+        $activity = $this->activity->findOrFail($request->id);
+
+        $event_id = $activity->events()->insertGetId([
+
+        ]);
+        $pricePerTicket = $activity->price_per_hour / 60 * $request->duur;
+
+        $order = $this->order;
+        $order->total_paid = $pricePerTicket * $request->tickets;
+        $order->status = self::STATUS_PENDING;
+        $order->user_id = auth()->user()->id;
+        $order->event_id = $event_id;
+        $order->email = auth()->user()->email;
+        $order->ticket_amount = $request->tickets;
+        $order->save();
+
+        $payment =  $this->mollie->payments()->create([
+            "amount"      => number_format($order->total_paid,2),
+            "description" => "Order Nr. ". $order->id,
+            "redirectUrl" => route('site.order.show', $order->id),
             'metadata'    => [
                 'order_id' => $order->id,
             ],
@@ -75,19 +116,11 @@ class OrderController extends Controller
         if ($payment->isPaid())
         {
             if ($order->status != 'paid'){
-                foreach($order->productOrders as $product){
-                    $product->product()->update([
-                        'stock' => ((int)$product->stock - $product->amount)
-                    ]);
-                }
-
                 Mail::to($order->email)->send(new OrderConfirmation($order));
             }
 
             $order->status = self::STATUS_COMPLETED;
-
-        }
-        elseif (! $payment->isOpen())
+        } elseif (! $payment->isOpen())
         {
             $order->status = self::STATUS_CANCELLED;
         }
@@ -95,7 +128,7 @@ class OrderController extends Controller
 
         $order->save();
 
-        return view('order.show')
+        return view('site.order.show')
             ->with('order', $order)
             ->with('payment', $payment);
     }
