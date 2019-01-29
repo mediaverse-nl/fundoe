@@ -10,30 +10,28 @@
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item">
-                <img class="first-slide" src="http://placehold.it/900x350" alt="First slide" style="width: 100%">
+                <img class="first-slide" src="https://lorempixel.com/1080/1920" alt="First slide" style="width: 100%">
                 <div class="container">
                     <div class="carousel-caption text-left">
-                        {!! Editor('welcome_title', 'richtext', false, 'Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.') !!}
+                        {!! Editor('welcome_banner1', 'richtext', false, '<h1>Another example headline.</h1><p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>') !!}
                         <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
                     </div>
                 </div>
             </div>
             <div class="carousel-item active">
-                <img class="second-slide" src="http://placehold.it/900x350" alt="Second slide" style="width: 100%">
+                <img class="second-slide" src="https://lorempixel.com/1080/1920" alt="Second slide" style="width: 100%">
                 <div class="container">
                     <div class="carousel-caption text-left">
-                        <h1>Another example headline.</h1>
-                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                        {!! Editor('welcome_banner2', 'richtext', false, '<h1>Another example headline.</h1><p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>') !!}
                         <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
                     </div>
                 </div>
             </div>
             <div class="carousel-item">
-                <img class="third-slide" src="http://placehold.it/900x350" alt="Third slide" style="width: 100%">
+                <img class="third-slide" src="https://lorempixel.com/1080/1920" alt="Third slide" style="width: 100%">
                 <div class="container">
                     <div class="carousel-caption text-left">
-                        <h1>One more for good measure.</h1>
-                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                        {!! Editor('welcome_banner3', 'richtext', false, '<h1>Another example headline.</h1><p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>') !!}
                         <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
                     </div>
                 </div>
@@ -70,6 +68,14 @@
                 <h2 class="my-4">Populaire events</h2>
 
                 <div class="row">
+
+                    @foreach($events as $event)
+
+                        @component('components.event-card', ['event' => $event])
+
+                        @endcomponent
+
+                    @endforeach
 
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="card h-100">
@@ -187,6 +193,7 @@
 @endsection
 
 @push('css')
+    <link href="{{ asset('/css/site/category.css') }}" rel="stylesheet">
     <style>
         .carousel-inner{
             max-height: 500px;

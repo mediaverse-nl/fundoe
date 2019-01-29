@@ -40,6 +40,7 @@ class WelcomeController extends Controller
         $events = $this->event
             ->whereDate('start_datetime', '>=', $from)
             ->orderBy('start_datetime', 'asc')
+            ->limit(4)
             ->get();
 
         return view('welcome')

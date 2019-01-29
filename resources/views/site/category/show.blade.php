@@ -172,13 +172,7 @@
     .filter-content .form-group{
         margin-bottom: 0px;
     }
-    .truncateOpt {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-    }
+
     .slider .tooltip.top {
         margin-top: -36px;
     }

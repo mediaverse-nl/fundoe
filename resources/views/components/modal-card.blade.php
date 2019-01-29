@@ -40,7 +40,6 @@
                             {!! $event->activity->description !!}
                         </div>
 
-
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link {!! Session::has('activityType') ? (Session::get('activityType') == 'public' ? 'active':'') : 'active'!!}" id="public-tab" data-toggle="tab" href="#public{!! $event->id !!}" role="tab" aria-controls="public" aria-selected="true">Publieke activiteit</a>
@@ -150,8 +149,6 @@
             $(window).on('load',function(){
                 $('.bd-modal-lg-{!! $targetId !!}').modal('show');
             });
-
-
         </script>
     @endpush
 @endif
