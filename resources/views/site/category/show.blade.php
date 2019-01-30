@@ -28,18 +28,18 @@
                             <div class="form-row">
                                 <div class="form-group col-md-12">
                                     <label for="">datum vanaf</label>
-                                    <div class="input-group date" id="datetimepicker2" data-target-input="nearest" style="margin-bottom: 5px;">
-                                        <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker" style="-moz-border-radius-bottomleft: .25rem;">
+                                    <div class="input-group date" id="datetimepicker1" data-target-input="nearest" style="margin-bottom: 5px;">
+                                        <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker" style="-moz-border-radius-bottomleft: .25rem;">
                                             <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                         </div>
-                                        {!! Form::text('start_datetime', null, ['class' => 'datetimepicker-input form-control'.(!$errors->has('start_datetime') ? '': ' is-invalid '), 'data-toggle' => 'datetimepicker', 'data-target' => '#datetimepicker2']) !!}
+                                        {!! Form::text('start_datetime', null, ['class' => 'datetimepicker-input form-control'.(!$errors->has('start_datetime') ? '': ' is-invalid '), 'data-toggle' => 'datetimepicker', 'data-target' => '#datetimepicker1', 'autocomplete' => false]) !!}
                                     </div>
                                     <label for="">datum t/m</label>
                                     <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
                                         <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker" style="-moz-border-radius-bottomleft: .25rem;">
                                             <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                         </div>
-                                        {!! Form::text('start_datetime', null, ['class' => 'datetimepicker-input form-control'.(!$errors->has('start_datetime') ? '': ' is-invalid '), 'data-toggle' => 'datetimepicker', 'data-target' => '#datetimepicker2']) !!}
+                                        {!! Form::text('start_datetime', null, ['class' => 'datetimepicker-input form-control'.(!$errors->has('start_datetime') ? '': ' is-invalid '), 'data-toggle' => 'datetimepicker', 'data-target' => '#datetimepicker2', 'autocomplete' => false]) !!}
                                     </div>
                                 </div>
                             </div>
@@ -118,7 +118,7 @@
                             <div class="form-row">
                                 <div class="form-group col-md-12" style="padding-top: 15px;">
                                     <div class="row text-center">
-                                        <div class="col-2" style="padding: 5px;">1{!! number_format($events->min('price'),0) !!}</div>
+                                        <div class="col-2" style="padding: 5px;">{!! number_format($events->min('price'),0) !!}</div>
                                         <div class="col-8" style="padding: 3px 5px;">
                                             <input style="width: 100% !important;" class="custom-range" type="hidden" data-slider-min="{!! number_format($events->min('price'),0) !!}" data-slider-max="{!! number_format($events->max('price'),0) !!}" data-slider-value="[{!! number_format($events->min('price'),0) !!},{!! number_format($events->max('price'),0) !!}]"/>
                                         </div>
@@ -132,6 +132,7 @@
 
                 {!! Form::close() !!}
                 <br>
+            </div>
             </div>
             <div class="col-9">
 
@@ -260,6 +261,34 @@
         }
         $('#filterForm').change(function() {
             intervalTimer();
+        });
+    });
+
+    $(function () {
+        Date.prototype.addDays = function(days) {
+            this.setDate(this.getDate() + parseInt(days));
+            return this;
+        };
+
+        var today = new Date().addDays(2);
+
+        $('#datetimepicker1').datetimepicker({
+            minDate: new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), today.getMinutes()),
+            autoclose: true,
+            todayBtn: true,
+            format: 'YYYY/MM/DD HH:mm'
+        });
+        $('#datetimepicker2').datetimepicker({
+            useCurrent: false,
+            minDate: new Date(today.getFullYear(), today.getMonth(), today.getDate()),
+            autoclose: true,
+            format: 'YYYY/MM/DD HH:mm'
+        });
+        $("#datetimepicker1").on("change.datetimepicker", function (e) {
+            $('#datetimepicker2').datetimepicker('minDate', e.date);
+        });
+        $("#datetimepicker2").on("change.datetimepicker", function (e) {
+            $('#datetimepicker1').datetimepicker('maxDate', e.date);
         });
     });
 </script>

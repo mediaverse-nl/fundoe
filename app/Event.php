@@ -57,6 +57,14 @@ class Event extends Model
         return range($this->activity->min_duration, 480,15);
     }
 
+    public function scopeNotSoldOut($q)
+    {
+        $soldTickets = $q->orders()
+            ->where('status', '=', 'paid')
+            ->sum('ticket_amount');
+
+    }
+
     public function scopeReviewRating($q, $input)
     {
         if ($input){
