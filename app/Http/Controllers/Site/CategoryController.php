@@ -22,6 +22,19 @@ class CategoryController extends Controller
 
     public function show($id)
     {
+        $query = collect(request()->query)->toArray();
+
+        foreach ($query as $q => $v){
+            if ($v == null || $v = '' || empty($v)){
+                $cleanUrl = array_filter($query);
+                $decodeUrl = urldecode(http_build_query($cleanUrl));
+                $newQuery = "?".$decodeUrl;
+                return redirect(
+                    route('site.category.show', $id).$newQuery
+                );
+            }
+        }
+
         $category = $this->category->findOrFail($id);
         $categories = $this->category->get();
         $from = $this->event->ableToOrderDate();

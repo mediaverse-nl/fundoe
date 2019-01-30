@@ -16,3 +16,34 @@ body  {
   outline:none !important;
   box-shadow: none !important;
 }
+
+//.card-body div{
+//  width: 100%;
+//  overflow: hidden;
+//}
+.truncated {
+  line-height: 1.5em !important;
+  height: 4.5em !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  width: 100% !important;
+  white-space: normal;
+}
+
+//.truncateOpt {
+//  overflow: hidden;
+//  text-overflow: ellipsis;
+//  display: -webkit-box;
+//  -webkit-line-clamp: 2;
+//  -webkit-box-orient: vertical;
+//}
+
+//.crop-text-2 {
+//  -webkit-line-clamp: 2;
+//  overflow : hidden;
+//  text-overflow: ellipsis;
+//  display: -webkit-box;
+//  -webkit-box-orient: vertical;
+//}
+
+

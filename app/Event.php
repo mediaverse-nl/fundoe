@@ -32,6 +32,31 @@ class Event extends Model
         return $this->hasMany('App\Order', 'event_id', 'id');
     }
 
+    public function publicTicketSelection()
+    {
+        $soldTickets = $this->orders()
+            ->where('status', '=', 'paid')
+            ->sum('ticket_amount');
+
+        if ($soldTickets == $this->activity->max_number_of_people){
+            return ['uitverkocht' => 'uitverkocht'];
+        }
+
+        $ticketsLeft = $this->activity->max_number_of_people - $soldTickets;
+
+        return range(1, $ticketsLeft);
+    }
+
+    public function groupTicketSelection()
+    {
+        return range($this->activity->min_number_of_people, $this->activity->max_number_of_people,2);
+    }
+
+    public function groupDurationSelection()
+    {
+        return range($this->activity->min_duration, 480,15);
+    }
+
     public function scopeReviewRating($q, $input)
     {
         if ($input){

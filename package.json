@@ -23,5 +23,7 @@
     "popper.js": "^1.14.6",
     "startbootstrap-sb-admin": "^5.0.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "line-clamp": "0.0.9"
+  }
 }

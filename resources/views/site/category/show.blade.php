@@ -93,15 +93,13 @@
                     <div class="filter-content">
                         <div class="card-body">
                             <div class="form-row">
-                                <div class="form-group col-md-12">
-                                    {{--<label for="" class="">0</label>--}}
-                                    {{--<label for="" class="pull-right">5</label>--}}
-                                    <div class="row">
-                                        <div class="col-md-1"><span>1</span></div>
-                                        <div class="col-md-9" style="">
+                                <div class="form-group col-md-12" style="padding-top: 15px;">
+                                    <div class="row text-center">
+                                        <div class="col-md-2" style="padding: 5px;">1</div>
+                                        <div class="col-md-8" style="padding: 3px 5px;">
                                             <input style="width: 100% !important;" class="custom-range" type="hidden" name="rating" data-slider-min="0" data-slider-max="5" data-slider-step="0.5" data-slider-value="[{!! \Illuminate\Support\Facades\Input::has('rating') ? \Illuminate\Support\Facades\Input::get('rating') : '0,5' !!}]" value="{!! \Illuminate\Support\Facades\Input::get('rating') !!}" />
                                         </div>
-                                        <div class="col-md-1"><span>1</span></div>
+                                        <div class="col-md-2" style="padding: 5px;">5</div>
                                     </div>
                                 </div>
                             </div>
@@ -118,17 +116,15 @@
                     <div class="filter-content">
                         <div class="card-body">
                             <div class="form-row">
-                                <div class="form-group col-md-12">
-                                    <br>
-                                    <input style="width: 100% !important;" class="custom-range" type="hidden" data-slider-min="{!! number_format($events->min('price'),0) !!}" data-slider-max="{!! number_format($events->max('price'),0) !!}" data-slider-value="[{!! number_format($events->min('price'),0) !!},{!! number_format($events->max('price'),0) !!}]"/>
-
-                                    {{--<label>Min</label>--}}
-                                    {{--<input type="number" class="form-control" id="inputEmail4" placeholder="€{!! $events->min('price') !!}">--}}
+                                <div class="form-group col-md-12" style="padding-top: 15px;">
+                                    <div class="row text-center">
+                                        <div class="col-2" style="padding: 5px;">1{!! number_format($events->min('price'),0) !!}</div>
+                                        <div class="col-8" style="padding: 3px 5px;">
+                                            <input style="width: 100% !important;" class="custom-range" type="hidden" data-slider-min="{!! number_format($events->min('price'),0) !!}" data-slider-max="{!! number_format($events->max('price'),0) !!}" data-slider-value="[{!! number_format($events->min('price'),0) !!},{!! number_format($events->max('price'),0) !!}]"/>
+                                        </div>
+                                        <div class="col-2" style="padding: 5px;">{!! number_format($events->max('price'),0) !!}</div>
+                                    </div>
                                 </div>
-                                {{--<div class="form-group col-md-6 text-right">--}}
-                                {{--<label>Max</label>--}}
-                                {{--<input type="number" class="form-control" placeholder="€{!! $events->max('price') !!}">--}}
-                                {{--</div>--}}
                             </div>
                         </div> <!-- card-body.// -->
                     </div>
@@ -254,6 +250,13 @@
         function submitForm(){
             console.log('test');
             $( "#filterForm" ).submit();
+                // function () {
+                // $("input").each(function(index, input){
+                //     if($(input).val() == "") {
+                //         $(input).remove();
+                //     }
+                // });
+            // });
         }
         $('#filterForm').change(function() {
             intervalTimer();

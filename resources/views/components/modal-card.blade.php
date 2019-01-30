@@ -49,7 +49,7 @@
                             </li>
                         </ul>
                         <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade show active" id="public{!! $event->id !!}" role="tabpanel" aria-labelledby="public-tab">
+                            <div class="tab-pane fade {!! Session::has('activityType') ? (Session::get('activityType') == 'public' ? 'active show':'') : 'show active'!!}" id="public{!! $event->id !!}" role="tabpanel" aria-labelledby="public-tab">
 
                                 @if(isset($form) ? $form : true)
                                     {!! Form::open(['route' => ['site.order.store.public'], 'method' => 'POST']) !!}
@@ -62,7 +62,7 @@
 
                                 <div class="form-group">
                                     <b>tickets</b>
-                                    {!! Form::select('tickets', range(1, $event->activity->max_number_of_people), null, ['class' => 'form-control'.(!$errors->has('tickets') ? '': ' is-invalid ')]) !!}
+                                    {!! Form::select('tickets', array_combine($event->publicTicketSelection(), $event->publicTicketSelection()), null, ['class' => 'form-control'.(!$errors->has('tickets') ? '': ' is-invalid ')]) !!}
                                     @include('components.error', ['field' => 'tickets'])
                                 </div>
 
@@ -83,11 +83,13 @@
                                     {!! Form::close() !!}
                                 @endif
                             </div>
-                            <div class="tab-pane fade" id="group{!! $event->id !!}" role="tabpanel" aria-labelledby="group-tab">
+                            <div class="tab-pane fade {!! Session::has('activityType') ? (Session::get('activityType') == 'group' ? 'active show':'') : ''!!}" id="group{!! $event->id !!}" role="tabpanel" aria-labelledby="group-tab">
                                 <br>
                                 @if(isset($form) ? $form : true)
                                     {!! Form::open(['route' => ['site.order.store.group'], 'method' => 'POST']) !!}
                                 @endif
+                                {!! Form::hidden('id', $targetId) !!}
+
                                 <div class="form-group">
                                     <h3><small>Prijs per uur </small> € {!! $event->activity->price_per_hour !!} <small>p.p.</small></h3>
                                 </div>
@@ -95,25 +97,27 @@
                                 <div class="row">
                                     <div class="form-group col-md-6">
                                         <b>Aantal tickets</b>
-                                        {!! Form::select('tickets', range($event->activity->min_number_of_people, $event->activity->max_number_of_people, 2), null, ['class' => 'form-control'.(!$errors->has('tickets') ? '': ' is-invalid ')]) !!}
+                                        {!! Form::select('tickets', array_combine($event->groupTicketSelection(),$event->groupTicketSelection()), null, ['class' => 'form-control'.(!$errors->has('tickets') ? '': ' is-invalid ')]) !!}
                                         @include('components.error', ['field' => 'tickets'])
                                     </div>
 
                                     <div class="form-group col-md-6">
                                         <b>Duur van activiteit</b>
-                                        {!! Form::select('duur', range($event->activity->min_duration, 480, 15), null, ['class' => 'form-control'.(!$errors->has('tickets') ? '': ' is-invalid ')]) !!}
-                                        @include('components.error', ['field' => 'tickets'])
+                                        {!! Form::select('duur', array_combine($event->groupDurationSelection(), $event->groupDurationSelection()), null, ['class' => 'form-control'.(!$errors->has('tickets') ? '': ' is-invalid ')]) !!}
+                                        @include('components.error', ['field' => 'duur'])
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <b>Selecteer een datum en tijd</b>
-                                    <div class="input-group datetimepicker" id="datetimepicker{!! $targetId !!}" data-target-input="nearest" data-date-min-date="0" data-date-today-highlight="true" data-date-format="YYYY-MM-DD HH:mm" style="margin-bottom: 5px; border-radius: 5px;">
+                                    <div class="input-group datetimepicker{!! (!$errors->has('activiteit_datum') ? '': ' is-invalid ') !!}" id="datetimepicker{!! $targetId !!}" data-target-input="nearest" data-date-min-date="0" data-date-today-highlight="true" data-date-format="YYYY-MM-DD HH:mm" style="margin-bottom: 5px; border-radius: 5px;">
                                         <div class="input-group-append" data-target="#datetimepicker{!! $targetId !!}" data-toggle="datetimepicker"  style="-moz-border-radius-bottomleft: .25rem;">
                                             <div class="input-group-text" style="border-right: none;"><i class="fa fa-calendar"></i></div>
                                         </div>
-                                        {!! Form::text('start_datetime', null, ['class' => 'datetimepicker-input form-control'.(!$errors->has('start_datetime') ? '': ' is-invalid '), 'data-toggle' => 'datetimepicker', 'data-target' => '#datetimepicker'.$targetId]) !!}
+                                        {!! Form::text('activiteit_datum', null, ['class' => 'datetimepicker-input form-control'.(!$errors->has('activiteit_datum') ? '': ' is-invalid '), 'data-toggle' => 'datetimepicker', 'data-target' => '#datetimepicker'.$targetId]) !!}
                                     </div>
+                                    @include('components.error', ['field' => 'activiteit_datum'])
+
                                 </div>
 
                                 <div class="custom-control custom-checkbox">
@@ -124,6 +128,7 @@
                                     </label>
                                     @include('components.error', ['field' => 'voorwaarden'])
                                 </div>
+
                                 <br>
                                 @if(isset($form) ? $form : true)
                                     <input type="submit" class="btn btn-block btn-success" value="betalen">

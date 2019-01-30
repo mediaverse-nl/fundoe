@@ -9,6 +9,7 @@ use App\Http\Requests\Site\OrderStoreRequest;
 use App\Http\Requests\Site\PublicOrderStoreRequest;
 use App\Mail\OrderConfirmation;
 use App\Order;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
@@ -70,12 +71,18 @@ class OrderController extends Controller
 
     public function storeGroup(GroupOrderStoreRequest $request)
     {
-        $activity = $this->activity->findOrFail($request->id);
+        $activity = $this->event->findOrFail($request->id)->activity;
 
-        $event_id = $activity->events()->insertGetId([
-
-        ]);
         $pricePerTicket = $activity->price_per_hour / 60 * $request->duur;
+
+//        todo er moet een status bij gegeven worden om te kunnen zien dat het prive is
+        $event_id = $this->event->insertGetId([
+            'activity_id' => $activity->id,
+            'target_group' => 'iedereen',
+            'price' => $pricePerTicket,
+            'start_datetime' => $request->activiteit_datum,
+            'end_datetime' => Carbon::parse($request->activiteit_datum)->addMinutes($request->duur)
+        ]);
 
         $order = $this->order;
         $order->total_paid = $pricePerTicket * $request->tickets;

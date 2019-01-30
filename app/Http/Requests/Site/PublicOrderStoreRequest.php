@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Site;
 
+use App\Event;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Session;
 
@@ -25,11 +26,14 @@ class PublicOrderStoreRequest extends FormRequest
     public function rules()
     {
         Session::flash('id', (int)$this->request->get('id'));
+        Session::flash('activityType', 'public');
+
+        $event = Event::findOrFail($this->request->get('id'));
 
         return [
-            'tickets' => 'required|min:1',
+            'tickets' => 'required|numeric|in:'.implode(',', array_combine($event->publicTicketSelection(), $event->publicTicketSelection())),
             'voorwaarden' => 'accepted',
-            'id' => 'required'
+            'id' => 'required|integer',
         ];
     }
 }

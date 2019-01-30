@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests\Site;
 
+use App\Event;
+use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Session;
 
@@ -27,10 +29,16 @@ class GroupOrderStoreRequest extends FormRequest
         Session::flash('id', (int)$this->request->get('id'));
         Session::flash('activityType', 'group');
 
+        $event = Event::findOrFail($this->request->get('id'));
+
+        $afterDate = Carbon::now()->addHours(48);
+
         return [
-            'duur' => 'required',
-            'tickets' => 'required',
-            'activiteit_datum' => 'required',
+            'id' => 'required|integer',
+            'voorwaarden' => 'accepted',
+            'duur' => 'required|numeric|in:'.implode(',', $event->groupDurationSelection()),
+            'tickets' => 'required|numeric|in:'.implode(',', $event->groupTicketSelection()),
+            'activiteit_datum' => 'required|date|after:'.$afterDate,
         ];
     }
 }

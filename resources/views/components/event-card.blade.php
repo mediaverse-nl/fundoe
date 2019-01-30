@@ -1,13 +1,12 @@
-<div class="col-6 col-md-6" style="padding: 10px 10px; border-radius: 0px;">
+<div class="col-md-6 col-sm-12 col-xs-12" style="padding: 10px 10px; border-radius: 0px;">
     <div class="card shadow-sm bg-white" style="border-radius: 0px;" >
         <img class="card-img-top" src="{!! $event->activity->thumbnail() !!}" alt="Card image cap" height="210px;" style="border-radius: 0px">
         <div class="text-center" style="width: 100% !important; background: #eeeeee; padding-top: 5px;">
             <h3 class="text-muted text-center" style="color: rgba(255, 255, 255, 0.5);" data-countdown="{!! $event->timeToOrder('Y/m/d H:i:s') !!}">{!! $event->timeToOrder('Y/m/d H:i:s') !!}</h3>
         </div>
         <div class="card-body">
-
             <h5 class="card-title">{!! $event->activity->title !!}</h5>
-            <p class="card-text truncateOpt">{!! $event->activity->description !!}</p>
+            <p class="card-text truncated" >{!! $event->activity->description !!}</p>
             <div class="row">
                 <div class="col-5">
                     <a href="{!! route('site.activity.show', [$event->activity->titleDash(), $event->id]) !!}" class="btn btn-sm btn-block btn-primary">
@@ -20,7 +19,6 @@
                         @slot('title')
                             {!! $event->activity->title !!}
                         @endslot
-
                         @slot('actionBtn')
                             Modal Heading - test
                         @endslot

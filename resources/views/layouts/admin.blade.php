@@ -181,6 +181,7 @@
 <script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 <script src="/js/admin/datatables-plugin.js"></script>
 <script src="/js/admin/sb-admin.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/trunk8/1.3.3/trunk8.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
 
 <!-- Custom scripts for all pages-->
