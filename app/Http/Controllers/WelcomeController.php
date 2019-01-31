@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Event;
 use Artesaos\SEOTools\Traits\SEOTools;
+use Illuminate\Support\Facades\DB;
 
 class WelcomeController extends Controller
 {
@@ -39,12 +40,34 @@ class WelcomeController extends Controller
 
         $events = $this->event
             ->whereDate('start_datetime', '>=', $from)
-            ->orderBy('start_datetime', 'asc')
+            ->orderBy('start_datetime', 'asc');
+
+
+        $bestSoldEvent = $events
             ->limit(4)
             ->get();
 
+        $bestRatedEvent = $events
+//            ->whereHas('activity.reviews', function($q) {
+//                $q->havingRaw('AVG(rating) >= ?', [0.1]);
+//            })
+//            ->join('activity', 'activity.id', '=', 'event.activity_id')
+//            ->join('review', 'activity.id', '=', 'review.activity_id')
+
+//            ->selectRaw('AVG(review.rating) AS average_rating')
+            ->groupBy('event.id')
+
+            //            ->select(DB::raw('avg(rating) as average'))
+//            ->limit(4)
+            ->get();
+
+//        dd($bestRatedEvent);
+
+
         return view('welcome')
             ->with('events', $events)
+            ->with('events', $events)
+            ->with('bestRatedEvent', $bestRatedEvent)
             ->with('categories', $categories);
     }
 }

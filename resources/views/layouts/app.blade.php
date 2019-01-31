@@ -27,6 +27,18 @@
         .card-header:first-child {
             border-radius: 0px !important;
         }
+        .truncated-title{
+
+        }
+        .truncated{
+            display: -webkit-box;
+            height: 4.8rem;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis !important;
+            -webkit-line-clamp: 3;
+             line-height: 1.6rem;
+        }
     </style>
 
     @if(Auth::check() && Auth::user()->admin == 1)
@@ -75,15 +87,6 @@
     @endif
 
     @stack('js')
-
-    <script type="text/javascript">
-        $(document).ready(function() {
-            //     $('.datetimepicker').datetimepicker();
-            $('.datetimepicker').each(function(){
-                $(this).datepicker();
-            });
-        });
-    </script>
 
 </body>
 </html>

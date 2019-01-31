@@ -36,7 +36,7 @@ class EventTableSeeder extends Seeder
     {
         $items = Event::getTargetGroup();
 
-        return $items[rand(0, count($items) - 1)];
+        return array_rand($items, 1);
     }
 
     public function startTime()

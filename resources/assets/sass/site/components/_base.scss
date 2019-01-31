@@ -17,17 +17,19 @@ body  {
   box-shadow: none !important;
 }
 
-//.card-body div{
-//  width: 100%;
-//  overflow: hidden;
-//}
+.truncated-title {
+
+}
 .truncated {
-  line-height: 1.5em !important;
-  height: 4.5em !important;
-  overflow: hidden !important;
+
+  display: -webkit-box;
+  max-height: 4.8rem;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
   text-overflow: ellipsis !important;
-  width: 100% !important;
   white-space: normal;
+  -webkit-line-clamp: 3;
+  line-height: 1.6rem;
 }
 
 //.truncateOpt {

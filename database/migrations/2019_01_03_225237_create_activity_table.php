@@ -27,6 +27,7 @@ class CreateActivityTable extends Migration
             $table->integer('min_number_of_people');
             $table->integer('min_duration');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

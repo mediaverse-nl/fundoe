@@ -26,9 +26,9 @@ class CreateUsersTable extends Migration
             $table->string('zipcode');
             $table->string('street_name');
             $table->string('street_nr');
-            $table->string('status')->nullable();
             $table->boolean('admin')->default(0);
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

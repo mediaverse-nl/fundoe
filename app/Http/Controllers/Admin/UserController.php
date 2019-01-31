@@ -17,7 +17,9 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = $this->user->get();
+        $users = $this->user
+            ->withTrashed()
+            ->get();
 
         return view('admin.user.index')
             ->with('users', $users);
@@ -25,9 +27,21 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        $user = $this->user->findOrFail($id);
+        $user = $this->user
+            ->withTrashed()
+            ->findOrFail($id);
 
         return view('admin.user.edit')
             ->with('user', $user);
+    }
+
+    public function destroy($id)
+    {
+        $this->user
+            ->findOrFail($id)
+            ->delete();
+
+        return redirect()
+            ->route('admin.user.index');
     }
 }

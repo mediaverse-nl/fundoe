@@ -21,15 +21,15 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="form_name">Voornaam *</label>
-                                    <input id="form_name" type="text" name="name" class="form-control">
+                                    <label for="first_name">first_name *</label>
+                                    <input id="first_name" type="text" name="first_name" value="{!! !auth()->check() ? '' : auth()->user()->first_name !!}" class="form-control">
                                     <div class="help-block with-errors"></div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="form_lastname">Achternaam *</label>
-                                    <input id="form_lastname" type="text" name="surname" class="form-control" >
+                                    <label for="last_name">Achternaam *</label>
+                                    <input id="last_name" type="text" name="last_name" value="{!! !auth()->check() ? '' : auth()->user()->last_name !!}" class="form-control" >
                                     <div class="help-block with-errors"></div>
                                 </div>
                             </div>
@@ -38,7 +38,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="form_email">E-mail *</label>
-                                    <input id="form_email" type="email" name="email" class="form-control">
+                                    <input id="form_email" type="email" name="email" value="{!! !auth()->check() ? '' : auth()->user()->email !!}" class="form-control">
                                     <div class="help-block with-errors"></div>
                                 </div>
                             </div>

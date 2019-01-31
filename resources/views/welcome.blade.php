@@ -68,7 +68,7 @@
                 <h2 class="my-4">Populaire events</h2>
 
                 <div class="row" style="margin-top: -10px;">
-                    @foreach($events as $event)
+                    @foreach($bestRatedEvent as $event)
                         @component('components.event-card', ['event' => $event])
                         @endcomponent
                     @endforeach

@@ -21,6 +21,7 @@ class CreateCategoryTable extends Migration
             $table->integer('order');
             $table->string('value');
             $table->unique(['value', 'category_id']);
+            $table->softDeletes();
         });
     }
 
