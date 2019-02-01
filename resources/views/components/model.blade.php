@@ -1,11 +1,10 @@
 <!-- Button trigger modal -->
 <a class="{!! $btnClass !!}" data-toggle="tooltip" data-placement="top" title="{!! $tooltip or '' !!}" style="color: #FFFFFF;">
     <div data-toggle="modal" data-target="#{!! $id !!}" data-placement="top">
-        <i class="{!! $btnIcon or '' !!}" style="color: #FFFFFF !important;" >
-            @if(!empty($btnTitle))
-                {!! $btnTitle !!}
-            @endif
-        </i>
+        <i class="{!! $btnIcon or '' !!}" style="color: #FFFFFF !important;" ></i>
+        @if(!empty($btnTitle))
+            {!! $btnTitle !!}
+        @endif
     </div>
 </a>
 
@@ -23,15 +22,13 @@
                 {!! $description or ''!!}
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                @if($title == 'Delete')
+                <button type="button" class="btn btn-secondary" style="border-radius: 0px;" data-dismiss="modal">Close</button>
+                @if(str_contains($title, 'Delete'))
                     {!! Form::open(['url' => $actionRoute, 'method' => 'delete']) !!}
-                        {!! Form::submit('Proceed', ['class' => 'btn btn-primary']) !!}
+                        {!! Form::submit('Proceed', ['class' => 'btn btn-primary', 'style' => "border-radius: 0px;"]) !!}
                     {!! Form::close() !!}
-                @elseif($title == 'Edit')
-{{--                    {!! Form::open(['url' => $actionRoute, 'method' => 'patch']) !!}--}}
-                    {!! Form::submit('Proceed', ['class' => 'btn btn-primary']) !!}
-{{--                    {!! Form::close() !!}--}}
+                @elseif(str_contains($title, 'Edit'))
+                    {!! Form::submit('Proceed', ['class' => 'btn btn-primary', 'style' => "border-radius: 0px;"]) !!}
                 @else
                     <a class="btn btn-primary" href="{{$actionRoute}}">Proceed</a>
                 @endif

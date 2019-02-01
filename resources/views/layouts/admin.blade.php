@@ -19,7 +19,7 @@
 
     <style>
         body{
-            font-family: 'K2D', sans-serif;
+            font-family: 'K2D', sans-serif !important;
         }
         .breadcrumb{
             background-color: #E3E4E4 !important;

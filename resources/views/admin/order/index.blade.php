@@ -12,9 +12,11 @@
             @component('components.datatable')
                 @slot('head')
                     <th>id</th>
-                    <th>name</th>
                     <th>email</th>
+                    <th>ticket_amount</th>
                     <th>price</th>
+                    <th>payment_id</th>
+                    <th>status</th>
                     <th class="no-sort"></th>
                 @endslot
 
@@ -22,22 +24,13 @@
                     @foreach($orders as $order)
                         <tr>
                             <td>{{$order->id}}</td>
-                            <td>{{$order->name}}</td>
                             <td>{{$order->email}}</td>
-                            <td>{{$order->amount_paid}}</td>
+                            <td>{{$order->ticket_amount}}x</td>
+                            <td>{{number_format($order->total_paid, 2)}}</td>
+                            <td>{{$order->payment_id}}</td>
+                            <td>{{$order->status}}</td>
                             <td>
-                                @component('components.model', [
-                                    'id' => 'orderTableBtn'.$order->id,
-                                    'title' => 'Delete',
-                                    'actionRoute' => route('admin.order.destroy', $order->id),
-                                    'btnClass' => 'rounded-circle delete',
-                                    'btnIcon' => 'fa fa-trash'
-                                ])
-                                    @slot('description')
-                                        If u proceed u will delete all relations
-                                    @endslot
-                                @endcomponent
-                                <a href="{{route('admin.order.edit', $order->id)}}" class="rounded-circle edit">
+                                <a href="{{route('admin.order.show', $order->id)}}" class="rounded-circle edit">
                                     <i class="fa fa-edit"></i>
                                 </a>
                             </td>

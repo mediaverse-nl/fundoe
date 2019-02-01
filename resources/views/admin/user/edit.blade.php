@@ -9,7 +9,7 @@
         <div class="col-12 col-md-9 col-lg-9">
             <div class="card">
                 <div class="card-body">
-                    {!! Form::model($user, ['route' => ['admin.faq.update', $user->id], 'method' => 'PATCH']) !!}
+                    {!! Form::model($user, ['route' => ['admin.user.update', $user->id], 'method' => 'PATCH']) !!}
                         <div class="form-group">
                             {!! Form::label('name', 'Naam') !!}
                             {!! Form::text('name', null, ['class' => 'form-control'.(!$errors->has('name') ? '': ' is-invalid '), 'disabled']) !!}
@@ -32,12 +32,6 @@
                             {!! Form::label('last_name', 'last_name') !!}
                             {!! Form::text('last_name', null, ['class' => 'form-control'.(!$errors->has('last_name') ? '': ' is-invalid ')]) !!}
                             @include('components.error', ['field' => 'last_name'])
-                        </div>
-
-                        <div class="form-group">
-                            {!! Form::label('gender', 'gender') !!}
-                            {!! Form::text('gender', null, ['class' => 'form-control'.(!$errors->has('gender') ? '': ' is-invalid ')]) !!}
-                            @include('components.error', ['field' => 'gender'])
                         </div>
 
                         <div class="form-group">
@@ -71,12 +65,6 @@
                         </div>
 
                         <div class="form-group">
-                            {!! Form::label('status', 'status') !!}
-                            {!! Form::text('status', null, ['class' => 'form-control'.(!$errors->has('status') ? '': ' is-invalid ')]) !!}
-                            @include('components.error', ['field' => 'status'])
-                        </div>
-
-                        <div class="form-group">
                             {!! Form::label('created_at', 'created_at') !!}
                             {!! Form::text('created_at', null, ['class' => 'form-control'.(!$errors->has('created_at') ? '': ' is-invalid '), 'disabled']) !!}
                             @include('components.error', ['field' => 'created_at'])
@@ -88,10 +76,47 @@
                             @include('components.error', ['field' => 'updated_at'])
                         </div>
 
-                        <button class="btn btn-warning" type="submit">Save</button>
+                        <div class="form-group">
+                            {!! Form::label('deleted_at', 'deleted_at') !!}
+                            {!! Form::text('deleted_at', null, ['class' => 'form-control'.(!$errors->has('updated_at') ? '': ' is-invalid '), 'disabled']) !!}
+                            @include('components.error', ['field' => 'deleted_at'])
+                        </div>
+
+                        @component('components.model', [
+                            'id' => 'userTableBtn'.$user->id,
+                            'title' => 'Edit entry '.$user->id,
+                            'actionRoute' => route('admin.user.edit', $user->id),
+                            'btnClass' => 'btn btn-warning',
+                            'btnIcon' => null,
+                            'btnTitle' => 'edit',
+                        ])
+                            @slot('description')
+                                If u proceed u will <b>edit</b> this entry
+                            @endslot
+                        @endcomponent
 
                     {!! Form::close() !!}
 
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-3 col-lg-3">
+            <div class="card">
+                <div class="card-body">
+                    @component('components.model', [
+                            'id' => 'userTableBtn'.$user->id,
+                            'title' => ($user->trashed() ? 'Restore' : 'Delete').' entry '.$user->id,
+                            'actionRoute' => route('admin.user.destroy', $user->id),
+                            'btnClass' => 'btn btn-danger btn-block',
+                            'btnIcon' => 'fa '.($user->trashed() ? 'fa-undo' : 'fa-trash'),
+                            'btnTitle' => $user->trashed() ? 'restore' : 'delete',
+                        ])
+                        @slot('description')
+                            If u proceed u will <b>{!! $user->trashed() ? 'restore' : 'delete' !!}</b> all relations
+                        @endslot
+                    @endcomponent
                 </div>
             </div>
         </div>

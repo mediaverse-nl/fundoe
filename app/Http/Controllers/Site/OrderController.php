@@ -49,8 +49,15 @@ class OrderController extends Controller
         $order->total_paid = $event->price * $request->tickets;
         $order->status = self::STATUS_PENDING;
         $order->user_id = auth()->user()->id;
-        $order->event_id = $event->id;
         $order->email = auth()->user()->email;
+        $order->country = auth()->user()->country;
+        $order->state = auth()->user()->state;
+        $order->city = auth()->user()->city;
+        $order->postal_code = auth()->user()->postal_code;
+        $order->address = auth()->user()->address;
+        $order->address_number = auth()->user()->address_number;
+        $order->name = auth()->user()->name;
+        $order->event_id = $event->id;
         $order->ticket_amount = $request->tickets;
         $order->save();
 
@@ -81,6 +88,7 @@ class OrderController extends Controller
             'target_group' => 'iedereen',
             'price' => $pricePerTicket,
             'start_datetime' => $request->activiteit_datum,
+            'status' => 'private',
             'end_datetime' => Carbon::parse($request->activiteit_datum)->addMinutes($request->duur)
         ]);
 
@@ -88,8 +96,15 @@ class OrderController extends Controller
         $order->total_paid = $pricePerTicket * $request->tickets;
         $order->status = self::STATUS_PENDING;
         $order->user_id = auth()->user()->id;
-        $order->event_id = $event_id;
         $order->email = auth()->user()->email;
+        $order->country = auth()->user()->country;
+        $order->state = auth()->user()->state;
+        $order->city = auth()->user()->city;
+        $order->postal_code = auth()->user()->postal_code;
+        $order->address = auth()->user()->address;
+        $order->address_number = auth()->user()->address_number;
+        $order->name = auth()->user()->name;
+        $order->event_id = $event_id;
         $order->ticket_amount = $request->tickets;
         $order->save();
 

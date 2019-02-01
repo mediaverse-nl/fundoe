@@ -21,6 +21,7 @@ class CreateEventTable extends Migration
             $table->dateTime('end_datetime');
             $table->float('price');
             $table->enum('target_group', \App\Event::getTargetGroup());
+            $table->enum('status', ['private', 'public'])->default('public');
             $table->timestamps();
             $table->softDeletes();
         });
