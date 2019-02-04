@@ -13,7 +13,7 @@ class EventStoreRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,12 @@ class EventStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'activity' => 'required|numeric',
+            'start_datetime' => 'required|date|after:today',
+            'duration' => 'required|numeric',
+            'price' => 'required',
+            'target_group' => 'required|in:'.implode(',',\App\Event::getTargetGroup()),
+            'status' => '',
         ];
     }
 }

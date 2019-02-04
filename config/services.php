@@ -14,9 +14,15 @@ return [
     |
     */
     'facebook' => [
-        'client_id' => '2238827856385835',
-        'client_secret' => '568b3e6b48a0458e57f06411dded334a',
-        'redirect' => env('APP_URL').'/callback',
+        'client_id' => env('FACEBOOK_CLIENT_ID'),
+        'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
+        'redirect' => env('FACEBOOK_URL'),
+    ],
+
+    'google' => [
+        'client_id' => env('GOOGLE_CLIENT_ID'), // Your GitHub Client ID
+        'client_secret' => env('GOOGLE_CLIENT_SECRET'), // Your GitHub Client Secret
+        'redirect' => env('GOOGLE_URL'),
     ],
 
     'mailgun' => [

@@ -33,6 +33,10 @@ class User extends Authenticatable
         'created_at', 'updated_at', 'deleted_at'
     ];
 
+    public function identities() {
+        return $this->hasMany('App\SocialIdentity');
+    }
+
     /**
      * @param bool $redirect
      * @return bool|void

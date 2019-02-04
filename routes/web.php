@@ -75,6 +75,9 @@ Auth::routes();
 Route::get('/redirect', 'Auth\SocialAuthFacebookController@redirect')->name('facebook.login.redirect');
 Route::get('/callback', 'Auth\SocialAuthFacebookController@callback')->name('facebook.login.callback');
 
+Route::get('login/{provider}', 'Auth\SocialAuthController@redirectToProvider')->name('login.redirect');
+Route::get('login/{provider}/callback','Auth\SocialAuthController@handleProviderCallback')->name('login.callback');
+
 Route::post('api/text-editor-{id}', function(TextUpdateRequest $request, $id) {
     $text = \App\Text::findOrFail($id);
 

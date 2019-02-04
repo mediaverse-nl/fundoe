@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('breadcrumb')
-    {!! Breadcrumbs::render('admin.activity.create') !!}
+    {!! Breadcrumbs::render('admin.event.create') !!}
 @endsection
 
 @section('content')
@@ -9,7 +9,7 @@
         <div class="col-9">
             <div class="card">
                 <div class="card-body">
-                    {!! Form::open(['route' => ['admin.activity.store'], 'method' => 'POST']) !!}
+                    {!! Form::open(['route' => ['admin.event.store'], 'method' => 'POST']) !!}
 
                     <div class="form-group">
                         {!! Form::label('title', 'Title') !!}

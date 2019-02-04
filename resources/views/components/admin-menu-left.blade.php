@@ -89,11 +89,25 @@
             {{--<span class="nav-link-text">Texts</span>--}}
         {{--</a>--}}
     {{--</li>--}}
-    <li class="nav-item {{Request::is('admin/category*') ? 'active' : ''}}">
-        <a class="nav-link" href="{{route('admin.category.index')}}">
-            <i class="fa fa-fw fa-bars"></i>
+    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Components">
+        <a class="nav-link nav-link-collapse {{Request::is('admin/category*') ? '' : 'collapsed'}}" data-toggle="collapse" href="#categoryComponents" data-parent="#exampleAccordion" aria-expanded="false">
+            <i class="fa fa-fw fa-calendar"></i>
             <span class="nav-link-text">Category</span>
         </a>
+        <ul class="sidenav-second-level collapse {{Request::is('admin/category*') ? 'show' : ''}}" id="categoryComponents" style="">
+            <li class="{{Request::is('admin/category/create') ? '' : (Request::is('admin/category*') ? 'active' : '')}}">
+                <a href="{{route('admin.category.index')}}">
+                    <i class="fa fa-fw fa-list"></i>
+                    <span class="nav-link-text">index</span>
+                </a>
+            </li>
+            <li class="{{Request::is('admin/category/create') ? 'active' : ''}}">
+                <a href="{{route('admin.category.create')}}">
+                    <i class="fa fa-fw fa-plus"></i>
+                    <span class="nav-link-text">create</span>
+                </a>
+            </li>
+        </ul>
     </li>
     <li class="nav-item {{Request::is('admin/seo-manager*') ? 'active' : ''}}">
         <a class="nav-link" href="{{route('admin.seo-manager.index')}}">

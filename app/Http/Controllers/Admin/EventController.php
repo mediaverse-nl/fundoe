@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Activity;
 use App\Event;
+use App\Http\Requests\Admin\EventStoreRequest;
 use App\Http\Requests\Admin\EventUpdateRequest;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -48,24 +50,21 @@ class EventController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EventStoreRequest $request)
     {
         $event = $this->event;
 
-//        $event
+        $event->activity_id = $request->activity;
+        $event->start_datetime = $request->start_datetime;
+        $event->end_datetime = Carbon::parse($request->start_datetime)
+            ->addMinutes($request->duration);
+        $event->price = $request->price;
+        $event->target_group = $request->target_group;
+        $event->status = $request->status;
+
+        $event->save();
 
         return redirect()->back();
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**
@@ -97,9 +96,11 @@ class EventController extends Controller
 
         $event->activity_id = $request->activity;
         $event->start_datetime = $request->start_datetime;
-        $event->end_datetime = $request->end_datetime;
+        $event->end_datetime = Carbon::parse($request->start_datetime)
+            ->addMinutes($request->duration);
         $event->price = $request->price;
         $event->target_group = $request->target_group;
+        $event->status = $request->status;
 
         $event->save();
 

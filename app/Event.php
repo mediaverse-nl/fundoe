@@ -152,4 +152,5 @@ class Event extends Model
         return collect(['kinderen' => 'kinderen', 'tieners' => 'tieners', 'jongvolwassenen' => 'jongvolwassenen', 'volwassenen' => 'volwassenen', 'ouderen' => 'ouderen', 'stelletjes' => 'stelletjes', 'iedereen' => 'iedereen'])->toArray();
     }
 
+
 }

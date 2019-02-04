@@ -23,7 +23,9 @@
         @endslot
         @slot('table')
             @foreach($events as $event)
-                <tr>
+                <tr class="{!!  \Carbon\Carbon::now() > $event->start_datetime  ? 'table-dark' : ''!!}
+                        {!!  \Carbon\Carbon::now()->addHours(48) > $event->start_datetime ? 'table-danger' : ''!!}
+                        {!!  \Carbon\Carbon::now()->addHours(100) > $event->start_datetime ? 'table-warning' : ''!!}">
                     <td>{!! $event->id !!}</td>
                     <td>{!! $event->activity->title !!}</td>
                     <td>{!! $event->activity->region !!}</td>

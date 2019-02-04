@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('breadcrumb')
-    {!! Breadcrumbs::render('admin.activity.edit', $event) !!}
+    {!! Breadcrumbs::render('admin.event.edit', $event) !!}
 @endsection
 
 @section('content')
@@ -20,12 +20,12 @@
 
                         <div class="form-group">
                             {!! Form::label('activity', 'Activity') !!}
-                            {!! Form::select('activity', $activities->pluck('title', 'id'), null, ['class' => 'form-control'.(!$errors->has('activity') ? '': ' is-invalid ')]) !!}
+                            {!! Form::select('activity', $activities->pluck('activityName', 'id'), null, ['class' => 'form-control'.(!$errors->has('activity') ? '': ' is-invalid ')]) !!}
                             @include('components.error', ['field' => 'activity'])
                         </div>
                         <div class="form-group">
                             {!! Form::label('target_group', 'Target group') !!}
-                            {!! Form::select('target_group', array_merge([null => '--- select ---'], \App\Event::getTargetGroup()), null, ['class' => 'form-control'.(!$errors->has('target_group') ? '': ' is-invalid ')]) !!}
+                            {!! Form::select('target_group', \App\Event::getTargetGroup(), null, ['class' => 'form-control'.(!$errors->has('target_group') ? '': ' is-invalid ')]) !!}
                             @include('components.error', ['field' => 'target_group'])
                         </div>
 
@@ -41,14 +41,9 @@
                         </div>
 
                         <div class="form-group">
-                            {!! Form::label('end_datetime', 'End datetime') !!}
-                            <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
-                                <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker1" style="-moz-border-radius-bottomleft: .25rem;">
-                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                </div>
-                                {!! Form::text('end_datetime', null, ['class' => 'datetimepicker-input form-control'.(!$errors->has('end_datetime') ? '': ' is-invalid '), 'data-toggle' => 'datetimepicker', 'data-target' => '#datetimepicker1']) !!}
-                            </div>
-                            @include('components.error', ['field' => 'end_datetime'])
+                            {!! Form::label('duration', 'duration (in min)') !!}
+                            {!! Form::number('duration', $event->diffInTime(), ['class' => 'form-control'.(!$errors->has('duration') ? '': ' is-invalid ')]) !!}
+                            @include('components.error', ['field' => 'duration'])
                         </div>
 
                         <button class="btn btn-warning" type="submit">Save</button>

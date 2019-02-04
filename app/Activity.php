@@ -4,11 +4,12 @@ namespace App;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 
 class Activity extends Model
 {
-    use Notifiable;
+    use Notifiable, SoftDeletes;
 
     protected $primaryKey = 'id';
 
@@ -89,5 +90,10 @@ class Activity extends Model
     public function thumbnail()
     {
         return $this->images(1)[0];
+    }
+
+    public function getActivityNameAttribute()
+    {
+        return "{$this->id} - {$this->title} - {$this->region}";
     }
 }

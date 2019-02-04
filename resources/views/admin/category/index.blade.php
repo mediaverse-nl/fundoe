@@ -6,7 +6,7 @@
 
 @section('content')
 
-    @component('components.datatable', ['title' => 'Category'])
+    @component('components.datatable')
         @slot('head')
             <th>id</th>
             <th>titel</th>
@@ -14,19 +14,19 @@
         @endslot
         @slot('table')
             @foreach($categories as $category)
-                <tr>
+                <tr class="{!! $category->trashed() ? 'table-danger' : '' !!}">
                     <td>{!! $category->id !!}</td>
                     <td>{!! $category->value !!}</td>
                     <td>
                         @component('components.model', [
-                                'id' => 'categoryTableBtn'.$category->id,
-                                'title' => 'Delete',
-                                'actionRoute' => route('admin.category.destroy', $category->id),
-                                'btnClass' => 'rounded-circle delete',
-                                'btnIcon' => 'fa fa-trash'
-                            ])
+                                   'id' => 'userTableBtn'.$category->id,
+                                   'title' => ($category->trashed() ? 'Restore' : 'Delete').' entry '.$category->id,
+                                   'actionRoute' => route('admin.category.destroy', $category->id),
+                                   'btnClass' => 'rounded-circle delete',
+                                   'btnIcon' => 'fa '.($category->trashed() ? 'fa-undo' : 'fa-trash')
+                               ])
                             @slot('description')
-                                If u proceed u will delete all relations
+                                If u proceed u will <b>{!! $category->trashed() ? 'restore' : 'delete' !!}</b> all relations
                             @endslot
                         @endcomponent
                         <a href="{{route('admin.category.edit', $category->id)}}" class="rounded-circle edit">

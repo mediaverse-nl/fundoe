@@ -45,7 +45,7 @@
                             <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Inloggen</button>
 
                             <hr class="my-4">
-                            <a href="{{url('/redirect')}}" class="btn btn-lg btn-facebook btn-block text-uppercase">login met Facebook</a>
+                            <a href="{!! route('login.redirect', 'facebook') !!}" class="btn btn-lg btn-facebook btn-block text-uppercase">login met Facebook</a>
                         </form>
                     </div>
                 </div>

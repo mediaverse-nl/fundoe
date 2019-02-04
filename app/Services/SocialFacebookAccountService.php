@@ -14,6 +14,7 @@ class SocialFacebookAccountService
             ->whereProviderUserId($providerUser->getId())
             ->first();
 
+
         if ($account) {
             return $account->user;
         } else {
@@ -24,6 +25,9 @@ class SocialFacebookAccountService
             ]);
 
             $user = User::whereEmail($providerUser->getEmail())->first();
+
+//            dd($user, $account, $providerUser);
+
 
             if (!$user) {
 
