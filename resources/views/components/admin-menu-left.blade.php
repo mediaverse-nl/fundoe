@@ -1,6 +1,6 @@
 <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
 
-    <li class="nav-item {{Request::is('admin/dashboard') ? 'active' : ''}}">
+    <li class="nav-item {{Request::is('admin/dashboard') ? 'active' : ''}} {{Request::is('admin') ? 'active' : ''}}">
         <a class="nav-link" href="{{route('admin.dashboard')}}" >
             <i class="fa fa-fw fa-dashboard"></i>
             <span class="nav-link-text">Dashboard</span>
@@ -20,27 +20,6 @@
             <span class="nav-link-text">Orders</span>
         </a>
     </li>
-
-    {{--<li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Components">--}}
-        {{--<a class="nav-link nav-link-collapse {{Request::is('admin/product*') ? '' : 'collapsed'}}" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion" aria-expanded="false">--}}
-            {{--<i class="fa fa-fw fa-wrench"></i>--}}
-            {{--<span class="nav-link-text">Products</span>--}}
-        {{--</a>--}}
-        {{--<ul class="sidenav-second-level collapse {{Request::is('admin/product*') ? 'show' : ''}}" id="collapseComponents" style="">--}}
-            {{--<li class="{{Request::is('admin/activity/create') ? '' : (Request::is('admin/activity*') ? 'active' : '')}}">--}}
-                {{--<a href="{{route('admin.activity.index')}}">--}}
-                    {{--<i class="fa fa-fw fa-list"></i>--}}
-                    {{--<span class="nav-link-text">index</span>--}}
-                {{--</a>--}}
-            {{--</li>--}}
-            {{--<li class="{{Request::is('admin/activity/create') ? 'active' : ''}}">--}}
-                {{--<a href="{{route('admin.product.create')}}">--}}
-                    {{--<i class="fa fa-fw fa-plus"></i>--}}
-                    {{--<span class="nav-link-text">create</span>--}}
-                {{--</a>--}}
-            {{--</li>--}}
-        {{--</ul>--}}
-    {{--</li>--}}
 
     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Components">
         <a class="nav-link nav-link-collapse {{Request::is('admin/event*') ? '' : 'collapsed'}}" data-toggle="collapse" href="#eventComponents" data-parent="#exampleAccordion" aria-expanded="false">
@@ -83,12 +62,7 @@
             </li>
         </ul>
     </li>
-    {{--<li class="nav-item {{Request::is('admin/editor*') ? 'active' : ''}}">--}}
-        {{--<a class="nav-link" href="{{route('admin.editor.index')}}">--}}
-            {{--<i class="fa fa-fw fa-font"></i>--}}
-            {{--<span class="nav-link-text">Texts</span>--}}
-        {{--</a>--}}
-    {{--</li>--}}
+
     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Components">
         <a class="nav-link nav-link-collapse {{Request::is('admin/category*') ? '' : 'collapsed'}}" data-toggle="collapse" href="#categoryComponents" data-parent="#exampleAccordion" aria-expanded="false">
             <i class="fa fa-fw fa-calendar"></i>
@@ -142,7 +116,6 @@
             </li>
         </ul>
     </li>
-
 </ul>
 
 <ul class="navbar-nav sidenav-toggler">

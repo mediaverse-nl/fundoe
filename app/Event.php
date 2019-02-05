@@ -16,6 +16,8 @@ class Event extends Model
 
     protected $daysBeforeClosing = 2;
 
+    protected $dateFormat = 'Y-m-d H:i:s';
+
     public $timestamps = true;
 
     protected $fillable = ['start_datetime', 'end_datetime'];

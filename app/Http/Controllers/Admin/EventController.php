@@ -7,6 +7,7 @@ use App\Event;
 use App\Http\Requests\Admin\EventStoreRequest;
 use App\Http\Requests\Admin\EventUpdateRequest;
 //use Carbon\Carbon;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -54,16 +55,24 @@ class EventController extends Controller
      */
     public function store(EventStoreRequest $request)
     {
-        $event = $this->event;
+        $datetime = $request->start_datetime;
+        $end_datetime = Carbon::parse($datetime)->addMinutes(30);
 
+//        dd($end_datetime->format('Y-m-d H:i:s'));
+
+//        dd(Carbon::parse($request->start_datetime)
+//            ->addMinutes(30)
+//            ->format('Y-m-d H:i:s'));
+//
+        $event = $this->event;
+//
         $event->activity_id = $request->activity;
         $event->start_datetime = $request->start_datetime;
-        $event->end_datetime = Carbon::parse($request->start_datetime)
-            ->addMinutes($request->duration);
+        $event->end_datetime = $end_datetime->format('Y-m-d H:i:s');
         $event->price = $request->price;
         $event->target_group = $request->target_group;
-        $event->status = $request->status;
-
+//        $event->status = $request->status;
+//
         $event->save();
 
         return redirect()->back();
@@ -94,19 +103,22 @@ class EventController extends Controller
      */
     public function update(EventUpdateRequest $request, $id)
     {
-        $end_datetime = \Carbon\Carbon::parse($request->start_datetime)
-//            ->addMinutes((int)$request->duration)
-            ->format('Y-m-d h:i:s');
+        $datetime = $request->start_datetime.':00';
+        $end_datetime = Carbon::createFromFormat('Y-m-d H:i:s', $datetime)
+            ->addMinutes($request->duration)
+            ->format('Y-m-d H:i:s');
 
-        dd($end_datetime, $request->request);
+        $start_datetime = Carbon::createFromFormat('Y-m-d H:i', $request->start_datetime)
+            ->format('Y-m-d H:i:s');
+
         $event = $this->event->findOrFail($id);
 
-         $event->activity_id = $request->activity;
-        $event->start_datetime = $request->start_datetime;
-        $event->end_datetime = "2019-02-07 04:57:00";
+        $event->activity_id = $request->activity;
+        $event->start_datetime = $start_datetime;
+        $event->end_datetime = $end_datetime;
         $event->price = $request->price;
         $event->target_group = $request->target_group;
-        $event->status = $request->status;
+//        $event->status = $request->status;
 
         $event->save();
 
