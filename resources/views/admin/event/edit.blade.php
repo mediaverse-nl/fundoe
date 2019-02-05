@@ -12,7 +12,7 @@
                     {!! Form::model($event, ['route' => ['admin.event.update', $event->id], 'method' => 'PATCH']) !!}
 
                         <div class="form-group">
-                            {!! Form::label('price', 'Price') !!}
+                            {!! Form::label('price', 'Price') !!}<b> (advies prijs {!! $event->diffInTime() / 60 * $event->activity->price_per_hour!!})</b>
                             {!! Form::number('price', null, ['class' => 'form-control'.(!$errors->has('price') ? '': ' is-invalid ')]) !!}
                             <small class="muted">*use . to separate</small>
                             @include('components.error', ['field' => 'price'])
@@ -40,6 +40,7 @@
                             @include('components.error', ['field' => 'start_datetime'])
                         </div>
 
+{{--                    {!! dd($errors->get('*')) !!}--}}
                         <div class="form-group">
                             {!! Form::label('duration', 'duration (in min)') !!}
                             {!! Form::number('duration', $event->diffInTime(), ['class' => 'form-control'.(!$errors->has('duration') ? '': ' is-invalid ')]) !!}
@@ -55,74 +56,24 @@
         </div>
     </div>
 
-    {{--<div class="container">--}}
-        {{--<div class='col-md-5'>--}}
-            {{--<div class="form-group">--}}
-                {{--<div class="input-group date" id="datetimepicker" data-target-input="nearest">--}}
-                    {{--<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker7"/>--}}
-                    {{--<div class="input-group-append" data-target="#datetimepicker7" data-toggle="datetimepicker">--}}
-                        {{--<div class="input-group-text"><i class="fa fa-calendar"></i></div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-            {{--</div>--}}
-        {{--</div>--}}
-        {{--<div class='col-md-5'>--}}
-            {{--<div class="form-group">--}}
-                {{--<div class="input-group date" id="datetimepicker1" data-target-input="nearest">--}}
-                    {{--<input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker8"/>--}}
-                    {{--<div class="input-group-append" data-target="#datetimepicker8" data-toggle="datetimepicker">--}}
-                        {{--<div class="input-group-text"><i class="fa fa-calendar"></i></div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-            {{--</div>--}}
-        {{--</div>--}}
-    {{--</div>--}}
-
-    @component('components.rich-textarea-editor')
-    @endcomponent
-
 @endsection
 
 @push('css')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" />
-    <style>
-
-    </style>
 @endpush
 
 @push('scripts')
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
-    <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
     <script type="text/javascript">
-
-        var route_prefix = "{!! url(config('lfm.url_prefix')) !!}";
-
-        $('#lfm').filemanager('file', {prefix: route_prefix});
-
-        $('#productThumbnailCopy').change(function() {
-            $('#thumbnailCopy').val($(this).val());
-        });
-
         $(function () {
             var today = new Date();
             $('#datetimepicker').datetimepicker({
-                minDate: new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), today.getMinutes()),
+                minDate: new Date(today.getFullYear(), today.getMonth(), (today.getDate() + 2), today.getHours(), today.getMinutes()),
                 autoclose: true,
                 todayBtn: true,
-                format: 'YYYY/MM/DD HH:mm'
+                format: 'YYYY-MM-DD HH:mm'
             });
-            $('#datetimepicker1').datetimepicker({
-                useCurrent: false,
-                minDate: new Date(today.getFullYear(), today.getMonth(), today.getDate()),
-                autoclose: true,
-                format: 'YYYY/MM/DD HH:mm'
-            });
-            $("#datetimepicker").on("change.datetimepicker", function (e) {
-                $('#datetimepicker1').datetimepicker('minDate', e.date);
-            });
-            $("#datetimepicker1").on("change.datetimepicker", function (e) {
-                $('#datetimepicker').datetimepicker('maxDate', e.date);
-            });
+
         });
     </script>
 @endpush

@@ -6,7 +6,7 @@ use App\Activity;
 use App\Event;
 use App\Http\Requests\Admin\EventStoreRequest;
 use App\Http\Requests\Admin\EventUpdateRequest;
-use Carbon\Carbon;
+//use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -41,8 +41,10 @@ class EventController extends Controller
      */
     public function create()
     {
-        return view('admin.event.create');
-    }
+        $activities = $this->activity->get();
+
+        return view('admin.event.create')
+            ->with('activities', $activities);    }
 
     /**
      * Store a newly created resource in storage.
@@ -92,12 +94,16 @@ class EventController extends Controller
      */
     public function update(EventUpdateRequest $request, $id)
     {
+        $end_datetime = \Carbon\Carbon::parse($request->start_datetime)
+//            ->addMinutes((int)$request->duration)
+            ->format('Y-m-d h:i:s');
+
+        dd($end_datetime, $request->request);
         $event = $this->event->findOrFail($id);
 
-        $event->activity_id = $request->activity;
+         $event->activity_id = $request->activity;
         $event->start_datetime = $request->start_datetime;
-        $event->end_datetime = Carbon::parse($request->start_datetime)
-            ->addMinutes($request->duration);
+        $event->end_datetime = "2019-02-07 04:57:00";
         $event->price = $request->price;
         $event->target_group = $request->target_group;
         $event->status = $request->status;

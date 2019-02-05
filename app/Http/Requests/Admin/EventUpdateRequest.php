@@ -23,10 +23,12 @@ class EventUpdateRequest extends FormRequest
      */
     public function rules()
     {
+//        dd(1);
+
         return [
             'activity' => 'required',
             'start_datetime' => 'required|date|after:today',
-            'end_datetime' => 'required|date|after:start_datetime',
+            'duration' => 'required|numeric',
             'price' => 'required',
             'target_group' => 'required|in:'.implode(',',\App\Event::getTargetGroup()),
         ];

@@ -21,6 +21,7 @@ class Activity extends Model
 
     protected $dates = [
         'start_datetime',
+        'end_datetime',
     ];
 
     public function event()

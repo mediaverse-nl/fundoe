@@ -27,8 +27,8 @@ class ReviewTableSeeder extends Seeder
                 $array[] = [
                     'activity_id' => $activity->id,
                     'user_id' => random_int(1, $user->count()),
-                    'text' => $faker->text(350),
-                    'rating' => $this->randomRating(),
+                    'text' => $faker->text(250),
+                    'rating' => "{$this->randomRating()}",
                 ];
             }
         }
