@@ -1,33 +1,32 @@
 @extends('layouts.admin')
 
+@section('breadcrumb')
+    {!! Breadcrumbs::render('admin.seo-manager.index') !!}
+@endsection
+
 @section('content')
 
     <!-- DataTables Example -->
-    @component('components.datatable', ['title' => 'SEO Table'])
+    @component('components.datatable')
         @slot('head')
-            <th>Pagina</th>
-            <th>Position</th>
-            <th>Office</th>
-            <th>Age</th>
-            <th>Start date</th>
+            <th>id</th>
+            <th>page</th>
+            <th>title</th>
             <th>Opties</th>
         @endslot
         @slot('table')
-            <tr>
-                {{--<td>Tiger Nixon</td>--}}
-                {{--<td>System Architect</td>--}}
-                {{--<td>Edinburgh</td>--}}
-                {{--<td>61</td>--}}
-                {{--<td>2011/04/25</td>--}}
-                <td>
-                    {{--<a href="{{route('admin.activity.edit', $activity->id)}}">--}}
-                    {{--<i class="fas fa-edit"></i>--}}
-                    {{--</a>--}}
-                    {{--<a href="{{route('admin.activity.edit', $activity->id)}}">--}}
-                    {{--<i class="fas fa-trash"></i>--}}
-                    {{--</a>--}}
-                </td>
-            </tr>
+            @foreach($seo as $i)
+                <tr>
+                    <td>{!! $i->id !!}</td>
+                    <td>{!! $i->route_name !!}</td>
+                    <td>{!! $i->title ? $i->title : 'leeg' !!}</td>
+                    <td>
+                        <a href="{{route('admin.seo-manager.edit', $i->id)}}" class="rounded-circle edit">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                    </td>
+                </tr>
+            @endforeach
         @endslot
     @endcomponent
 

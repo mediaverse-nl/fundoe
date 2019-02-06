@@ -65,7 +65,7 @@
 
     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Components">
         <a class="nav-link nav-link-collapse {{Request::is('admin/category*') ? '' : 'collapsed'}}" data-toggle="collapse" href="#categoryComponents" data-parent="#exampleAccordion" aria-expanded="false">
-            <i class="fa fa-fw fa-calendar"></i>
+            <i class="fa fa-fw fa-list"></i>
             <span class="nav-link-text">Category</span>
         </a>
         <ul class="sidenav-second-level collapse {{Request::is('admin/category*') ? 'show' : ''}}" id="categoryComponents" style="">

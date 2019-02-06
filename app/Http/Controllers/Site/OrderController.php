@@ -56,7 +56,7 @@ class OrderController extends Controller
         $order->postal_code = auth()->user()->postal_code;
         $order->address = auth()->user()->address;
         $order->address_number = auth()->user()->address_number;
-        $order->name = auth()->user()->name;
+        $order->name = auth()->user()->first_name.' '.auth()->user()->last_name;
         $order->event_id = $event->id;
         $order->ticket_amount = $request->tickets;
         $order->save();
@@ -103,7 +103,7 @@ class OrderController extends Controller
         $order->postal_code = auth()->user()->postal_code;
         $order->address = auth()->user()->address;
         $order->address_number = auth()->user()->address_number;
-        $order->name = auth()->user()->name;
+        $order->name = auth()->user()->first_name.' '.auth()->user()->last_name;
         $order->event_id = $event_id;
         $order->ticket_amount = $request->tickets;
         $order->save();

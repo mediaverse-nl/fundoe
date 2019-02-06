@@ -67,12 +67,12 @@
             <div class="col-lg-9">
                 <h2 class="my-4">Populaire events</h2>
 
-                <div class="row" style="margin-top: -10px;">
-                    @foreach($bestRatedEvent as $event)
-                        @component('components.event-card', ['event' => $event])
-                        @endcomponent
-                    @endforeach
-                </div>
+                {{--<div class="row" style="margin-top: -10px;">--}}
+                    {{--@foreach($bestRatedEvent as $event)--}}
+                        {{--@component('components.event-card', ['event' => $event])--}}
+                        {{--@endcomponent--}}
+                    {{--@endforeach--}}
+                {{--</div>--}}
 
                 <h2 class="my-4">Beste reviews</h2>
 

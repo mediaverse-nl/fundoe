@@ -1,9 +1,13 @@
 @extends('layouts.app')
 
+@section('breadcrumb')
+    {!! Breadcrumbs::render('site.category.show', $category) !!}
+@endsection
+
 @section('content')
 
     <div class="container product-cards">
-        <br>
+
         <div class="row">
             <div class="col-sm-3">
                 {{--<p>Filter</p>--}}
@@ -27,25 +31,46 @@
                         <div class="card-body" style="margin-top: -10px;">
                             <div class="form-row">
                                 <div class="form-group col-md-12">
-                                    <label for="">datum vanaf</label>
-                                    <div class="input-group date" id="datetimepicker1" data-target-input="nearest" style="margin-bottom: 5px;">
+                                     <div class="input-group date" id="datetimepicker1" data-target-input="nearest" style="margin-bottom: 5px;">
                                         <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker" style="-moz-border-radius-bottomleft: .25rem;">
                                             <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                         </div>
-                                        {!! Form::text('start_datetime', null, ['class' => 'datetimepicker-input form-control'.(!$errors->has('start_datetime') ? '': ' is-invalid '), 'data-toggle' => 'datetimepicker', 'data-target' => '#datetimepicker1', 'autocomplete' => false]) !!}
+                                        {!! Form::text('start_datetime', null, ['class' => 'datetimepicker-input form-control'.(!$errors->has('start_datetime') ? '': ' is-invalid '), 'data-toggle' => 'datetimepicker', 'data-target' => '#datetimepicker1', 'autocomplete' => false, 'placeholder' => 'datum vanaf']) !!}
                                     </div>
-                                    <label for="">datum t/m</label>
-                                    <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
+                                     <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
                                         <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker" style="-moz-border-radius-bottomleft: .25rem;">
                                             <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                         </div>
-                                        {!! Form::text('start_datetime', null, ['class' => 'datetimepicker-input form-control'.(!$errors->has('start_datetime') ? '': ' is-invalid '), 'data-toggle' => 'datetimepicker', 'data-target' => '#datetimepicker2', 'autocomplete' => false]) !!}
+                                        {!! Form::text('start_datetime', null, ['class' => 'datetimepicker-input form-control'.(!$errors->has('start_datetime') ? '': ' is-invalid '), 'data-toggle' => 'datetimepicker', 'data-target' => '#datetimepicker2', 'autocomplete' => false, 'placeholder' => 'datum t/m']) !!}
                                     </div>
                                 </div>
                             </div>
                         </div> <!-- card-body.// -->
                     </div>
                 </div>
+
+                <br>
+
+                <div class="card shadow-sm bg-white">
+                    <header class="card-header">
+                        <h6 class="title">Prijs range </h6>
+                    </header>
+                    <div class="filter-content">
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="form-group col-md-12" style="padding-top: 15px;">
+                                    <div class="row text-center">
+                                        <div class="col-2" style="padding: 5px;">{!! number_format($events->min('price'),0) !!}</div>
+                                        <div class="col-8" style="padding: 3px 5px;">
+                                            <input style="width: 100% !important;" class="custom-range" type="hidden" data-slider-min="{!! number_format($events->min('price'),0) !!}" data-slider-max="{!! number_format($events->max('price'),0) !!}" data-slider-value="[{!! number_format($events->min('price'),0) !!},{!! number_format($events->max('price'),0) !!}]"/>
+                                        </div>
+                                        <div class="col-2" style="padding: 5px;">{!! number_format($events->max('price'),0) !!}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <!-- card-body.// -->
+                    </div>
+                </div> <!-- card.// -->
 
                 <br>
 
@@ -107,40 +132,16 @@
                     </div>
                 </div>
 
-                <br>
-
-                <div class="card shadow-sm bg-white">
-                    <header class="card-header">
-                        <h6 class="title">Prijs range </h6>
-                    </header>
-                    <div class="filter-content">
-                        <div class="card-body">
-                            <div class="form-row">
-                                <div class="form-group col-md-12" style="padding-top: 15px;">
-                                    <div class="row text-center">
-                                        <div class="col-2" style="padding: 5px;">{!! number_format($events->min('price'),0) !!}</div>
-                                        <div class="col-8" style="padding: 3px 5px;">
-                                            <input style="width: 100% !important;" class="custom-range" type="hidden" data-slider-min="{!! number_format($events->min('price'),0) !!}" data-slider-max="{!! number_format($events->max('price'),0) !!}" data-slider-value="[{!! number_format($events->min('price'),0) !!},{!! number_format($events->max('price'),0) !!}]"/>
-                                        </div>
-                                        <div class="col-2" style="padding: 5px;">{!! number_format($events->max('price'),0) !!}</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> <!-- card-body.// -->
-                    </div>
-                </div> <!-- card.// -->
-
                 {!! Form::close() !!}
                 <br>
-            </div>
             </div>
             <div class="col-9">
 
                 <div style="margin-top: -7px;">
                     @if($events->count() > 1)
-                        <small class="text-muted"> er zijn {!! $events->count() !!} resultaten gevonden.</small>
+                        <small class="text-muted lead"> er zijn {!! $events->count() !!} resultaten gevonden.</small>
                     @else
-                        <small class="text-muted"> er is {!! $events->count() !!} resultaat gevonden.</small>
+                        <small class="text-muted lead"> er is {!! $events->count() !!} resultaat gevonden.</small>
                     @endif
                 </div>
 
@@ -215,7 +216,7 @@
 @endpush
 
 @push('js')
-{{--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-countdown/2.1.0/js/jquery.plugin.min.js"></script>--}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-countdown/2.1.0/js/jquery.plugin.min.js"></script>
 <script type="text/javascript" src="http://cdn.rawgit.com/hilios/jQuery.countdown/2.1.0/dist/jquery.countdown.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.0/bootstrap-slider.min.js"></script>
 {{--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>--}}
@@ -231,6 +232,14 @@
 
 <script type="text/javascript">
     $( document ).ready(function() {
+
+        $("#countdown")
+            .countdown("2017/01/01", function(event) {
+                $(this).text(
+                    event.strftime('%D days %H:%M:%S')
+                );
+            });
+
         $('[data-countdown]').each(function() {
             var $this = $(this), finalDate = $(this).data('countdown');
             $this.countdown(finalDate, function(event) {
@@ -273,6 +282,7 @@
         var today = new Date().addDays(2);
 
         $('#datetimepicker1').datetimepicker({
+            useCurrent: false,
             minDate: new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), today.getMinutes()),
             autoclose: true,
             todayBtn: true,

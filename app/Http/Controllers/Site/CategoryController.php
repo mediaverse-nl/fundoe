@@ -4,13 +4,15 @@ namespace App\Http\Controllers\Site;
 
 use App\Category;
 use App\Event;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
+use App\Traits\SeoManager;
+use Artesaos\SEOTools\Traits\SEOTools;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 
 class CategoryController extends Controller
 {
+    use SEOTools, SeoManager;
+
     protected $category;
     protected $event;
 
@@ -20,8 +22,30 @@ class CategoryController extends Controller
         $this->event = $event;
     }
 
+    public function index()
+    {
+        $categories = $this->category->get();
+
+        return view('site.category.index')
+            ->with('categories', $categories);
+    }
+
     public function show($id)
     {
+        //default seo
+        $this->seo()
+            ->setTitle($this->getPageSeo()->title .' | fundoe.nl')
+            ->setDescription($this->getPageSeo()->description);
+        //opengraph
+        $this->seo()
+            ->opengraph()
+            ->setUrl(url()->current())
+            ->addProperty('type', 'website');
+        //twitter
+        $this->seo()
+            ->twitter()
+            ->setSite('@username');
+
         $query = collect(request()->query)->toArray();
 
         foreach ($query as $q => $v){

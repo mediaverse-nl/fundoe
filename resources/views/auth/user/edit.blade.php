@@ -41,6 +41,10 @@
                 @component('components.card')
                     {!! Form::model(auth()->user(), ['route' => ['auth.account.info'], 'method' => 'PATCH']) !!}
 
+                        @if($errors->any())
+                            <h4>{{$errors->first()}}</h4>
+                        @endif
+
                         <h2>Gegevens</h2>
 
                         <div class="form-group">

@@ -75,6 +75,17 @@ Breadcrumbs::register('admin.activity.create', function($breadcrumbs) use ($crea
 });
 
 // dashboard > event
+Breadcrumbs::register('admin.seo-manager.index', function($breadcrumbs) {
+    $breadcrumbs->parent('admin.dashboard');
+    $breadcrumbs->push('SEO manager', route('admin.seo-manager.index'));
+});
+// dashboard > event > edit
+Breadcrumbs::register('admin.seo-manager.edit', function($breadcrumbs, $model) use ($edit_name) {
+    $breadcrumbs->parent('admin.seo-manager.index');
+    $breadcrumbs->push($edit_name, route('admin.seo-manager.edit', $model->id));
+});
+
+// dashboard > event
 Breadcrumbs::register('admin.event.index', function($breadcrumbs) {
     $breadcrumbs->parent('admin.dashboard');
     $breadcrumbs->push('Events', route('admin.event.index'));
@@ -121,4 +132,20 @@ Breadcrumbs::register('admin.notification.index', function($breadcrumbs) {
 Breadcrumbs::register('admin.notification.show', function($breadcrumbs, $model) use ($show_name) {
     $breadcrumbs->parent('admin.notification.index');
     $breadcrumbs->push($show_name, route('admin.notification.show', $model->id));
+});
+
+//site breadcrumbs
+Breadcrumbs::register('home', function ($breadcrumbs) {
+    $breadcrumbs->push("home", route('home'));
+});
+
+// site category index
+Breadcrumbs::register('site.category.index', function ($breadcrumbs) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Categorieën', route('site.category.index'));
+});
+// site category show
+Breadcrumbs::register('site.category.show', function ($breadcrumbs, $model) use ($edit_name) {
+    $breadcrumbs->parent('site.category.index');
+    $breadcrumbs->push($model->value, route('site.category.show', $model->id));
 });

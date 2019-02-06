@@ -39,6 +39,86 @@
             -webkit-line-clamp: 3;
              line-height: 1.6rem;
         }
+
+        .breadcrumb{
+            list-style:none;
+            overflow: hidden !important;
+            padding: 0px;
+            margin-top: 15px;
+            border-radius: 0px !important;
+            background: transparent !important;
+        }
+
+        .breadcrumb li {
+            text-decoration: none;
+            padding: 5px 0 5px 50px;
+            position: relative;
+            display: block;
+            float: left;
+        }
+
+        .breadcrumb li:after {
+            content: " ";
+            display: block;
+            width: 0;
+            height: 0;
+            border-top: 50px solid transparent;
+            border-bottom: 50px solid transparent;
+            position: absolute;
+            top: 50%;
+            margin-top: -50px;
+            left: 100%;
+            z-index: 2;
+        }
+
+        .breadcrumb li:before {
+            content: " ";
+            display: block;
+            width: 0;
+            height: 0;
+            border-top: 50px solid transparent;
+            border-bottom: 50px solid transparent;
+            border-left: 30px solid white;
+            position: absolute;
+            top: 50%;
+            margin-top: -50px;
+            margin-left: 1px;
+            left: 100%;
+            z-index: 1;
+        }
+
+        .blue-crumb{
+            background-color: #2980b9;
+            color: white;
+        }
+        .blue-crumb:after{
+            border-left:30px solid #2980b9;
+        }
+
+        .gray-crumb{
+            background-color: #bdc3c7;
+        }
+        .gray-crumb:after{
+            border-left: 30px solid #bdc3c7;
+        }
+
+        .light-blue-crumb:after{
+            border-left:30px solid #3498db;
+        }
+        .light-blue-crumb{
+            background: #3498db;
+            color: white;
+        }
+
+        .faded-crumb:after{
+            border-left:30px solid #ecf0f1;
+        }
+
+        .faded-crumb{
+            background: #ecf0f1;
+            color: #95a5a6;
+        }
+
     </style>
 
     @if(Auth::check() && Auth::user()->admin == 1)
@@ -72,7 +152,19 @@
     <div class="flex-fill">
         @include('components.menu-top-fixed')
 
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    @yield('breadcrumb')
+                </div>
+            </div>
+        </div>
+
         @yield('content')
+
+        <br>
+        <br>
+
     </div>
 
     @include('components.footer')

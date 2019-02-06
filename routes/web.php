@@ -13,17 +13,18 @@
 
 use App\Http\Requests\Api\Admin\TextUpdateRequest;
 
+Route::get('/home', 'WelcomeController')->name('home');
 Route::get('/', 'WelcomeController')->name('home');
-Route::get('/home', 'WelcomeController');
 
 Route::group(['namespace' => 'Site', 'as' => 'site.'], function () {
+    Route::get('/categorieen', 'CategoryController@index')->name('category.index');
     Route::get('/c-{id}', 'CategoryController@show')->name('category.show');
     Route::get('/activiteiten', 'ActivityController@index');
     Route::get('{title}/activiteit-{id}', 'ActivityController@show')->name('activity.show');
     Route::post('/review', 'ReviewController@store');
     Route::post('/comment', 'CommentController@store');
-    Route::post('/groep-order-aanmaken', 'OrderController@storeGroup')->name('order.store.group');
-    Route::post('/publiek-order-aanmaken', 'OrderController@storePublic')->name('order.store.public');
+    Route::post('/groep-order-aanmaken', 'OrderController@storeGroup')->name('order.store.group')->middleware('can.order');
+    Route::post('/publiek-order-aanmaken', 'OrderController@storePublic')->name('order.store.public')->middleware('can.order');
     Route::get('/order-{id}', 'OrderController@show')->name('order.show');
     Route::get('/contact', 'ContactController@index')->name('contact.index');
     Route::post('/contact', 'ContactController@store');

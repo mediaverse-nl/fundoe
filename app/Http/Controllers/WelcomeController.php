@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Event;
+use App\Traits\SeoManager;
 use Artesaos\SEOTools\Traits\SEOTools;
 use Illuminate\Support\Facades\DB;
 
 class WelcomeController extends Controller
 {
-    use SEOTools;
+    use SEOTools, SeoManager;
 
     protected $event;
     protected $category;
@@ -24,16 +25,17 @@ class WelcomeController extends Controller
     {
         //default seo
         $this->seo()
-            ->setTitle(Editor('seo_title', 'text', true, '').' | fundoe.nl')
-            ->setDescription(Editor('seo_description', 'text', true, ''));
+            ->setTitle($this->getPageSeo()->title .' | fundoe.nl')
+            ->setDescription($this->getPageSeo()->description);
         //opengraph
         $this->seo()
             ->opengraph()
             ->setUrl(url()->current())
             ->addProperty('type', 'website');
         //twitter
-        $this->seo()->twitter()
-            ->setSite(Editor('seo_twitter_username', 'text', true, '@username'));
+        $this->seo()
+            ->twitter()
+            ->setSite('@username');
 
         $categories = $this->category->get();
         $from = $this->event->ableToOrderDate();
@@ -55,7 +57,7 @@ class WelcomeController extends Controller
 //            ->join('review', 'activity.id', '=', 'review.activity_id')
 
 //            ->selectRaw('AVG(review.rating) AS average_rating')
-            ->groupBy('event.id')
+//            ->groupBy('event.id')
 
             //            ->select(DB::raw('avg(rating) as average'))
 //            ->limit(4)

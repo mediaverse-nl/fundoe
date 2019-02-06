@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\CanOrderMiddleware;
 use App\Http\Middleware\CheckAdminStatus;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -51,6 +52,7 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
+        'can.order' => CanOrderMiddleware::class,
         'admin' => CheckAdminStatus::class,
         'auth' => \Illuminate\Auth\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,

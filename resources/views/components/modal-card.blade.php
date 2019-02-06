@@ -1,15 +1,14 @@
 {{--<!-- Large modal -->--}}
 <button type="button" class="btn btn-sm btn-block btn-warning" data-toggle="modal" data-target=".bd-modal-lg-{!! $targetId !!}">boek nu</button>
 
-<div class="modal{!! (Session::has('id') && $targetId == Session::get('id')) ? '' : ' fade' !!} bd-modal-lg-{!! $targetId !!}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal{!! (Session::has('id') && $targetId == Session::get('id')) ? '' : ' fade' !!} bd-modal-lg-{!! $targetId !!}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="border-radius: 0px;">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
 
             <!-- Modal Header -->
-            <div class="modal-header" style="background: #F7F7F7 !important;">
-                <h4 class="modal-title">{!! $title !!}</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
+            {{--<div class="modal-header" style="background: #F7F7F7 !important;">--}}
+                {{--<h4 class="modal-title">{!! $title !!}</h4>--}}
+            {{--</div>--}}
 
             <!-- Modal body -->
             <div class="modal-body">
@@ -20,15 +19,10 @@
                                 src="https://www.google.com/maps/embed/v1/place?q={!! $event->activity->region !!}&zoom=11&key=AIzaSyCkb7vvU9U7_uvJxXdADV4P1BMZv_6Zfas" allowfullscreen></iframe>
                     </div>
                     <div class="col-md-6">
-                        <b>Eindigt over: </b><br>
-
-                        <h3 class="" style="" data-countdown="{!! $event->timeToOrder('Y/m/d H:i:s') !!}">{!! $event->timeToOrder('Y/m/d H:i:s') !!}</h3>
-                        <div class="form-group">
-                            <b>Start op</b><br>
-                            {!! $event->start_datetime->format('d-m-y h:i') !!}
-                        </div>
+                        <button type="button" class="close pull-right" data-dismiss="modal">&times;</button>
 
                         <div class="form-group">
+                            <h2>{!! $title !!}</h2>
                             <b>Regio</b><br>
                             {!! $event->activity->region !!}
                         </div>
@@ -50,18 +44,26 @@
                         </ul>
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade {!! Session::has('activityType') ? (Session::get('activityType') == 'public' ? 'active show':'') : 'show active'!!}" id="public{!! $event->id !!}" role="tabpanel" aria-labelledby="public-tab">
+                                <br>
+                                <div class="form-group">
+                                    <b>Start op</b><br>
+                                    {!! $event->start_datetime->format('d-m-y h:i') !!}
+                                </div>
+                                {{--<b>Eindigt over: </b><br>--}}
+                                <div id="countdown" data-countdown="{!! $event->timeToOrder('Y/m/d H:i:s') !!}" style="border: 1px solid #cccccc; margin-bottom: 20px; padding: 10px 0; text-align: center;">46 weeks 6 days 20h 44m 31s</div>
+                                {{--<h3 class="" style="" data-countdown="{!! $event->timeToOrder('Y/m/d H:i:s') !!}">{!! $event->timeToOrder('Y/m/d H:i:s') !!}</h3>--}}
 
                                 @if(isset($form) ? $form : true)
                                     {!! Form::open(['route' => ['site.order.store.public'], 'method' => 'POST']) !!}
                                 @endif
                                 {!! Form::hidden('id', $targetId) !!}
-                                <br>
+
                                 <div class="form-group">
                                     <h3><small>Prijs </small> € {!! $event->price !!} <small>p.p.</small></h3>
                                 </div>
 
                                 <div class="form-group">
-                                    <b>tickets</b>
+                                    <b>Tickets</b>
                                     {!! Form::select('tickets', array_combine($event->publicTicketSelection(), $event->publicTicketSelection()), null, ['class' => 'form-control'.(!$errors->has('tickets') ? '': ' is-invalid ')]) !!}
                                     @include('components.error', ['field' => 'tickets'])
                                 </div>
@@ -114,7 +116,7 @@
                                         <div class="input-group-append" data-target="#datetimepicker{!! $targetId !!}" data-toggle="datetimepicker"  style="-moz-border-radius-bottomleft: .25rem;">
                                             <div class="input-group-text" style="border-right: none;"><i class="fa fa-calendar"></i></div>
                                         </div>
-                                        {!! Form::text('activiteit_datum', null, ['class' => 'datetimepicker-input form-control'.(!$errors->has('activiteit_datum') ? '': ' is-invalid '), 'data-toggle' => 'datetimepicker', 'data-target' => '#datetimepicker'.$targetId]) !!}
+                                        {!! Form::text('activiteit_datum', null, ['class' => 'datetimepicker-input form-control'.(!$errors->has('activiteit_datum') ? '': ' is-invalid '), 'data-toggle' => 'datetimepicker', 'data-target' => '#datetimepicker'.$targetId, 'autocomplete' => 'off']) !!}
                                     </div>
                                     @include('components.error', ['field' => 'activiteit_datum'])
 
