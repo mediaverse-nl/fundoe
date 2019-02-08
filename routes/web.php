@@ -17,6 +17,10 @@ Route::get('/qr', function (){
     return view('qr');
 });
 
+Route::get('/test', function (){
+    return view('test');
+});
+
 
 Route::get('/home', 'WelcomeController')->name('home');
 Route::get('/', 'WelcomeController')->name('home');
