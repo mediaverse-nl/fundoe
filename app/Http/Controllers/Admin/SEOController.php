@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\Admin\SeoUpdateRequest;
 use App\Seo;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class SeoController extends Controller
@@ -18,8 +17,7 @@ class SeoController extends Controller
 
     public function index()
     {
-//        dd(request()->route()->getName());
-        $seo = $this->seo->get();
+         $seo = $this->seo->get();
 
         return view('admin.seo-manager.index')
             ->with('seo', $seo);
@@ -36,6 +34,10 @@ class SeoController extends Controller
     public function update(SeoUpdateRequest $request, $id)
     {
         $seo = $this->seo->findOrFail($id);
+
+        $seo->title = $request->title;
+        $seo->description = $request->description;
+        $seo->save();
 
         return redirect()
             ->route('admin.seo-manager.index');

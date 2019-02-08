@@ -43,6 +43,9 @@ class OrderController extends Controller
      */
     public function storePublic(PublicOrderStoreRequest $request)
     {
+
+//        dd(1);
+
         $event = $this->event->findOrFail($request->id);
 
         $order = $this->order;
@@ -53,9 +56,9 @@ class OrderController extends Controller
         $order->country = auth()->user()->country;
         $order->state = auth()->user()->state;
         $order->city = auth()->user()->city;
-        $order->postal_code = auth()->user()->postal_code;
-        $order->address = auth()->user()->address;
-        $order->address_number = auth()->user()->address_number;
+        $order->postal_code = auth()->user()->zipcode;
+        $order->address = auth()->user()->street_name;
+        $order->address_number = auth()->user()->street_nr;
         $order->name = auth()->user()->first_name.' '.auth()->user()->last_name;
         $order->event_id = $event->id;
         $order->ticket_amount = $request->tickets;

@@ -2,17 +2,21 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Requests\Auth\User\InfoUpdateRequest;
 use App\Http\Requests\Auth\User\PasswordUpdateRequest;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
     protected $user;
 
-    public function __construct(Auth $user)
+    public function __construct(User $user)
     {
         $this->user = $user;
     }
@@ -24,19 +28,26 @@ class UserController extends Controller
 
     public function password(PasswordUpdateRequest $request)
     {
-        $user = $this->user;
-//        $user->findOrFail($user->id);
-//        $user->password = Hash::make($request->password);
-//        $user->save();
+        $user = $this->user->find(auth()->user()->id);
+
+        $user->password = Hash::make($request->wachtwoord);
+        $user->save();
 
         return redirect()->back();
     }
 
-    public function info(Request $request)
+    public function info(InfoUpdateRequest $request)
     {
-        $user = $this->user;
-        $user->findOrFail($user->id);
-        $user->address = $request->address;
+        $user = $this->user->find(auth()->user()->id);
+
+        $user->first_name = $request->voornaam;
+        $user->last_name = $request->achternaam;
+        $user->country = $request->land;
+        $user->city = $request->stad;
+        $user->zipcode = $request->postcode;
+        $user->street_name = $request->straat;
+        $user->street_nr = $request->straat_nr;
+
         $user->save();
 
         return redirect()->back();

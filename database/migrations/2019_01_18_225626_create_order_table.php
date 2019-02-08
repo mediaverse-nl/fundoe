@@ -20,20 +20,20 @@ class CreateOrderTable extends Migration
             $table->integer('event_id')->unsigned();
             $table->foreign('event_id')->references('id')->on('event');
             $table->string('country');
-            $table->string('state');
+            $table->string('state')->nullable();
             $table->string('city');
             $table->string('postal_code');
             $table->string('address');
             $table->string('address_number');
             $table->string('name');
             $table->string('email');
-            $table->string('telephone');
+            $table->string('telephone')->nullable();
             $table->integer('ticket_amount');
             $table->float('total_paid', 8, 2);
-            $table->float('administration_cost', 8, 2);
-            $table->string('payment_id');
-            $table->string('payment_method');
-            $table->string('status')->default('paid');
+            $table->float('administration_cost', 8, 2)->nullable();
+            $table->string('payment_id')->nullable();
+            $table->string('payment_method')->nullable();
+            $table->string('status')->default('pending');
             $table->timestamps();
         });
     }

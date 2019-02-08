@@ -13,6 +13,11 @@
 
 use App\Http\Requests\Api\Admin\TextUpdateRequest;
 
+Route::get('/qr', function (){
+    return view('qr');
+});
+
+
 Route::get('/home', 'WelcomeController')->name('home');
 Route::get('/', 'WelcomeController')->name('home');
 

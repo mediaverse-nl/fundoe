@@ -26,15 +26,31 @@ class CategoryController extends Controller
     {
         $categories = $this->category->get();
 
+        //default seo
+        $this->seo()
+            ->setTitle($this->getPageSeo()->title.' | fundoe.nl')
+            ->setDescription($this->getPageSeo()->description);
+        //opengraph
+        $this->seo()
+            ->opengraph()
+            ->setUrl(url()->current())
+            ->addProperty('type', 'website');
+        //twitter
+        $this->seo()
+            ->twitter()
+            ->setSite('@username');
+
         return view('site.category.index')
             ->with('categories', $categories);
     }
 
     public function show($id)
     {
+        $category = $this->category->findOrFail($id);
+
         //default seo
         $this->seo()
-            ->setTitle($this->getPageSeo()->title .' | fundoe.nl')
+            ->setTitle($category->value .' | fundoe.nl')
             ->setDescription($this->getPageSeo()->description);
         //opengraph
         $this->seo()
@@ -59,7 +75,6 @@ class CategoryController extends Controller
             }
         }
 
-        $category = $this->category->findOrFail($id);
         $categories = $this->category->get();
         $from = $this->event->ableToOrderDate();
         $baseActivity = $category->activities()->get();

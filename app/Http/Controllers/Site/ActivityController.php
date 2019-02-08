@@ -24,10 +24,12 @@ class ActivityController extends Controller
 
     public function show($title = null, $id)
     {
+        $event = $this->event->findOrFail($id);
+
         //default seo
         $this->seo()
-            ->setTitle($this->getPageSeo()->title .' | fundoe.nl')
-            ->setDescription($this->getPageSeo()->description);
+            ->setTitle($event->activity->title .' | fundoe.nl')
+            ->setDescription($event->activity->description);
         //opengraph
         $this->seo()
             ->opengraph()
@@ -37,8 +39,6 @@ class ActivityController extends Controller
         $this->seo()
             ->twitter()
             ->setSite('@username');
-
-        $event = $this->event->findOrFail($id);
 
         return view('site.activity.show')
             ->with('event', $event);

@@ -53,4 +53,16 @@ class User extends Authenticatable
             return false;
         }
     }
+
+    public function userDataIncompleted()
+    {
+        if (auth()->user()->country == ''
+            || auth()->user()->city == '' || auth()->user()->zipcode == ''
+            || auth()->user()->street_nr == '' || auth()->user()->street_name == ''
+            || auth()->user()->first_name == '' || auth()->user()->last_name == '' ){
+            return true;
+        }
+
+        return false;
+    }
 }

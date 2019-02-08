@@ -9,7 +9,6 @@
     <!-- DataTables Example -->
     @component('components.datatable')
         @slot('head')
-            <th>id</th>
             <th>page</th>
             <th>title</th>
             <th>Opties</th>
@@ -17,7 +16,6 @@
         @slot('table')
             @foreach($seo as $i)
                 <tr>
-                    <td>{!! $i->id !!}</td>
                     <td>{!! $i->route_name !!}</td>
                     <td>{!! $i->title ? $i->title : 'leeg' !!}</td>
                     <td>

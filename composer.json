@@ -16,8 +16,9 @@
         "laravelcollective/html": "^5.4.0",
         "unisharp/laravel-filemanager": "v2.0.0-alpha6",
         "mollie/laravel-mollie": "^1.5",
-        "barryvdh/laravel-dompdf": "^0.8.2"
-     },
+        "barryvdh/laravel-dompdf": "^0.8.2",
+        "simplesoftwareio/simple-qrcode": "~1"
+    },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^2.4",
         "fzaninotto/faker": "~1.4",

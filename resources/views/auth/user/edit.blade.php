@@ -22,14 +22,14 @@
                             {!! Form::text('email', auth()->user()->email, ['class' => 'form-control', 'disabled']) !!}
                         </div>
                         <div class="form-group">
-                            {!! Form::label('watchwoord', 'watchwoord') !!}
-                            {!! Form::password('watchwoord', ['class' => 'form-control'.(!$errors->has('watchwoord') ? '': ' is-invalid ')]) !!}
-                            @include('components.error', ['field' => 'watchwoord'])
+                            {!! Form::label('wachtwoord', 'wachtwoord') !!}
+                            {!! Form::password('wachtwoord', ['class' => 'form-control'.(!$errors->has('wachtwoord') ? '': ' is-invalid ')]) !!}
+                            @include('components.error', ['field' => 'wachtwoord'])
                         </div>
                         <div class="form-group">
-                            {!! Form::label('herhaal_watchwoord', 'herhaal watchwoord') !!}
-                            {!! Form::password('herhaal_watchwoord', ['class' => 'form-control'.(!$errors->has('herhaal_watchwoord') ? '': ' is-invalid ')]) !!}
-                            @include('components.error', ['field' => 'herhaal_watchwoord'])
+                            {!! Form::label('herhaal_wachtwoord', 'herhaal wachtwoord') !!}
+                            {!! Form::password('herhaal_wachtwoord', ['class' => 'form-control'.(!$errors->has('herhaal_wachtwoord') ? '': ' is-invalid ')]) !!}
+                            @include('components.error', ['field' => 'herhaal_wachtwoord'])
                         </div>
                         <button type="submit" class="btn btn-primary">Opslaan</button>
                     {!! Form::close() !!}
@@ -42,15 +42,51 @@
                     {!! Form::model(auth()->user(), ['route' => ['auth.account.info'], 'method' => 'PATCH']) !!}
 
                         @if($errors->any())
-                            <h4>{{$errors->first()}}</h4>
+                            <h4>{!! $errors->first() !!}</h4>
                         @endif
 
                         <h2>Gegevens</h2>
 
                         <div class="form-group">
-                            {!! Form::label('adres', 'adres') !!}
-                            {!! Form::text('adres', null, ['class' => 'form-control'.(!$errors->has('adres') ? '': ' is-invalid ')]) !!}
-                            @include('components.error', ['field' => 'adres'])
+                            {!! Form::label('gebruikersnaam', 'gebruikersnaam') !!}
+                            {!! Form::text('gebruikersnaam', auth()->user()->name, ['class' => 'form-control'.(!$errors->has('gebruikersnaam') ? '': ' is-invalid '), 'disabled']) !!}
+                            @include('components.error', ['field' => 'gebruikersnaam'])
+                        </div>
+
+                        <div class="form-group">
+                            {!! Form::label('voornaam', 'voornaam') !!}
+                            {!! Form::text('voornaam', auth()->user()->first_name, ['class' => 'form-control'.(!$errors->has('voornaam') ? '': ' is-invalid ')]) !!}
+                            @include('components.error', ['field' => 'voornaam'])
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('achternaam', 'achternaam') !!}
+                            {!! Form::text('achternaam', auth()->user()->last_name, ['class' => 'form-control'.(!$errors->has('achternaam') ? '': ' is-invalid ')]) !!}
+                            @include('components.error', ['field' => 'achternaam'])
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('land', 'land') !!}
+                            {!! Form::text('land', auth()->user()->country, ['class' => 'form-control'.(!$errors->has('land') ? '': ' is-invalid ')]) !!}
+                            @include('components.error', ['field' => 'land'])
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('stad', 'stad') !!}
+                            {!! Form::text('stad', auth()->user()->city, ['class' => 'form-control'.(!$errors->has('stad') ? '': ' is-invalid ')]) !!}
+                            @include('components.error', ['field' => 'stad'])
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('postcode', 'postcode') !!}
+                            {!! Form::text('postcode', auth()->user()->zipcode, ['class' => 'form-control'.(!$errors->has('postcode') ? '': ' is-invalid ')]) !!}
+                            @include('components.error', ['field' => 'postcode'])
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('straat', 'straat') !!}
+                            {!! Form::text('straat',  auth()->user()->street_name, ['class' => 'form-control'.(!$errors->has('straat') ? '': ' is-invalid ')]) !!}
+                            @include('components.error', ['field' => 'straat'])
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('straat_nr', 'straat nr') !!}
+                            {!! Form::text('straat_nr', auth()->user()->street_nr, ['class' => 'form-control'.(!$errors->has('straat_nr') ? '': ' is-invalid ')]) !!}
+                            @include('components.error', ['field' => 'straat_nr'])
                         </div>
 
                         <button type="submit" class="btn btn-primary">Opslaan</button>

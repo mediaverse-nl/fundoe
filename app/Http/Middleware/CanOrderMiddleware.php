@@ -3,7 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
-
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 class CanOrderMiddleware
 {
     /**
@@ -13,16 +14,16 @@ class CanOrderMiddleware
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle(Request $request, Closure $next)
     {
         if (auth()->check()){
-            if (auth()->user()->country == '' || auth()->user()->state == ''
-                || auth()->user()->city == '' || auth()->user()->postal_code == ''
-                || auth()->user()->address == '' || auth()->user()->address_number == ''
-                || auth()->user()->first_name == '' || auth()->user()->last_name == '' ){
+            if (auth()->user()->userDataIncompleted()){
                 return redirect()
                     ->route('auth.account.edit')
-                    ->withErrors(['msg' => 'Om een event te kunnen boeken, moet u dit formulier invullen.']);
+                    ->withErrors([
+                        'msg' => '<p class="text-danger">Om een event te kunnen <b>boeken</b>, moet u dit formulier invullen.</p>'
+                    ])
+                    ->withInput(['incomplete' => true]);
             }
             return $next($request);
         }

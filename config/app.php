@@ -177,7 +177,7 @@ return [
         Artesaos\SEOTools\Providers\SEOToolsServiceProvider::class,
         Mollie\Laravel\MollieServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
-
+        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -251,6 +251,8 @@ return [
         'Mollie' => Mollie\Laravel\Facades\Mollie::class,
 
         'PDF' => Barryvdh\DomPDF\Facade::class,
+
+        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
     ],
 
 ];

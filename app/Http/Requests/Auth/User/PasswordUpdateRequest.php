@@ -24,8 +24,8 @@ class PasswordUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'watchwoord' => 'min:6|required_with:password_confirmation|same:password_confirmation',
-            'herhaal_watchwoord' => 'min:6'
+            'wachtwoord' => 'min:6|required_with:herhaal_wachtwoord_confirmation',
+            'herhaal_wachtwoord' => 'min:6|same:wachtwoord'
         ];
     }
 }
