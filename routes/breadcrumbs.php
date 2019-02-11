@@ -149,3 +149,10 @@ Breadcrumbs::register('site.category.show', function ($breadcrumbs, $model) use 
     $breadcrumbs->parent('site.category.index');
     $breadcrumbs->push($model->value, route('site.category.show', $model->id));
 });
+
+// site category event show
+Breadcrumbs::register('site.activity.show', function ($breadcrumbs, $model) {
+    $breadcrumbs->parent('site.category.show', $model->activity->category);
+    $breadcrumbs->push($model->activity->title, route('site.activity.show', [ $model->title, $model->id]));
+
+});
