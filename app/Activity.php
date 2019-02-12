@@ -97,4 +97,5 @@ class Activity extends Model
     {
         return "{$this->id} - {$this->title} - {$this->region}";
     }
+
 }

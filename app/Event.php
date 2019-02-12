@@ -154,5 +154,9 @@ class Event extends Model
         return collect(['kinderen' => 'kinderen', 'tieners' => 'tieners', 'jongvolwassenen' => 'jongvolwassenen', 'volwassenen' => 'volwassenen', 'ouderen' => 'ouderen', 'stelletjes' => 'stelletjes', 'iedereen' => 'iedereen'])->toArray();
     }
 
+//    public function getPriceAttribute()
+//    {
+//        return $this->activity()->price_per_hour ;
+//    }
 
 }

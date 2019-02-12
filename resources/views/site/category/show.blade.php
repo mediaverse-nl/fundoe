@@ -60,11 +60,14 @@
                             <div class="form-row">
                                 <div class="form-group col-md-12" style="padding-top: 15px;">
                                     <div class="row text-center">
-                                        <div class="col-2" style="padding: 5px;">{!! number_format($events->min('price'),0) !!}</div>
+                                        <div class="col-2" style="padding: 5px;">{!! number_format($baseEvents->min('price'),0) !!}</div>
                                         <div class="col-8" style="padding: 3px 5px;">
-                                            <input style="width: 100% !important;" class="custom-range" type="hidden" data-slider-min="{!! number_format($events->min('price'),0) !!}" data-slider-max="{!! number_format($events->max('price'),0) !!}" data-slider-value="[{!! number_format($events->min('price'),0) !!},{!! number_format($events->max('price'),0) !!}]"/>
+                                            <input style="width: 100% !important;" name="prijs" class="custom-range" type="hidden"
+                                                   data-slider-min="{!! number_format($baseEvents->min('price'),0) !!}"
+                                                   data-slider-max="{!! number_format($baseEvents->max('price'),0) !!}"
+                                                   data-slider-value="[{!!\Illuminate\Support\Facades\Input::has('prijs') ? explode(',',\Illuminate\Support\Facades\Input::get('prijs'))[0] : number_format($baseEvents->min('price'),0) !!},{!! \Illuminate\Support\Facades\Input::has('prijs') ? explode(',',\Illuminate\Support\Facades\Input::get('prijs'))[1] : number_format($baseEvents->max('price'),0) !!}]"/>
                                         </div>
-                                        <div class="col-2" style="padding: 5px;">{!! number_format($events->max('price'),0) !!}</div>
+                                        <div class="col-2" style="padding: 5px;">{!! number_format($baseEvents->max('price'),0) !!}</div>
                                     </div>
                                 </div>
                             </div>
@@ -111,26 +114,26 @@
 
                 <br>
 
-                <div class="card shadow-sm bg-white">
-                    <header class="card-header">
-                        <h6 class="title">Rating </h6>
-                    </header>
-                    <div class="filter-content">
-                        <div class="card-body">
-                            <div class="form-row">
-                                <div class="form-group col-md-12" style="padding-top: 15px;">
-                                    <div class="row text-center">
-                                        <div class="col-md-2" style="padding: 5px;">1</div>
-                                        <div class="col-md-8" style="padding: 3px 5px;">
-                                            <input style="width: 100% !important;" class="custom-range" type="hidden" name="rating" data-slider-min="0" data-slider-max="5" data-slider-step="0.5" data-slider-value="[{!! \Illuminate\Support\Facades\Input::has('rating') ? \Illuminate\Support\Facades\Input::get('rating') : '0,5' !!}]" value="{!! \Illuminate\Support\Facades\Input::get('rating') !!}" />
-                                        </div>
-                                        <div class="col-md-2" style="padding: 5px;">5</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> <!-- card-body.// -->
-                    </div>
-                </div>
+                {{--<div class="card shadow-sm bg-white">--}}
+                    {{--<header class="card-header">--}}
+                        {{--<h6 class="title">Rating </h6>--}}
+                    {{--</header>--}}
+                    {{--<div class="filter-content">--}}
+                        {{--<div class="card-body">--}}
+                            {{--<div class="form-row">--}}
+                                {{--<div class="form-group col-md-12" style="padding-top: 15px;">--}}
+                                    {{--<div class="row text-center">--}}
+                                        {{--<div class="col-md-2" style="padding: 5px;">1</div>--}}
+                                        {{--<div class="col-md-8" style="padding: 3px 5px;">--}}
+                                            {{--<input style="width: 100% !important;" class="custom-range" type="hidden" name="rating" data-slider-min="0" data-slider-max="5" data-slider-step="0.5" data-slider-value="[{!! \Illuminate\Support\Facades\Input::has('rating') ? \Illuminate\Support\Facades\Input::get('rating') : '5' !!}]" value="{!! \Illuminate\Support\Facades\Input::get('rating') !!}" />--}}
+                                        {{--</div>--}}
+                                        {{--<div class="col-md-2" style="padding: 5px;">5</div>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div> <!-- card-body.// -->--}}
+                    {{--</div>--}}
+                {{--</div>--}}
 
                 {!! Form::close() !!}
                 <br>
@@ -260,15 +263,15 @@
         function submitForm(){
             console.log('test');
             $( "#filterForm" ).submit();
-                // function () {
-                // $("input").each(function(index, input){
-                //     if($(input).val() == "") {
-                //         $(input).remove();
-                //     }
-                // });
-            // });
         }
+        $('#datetimepicker1').change(function() {
+            console.log('date');
+
+            intervalTimer();
+        });
+
         $('#filterForm').change(function() {
+            console.log('renew');
             intervalTimer();
         });
     });
@@ -286,13 +289,13 @@
             minDate: new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), today.getMinutes()),
             autoclose: true,
             todayBtn: true,
-            format: 'YYYY/MM/DD HH:mm'
+            format: 'YYYY/MM/DD'
         });
         $('#datetimepicker2').datetimepicker({
             useCurrent: false,
             minDate: new Date(today.getFullYear(), today.getMonth(), today.getDate()),
             autoclose: true,
-            format: 'YYYY/MM/DD HH:mm'
+            format: 'YYYY/MM/DD'
         });
         $("#datetimepicker1").on("change.datetimepicker", function (e) {
             $('#datetimepicker2').datetimepicker('minDate', e.date);

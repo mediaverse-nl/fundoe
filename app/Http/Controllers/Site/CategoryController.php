@@ -89,11 +89,17 @@ class CategoryController extends Controller
         $events = $this->event
             ->whereHas('activity', function ($q) use ($category) {
                 $q->where('category_id', '=', $category->id);
+//                dd(Input::get('prijs'));
+
             })
-            ->reviewRating(Input::get('rating'))
+//            ->reviewRating(Input::get('rating'))
+
             ->whereDate('start_datetime', '>=', $from)
             ->orderBy('start_datetime', 'asc')
             ->where(function ($q){
+                if (Input::has('prijs') ){
+                    $q->whereBetween('price', [explode(',',Input::get('prijs'))[0], explode(',',Input::get('prijs'))[1]]);
+                }
                 if(Input::has('groep') && Input::get('groep') !== null){
                     $i = 1;
                     foreach (Input::get('groep') as $i){
