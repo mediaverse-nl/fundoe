@@ -41,82 +41,81 @@
         }
 
         .breadcrumb{
-            list-style:none;
-            overflow: hidden !important;
-            padding: 0px;
-            margin-top: 15px;
-            border-radius: 0px !important;
-            background: transparent !important;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            padding: .75rem 1rem;
+            margin-bottom: 1rem;
+            list-style: none;
+            background-color: #e9ecef;
+            border-radius: .25rem;
         }
 
-        .breadcrumb li {
-            text-decoration: none;
-            padding: 5px 0 5px 50px;
-            position: relative;
-            display: block;
-            float: left;
-        }
+        @media only screen and (min-device-width: 480px)
+        {
+            .breadcrumb li:after {
+                content: " ";
+                display: block;
+                width: 0;
+                height: 0;
+                border-top: 50px solid transparent;
+                border-bottom: 50px solid transparent;
+                position: absolute;
+                top: 50%;
+                margin-top: -50px;
+                left: 100%;
+                z-index: 2;
+            }
 
-        .breadcrumb li:after {
-            content: " ";
-            display: block;
-            width: 0;
-            height: 0;
-            border-top: 50px solid transparent;
-            border-bottom: 50px solid transparent;
-            position: absolute;
-            top: 50%;
-            margin-top: -50px;
-            left: 100%;
-            z-index: 2;
-        }
+            .breadcrumb li:before {
+                content: " ";
+                display: block;
+                width: 0;
+                height: 0;
+                border-top: 50px solid transparent;
+                border-bottom: 50px solid transparent;
+                border-left: 30px solid white;
+                position: absolute;
+                top: 50%;
+                margin-top: -50px;
+                margin-left: 1px;
+                left: 100%;
+                z-index: 1;
+            }
 
-        .breadcrumb li:before {
-            content: " ";
-            display: block;
-            width: 0;
-            height: 0;
-            border-top: 50px solid transparent;
-            border-bottom: 50px solid transparent;
-            border-left: 30px solid white;
-            position: absolute;
-            top: 50%;
-            margin-top: -50px;
-            margin-left: 1px;
-            left: 100%;
-            z-index: 1;
-        }
+            .blue-crumb{
+                background-color: #2980b9;
+                color: white;
+            }
+            .blue-crumb:after{
+                border-left:30px solid #2980b9;
+            }
 
-        .blue-crumb{
-            background-color: #2980b9;
-            color: white;
-        }
-        .blue-crumb:after{
-            border-left:30px solid #2980b9;
-        }
+            .gray-crumb{
+                background-color: #bdc3c7;
+            }
+            .gray-crumb:after{
+                border-left: 30px solid #bdc3c7;
+            }
 
-        .gray-crumb{
-            background-color: #bdc3c7;
-        }
-        .gray-crumb:after{
-            border-left: 30px solid #bdc3c7;
-        }
+            .light-blue-crumb:after{
+                border-left:30px solid #3498db;
+            }
+            .light-blue-crumb{
+                background: #3498db;
+                color: white;
+            }
 
-        .light-blue-crumb:after{
-            border-left:30px solid #3498db;
-        }
-        .light-blue-crumb{
-            background: #3498db;
-            color: white;
-        }
+            .faded-crumb:after{
+                border-left:30px solid #ecf0f1;
+            }
 
-        .faded-crumb:after{
-            border-left:30px solid #ecf0f1;
-        }
-
-        .faded-crumb{
-            background: #ecf0f1;
-            color: #95a5a6;
+            .faded-crumb{
+                background: #ecf0f1;
+                color: #95a5a6;
+            }
         }
 
     </style>
