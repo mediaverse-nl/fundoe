@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-9">
+        <div class="col-6">
             <div class="card">
                 <div class="card-body">
                     {!! Form::model($event, ['route' => ['admin.event.update', $event->id], 'method' => 'PATCH']) !!}
@@ -50,6 +50,18 @@
 
                     {!! Form::close() !!}
 
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                    {!! $event->publicTicketSelection() !!}
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    {!! $event->orders !!}
                 </div>
             </div>
         </div>
