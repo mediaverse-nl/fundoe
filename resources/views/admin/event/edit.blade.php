@@ -56,14 +56,17 @@
         <div class="col-6">
             <div class="card">
                 <div class="card-body">
-                    {!! $event->publicTicketSelection() !!}
+{{--                    {!! dd($event->publicTicketSelection()) !!}--}}
                 </div>
             </div>
-            <div class="card">
-                <div class="card-body">
-                    {!! $event->orders !!}
+            @foreach($event->orders->where('status', '=', 'paid') as $order)
+                <div class="card">
+                    <div class="card-body">
+                        {!! $order !!}
+                    </div>
                 </div>
-            </div>
+            @endforeach
+
         </div>
     </div>
 

@@ -32,7 +32,7 @@
                     <td>{!! $event->start_datetime->format('d-m-y h:i') !!}</td>
                     <td>{!! $event->diffInTime() !!}min</td>
                     <td>€{!! number_format($event->price, 2)!!}</td>
-                    <td>{!! $event->orders()->count() !!}/{!! $event->activity->min_number_of_people !!}~{!! $event->activity->max_number_of_people !!}</td>
+                    <td>{!! $event->countSoldTickets() !!}/{!! $event->activity->min_number_of_people !!}~{!! $event->activity->max_number_of_people !!}</td>
                     {{--<td>{!! $event->created_at !!}</td>--}}
                     {{--<td>{!! $event->updated_at !!}</td>--}}
 {{--                    <td>{!! $event->deleted_at !!}</td>--}}
