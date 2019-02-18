@@ -68,6 +68,7 @@ class OrderController extends Controller
             "amount"      => number_format($order->total_paid,2),
             "description" => "Order Nr. ". $order->id,
             "redirectUrl" => route('site.order.show', $order->id),
+            'webhookUrl'   => route('webhooks.mollie'),
             'metadata'    => [
                 'order_id' => $order->id,
             ],
@@ -115,6 +116,7 @@ class OrderController extends Controller
             "amount"      => number_format($order->total_paid,2),
             "description" => "Order Nr. ". $order->id,
             "redirectUrl" => route('site.order.show', $order->id),
+            'webhookUrl'   => route('webhooks.mollie'),
             'metadata'    => [
                 'order_id' => $order->id,
             ],

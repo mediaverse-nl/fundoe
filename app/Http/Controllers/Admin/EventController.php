@@ -29,7 +29,9 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = $this->event->get();
+        $events = $this->event
+            ->orderBy('start_datetime','desc')
+            ->get();
 
         return view('admin.event.index')
             ->with('events', $events);

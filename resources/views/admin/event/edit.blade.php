@@ -56,13 +56,38 @@
         <div class="col-6">
             <div class="card">
                 <div class="card-body">
-{{--                    {!! dd($event->publicTicketSelection()) !!}--}}
+
+                    <a href="" class="btn btn-danger">annuleren</a>
+{{--                    {!! ($event->publicTicketSelection()) !!}--}}
                 </div>
             </div>
             @foreach($event->orders->where('status', '=', 'paid') as $order)
                 <div class="card">
                     <div class="card-body">
-                        {!! $order !!}
+                        <div class="row">
+                            <div class="col-6">
+                                {!! $order->name !!}<br>
+                                {!! $order->email !!}<br>
+                                {!! $order->telephone !!}<br>
+
+                                {!! $order->address !!}
+                                {!! $order->address_number !!},<br>
+                                {!! $order->postal_code !!}
+                                {!! $order->ticket_amount !!}
+                                {!! $order->city !!}<br><br>
+                            </div>
+                            <div class="col-6">
+
+                                {!! $order->total_paid !!}<br>
+                                {!! $order->payment_id !!}<br>
+                                {!! $order->payment_method !!}<br><br>
+
+                                tickets: {!! $order->ticket_amount !!}<br><br>
+
+
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             @endforeach

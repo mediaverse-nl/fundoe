@@ -17,6 +17,7 @@
         "unisharp/laravel-filemanager": "v2.0.0-alpha6",
         "mollie/laravel-mollie": "^1.5",
         "barryvdh/laravel-dompdf": "^0.8.2",
+        "webklex/laravel-imap": "1.0.5.9",
         "simplesoftwareio/simple-qrcode": "~1"
     },
     "require-dev": {

@@ -179,6 +179,8 @@ return [
         Barryvdh\DomPDF\ServiceProvider::class,
         SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
 
+        Webklex\IMAP\Providers\LaravelServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
@@ -253,6 +255,9 @@ return [
         'PDF' => Barryvdh\DomPDF\Facade::class,
 
         'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
+
+        'Client' => Webklex\IMAP\Facades\Client::class,
+
     ],
 
 ];

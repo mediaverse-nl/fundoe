@@ -100,6 +100,12 @@ class CategoryController extends Controller
                 if (Input::has('prijs') ){
                     $q->whereBetween('price', [explode(',',Input::get('prijs'))[0], explode(',',Input::get('prijs'))[1]]);
                 }
+                if (Input::has('van_datum') ){
+                    $q->where('start_datetime', '>=', Input::has('van_datum'));
+                }
+                if (Input::has('tot_datum') ){
+                    $q->where('end_datetime', '<=', Input::has('tot_datum'));
+                }
                 if(Input::has('groep') && Input::get('groep') !== null){
                     $i = 1;
                     foreach (Input::get('groep') as $i){

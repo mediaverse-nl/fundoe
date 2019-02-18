@@ -35,14 +35,29 @@
                                         <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker" style="-moz-border-radius-bottomleft: .25rem;">
                                             <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                         </div>
-                                        {!! Form::text('start_datetime', null, ['class' => 'datetimepicker-input form-control'.(!$errors->has('start_datetime') ? '': ' is-invalid '), 'data-toggle' => 'datetimepicker', 'data-target' => '#datetimepicker1', 'autocomplete' => false, 'placeholder' => 'datum vanaf']) !!}
+                                         <input class="datetimepicker-input form-control"
+                                                name="van_datum"
+                                                value="{!! \Illuminate\Support\Facades\Input::has('van_datum') ? \Illuminate\Support\Facades\Input::get('van_datum') : '' !!}"
+                                                data-toggle="datetimepicker"
+                                                data-target="#datetimepicker1"
+                                                autocomplete="off"
+                                                placeholder="datum vanaf"
+                                                type="text">
                                     </div>
                                      <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
                                         <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker" style="-moz-border-radius-bottomleft: .25rem;">
                                             <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                         </div>
-                                        {!! Form::text('start_datetime', null, ['class' => 'datetimepicker-input form-control'.(!$errors->has('start_datetime') ? '': ' is-invalid '), 'data-toggle' => 'datetimepicker', 'data-target' => '#datetimepicker2', 'autocomplete' => false, 'placeholder' => 'datum t/m']) !!}
-                                    </div>
+                                         <input class="datetimepicker-input form-control"
+                                                name="tot_datum"
+                                                value="{!! \Illuminate\Support\Facades\Input::has('tot_datum') ? \Illuminate\Support\Facades\Input::get('tot_datum') : '' !!}"
+                                                data-toggle="datetimepicker"
+                                                data-target="#datetimepicker2"
+                                                autocomplete="off"
+                                                placeholder="datum t/m"
+                                                type="text">
+{{--                                        {!! Form::text('start_datetime', null, ['class' => 'datetimepicker-input form-control'.(!$errors->has('start_datetime') ? '': ' is-invalid '), 'data-toggle' => 'datetimepicker', 'data-target' => '#datetimepicker2', 'autocomplete' => 'off', 'placeholder' => 'datum t/m']) !!}--}}
+                                     </div>
                                 </div>
                             </div>
                         </div> <!-- card-body.// -->
@@ -50,32 +65,33 @@
                 </div>
 
                 <br>
-
-                <div class="card shadow-sm bg-white">
-                    <header class="card-header">
-                        <h6 class="title">Prijs range </h6>
-                    </header>
-                    <div class="filter-content">
-                        <div class="card-body">
-                            <div class="form-row">
-                                <div class="form-group col-md-12" style="padding-top: 15px;">
-                                    <div class="row text-center">
-                                        <div class="col-2" style="padding: 5px;">{!! number_format($baseEvents->min('price'),0) !!}</div>
-                                        <div class="col-8" style="padding: 3px 5px;">
-                                            <input style="width: 100% !important;" name="prijs" class="custom-range" type="hidden"
-                                                   data-slider-min="{!! number_format($baseEvents->min('price'),0) !!}"
-                                                   data-slider-max="{!! number_format($baseEvents->max('price'),0) !!}"
-                                                   data-slider-value="[{!!\Illuminate\Support\Facades\Input::has('prijs') ? explode(',',\Illuminate\Support\Facades\Input::get('prijs'))[0] : number_format($baseEvents->min('price'),0) !!},{!! \Illuminate\Support\Facades\Input::has('prijs') ? explode(',',\Illuminate\Support\Facades\Input::get('prijs'))[1] : number_format($baseEvents->max('price'),0) !!}]"/>
+                @if(number_format($baseEvents->min('price'),0) !== number_format($baseEvents->max('price'),0))
+                    <div class="card shadow-sm bg-white">
+                        <header class="card-header">
+                            <h6 class="title">Prijs range </h6>
+                        </header>
+                        <div class="filter-content">
+                            <div class="card-body">
+                                <div class="form-row">
+                                    <div class="form-group col-md-12" style="padding-top: 15px;">
+                                        <div class="row text-center">
+                                            <div class="col-2" style="padding: 5px;">{!! number_format($baseEvents->min('price'),0) !!}</div>
+                                            <div class="col-8" style="padding: 3px 5px;">
+                                                <input style="width: 100% !important;" name="prijs" class="custom-range" type="hidden"
+                                                       data-slider-min="{!! number_format($baseEvents->min('price'),0) !!}"
+                                                       data-slider-max="{!! number_format($baseEvents->max('price'),0) !!}"
+                                                       data-slider-value="[{!!\Illuminate\Support\Facades\Input::has('prijs') ? explode(',',\Illuminate\Support\Facades\Input::get('prijs'))[0] : number_format($baseEvents->min('price'),0) !!},{!! \Illuminate\Support\Facades\Input::has('prijs') ? explode(',',\Illuminate\Support\Facades\Input::get('prijs'))[1] : number_format($baseEvents->max('price'),0) !!}]"/>
+                                            </div>
+                                            <div class="col-2" style="padding: 5px;">{!! number_format($baseEvents->max('price'),0) !!}</div>
                                         </div>
-                                        <div class="col-2" style="padding: 5px;">{!! number_format($baseEvents->max('price'),0) !!}</div>
                                     </div>
                                 </div>
-                            </div>
-                        </div> <!-- card-body.// -->
-                    </div>
-                </div> <!-- card.// -->
+                            </div> <!-- card-body.// -->
+                        </div>
+                    </div> <!-- card.// -->
 
-                <br>
+                    <br>
+                @endif
 
                 <div class="card shadow-sm bg-white">
                     <header class="card-header">
@@ -113,27 +129,6 @@
                 </div>
 
                 <br>
-
-                {{--<div class="card shadow-sm bg-white">--}}
-                    {{--<header class="card-header">--}}
-                        {{--<h6 class="title">Rating </h6>--}}
-                    {{--</header>--}}
-                    {{--<div class="filter-content">--}}
-                        {{--<div class="card-body">--}}
-                            {{--<div class="form-row">--}}
-                                {{--<div class="form-group col-md-12" style="padding-top: 15px;">--}}
-                                    {{--<div class="row text-center">--}}
-                                        {{--<div class="col-md-2" style="padding: 5px;">1</div>--}}
-                                        {{--<div class="col-md-8" style="padding: 3px 5px;">--}}
-                                            {{--<input style="width: 100% !important;" class="custom-range" type="hidden" name="rating" data-slider-min="0" data-slider-max="5" data-slider-step="0.5" data-slider-value="[{!! \Illuminate\Support\Facades\Input::has('rating') ? \Illuminate\Support\Facades\Input::get('rating') : '5' !!}]" value="{!! \Illuminate\Support\Facades\Input::get('rating') !!}" />--}}
-                                        {{--</div>--}}
-                                        {{--<div class="col-md-2" style="padding: 5px;">5</div>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                        {{--</div> <!-- card-body.// -->--}}
-                    {{--</div>--}}
-                {{--</div>--}}
 
                 {!! Form::close() !!}
                 <br>
@@ -222,16 +217,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-countdown/2.1.0/js/jquery.plugin.min.js"></script>
 <script type="text/javascript" src="https://cdn.rawgit.com/hilios/jQuery.countdown/2.1.0/dist/jquery.countdown.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.0/bootstrap-slider.min.js"></script>
-{{--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>--}}
-
-{{--<script type="text/javascript">--}}
-{{--$(function () {--}}
-{{--$('#datetimepicker2').datetimepicker({--}}
-{{--locale: 'nl',--}}
-{{--format: 'YYYY-MM-D HH:mm:ss'--}}
-{{--});--}}
-{{--});--}}
-{{--</script>--}}
 
 <script type="text/javascript">
     $( document ).ready(function() {
@@ -274,9 +259,7 @@
             console.log('renew');
             intervalTimer();
         });
-    });
 
-    $(function () {
         Date.prototype.addDays = function(days) {
             this.setDate(this.getDate() + parseInt(days));
             return this;
@@ -297,11 +280,16 @@
             autoclose: true,
             format: 'YYYY/MM/DD'
         });
+        {{--$('#datetimepicker2').datetimepicker('minDate', {!! \Illuminate\Support\Facades\Input::has('van_datum') ? \Illuminate\Support\Facades\Input::get('van_datum') : '' !!});--}}
+        {{--$('#datetimepicker1').datetimepicker('maxDate', {!! \Illuminate\Support\Facades\Input::has('tot_datum') ? \Illuminate\Support\Facades\Input::get('tot_datum') : '' !!});--}}
         $("#datetimepicker1").on("change.datetimepicker", function (e) {
+            // console.log(e.date);
             $('#datetimepicker2').datetimepicker('minDate', e.date);
+             intervalTimer();
         });
         $("#datetimepicker2").on("change.datetimepicker", function (e) {
             $('#datetimepicker1').datetimepicker('maxDate', e.date);
+            intervalTimer();
         });
     });
 </script>

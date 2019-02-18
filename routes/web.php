@@ -41,6 +41,7 @@ Route::group(['namespace' => 'Site', 'as' => 'site.'], function () {
     Route::get('/faq', 'PageController@faq')->name('faq');
     Route::get('/algemene-voorwaarden', 'PageController@terms')->name('terms');
     Route::get('/privacy-en-cookiebeleid', 'PageController@policy')->name('privacy');
+
 });
 
 //user panel
@@ -65,6 +66,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.', 'mi
     Route::resource('order', 'OrderController');
     Route::resource('activity', 'ActivityController');
 
+    Route::get('mollie-refund/test', 'MollieController@refund')->name('mollie.refund');
+
     Route::resource('faq', 'FaqController');
     Route::patch('editor/{id}/update', 'TextController@update')->name('text-editor.update');
     Route::resource('editor', 'TextController', ['only' => ['index', 'edit']]);
@@ -76,6 +79,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.', 'mi
     Route::get('pdf/streamInvoice/{id}', 'PDFController@streamInvoice')->name('pdf.streamInvoice');
     Route::get('pdf/downloadInvoice{id}', 'PDFController@downloadInvoice')->name('pdf.downloadInvoice');
 });
+
+Route::name('webhooks.mollie')->post('webhooks/mollie', 'Site\WebhookController@handle');
 
 Route::group(['prefix' => 'admin/laravel-filemanager', 'middleware' => ['web', 'admin']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();
@@ -96,3 +101,56 @@ Route::post('api/text-editor-{id}', function(TextUpdateRequest $request, $id) {
     return response()
         ->json('ok', 200);
 });
+
+//use Carbon;
+//use Webklex\IMAP\Client;
+//Route::get('/mails', function (){
+//
+//    $oClient = new Client([
+//        'host'          => 'web01.01d.eu',
+//        'port'          => 993,
+//        'encryption'    => 'ssl',
+//        'validate_cert' => true,
+//        'username'      => 'info@mediaverse.nl',
+//        'password'      => 'Overrated13@',
+//        'protocol'      => 'imap'
+//    ]);
+//
+//    //Connect to the IMAP Server
+//    $oClient->connect();
+//
+//    //Get all Mailboxes
+//    /** @var \Webklex\IMAP\Support\FolderCollection $aFolder */
+//    $aFolder = $oClient->getFolders();
+//
+////    $aMessage = $aFolder->get();
+//
+////    dd($aFolder);
+//    /** @var \Webklex\IMAP\Folder $oFolder */
+////    foreach($aFolder as $oFolder){
+////dd($aFolder);
+//        //Get all Messages of the current Mailbox $oFolder
+//        /** @var \Webklex\IMAP\Support\MessageCollection $aMessage */
+////        $aMessage = $aFolder->query()->since('15.03.2018')->limit(10, 2)->get();
+//        /** @var \Webklex\IMAP\Message $oMessage */
+//        foreach($aFolder as $oMessage){
+//            echo $oMessage->getSubject().'<br />';
+//            echo 'Attachments: '.$oMessage->getAttachments()->count().'<br />';
+//            echo $oMessage->getHTMLBody(true);
+//
+//            //Move the current Message to 'INBOX.read'
+//            if($oMessage->moveToFolder('INBOX.read') == true){
+//                echo 'Message has ben moved';
+//            }else{
+//                echo 'Message could not be moved';
+//            }
+//        }
+////    }
+//
+//
+//    return view('admin.mail.index')
+////        ->with('paginator', $paginator)
+//        ->with('aFolder', $aFolder);
+//});
+
+

@@ -16,9 +16,6 @@
             <th>duur</th>
             <th>prijs</th>
             <th>tickets</th>
-            {{--<th>created_at</th>--}}
-            {{--<th>updated_at</th>--}}
-            {{--<th>deleted_at</th>--}}
             <th class="no-sort"></th>
         @endslot
         @slot('table')
@@ -33,9 +30,6 @@
                     <td>{!! $event->diffInTime() !!}min</td>
                     <td>€{!! number_format($event->price, 2)!!}</td>
                     <td>{!! $event->countSoldTickets() !!}/{!! $event->activity->min_number_of_people !!}~{!! $event->activity->max_number_of_people !!}</td>
-                    {{--<td>{!! $event->created_at !!}</td>--}}
-                    {{--<td>{!! $event->updated_at !!}</td>--}}
-{{--                    <td>{!! $event->deleted_at !!}</td>--}}
                     <td>
                         @component('components.model', [
                                 'id' => 'eventTableBtn'.$event->id,

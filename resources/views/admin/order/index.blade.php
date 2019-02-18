@@ -33,6 +33,9 @@
                                 <a href="{{route('admin.order.show', $order->id)}}" class="rounded-circle edit">
                                     <i class="fa fa-edit"></i>
                                 </a>
+                                <a href="{{route('admin.mollie.refund')}}" class="rounded-circle dark">
+                                    <i class="fa fa-edit"></i>
+                                </a>
                             </td>
                         </tr>
                     @endforeach
