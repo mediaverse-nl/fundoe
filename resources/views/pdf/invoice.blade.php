@@ -115,7 +115,7 @@
                 <table >
                     <tr>
                         <td class="title">
-                            <img src="https://www.fundoe.nl/img/assets/fundoe-logo.png" style="width:270px;">
+                            <img src="http://localhost:8000/storage/files/shares/fundoe_logo.png" style="width:270px;">
                         </td>
                         <td></td>
 
@@ -136,10 +136,10 @@
                 <table>
                     <tr>
                         <td>
-                            <b>Fundoe</b> <br>
-                            Evestraat 28,<br>
-                            5503 XN Veldhoven,<br>
-                            Netherlands
+                            <b>domein.nl</b> <br>
+                            Straatnaam 28,<br>
+                            5555 AB Eindhoven,<br>
+                            Nederland
                         </td>
                         <td> </td>
 

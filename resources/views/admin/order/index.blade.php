@@ -33,9 +33,23 @@
                                 <a href="{{route('admin.order.show', $order->id)}}" class="rounded-circle edit">
                                     <i class="fa fa-edit"></i>
                                 </a>
-                                <a href="{{route('admin.mollie.refund')}}" class="rounded-circle dark">
-                                    <i class="fa fa-edit"></i>
-                                </a>
+                                @if($order->status != 'refunded' && $order->status == 'paid')
+                                    @component('components.model', [
+                                        'id' => 'orderTableBtn'.$order->id,
+                                        'title' => 'Refund',
+                                        'actionRoute' => route('admin.mollie.refund', $order->id),
+                                        'btnClass' => 'rounded-circle delete',
+                                        'btnIcon' => 'fa fa-inbox'
+                                    ])
+                                        @slot('description')
+                                            If u proceed u will refund this order # {!! $order->id !!}
+                                        @endslot
+                                    @endcomponent
+                                @else
+                                    <a class="rounded-circle delete disabled" style="color: #FFFFFF;">
+                                         <i class="fa fa-inbox" style="color: #FFFFFF !important;"></i>
+                                    </a>
+                                @endif
                             </td>
                         </tr>
                     @endforeach
@@ -50,7 +64,13 @@
 
 @push('css')
     <style>
-
+        a.disabled {
+            /* Make the disabled links grayish*/
+            color: gray;
+            opacity: 0.3;
+            /* And disable the pointer events */
+            pointer-events: none;
+        }
     </style>
 @endpush
 

@@ -27,6 +27,8 @@
                     {!! Form::open(['url' => $actionRoute, 'method' => 'delete']) !!}
                         {!! Form::submit('Proceed', ['class' => 'btn btn-primary', 'style' => "border-radius: 0px;"]) !!}
                     {!! Form::close() !!}
+                @elseif(str_contains($title, 'Refund'))
+                    {!! Form::submit('Proceed', ['class' => 'btn btn-primary', 'style' => "border-radius: 0px;"]) !!}
                 @elseif(str_contains($title, 'Edit'))
                     {!! Form::submit('Proceed', ['class' => 'btn btn-primary', 'style' => "border-radius: 0px;"]) !!}
                 @elseif(str_contains($title, 'Create'))
