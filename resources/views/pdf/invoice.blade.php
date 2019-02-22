@@ -115,14 +115,14 @@
                 <table >
                     <tr>
                         <td class="title">
-                            <img src="http://localhost:8000/storage/files/shares/fundoe_logo.png" style="width:270px;">
+                            <img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" style="width:270px;">
                         </td>
                         <td></td>
 
                         <td style="background: #eee;border-bottom: 1px solid #ddd; text-align: right">
-                            <b>Invoice #{{$order->id}}</b> <br><br>
-                            Aankoop datum: {{$order->created_at->format('M d, Y')}} <br>
-                            Due: {{Carbon\Carbon::parse($order->created_at->format('M d Y'))
+                            <b>Factuur #{{$order->id}}</b> <br><br>
+                            Aankoop datum: <br>{{$order->created_at->format('M d, Y')}} <br><br>
+                            Verval datum: <br>{{Carbon\Carbon::parse($order->created_at->format('M d Y'))
                                 ->addDays(14)
                                 ->format('M d, Y')}} <br>
                         </td>
@@ -184,37 +184,37 @@
 
         <tr class="heading">
             <td style="width: 250px;">
-                Item
+                Activiteit
             </td>
 
             <td>
-                Unit(s)
+                Kaatjes
             </td>
             <td style="text-align: right">
-                Unit price
-            </td>
-
-            <td style="text-align: right">
-                Total
+                Stuk prijs
             </td>
 
             <td style="text-align: right">
-                TAX
+                Totaal
+            </td>
+
+            <td style="text-align: right">
+                Btw
             </td>
         </tr>
 
 {{--        @foreach($order->productOrders as $item)--}}
-            {{--<tr class="item">--}}
-                {{--<td  style="padding: 10px 0px;">--}}
+            <tr class="item">
+                <td  style="padding: 10px 0px;">
                     {{--{!! $item->product->titleTranslated() !!} <br>--}}
                     {{--<span style="font-size: 10px;"><b>SKU: </b>{!! $item->product->id !!}</span> <br>--}}
 
-                {{--</td>--}}
-                {{--<td style="padding: 10px 0px;">{!! $item->amount !!} x</td>--}}
-                {{--<td style="text-align: right; padding: 10px 0px;">{!! number_format($item->price * 1.21, 2) !!}</td>--}}
-                {{--<td style="text-align: right; padding: 10px 0px;">{!!  number_format($item->amount * ($item->price * 1.21), 2) !!}</td>--}}
-                {{--<td style="text-align: right; padding: 10px 0px; width: 60px;">{!!  number_format(($item->amount * ($item->price * 1.21)) - $item->amount * $item->price, 2) !!}</td>--}}
-            {{--</tr>--}}
+                </td>
+                <td style="padding: 10px 0px;">{!! $order->amount !!} x</td>
+                <td style="text-align: right; padding: 10px 0px;">{!! number_format($order->price * 1.21, 2) !!}</td>
+                <td style="text-align: right; padding: 10px 0px;">{!!  number_format($order->amount * ($order->price * 1.21), 2) !!}</td>
+                <td style="text-align: right; padding: 10px 0px; width: 60px;">{!!  number_format(($order->amount * ($order->price * 1.21)) - $order->amount * $order->price, 2) !!}</td>
+            </tr>
 
         {{--@endforeach--}}
 
