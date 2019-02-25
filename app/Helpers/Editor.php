@@ -32,7 +32,9 @@ if (!function_exists('Editor')) {
             'text' => $readableText
         ]);
 
-        if(Auth::check() && $hideEditorBtn == false && Auth::user()->admim == 1){
+        if(Auth::check()
+            && $hideEditorBtn == false
+            && auth()->user()->admin == 1){
             return view('components.admin-text-tool')
                 ->with('text', $text);
         }

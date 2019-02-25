@@ -33,7 +33,10 @@
 
     {{--    <img src="{!!$message->embedData(QrCode::format('png')->generate('Embed me into an e-mail!'), 'QrCode.png', 'image/png')!!}">--}}
     <div class="select">
-        <label for="videoSource">Select Camera: </label><select id="videoSource"></select>
+        <label for="videoSource">Select Camera: </label>
+        <select id="videoSource" >
+            <option value="">test</option>
+        </select>
     </div>
 
 
@@ -104,7 +107,7 @@
                 start();
                 console.log('----------');
                 console.log(cameras[0]);
-                scanner.start(cameras[0]);
+                scanner.start(cameras[1]);
             } else {
                 console.error('No cameras found.');
             }
@@ -175,6 +178,7 @@
                     deviceId: videoSource ? { exact: videoSource } : undefined
                 }
             };
+            // alert( videoSelect.value )
             navigator.mediaDevices
                 .getUserMedia(constraints)
                 .then(gotStream)

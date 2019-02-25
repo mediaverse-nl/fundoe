@@ -51,11 +51,57 @@
                     <div class="col-xl-12 col-sm-12 mb-12">
                         <div class="card">
                             <div class="card-header">
-                                <i class="fas fa-table"></i>
+                                {{--<i class="fas fa-table"></i>--}}
                                 account
                             </div>
                             <div class="card-body">
-                                {!! Auth::user() !!}
+
+                                {!! Form::model(Auth::user(), ['class' => 'form-horizontal']) !!}
+                                    <div class="form-group row">
+                                        {!! Form::label('name', 'Gebruikersnaam', ['class' => 'col-sm-3 flout-right']) !!}
+                                        <div class="col-sm-9">
+                                            {!! Form::text('name', null, ['class' => 'form-control', 'disabled']) !!}
+                                         </div>
+                                     </div>
+                                    <div class="form-group row">
+                                        {!! Form::label('email', 'E-mail', ['class' => 'col-sm-3']) !!}
+                                        <div class="col-sm-9">
+                                            {!! Form::text('email', null, ['class' => 'form-control', 'disabled']) !!}
+                                         </div>
+                                     </div>
+                                    <div class="form-group">
+                                        {!! Form::label('email', 'E-mail') !!}
+                                        {!! Form::text('email', null, ['class' => 'form-control', 'disabled']) !!}
+                                     </div>
+                                    <div class="form-group">
+                                        {!! Form::label('first_name', 'Voornaam') !!}
+                                        {!! Form::text('first_name', null, ['class' => 'form-control', 'disabled']) !!}
+                                     </div>
+                                    <div class="form-group">
+                                        {!! Form::label('last_name', 'Achternaam') !!}
+                                        {!! Form::text('last_name', null, ['class' => 'form-control', 'disabled']) !!}
+                                     </div>
+                                    <div class="form-group">
+                                        {!! Form::label('country', 'Land') !!}
+                                        {!! Form::text('country', null, ['class' => 'form-control', 'disabled']) !!}
+                                     </div>
+                                    <div class="form-group">
+                                        {!! Form::label('city', 'Stad') !!}
+                                        {!! Form::text('city', null, ['class' => 'form-control', 'disabled']) !!}
+                                     </div>
+                                    <div class="form-group">
+                                        {!! Form::label('zipcode', 'Postcode') !!}
+                                        {!! Form::text('zipcode', null, ['class' => 'form-control', 'disabled']) !!}
+                                     </div>
+                                    <div class="form-group">
+                                        {!! Form::label('street_name', 'Adres') !!}
+                                        {!! Form::text('street_name', null, ['class' => 'form-control', 'disabled']) !!}
+                                     </div>
+                                    <div class="form-group">
+                                        {!! Form::label('street_nr', 'Adres nr') !!}
+                                        {!! Form::text('street_nr', null, ['class' => 'form-control', 'disabled']) !!}
+                                     </div>
+                                {!! Form::close() !!}
                             </div>
                         </div>
                     </div>

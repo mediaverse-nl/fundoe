@@ -139,6 +139,22 @@ Breadcrumbs::register('home', function ($breadcrumbs) {
     $breadcrumbs->push("home", route('home'));
 });
 
+//site about
+Breadcrumbs::register('site.about', function ($breadcrumbs) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push("Over ons", route('site.about'));
+});
+//site contact
+Breadcrumbs::register('site.contact', function ($breadcrumbs) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push("Contact", route('site.contact.index'));
+});
+//site faq
+Breadcrumbs::register('site.faq', function ($breadcrumbs) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push("F.A.Q.", route('site.faq'));
+});
+
 // site category index
 Breadcrumbs::register('site.category.index', function ($breadcrumbs) {
     $breadcrumbs->parent('home');

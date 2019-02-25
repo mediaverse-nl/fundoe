@@ -1,7 +1,11 @@
 @extends('layouts.app')
 
+@section('breadcrumb')
+    {!! Breadcrumbs::render('site.faq') !!}
+@endsection
+
 @section('content')
-    <div class="container py-3">
+    <div class="container">
         <div class="row">
             <div class="col-10 mx-auto">
                 <h1 class="py-3">Frequently Asked Questions</h1>

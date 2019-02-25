@@ -57,27 +57,26 @@ class EventController extends Controller
      */
     public function store(EventStoreRequest $request)
     {
-        $datetime = $request->start_datetime;
-        $end_datetime = Carbon::parse($datetime)->addMinutes(30);
+        $datetime = $request->start_datetime.':00';
+        $end_datetime = Carbon::createFromFormat('Y-m-d H:i:s', $datetime)
+            ->addMinutes($request->duration)
+            ->format('Y-m-d H:i:s');
 
-//        dd($end_datetime->format('Y-m-d H:i:s'));
+        $start_datetime = Carbon::createFromFormat('Y-m-d H:i', $request->start_datetime)
+            ->format('Y-m-d H:i:s');
 
-//        dd(Carbon::parse($request->start_datetime)
-//            ->addMinutes(30)
-//            ->format('Y-m-d H:i:s'));
-//
         $event = $this->event;
-//
+
         $event->activity_id = $request->activity;
-        $event->start_datetime = $request->start_datetime;
-        $event->end_datetime = $end_datetime->format('Y-m-d H:i:s');
+        $event->start_datetime = $start_datetime;
+        $event->end_datetime = $end_datetime;
         $event->price = $request->price;
         $event->target_group = $request->target_group;
 //        $event->status = $request->status;
-//
+
         $event->save();
 
-        return redirect()->back();
+        return redirect()->route('admin.event.edit', $event->id);
     }
 
     /**

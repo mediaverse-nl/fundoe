@@ -20,7 +20,9 @@
                             </div>
                         </a>
                     </div>
+                    <br>
                 </div>
+
             @endforeach
 
         </div>

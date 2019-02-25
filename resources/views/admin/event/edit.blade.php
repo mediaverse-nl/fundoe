@@ -93,6 +93,13 @@
             @endforeach
 
         </div>
+        <div class="col-6">
+            <div class="card">
+                <div class="card-body">
+                    sdasd
+                </div>
+            </div>
+        </div>
     </div>
 
 @endsection

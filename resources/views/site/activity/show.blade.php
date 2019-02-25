@@ -1,8 +1,7 @@
 @extends('layouts.app')
 
 @section('breadcrumb')
-    {{--{!!  dd($event) !!}--}}
-    {!! Breadcrumbs::render('site.activity.show', $event) !!}
+     {!! Breadcrumbs::render('site.activity.show', $event) !!}
 @endsection
 
 @section('content')
@@ -16,40 +15,45 @@
                             <div class="preview col-md-6">
 
                                 <div class="preview-pic tab-content square shadow">
-                                    @foreach($event->activity->images() as $img)
-                                        <div class="tab-pane square-inn {!! $loop->first ? 'active' : null !!} show" id="pic-{!! $loop->index+1 !!}">
-                                            <img src="{!! $img !!}" class=""/>
-                                        </div>
-                                    @endforeach
+                                    {{--{!! dd($event->activity->images()) !!}--}}
+                                    @if($event->activity->images() != null)
+                                        @foreach($event->activity->images() as $img)
+                                            <div class="tab-pane square-inn {!! $loop->first ? 'active' : null !!} show" id="pic-{!! $loop->index+1 !!}">
+                                                <img src="{!! $img !!}" class=""/>
+                                            </div>
+                                        @endforeach
+                                    @endif
                                 </div>
 
                                 <ul class="preview-thumbnail nav nav-tabs ">
-                                     @foreach($event->activity->images() as $img)
-                                         <li>
-                                             <a data-target="#pic-{!! $loop->index+1 !!}" data-toggle="tab" class=" {!! $loop->first ? '' : null !!} show">
-                                                 <div class="square shadow">
-                                                     <div class="square-inn">
-                                                         <img src="{!! $img !!}" />
+                                    @if($event->activity->images() != null)
+                                        @foreach($event->activity->images() as $img)
+                                             <li>
+                                                 <a data-target="#pic-{!! $loop->index+1 !!}" data-toggle="tab" class=" {!! $loop->first ? '' : null !!} show">
+                                                     <div class="square shadow">
+                                                         <div class="square-inn">
+                                                             <img src="{!! $img !!}" />
+                                                         </div>
                                                      </div>
-                                                 </div>
-                                             </a>
-                                         </li>
-                                     @endforeach
+                                                 </a>
+                                             </li>
+                                         @endforeach
+                                    @endif
                                 </ul>
 
                             </div>
                             <div class="details col-md-6">
                                 <h1 class="product-title">{!! $event->activity->title !!}</h1>
-                                <div class="rating">
-                                    <div class="stars">
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star checked"></span>
-                                        <span class="fa fa-star"></span>
-                                        <span class="fa fa-star"></span>
-                                    </div>
+                                {{--<div class="rating">--}}
+                                    {{--<div class="stars">--}}
+                                        {{--<span class="fa fa-star checked"></span>--}}
+                                        {{--<span class="fa fa-star checked"></span>--}}
+                                        {{--<span class="fa fa-star checked"></span>--}}
+                                        {{--<span class="fa fa-star"></span>--}}
+                                        {{--<span class="fa fa-star"></span>--}}
+                                    {{--</div>--}}
                                     {{--<span class="review-no">{!! $event !!} reviews</span>--}}
-                                </div>
+                                {{--</div>--}}
                                 {{--<p class="product-description">Suspendisse quos? Tempus cras iure temporibus? Eu laudantium cubilia sem sem! Repudiandae et! Massa senectus enim minim sociosqu delectus posuere.</p>--}}
                                 <h4 class="price">Prijs p.p. <span>{!! $event->activity->price !!}</span></h4>
                                 {{--<p class="vote"><strong>91%</strong> of buyers enjoyed this activity! <strong>(87 votes)</strong></p>--}}
@@ -153,8 +157,9 @@
                                             </label>
                                             @include('components.error', ['field' => 'voorwaarden'])
                                         </div>
+                                        <br>
+                                         <input type="submit" class="btn btn-block btn-success" value="betalen">
 
-                                             <input type="submit" class="btn btn-block btn-success" value="betalen">
                                         {!! Form::close() !!}
                                     </div>
                                 </div>
@@ -168,30 +173,30 @@
 
     <br>
 
-    <div class="container-fluid review-container">
-        <div class="row">
+    {{--<div class="container-fluid review-container">--}}
+        {{--<div class="row">--}}
 
-            @foreach($event->activity->reviews as $review)
+            {{--@foreach($event->activity->reviews as $review)--}}
 
-                <div class="col-3">
+                {{--<div class="col-3">--}}
 
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">{!! $review->user->name !!}</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                            <p class="card-text">{!! $review->text !!}</p>
-                            <a href="#" class="card-link">
-                                <small class="text-muted">&#9733; &#9733; &#9733; &#9732; &#9734;</small>
-                            </a>
-                            <a href="#" class="card-link">Another link</a>
-                        </div>
-                    </div>
+                    {{--<div class="card">--}}
+                        {{--<div class="card-body">--}}
+                            {{--<h5 class="card-title">{!! $review->user->name !!}</h5>--}}
+                            {{--<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>--}}
+                            {{--<p class="card-text">{!! $review->text !!}</p>--}}
+                            {{--<a href="#" class="card-link">--}}
+                                {{--<small class="text-muted">&#9733; &#9733; &#9733; &#9732; &#9734;</small>--}}
+                            {{--</a>--}}
+                            {{--<a href="#" class="card-link">Another link</a>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
 
-                </div>
-            @endforeach
-            </div>
-        </div>
-    </div>
+                {{--</div>--}}
+            {{--@endforeach--}}
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</div>--}}
 
 @endsection
 

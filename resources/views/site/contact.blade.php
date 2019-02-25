@@ -1,8 +1,11 @@
 @extends('layouts.app')
 
+@section('breadcrumb')
+    {!! Breadcrumbs::render('site.contact') !!}
+@endsection
+
 @section('content')
 
-    <br>
 
     <div class="container">
         <div class="row">
@@ -21,7 +24,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="first_name">first_name *</label>
+                                    <label for="first_name">Voornaam *</label>
                                     <input id="first_name" type="text" name="first_name" value="{!! !auth()->check() ? '' : auth()->user()->first_name !!}" class="form-control">
                                     <div class="help-block with-errors"></div>
                                 </div>
@@ -48,8 +51,8 @@
                                     <select id="form_need" name="need" class="form-control">
                                         <option value=""> --- </option>
                                         <option value="Vraag offerte aan">Vraag offerte aan</option>
+                                        <option value="Verzoek om orderstatus">Verzoek om event met specifieke datum</option>
                                         <option value="Verzoek om orderstatus">Verzoek om orderstatus</option>
-                                        <option value="Verzoek om kopie van een factuur">Verzoek om kopie van een factuu</option>
                                         <option value="Anders">Anders</option>
                                     </select>
                                     <div class="help-block with-errors"></div>

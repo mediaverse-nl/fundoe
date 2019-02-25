@@ -58,7 +58,7 @@ class ActivityController extends Controller
 
         $activity->save();
 
-        return redirect()->back();
+        return redirect()->route('admin.activity.edit', $activity->id);
     }
 
 

@@ -25,7 +25,7 @@ class ActivityStoreRequest extends FormRequest
     {
         return [
             'category' => 'required|numeric',
-            'img' => 'required|string',
+            'images' => 'required|string',
             'title' => 'required|string|min:5|max:60',
             'description' => 'required|string|min:30|max:300',
             'location' => 'string|nullable',

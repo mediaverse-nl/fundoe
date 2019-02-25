@@ -31,6 +31,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        setLocale(LC_TIME, app()->getLocale());
+//        Carbon::setLocale(app()->getLocale());
     }
 }

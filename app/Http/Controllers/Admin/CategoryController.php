@@ -66,7 +66,7 @@ class CategoryController extends Controller
         $category->save();
 
         return redirect()
-            ->back();
+            ->route('admin.category.edit', $category->id);
     }
 
     public function destroy(Request $request, $id)

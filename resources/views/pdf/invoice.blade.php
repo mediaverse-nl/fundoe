@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>hailsuit invoice #{{$order->id}}</title>
+    <title>fundoe - factuur #{{$order->id}}</title>
 
     <style>
         .invoice-box {
@@ -203,22 +203,17 @@
             </td>
         </tr>
 
-{{--        @foreach($order->productOrders as $item)--}}
-            <tr class="item">
-                <td  style="padding: 10px 0px;">
-                    {{--{!! $item->product->titleTranslated() !!} <br>--}}
-                    {{--<span style="font-size: 10px;"><b>SKU: </b>{!! $item->product->id !!}</span> <br>--}}
-
-                </td>
-                <td style="padding: 10px 0px;">{!! $order->amount !!} x</td>
-                <td style="text-align: right; padding: 10px 0px;">{!! number_format($order->price * 1.21, 2) !!}</td>
-                <td style="text-align: right; padding: 10px 0px;">{!!  number_format($order->amount * ($order->price * 1.21), 2) !!}</td>
-                <td style="text-align: right; padding: 10px 0px; width: 60px;">{!!  number_format(($order->amount * ($order->price * 1.21)) - $order->amount * $order->price, 2) !!}</td>
-            </tr>
-
-        {{--@endforeach--}}
-
-
+         <tr class="item">
+            <td  style="padding: 10px 0px;">
+                {!! $order->event->activity->title !!} <br>
+                {!! $order->event->start_datetime->formatLocalized('%A, %d %B %Y') !!} <br>
+                van {!! $order->event->start_datetime->formatLocalized('%H:%M') !!} t/m {!! $order->event->end_datetime->formatLocalized('%H:%M') !!} uur
+            </td>
+            <td style="padding: 10px 0px;">{!! $order->amount !!} x</td>
+            <td style="text-align: right; padding: 10px 0px;">{!! number_format($order->price * 1.21, 2) !!}</td>
+            <td style="text-align: right; padding: 10px 0px;">{!!  number_format($order->amount * ($order->price * 1.21), 2) !!}</td>
+            <td style="text-align: right; padding: 10px 0px; width: 60px;">{!!  number_format(($order->amount * ($order->price * 1.21)) - $order->amount * $order->price, 2) !!}</td>
+        </tr>
 
         <tr class="">
             <td> </td>
