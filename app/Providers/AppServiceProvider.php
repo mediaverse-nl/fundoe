@@ -17,6 +17,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Carbon::setUTF8(true);
+        Carbon::setLocale(config('app.locale'));
+
+        setlocale(LC_TIME, 'nl_NL.utf8');
+
         Schema::defaultStringLength(191);
 
         if (Schema::hasTable('category')) {
@@ -31,7 +36,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        setLocale(LC_TIME, app()->getLocale());
 //        Carbon::setLocale(app()->getLocale());
     }
 }

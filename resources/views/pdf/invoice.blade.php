@@ -121,10 +121,10 @@
 
                         <td style="background: #eee;border-bottom: 1px solid #ddd; text-align: right">
                             <b>Factuur #{{$order->id}}</b> <br><br>
-                            Aankoop datum: <br>{{$order->created_at->format('M d, Y')}} <br><br>
+                            Aankoop datum: <br>{{$order->created_at->formatLocalized('%d %B %Y') }} <br><br>
                             Verval datum: <br>{{Carbon\Carbon::parse($order->created_at->format('M d Y'))
                                 ->addDays(14)
-                                ->format('M d, Y')}} <br>
+                                ->formatLocalized('%d %B %Y')}} <br>
                         </td>
                     </tr>
                 </table>
@@ -180,7 +180,7 @@
 
     </table>
 
-    <table cellpadding="0" cellspacing="0">
+    <table cellpadding="1" cellspacing="">
 
         <tr class="heading">
             <td style="width: 250px;">
@@ -204,15 +204,15 @@
         </tr>
 
          <tr class="item">
-            <td  style="padding: 10px 0px;">
+            <td  style="padding: 10px 5px;">
                 {!! $order->event->activity->title !!} <br>
                 {!! $order->event->start_datetime->formatLocalized('%A, %d %B %Y') !!} <br>
                 van {!! $order->event->start_datetime->formatLocalized('%H:%M') !!} t/m {!! $order->event->end_datetime->formatLocalized('%H:%M') !!} uur
             </td>
-            <td style="padding: 10px 0px;">{!! $order->amount !!} x</td>
-            <td style="text-align: right; padding: 10px 0px;">{!! number_format($order->price * 1.21, 2) !!}</td>
-            <td style="text-align: right; padding: 10px 0px;">{!!  number_format($order->amount * ($order->price * 1.21), 2) !!}</td>
-            <td style="text-align: right; padding: 10px 0px; width: 60px;">{!!  number_format(($order->amount * ($order->price * 1.21)) - $order->amount * $order->price, 2) !!}</td>
+            <td style="padding: 10px 5px;">{!! $order->ticket_amount !!} x</td>
+            <td style="text-align: right; padding: 10px 5px;">&euro;{!! number_format($order->total_paid / $order->ticket_amount, 2) !!}</td>
+            <td style="text-align: right; padding: 10px 5px;">&euro;{!!  number_format($order->total_paid, 2) !!}</td>
+            <td style="text-align: right; padding: 10px 5px; width: 60px;">&euro;{!!  number_format($order->total_paid - ($order->total_paid - ($order->total_paid / 121) * 21), 2) !!}</td>
         </tr>
 
         <tr class="">
@@ -222,7 +222,7 @@
             <td colspan="2" style="text-align: right">
                 <br>
                 <br>
-                <b>TAX: <span >€{{number_format($order->total_paid - ($order->total_paid - ($order->total_paid / 121) * 21), 2)}}</span></b>
+                <b>BTW: <span >€{{number_format($order->total_paid - ($order->total_paid - ($order->total_paid / 121) * 21), 2)}}</span></b>
             </td>
         </tr>
 
@@ -231,12 +231,12 @@
             <td> </td>
             <td> </td>
             <td colspan="2" style="text-align: right">
-                <b>Total: <span >€{{$order->total_paid}}</span></b>
+                <b>Totaal: <span >€{{$order->total_paid}}</span></b>
             </td>
         </tr>
     </table>
 
-    <div id='footer'>company information</div>
+    {{--<div id='footer'>company information</div>--}}
 
 </div>
 </body>

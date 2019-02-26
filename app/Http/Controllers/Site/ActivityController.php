@@ -28,6 +28,7 @@ class ActivityController extends Controller
 
         //default seo
         $this->seo()
+            ->addImages($event->activity->images())
             ->setTitle($event->activity->title .' | fundoe.nl')
             ->setDescription($event->activity->description);
         //opengraph

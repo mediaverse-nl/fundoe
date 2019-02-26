@@ -76,8 +76,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.', 'mi
     Route::get('notificaties', 'NotificationController@index')->name('notification.index');
     Route::get('notificaties/{id}', 'NotificationController@show')->name('notification.show');
 
-    Route::get('pdf/streamInvoice/{id}', 'PDFController@streamInvoice')->name('pdf.streamInvoice');
-    Route::get('pdf/downloadInvoice{id}', 'PDFController@downloadInvoice')->name('pdf.downloadInvoice');
+    Route::get('pdf/streamInvoice/{id}', 'PdfController@streamInvoice')->name('pdf.streamInvoice');
+    Route::get('pdf/downloadInvoice{id}', 'PdfController@downloadInvoice')->name('pdf.downloadInvoice');
 });
 
 Route::name('webhooks.mollie')->post('webhooks/mollie', 'Site\WebhookController@handle');
