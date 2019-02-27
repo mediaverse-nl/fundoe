@@ -1,7 +1,10 @@
 @extends('layouts.app')
 
+@section('breadcrumb')
+    {!! Breadcrumbs::render('auth.order.index') !!}
+@endsection
+
 @section('content')
-    <br>
 
     <div class="container">
         <div class="row">
@@ -17,40 +20,32 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Datum</th>
+                                    <th>start datum</th>
                                     <th>activiteit</th>
+                                    <th>status</th>
                                     <th>opties</th>
                                 </tr>
                             </thead>
                             <tbody>
+                            @foreach(auth()->user()->orders()->get() as $orders)
                                 <tr>
                                     <td>
-                                        1
+                                        {!! $orders->id !!}
                                     </td>
                                     <td>
-                                        1-9-2020
+                                        {!! $orders->event->start_datetime->format('d-m-Y - h:i') !!}
                                     </td>
                                     <td>
-                                        Zaalvoetbal
+                                        {!! $orders->event->activity->title !!}
                                     </td>
                                     <td>
-                                        <a class="btn btn-sx btn-success" href="{!! route('auth.order.show', 1) !!}">bekijken</a>
+                                        {!! $orders->event->status !!}
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-sm btn-success" href="{!! route('auth.order.show', $orders->id) !!}">bekijken</a>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>
-                                        1
-                                    </td>
-                                    <td>
-                                        5-2-2020
-                                    </td>
-                                    <td>
-                                        Zaalvoetbal
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-sx btn-success" href="{!! route('auth.order.show', 1) !!}">bekijken</a>
-                                    </td>
-                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>

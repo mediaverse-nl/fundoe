@@ -1,7 +1,10 @@
 @extends('layouts.app')
 
+@section('breadcrumb')
+    {!! Breadcrumbs::render('auth.account.edit') !!}
+@endsection
+
 @section('content')
-    <br>
 
     <div class="container">
 

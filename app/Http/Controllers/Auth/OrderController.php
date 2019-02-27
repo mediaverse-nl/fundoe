@@ -17,12 +17,19 @@ class OrderController extends Controller
 
     public function index()
     {
-//        $order = $this->order->get();
-        return view('auth.order.index');
+
+         return view('auth.order.index');
     }
 
-    public function show()
+    public function show($id)
     {
-        return view('auth.order.show');
+        if (!in_array($id, auth()->user()->orders()->pluck('id')->toArray())){
+            return abort(404);
+        }
+
+        $order = $this->order->findOrFail($id);
+
+        return view('auth.order.show')
+            ->with('order', $order);
     }
 }

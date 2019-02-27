@@ -1,7 +1,11 @@
 @extends('layouts.app')
 
+@section('breadcrumb')
+    {!! Breadcrumbs::render('auth.order.show', $order) !!}
+@endsection
+
 @section('content')
-    <br>
+
 
     <div class="container">
         <div class="row">
@@ -13,7 +17,7 @@
                     <div class="card-body">
                         <h2 class="">Bestelling</h2>
                         <br>
-                        ddd
+                        {!! $order !!}
                     </div>
                 </div>
             </div>

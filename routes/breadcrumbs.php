@@ -171,3 +171,25 @@ Breadcrumbs::register('site.activity.show', function ($breadcrumbs, $model) {
     $breadcrumbs->parent('site.category.show', $model->activity->category);
     $breadcrumbs->push($model->activity->title, route('site.activity.show', [$model->title, $model->id]));
 });
+
+
+// auth panel
+Breadcrumbs::register('auth.panel', function ($breadcrumbs) {
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Paneel', route('auth.panel'));
+});
+// auth account edit
+Breadcrumbs::register('auth.account.edit', function ($breadcrumbs) {
+    $breadcrumbs->parent('auth.panel');
+    $breadcrumbs->push('account wijzigen', route('auth.account.edit'));
+});
+// auth order index
+Breadcrumbs::register('auth.order.index', function ($breadcrumbs) {
+    $breadcrumbs->parent('auth.panel');
+    $breadcrumbs->push('bestelling(en)', route('auth.order.index'));
+});
+// auth order show
+Breadcrumbs::register('auth.order.show', function ($breadcrumbs, $model) {
+    $breadcrumbs->parent('auth.order.index');
+    $breadcrumbs->push('Bestelling: '.$model->id, route('auth.order.show', $model->id));
+});

@@ -37,6 +37,11 @@ class User extends Authenticatable
         return $this->hasMany('App\SocialIdentity');
     }
 
+    public function orders()
+    {
+        return $this->hasMany('App\Order','user_id', 'id');
+    }
+
     /**
      * @param bool $redirect
      * @return bool|void

@@ -1,7 +1,10 @@
 @extends('layouts.app')
 
+@section('breadcrumb')
+    {!! Breadcrumbs::render('auth.panel') !!}
+@endsection
+
 @section('content')
-    <br>
 
     <div class="container">
 
@@ -69,37 +72,47 @@
                                             {!! Form::text('email', null, ['class' => 'form-control', 'disabled']) !!}
                                          </div>
                                      </div>
-                                    <div class="form-group">
-                                        {!! Form::label('email', 'E-mail') !!}
-                                        {!! Form::text('email', null, ['class' => 'form-control', 'disabled']) !!}
+                                    <div class="form-group row">
+                                        {!! Form::label('first_name', 'Voornaam', ['class' => 'col-sm-3']) !!}
+                                        <div class="col-sm-9">
+                                            {!! Form::text('first_name', null, ['class' => 'form-control', 'disabled']) !!}
+                                         </div>
                                      </div>
-                                    <div class="form-group">
-                                        {!! Form::label('first_name', 'Voornaam') !!}
-                                        {!! Form::text('first_name', null, ['class' => 'form-control', 'disabled']) !!}
+                                    <div class="form-group row">
+                                        {!! Form::label('last_name', 'Achternaam', ['class' => 'col-sm-3']) !!}
+                                        <div class="col-sm-9">
+                                            {!! Form::text('last_name', null, ['class' => 'form-control', 'disabled']) !!}
+                                         </div>
                                      </div>
-                                    <div class="form-group">
-                                        {!! Form::label('last_name', 'Achternaam') !!}
-                                        {!! Form::text('last_name', null, ['class' => 'form-control', 'disabled']) !!}
+                                    <div class="form-group row">
+                                        {!! Form::label('country', 'Land', ['class' => 'col-sm-3']) !!}
+                                        <div class="col-sm-9">
+                                            {!! Form::text('country', null, ['class' => 'form-control', 'disabled']) !!}
+                                         </div>
                                      </div>
-                                    <div class="form-group">
-                                        {!! Form::label('country', 'Land') !!}
-                                        {!! Form::text('country', null, ['class' => 'form-control', 'disabled']) !!}
+                                    <div class="form-group row">
+                                        {!! Form::label('city', 'Stad', ['class' => 'col-sm-3']) !!}
+                                        <div class="col-sm-9">
+                                            {!! Form::text('city', null, ['class' => 'form-control', 'disabled']) !!}
+                                         </div>
                                      </div>
-                                    <div class="form-group">
-                                        {!! Form::label('city', 'Stad') !!}
-                                        {!! Form::text('city', null, ['class' => 'form-control', 'disabled']) !!}
+                                    <div class="form-group row">
+                                        {!! Form::label('zipcode', 'Postcode', ['class' => 'col-sm-3']) !!}
+                                        <div class="col-sm-9">
+                                            {!! Form::text('zipcode', null, ['class' => 'form-control', 'disabled']) !!}
+                                         </div>
                                      </div>
-                                    <div class="form-group">
-                                        {!! Form::label('zipcode', 'Postcode') !!}
-                                        {!! Form::text('zipcode', null, ['class' => 'form-control', 'disabled']) !!}
+                                    <div class="form-group row">
+                                        {!! Form::label('street_name', 'Adres', ['class' => 'col-sm-3']) !!}
+                                        <div class="col-sm-9">
+                                            {!! Form::text('street_name', null, ['class' => 'form-control', 'disabled']) !!}
+                                         </div>
                                      </div>
-                                    <div class="form-group">
-                                        {!! Form::label('street_name', 'Adres') !!}
-                                        {!! Form::text('street_name', null, ['class' => 'form-control', 'disabled']) !!}
-                                     </div>
-                                    <div class="form-group">
-                                        {!! Form::label('street_nr', 'Adres nr') !!}
-                                        {!! Form::text('street_nr', null, ['class' => 'form-control', 'disabled']) !!}
+                                    <div class="form-group row">
+                                        {!! Form::label('street_nr', 'Adres nr', ['class' => 'col-sm-3']) !!}
+                                        <div class="col-sm-9">
+                                            {!! Form::text('street_nr', null, ['class' => 'form-control', 'disabled']) !!}
+                                         </div>
                                      </div>
                                 {!! Form::close() !!}
                             </div>

@@ -38,23 +38,19 @@
                                  @endforeach
                             @endif
                         </ul>
-
+                        <br>
+                        <div class="social-icons">
+                            <b>Deel het met je vriend(en)</b>
+                            <br>
+                            <a href="https://www.facebook.com/sharer/sharer.php?u={!! 'fundoe.nl/'.request()->path() !!}" class="fa fa-facebook"></a>
+                            <a href="https://twitter.com/intent/tweet?text={!! $event->activity->title. ' - ' .$event->activity->description  !!}&amp;url={!! 'fundoe.nl/'.request()->path() !!}" class="fa fa-twitter"></a>
+                            <a href="https://plus.google.com/share?url={!! 'fundoe.nl/'.request()->path() !!}" class="fa fa-google"></a>
+                            <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url={!! 'fundoe.nl/'.request()->path() !!}&amp;title={!! $event->activity->title  !!}&amp;summary={!! $event->activity->description  !!}" class="fa fa-linkedin"></a>
+                        </div>
+                        <br>
                     </div>
                     <div class="details col-md-6">
                         <h1 class="product-title">{!! $event->activity->title !!}</h1>
-                        {{--<div class="rating">--}}
-                            {{--<div class="stars">--}}
-                                {{--<span class="fa fa-star checked"></span>--}}
-                                {{--<span class="fa fa-star checked"></span>--}}
-                                {{--<span class="fa fa-star checked"></span>--}}
-                                {{--<span class="fa fa-star"></span>--}}
-                                {{--<span class="fa fa-star"></span>--}}
-                            {{--</div>--}}
-                            {{--<span class="review-no">{!! $event !!} reviews</span>--}}
-                        {{--</div>--}}
-                        {{--<p class="product-description">Suspendisse quos? Tempus cras iure temporibus? Eu laudantium cubilia sem sem! Repudiandae et! Massa senectus enim minim sociosqu delectus posuere.</p>--}}
-                        {{--<h4 class="price">Prijs p.p. <span>{!! $event->activity->price !!}</span></h4>--}}
-                        {{--<p class="vote"><strong>91%</strong> of buyers enjoyed this activity! <strong>(87 votes)</strong></p>--}}
                         <div class="form-group">
                              <b>Regio</b><br>
                             {!! $event->activity->region !!}
@@ -66,16 +62,6 @@
                             <b>Beschrijving</b><br>
                             {!! $event->activity->description !!}
                         </div>
-
-                        <div class="social-icons">
-                            <b>Deel het met je vriend(en)</b>
-                            <br>
-                            <a href="https://www.facebook.com/sharer/sharer.php?u={!! 'fundoe.nl/'.request()->path() !!}" class="fa fa-facebook"></a>
-                            <a href="https://twitter.com/intent/tweet?text={!! $event->activity->title. ' - ' .$event->activity->description  !!}&amp;url={!! 'fundoe.nl/'.request()->path() !!}" class="fa fa-twitter"></a>
-                            <a href="https://plus.google.com/share?url={!! 'fundoe.nl/'.request()->path() !!}" class="fa fa-google"></a>
-                            <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url={!! 'fundoe.nl/'.request()->path() !!}&amp;title={!! $event->activity->title  !!}&amp;summary={!! $event->activity->description  !!}" class="fa fa-linkedin"></a>
-                        </div>
-                        <br>
 
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item">
@@ -93,22 +79,32 @@
                                 </div>
                                 <div class="row">
 
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <b>Start op</b><br>
                                             {!! $event->start_datetime->format('d-m-y h:i') !!}
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <b>Doel</b><br>
+                                            {!! $event->countSoldTickets() !!} / {!! $event->activity->min_number_of_people .' ~'. $event->activity->max_number_of_people !!}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <div class="form-group">
+                                                <b>Doelgroep</b><br>
+                                                {!! $event->target_group !!}
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
+                                <b>Tot aanmelding sluit</b>
+
                                 <div id="countdown" data-countdown="{!! $event->timeToOrder('Y/m/d H:i:s') !!}" style="border: 1px solid #cccccc; margin-bottom: 20px; padding: 10px 0; text-align: center;"></div>
 
-{{--                                        {!! dd($event->countSoldTickets()) !!}--}}
-
                                 {!! Form::open(['route' => ['site.order.store.public'], 'method' => 'POST']) !!}
-
 
                                 <div class="form-group">
                                     <b>Tickets</b>

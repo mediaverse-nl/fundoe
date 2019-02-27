@@ -188,7 +188,7 @@
             </td>
 
             <td>
-                Kaatjes
+                Kaartjes
             </td>
             <td style="text-align: right">
                 Stuk prijs
