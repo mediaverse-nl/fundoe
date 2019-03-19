@@ -98,7 +98,10 @@ class CategoryController extends Controller
             ->orderBy('start_datetime', 'asc')
             ->where(function ($q){
                 if (Input::has('prijs') ){
-                    $q->whereBetween('price', [explode(',',Input::get('prijs'))[0], explode(',',Input::get('prijs'))[1]]);
+                    $q->whereBetween('price', [
+                        explode(',',Input::get('prijs'))[0],
+                        explode(',',Input::get('prijs'))[1]
+                    ]);
                 }
                 if (Input::has('van_datum') ){
                     $q->where('start_datetime', '>=', Input::get('van_datum'));

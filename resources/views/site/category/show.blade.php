@@ -221,7 +221,6 @@
 
 <script type="text/javascript">
     $( document ).ready(function() {
-
         $("#countdown")
             .countdown("2017/01/01", function(event) {
                 $(this).text(
