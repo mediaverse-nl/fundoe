@@ -26,6 +26,8 @@ class InfoUpdateRequest extends FormRequest
         return [
             'voornaam' => 'required|min:6|max:70|string',
             'achternaam' => 'required|min:6|max:70|string',
+//          +31 6 56779761 format
+            'telefoon_nr' => 'regex:/^\+31 6\ [0-9]{8}$/',
             'land' => 'required|min:4|max:40|string',
             'stad' => 'required|min:3|max:50|string',
             'postcode' => 'required|min:6|max:6|string',

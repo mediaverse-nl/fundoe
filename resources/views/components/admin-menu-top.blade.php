@@ -70,9 +70,16 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+
+        <a href="{{ route('logout') }}"
+           class="nav-link"
+           onclick="event.preventDefault();
+           document.getElementById('logout-form').submit();">
             <i class="fa fa-fw fa-sign-out"></i>
             Logout
         </a>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            {{ csrf_field() }}
+        </form>
     </li>
 </ul>

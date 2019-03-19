@@ -55,14 +55,19 @@
                             {!! Form::text('gebruikersnaam', auth()->user()->name, ['class' => 'form-control'.(!$errors->has('gebruikersnaam') ? '': ' is-invalid '), 'disabled']) !!}
                             @include('components.error', ['field' => 'gebruikersnaam'])
                         </div>
-
                         <div class="form-group">
-                            {!! Form::label('voornaam', 'voornaam') !!}
+                            {!! Form::label('telefoon_nr', 'telefoon nr') !!}
+                            {!! Form::text('telefoon_nr', auth()->user()->phone_nr, ['class' => 'form-control'.(!$errors->has('telefoon_nr') ? '': ' is-invalid ')]) !!}
+                            @include('components.error', ['field' => 'telefoon_nr'])
+                            <amall class="text-muted">+31 6 xxxxxxxx</amall>
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('voornaam', 'voornaam *') !!}
                             {!! Form::text('voornaam', auth()->user()->first_name, ['class' => 'form-control'.(!$errors->has('voornaam') ? '': ' is-invalid ')]) !!}
                             @include('components.error', ['field' => 'voornaam'])
                         </div>
                         <div class="form-group">
-                            {!! Form::label('achternaam', 'achternaam') !!}
+                            {!! Form::label('achternaam', 'achternaam *') !!}
                             {!! Form::text('achternaam', auth()->user()->last_name, ['class' => 'form-control'.(!$errors->has('achternaam') ? '': ' is-invalid ')]) !!}
                             @include('components.error', ['field' => 'achternaam'])
                         </div>
@@ -72,22 +77,22 @@
                             @include('components.error', ['field' => 'land'])
                         </div>
                         <div class="form-group">
-                            {!! Form::label('stad', 'stad') !!}
+                            {!! Form::label('stad', 'stad *') !!}
                             {!! Form::text('stad', auth()->user()->city, ['class' => 'form-control'.(!$errors->has('stad') ? '': ' is-invalid ')]) !!}
                             @include('components.error', ['field' => 'stad'])
                         </div>
                         <div class="form-group">
-                            {!! Form::label('postcode', 'postcode') !!}
+                            {!! Form::label('postcode', 'postcode *') !!}
                             {!! Form::text('postcode', auth()->user()->zipcode, ['class' => 'form-control'.(!$errors->has('postcode') ? '': ' is-invalid ')]) !!}
                             @include('components.error', ['field' => 'postcode'])
                         </div>
                         <div class="form-group">
-                            {!! Form::label('straat', 'straat') !!}
+                            {!! Form::label('straat', 'straat *') !!}
                             {!! Form::text('straat',  auth()->user()->street_name, ['class' => 'form-control'.(!$errors->has('straat') ? '': ' is-invalid ')]) !!}
                             @include('components.error', ['field' => 'straat'])
                         </div>
                         <div class="form-group">
-                            {!! Form::label('straat_nr', 'straat nr') !!}
+                            {!! Form::label('straat_nr', 'straat nr *') !!}
                             {!! Form::text('straat_nr', auth()->user()->street_nr, ['class' => 'form-control'.(!$errors->has('straat_nr') ? '': ' is-invalid ')]) !!}
                             @include('components.error', ['field' => 'straat_nr'])
                         </div>
