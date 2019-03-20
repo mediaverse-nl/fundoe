@@ -89,11 +89,7 @@ class CategoryController extends Controller
         $events = $this->event
             ->whereHas('activity', function ($q) use ($category) {
                 $q->where('category_id', '=', $category->id);
-//                dd(Input::get('prijs'));
-
             })
-//            ->reviewRating(Input::get('rating'))
-
             ->whereDate('start_datetime', '>=', $from)
             ->orderBy('start_datetime', 'asc')
             ->where(function ($q){

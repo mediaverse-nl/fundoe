@@ -14,7 +14,7 @@ class AddPhoneToUsers extends Migration
     public function up()
     {
         Schema::table('users', function($table) {
-            $table->string('phone_nr');
+            $table->string('phone_nr')->nullable();
          });
     }
 

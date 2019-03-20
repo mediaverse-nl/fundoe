@@ -38,16 +38,6 @@
                                  @endforeach
                             @endif
                         </ul>
-                        <br>
-                        <div class="social-icons">
-                            <b>Deel het met je vriend(en)</b>
-                            <br>
-                            <a href="https://www.facebook.com/sharer/sharer.php?u={!! 'fundoe.nl/'.request()->path() !!}" class="fa fa-facebook"></a>
-                            <a href="https://twitter.com/intent/tweet?text={!! $event->activity->title. ' - ' .$event->activity->description  !!}&amp;url={!! 'fundoe.nl/'.request()->path() !!}" class="fa fa-twitter"></a>
-                            <a href="https://plus.google.com/share?url={!! 'fundoe.nl/'.request()->path() !!}" class="fa fa-google"></a>
-                            <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url={!! 'fundoe.nl/'.request()->path() !!}&amp;title={!! $event->activity->title  !!}&amp;summary={!! $event->activity->description  !!}" class="fa fa-linkedin"></a>
-                        </div>
-                        <br>
                     </div>
                     <div class="details col-md-6">
                         <h1 class="product-title">{!! $event->activity->title !!}</h1>
@@ -61,6 +51,18 @@
                             {{--{!! $errors->first('*') !!}--}}
                             <b>Beschrijving</b><br>
                             {!! $event->activity->description !!}
+
+                            <br>
+                            <br>
+
+                            <div class="social-icons">
+                                <b>Deel het met je vriend(en)</b>
+                                <br>
+                                <a href="https://www.facebook.com/sharer/sharer.php?u={!! 'fundoe.nl/'.request()->path() !!}" class="fa fa-facebook"></a>
+                                <a href="https://twitter.com/intent/tweet?text={!! $event->activity->title. ' - ' .$event->activity->description  !!}&amp;url={!! 'fundoe.nl/'.request()->path() !!}" class="fa fa-twitter"></a>
+                                <a href="https://plus.google.com/share?url={!! 'fundoe.nl/'.request()->path() !!}" class="fa fa-google"></a>
+                                <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url={!! 'fundoe.nl/'.request()->path() !!}&amp;title={!! $event->activity->title  !!}&amp;summary={!! $event->activity->description  !!}" class="fa fa-linkedin"></a>
+                            </div>
                         </div>
 
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -239,8 +241,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-countdown/2.1.0/js/jquery.plugin.min.js"></script>
     <script type="text/javascript" src="https://cdn.rawgit.com/hilios/jQuery.countdown/2.1.0/dist/jquery.countdown.min.js"></script>
 
-
-
     <script type="text/javascript">
         $( document ).ready(function() {
 
@@ -257,9 +257,6 @@
                     $this.html(event.strftime('%D dagen %H:%M:%S uur'));
                 });
             });
-
-
-
 
            var pricePerHourGroup = $("#pricePerHourGroup");
            var selectedAmountGroup = $("#selectedAmountGroup");

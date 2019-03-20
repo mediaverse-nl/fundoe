@@ -18,11 +18,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
-        .social-icons {
-            padding: 20px;
+        .social-icons  a{
+            padding: 5px;
             width: 30px;
             height: 30px;
-            /*font-size: 30px;*/
+            /*font-size: ;*/
+            font-size: 25px;
             /*min-width: 50px;*/
             /*!*text-align: center;*!*/
             /*text-decoration: none;*/
