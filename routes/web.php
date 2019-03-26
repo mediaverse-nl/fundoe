@@ -71,7 +71,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.', 'mi
     Route::resource('faq', 'FaqController');
     Route::patch('editor/{id}/update', 'TextController@update')->name('text-editor.update');
     Route::resource('editor', 'TextController', ['only' => ['index', 'edit']]);
-    Route::resource('seo-manager', 'SEOController');
+    Route::resource('seo-manager', 'SeoController');
     Route::get('file-manager', 'FileManagerController@index')->name('file-manager.index');
     Route::get('notificaties', 'NotificationController@index')->name('notification.index');
     Route::get('notificaties/{id}', 'NotificationController@show')->name('notification.show');

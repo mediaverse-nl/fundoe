@@ -55,12 +55,18 @@
                             {!! Form::text('gebruikersnaam', auth()->user()->name, ['class' => 'form-control'.(!$errors->has('gebruikersnaam') ? '': ' is-invalid '), 'disabled']) !!}
                             @include('components.error', ['field' => 'gebruikersnaam'])
                         </div>
+
+                        {!! Form::label('telefoon_nr', 'telefoon nr') !!}
                         <div class="form-group">
-                            {!! Form::label('telefoon_nr', 'telefoon nr') !!}
-                            {!! Form::text('telefoon_nr', auth()->user()->phone_nr, ['class' => 'form-control'.(!$errors->has('telefoon_nr') ? '': ' is-invalid ')]) !!}
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">+31 6</span>
+                                </div>
+                                {!! Form::text('telefoon_nr', auth()->user()->phone_nr, ['class' => 'form-control'.(!$errors->has('telefoon_nr') ? '': ' is-invalid ')]) !!}
+                            </div>
                             @include('components.error', ['field' => 'telefoon_nr'])
-                            <amall class="text-muted">+31 6 xxxxxxxx</amall>
                         </div>
+                        {{--<amall class="text-muted">+31 6 xxxxxxxx</amall>--}}
                         <div class="form-group">
                             {!! Form::label('voornaam', 'voornaam *') !!}
                             {!! Form::text('voornaam', auth()->user()->first_name, ['class' => 'form-control'.(!$errors->has('voornaam') ? '': ' is-invalid ')]) !!}

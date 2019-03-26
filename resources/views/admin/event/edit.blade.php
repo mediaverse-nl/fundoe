@@ -13,7 +13,7 @@
 
                         <div class="form-group">
                             {!! Form::label('price', 'Price') !!}<b>  <small>(advies prijs {!! number_format($event->diffInTime() / 60 * $event->activity->price_per_hour, 2)!!})</small></b>
-                            {!! Form::number('price', null, ['class' => 'form-control'.(!$errors->has('price') ? '': ' is-invalid ')]) !!}
+                            {!! Form::number('price', null, ['class' => 'form-control'.(!$errors->has('price') ? '': ' is-invalid '), 'step' => 'any']) !!}
                             <small class="muted">*use . to separate</small>
                             @include('components.error', ['field' => 'price'])
                         </div>

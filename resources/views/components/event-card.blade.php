@@ -1,4 +1,4 @@
-<div class="col-md-6 col-sm-12 col-xs-12" style="padding: 10px 10px; border-radius: 0px;">
+<div class="col-md-6 col-sm-6 col-xs-12" style="padding: 10px 10px; border-radius: 0px;">
     <div class="card shadow-sm bg-white" style="border-radius: 0px;" >
         <img class="card-img-top" src="{!! $event->activity->thumbnail() !!}" alt="Card image cap" height="210px;" style="border-radius: 0px">
         <div class="text-center" style="width: 100% !important; background: #eeeeee; padding-top: 5px;">
@@ -18,9 +18,6 @@
                     ])
                         @slot('title')
                             {!! $event->activity->title !!}
-                        @endslot
-                        @slot('actionBtn')
-                            Modal Heading - test
                         @endslot
                     @endcomponent
                     {{--<!-- Large modal -->--}}

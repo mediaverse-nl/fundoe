@@ -7,6 +7,8 @@ use App\Event;
 use App\Traits\SeoManager;
 use Artesaos\SEOTools\Traits\SEOTools;
 use App\Http\Controllers\Controller;
+use Illuminate\Contracts\Encryption\DecryptException;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Input;
 
 class CategoryController extends Controller
@@ -64,15 +66,33 @@ class CategoryController extends Controller
 
         $query = collect(request()->query)->toArray();
 
-        foreach ($query as $q => $v){
-            if ($v == null || $v = '' || empty($v)){
-                $cleanUrl = array_filter($query);
-                $decodeUrl = urldecode(http_build_query($cleanUrl));
-                $newQuery = "?".$decodeUrl;
+        $queryWithOutFilter = array_except($query, ['filter']);
+
+         if (!Input::has('filter') && !empty($queryWithOutFilter)){
+            $encrypted = Crypt::encryptString(json_encode($query));
+            return redirect(
+            route('site.category.show', $id).'?filter='.$encrypted
+            );
+        }
+
+        if (Input::has('filter') ){
+            try {
+                $decrypted = Crypt::decryptString(Input::get('filter'));
+            } catch (DecryptException $e) {
                 return redirect(
-                    route('site.category.show', $id).$newQuery
+                    route('site.category.show', $id)
                 );
             }
+
+            $filter = json_decode($decrypted, true);
+
+            if (empty(array_filter($filter))) {
+                return redirect(
+                    route('site.category.show', $id)
+                );
+            }
+        }else{
+            $filter = [];
         }
 
         $categories = $this->category->get();
@@ -83,32 +103,30 @@ class CategoryController extends Controller
             ->whereHas('activity', function ($q) use ($category) {
                 $q->where('category_id', '=', $category->id);
             })
+            ->where('status', '=', 'public')
             ->whereDate('start_datetime', '>=', $from)
             ->orderBy('start_datetime', 'asc');
 
         $events = $this->event
-            ->whereHas('activity', function ($q) use ($category) {
+            ->whereHas('activity', function ($q) use ($category, $filter) {
                 $q->where('category_id', '=', $category->id);
-//                dd(Input::get('prijs'));
 
-            })
-//            ->reviewRating(Input::get('rating'))
-
-            ->whereDate('start_datetime', '>=', $from)
-            ->orderBy('start_datetime', 'asc')
-            ->where(function ($q){
-                if (Input::has('prijs') ){
-                    $q->whereBetween('price', [explode(',',Input::get('prijs'))[0], explode(',',Input::get('prijs'))[1]]);
-                }
-                if (Input::has('van_datum') ){
-                    $q->where('start_datetime', '>=', Input::get('van_datum'));
-                }
-                if (Input::has('tot_datum') ){
-                    $q->where('end_datetime', '<=', Input::get('tot_datum'));
-                }
-                if(Input::has('groep') && Input::get('groep') !== null){
+                if(!empty($filter['regios']) && $filter['regios'] !== null){
                     $i = 1;
-                    foreach (Input::get('groep') as $i){
+                    foreach ($filter['regios'] as $v){
+                         if ($i == 1){
+                            $q->where('activity.region', $v);
+                        } else{
+                            $q->orWhere('region', '=', $v);
+                        }
+                        $i++;
+                    }
+                }
+            })
+            ->where(function ($q) use ($filter){
+                if(!empty($filter['groep']) && $filter['groep'] !== null){
+                    $i = 1;
+                    foreach ($filter['groep'] as $i){
                         if ($i == 1){
                             $q->where('target_group', '=', $i);
                         } else{
@@ -118,12 +136,29 @@ class CategoryController extends Controller
                     }
                 }
             })
+            ->where(function ($q) use ($filter){
+                if (!empty($filter['van_datum'])){
+                    $q->where('start_datetime', '>=', $filter['van_datum']);
+                }
+                if (!empty($filter['tot_datum'])){
+                    $q->where('end_datetime', '<=', $filter['tot_datum']);
+                }
+            })
+            ->where(function ($q) use ($filter){
+                if (!empty($filter['prijs']) ){
+                    $q->whereBetween('price', [explode(',',$filter['prijs'])[0], explode(',',$filter['prijs'])[1]]);
+                }
+            })
+            ->where('status', '=', 'public')
+            ->whereDate('start_datetime', '>=', $from)
+            ->orderBy('start_datetime', 'asc')
             ->get();
 
         return view('site.category.show')
             ->with('baseActivity', $baseActivity)
             ->with('baseEvents', $baseEvents)
             ->with('events', $events)
+            ->with('filter', $filter)
             ->with('categories', $categories)
             ->with('category', $category);
     }

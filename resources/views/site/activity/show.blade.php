@@ -13,8 +13,7 @@
                     <div class="preview col-md-6">
 
                         <div class="preview-pic tab-content square shadow">
-                            {{--{!! dd($event->activity->images()) !!}--}}
-                            @if($event->activity->images() != null)
+                             @if($event->activity->images() != null)
                                 @foreach($event->activity->images() as $img)
                                     <div class="tab-pane square-inn {!! $loop->first ? 'active' : null !!} show" id="pic-{!! $loop->index+1 !!}">
                                         <img src="{!! $img !!}" class=""/>
@@ -131,7 +130,7 @@
 
 
                                 <div class="form-group">
-                                    <h3><small>Prijs per uur </small> € {!! $event->activity->price_per_hour !!} <small>p.p.</small></h3>
+                                    <h3><small>Prijs per uur </small> € {!! number_format($event->activity->price_per_hour, 2) !!} <small>p.p.</small></h3>
                                 </div>
 
                                 <div class="row">
@@ -154,7 +153,7 @@
                                         <div class="input-group-append" data-target="#datetimepicker" data-toggle="datetimepicker"  style="-moz-border-radius-bottomleft: .25rem;">
                                             <div class="input-group-text" style="border-right: none;"><i class="fa fa-calendar"></i></div>
                                         </div>
-                                        {!! Form::text('activiteit_datum', null, ['class' => 'datetimepicker-input form-control'.(!$errors->has('activiteit_datum') ? '': ' is-invalid '), 'data-toggle' => 'datetimepicker', 'data-target' => '#datetimepicker', 'autocomplete' => 'off']) !!}
+                                        {!! Form::text('activiteit_datum', null, ['class' => 'datetimepicker-input form-control'.(!$errors->has('activiteit_datum') ? '': ' is-invalid '), 'data-toggle' => 'datetimepicker', 'data-target' => '#datetimepicker', 'autocomplete' => 'off', 'id' => 'datetimepicker']) !!}
                                     </div>
                                     @include('components.error', ['field' => 'activiteit_datum'])
 
@@ -239,8 +238,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-countdown/2.1.0/js/jquery.plugin.min.js"></script>
     <script type="text/javascript" src="https://cdn.rawgit.com/hilios/jQuery.countdown/2.1.0/dist/jquery.countdown.min.js"></script>
 
-
-
     <script type="text/javascript">
         $( document ).ready(function() {
 
@@ -259,7 +256,24 @@
             });
 
 
+            Date.prototype.addDays = function(days) {
+                this.setDate(this.getDate() + parseInt(days));
+                return this;
+            };
 
+            var today = new Date().addDays(2);
+
+            $('#datetimepicker').datetimepicker({
+                useCurrent: false,
+                minDate: new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), today.getMinutes()),
+                autoclose: true,
+                todayBtn: true,
+                format: 'YYYY/MM/DD',
+                inline: true,
+                sideBySide: true
+            });
+
+            $('#datetimepicker').datetimepicker('minDate', new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), today.getMinutes()));
 
            var pricePerHourGroup = $("#pricePerHourGroup");
            var selectedAmountGroup = $("#selectedAmountGroup");
@@ -280,7 +294,6 @@
                 console.log(pricePerHourGroup.val());
                 console.log((pricePerHourGroup.val() * selectedAmountGroup.val()));
             });
-
         });
 
     </script>

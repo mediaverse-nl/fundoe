@@ -68,7 +68,15 @@
             <a class="dropdown-item small" href="{!! route('admin.notification.index') !!}">View all alerts</a>
         </div>
     </li>
+    <li class="nav-item">
 
+        <a href="{{ route('home') }}"
+           class="nav-link"
+           onclick="">
+            <i class="fa fa-fw fa-home"></i>
+            Terug
+        </a>
+    </li>
     <li class="nav-item">
 
         <a href="{{ route('logout') }}"

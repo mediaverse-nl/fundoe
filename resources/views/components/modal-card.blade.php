@@ -46,21 +46,37 @@
                             <div class="tab-pane fade {!! Session::has('activityType') ? (Session::get('activityType') == 'public' ? 'active show':'') : 'show active'!!}" id="public{!! $event->id !!}" role="tabpanel" aria-labelledby="public-tab">
                                 <br>
                                 <div class="form-group">
-                                    <b>Start op</b><br>
-                                    {!! $event->start_datetime->format('d-m-y h:i') !!}
-                                </div>
-                                {{--<b>Eindigt over: </b><br>--}}
-                                <div id="countdown" data-countdown="{!! $event->timeToOrder('Y/m/d H:i:s') !!}" style="border: 1px solid #cccccc; margin-bottom: 20px; padding: 10px 0; text-align: center;">46 weeks 6 days 20h 44m 31s</div>
-                                {{--<h3 class="" style="" data-countdown="{!! $event->timeToOrder('Y/m/d H:i:s') !!}">{!! $event->timeToOrder('Y/m/d H:i:s') !!}</h3>--}}
-
-                                @if(isset($form) ? $form : true)
-                                    {!! Form::open(['route' => ['site.order.store.public'], 'method' => 'POST']) !!}
-                                @endif
-                                {!! Form::hidden('id', $targetId) !!}
-
-                                <div class="form-group">
                                     <h3><small>Prijs </small> € {!! $event->price !!} <small>p.p.</small></h3>
+                                    <input id="pricePerHourGroup" style="display: none;" value="{!! $event->price !!}">
                                 </div>
+                                <div class="row">
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <b>Start op</b><br>
+                                            <small>{!! $event->start_datetime->format('d-m-y h:i') !!}</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <b>Doel</b><br>
+                                            <small>{!! $event->countSoldTickets() !!} / {!! $event->activity->min_number_of_people .' ~'. $event->activity->max_number_of_people !!}</small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <div class="form-group">
+                                                <b>Doelgroep</b><br>
+                                                <small>{!! $event->target_group !!}</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <b>Tot aanmelding sluit</b>
+
+                                <div id="countdown" data-countdown="{!! $event->timeToOrder('Y/m/d H:i:s') !!}" style="border: 1px solid #cccccc; margin-bottom: 20px; padding: 10px 0; text-align: center;"></div>
+
+                                {!! Form::open(['route' => ['site.order.store.public'], 'method' => 'POST']) !!}
 
                                 <div class="form-group">
                                     <b>Tickets</b>
@@ -112,11 +128,11 @@
 
                                 <div class="form-group">
                                     <b>Selecteer een datum en tijd</b>
-                                    <div class="input-group datetimepicker{!! (!$errors->has('activiteit_datum') ? '': ' is-invalid ') !!}" id="datetimepicker{!! $targetId !!}" data-target-input="nearest" data-date-min-date="0" data-date-today-highlight="true" data-date-format="YYYY-MM-DD HH:mm" style="margin-bottom: 5px; border-radius: 5px;">
-                                        <div class="input-group-append" data-target="#datetimepicker{!! $targetId !!}" data-toggle="datetimepicker"  style="-moz-border-radius-bottomleft: .25rem;">
+                                    <div class="input-group {!! (!$errors->has('activiteit_datum') ? '': ' is-invalid ') !!}" id="datetimepicker{!! $targetId !!}" data-target-input="nearest" data-date-min-date="0" data-date-today-highlight="true" data-date-format="YYYY-MM-DD HH:mm" style="margin-bottom: 5px; border-radius: 5px;">
+                                        <div class="input-group-append" data-target="#da etimepicker{!! $targetId !!}" data-toggle="datetimepicker"  style="-moz-border-radius-bottomleft: .25rem;">
                                             <div class="input-group-text" style="border-right: none;"><i class="fa fa-calendar"></i></div>
                                         </div>
-                                        {!! Form::text('activiteit_datum', null, ['class' => 'datetimepicker-input form-control'.(!$errors->has('activiteit_datum') ? '': ' is-invalid '), 'data-toggle' => 'datetimepicker', 'data-target' => '#datetimepicker'.$targetId, 'autocomplete' => 'off']) !!}
+                                        {!! Form::text('activiteit_datum', null, ['class' => 'form-control'.(!$errors->has('activiteit_datum') ? '': ' is-invalid '), 'data-toggle' => 'datet mepicker', 'id' => 'datumprikker', 'data-target' => '#datetimepicker'.$targetId, 'autocomplete' => 'off']) !!}
                                     </div>
                                     @include('components.error', ['field' => 'activiteit_datum'])
 

@@ -9,8 +9,7 @@
     <div class="container product-cards">
 
         <div class="row">
-            <div class="col-sm-3">
-                {{--<p>Filter</p>--}}
+            <div class="col">
                 {!! Form::open(['route' => ['site.category.show', $category->id], 'method' => 'get', 'id' => 'filterForm']) !!}
 
                 <div class="list-group shadow-sm bg-white" style="border-radius: 0px !important;">
@@ -22,6 +21,34 @@
                 </div>
 
                 <br>
+
+                @if(number_format($baseEvents->min('price'),0) !== number_format($baseEvents->max('price'),0))
+                    <div class="card shadow-sm bg-white">
+                        <header class="card-header">
+                            <h6 class="title">Prijs range </h6>
+                        </header>
+                        <div class="filter-content">
+                            <div class="card-body">
+                                <div class="form-row">
+                                    <div class="form-group col-md-12" style="padding-top: 15px;">
+                                        <div class="row text-center">
+                                            <div class="col-2" style="padding: 5px;"><small>{!! number_format($baseEvents->min('price'),0) !!}</small></div>
+                                            <div class="col-8" style="padding: 3px 5px;">
+                                                <input style="width: 100% !important;" name="prijs" class="custom-range" type="hidden"
+                                                       data-slider-min="{!! number_format($baseEvents->min('price'),0) !!}"
+                                                       data-slider-max="{!! number_format($baseEvents->max('price'),0) !!}"
+                                                       data-slider-value="[{!! !empty($filter['prijs']) ? explode(',',$filter['prijs'])[0] : number_format($baseEvents->min('price'),0) !!},{!! !empty($filter['prijs']) ? explode(',',$filter['prijs'])[1] : number_format($baseEvents->max('price'),0) !!}]"/>
+                                            </div>
+                                            <div class="col-2" style="padding: 5px;"><small>{!! number_format($baseEvents->max('price'),0) !!}</small></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> <!-- card-body.// -->
+                        </div>
+                    </div> <!-- card.// -->
+
+                    <br>
+                @endif
 
                 <div class="card shadow-sm bg-white" style="border-radius: 0px;">
                     <header class="card-header">
@@ -37,7 +64,7 @@
                                         </div>
                                          <input class="datetimepicker-input form-control"
                                                 name="van_datum"
-                                                value="{!! \Illuminate\Support\Facades\Input::has('van_datum') ? \Illuminate\Support\Facades\Input::get('van_datum') : '' !!}"
+                                                value="{!! !empty($filter['van_datum']) ? $filter['van_datum'] : '' !!}"
                                                 data-toggle="datetimepicker"
                                                 data-target="#datetimepicker1"
                                                 autocomplete="off"
@@ -50,7 +77,7 @@
                                         </div>
                                          <input class="datetimepicker-input form-control"
                                                 name="tot_datum"
-                                                value="{!! \Illuminate\Support\Facades\Input::has('tot_datum') ? \Illuminate\Support\Facades\Input::get('tot_datum') : '' !!}"
+                                                value="{!! !empty($filter['tot_datum']) ? $filter['tot_datum'] : '' !!}"
                                                 data-toggle="datetimepicker"
                                                 data-target="#datetimepicker2"
                                                 autocomplete="off"
@@ -65,33 +92,6 @@
                 </div>
 
                 <br>
-                @if(number_format($baseEvents->min('price'),0) !== number_format($baseEvents->max('price'),0))
-                    <div class="card shadow-sm bg-white">
-                        <header class="card-header">
-                            <h6 class="title">Prijs range </h6>
-                        </header>
-                        <div class="filter-content">
-                            <div class="card-body">
-                                <div class="form-row">
-                                    <div class="form-group col-md-12" style="padding-top: 15px;">
-                                        <div class="row text-center">
-                                            <div class="col-2" style="padding: 5px;">{!! number_format($baseEvents->min('price'),0) !!}</div>
-                                            <div class="col-8" style="padding: 3px 5px;">
-                                                <input style="width: 100% !important;" name="prijs" class="custom-range" type="hidden"
-                                                       data-slider-min="{!! number_format($baseEvents->min('price'),0) !!}"
-                                                       data-slider-max="{!! number_format($baseEvents->max('price'),0) !!}"
-                                                       data-slider-value="[{!!\Illuminate\Support\Facades\Input::has('prijs') ? explode(',',\Illuminate\Support\Facades\Input::get('prijs'))[0] : number_format($baseEvents->min('price'),0) !!},{!! \Illuminate\Support\Facades\Input::has('prijs') ? explode(',',\Illuminate\Support\Facades\Input::get('prijs'))[1] : number_format($baseEvents->max('price'),0) !!}]"/>
-                                            </div>
-                                            <div class="col-2" style="padding: 5px;">{!! number_format($baseEvents->max('price'),0) !!}</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> <!-- card-body.// -->
-                        </div>
-                    </div> <!-- card.// -->
-
-                    <br>
-                @endif
 
                 <div class="card shadow-sm bg-white">
                     <header class="card-header">
@@ -100,9 +100,9 @@
                     <div class="filter-content">
                         <div class="card-body">
                             @foreach($baseEvents->get()->groupBy('target_group') as $target)
-                                <div class="custom-control custom-checkbox">
+                                <div class="custom-control text-truncate custom-checkbox">
                                     <span class="float-right badge badge-light round">{!! $target->count() !!}</span>
-                                    <input type="checkbox" name="groep[]" class="custom-control-input" value="{!! $target->first()->target_group  !!}" id="Check{!! $target->first()->id !!}" {!! \Illuminate\Support\Facades\Input::has('groep') ? (in_array($target->first()->target_group, \Illuminate\Support\Facades\Input::get('groep')) ? 'checked' : '') : '' !!}>
+                                    <input type="checkbox" name="groep[]" class="custom-control-input" value="{!! $target->first()->target_group  !!}" id="Check{!! $target->first()->id !!}" {!! !empty($filter['groep']) ? (in_array($target->first()->target_group, $filter['groep']) ? 'checked' : '') : '' !!}>
                                     <label class="custom-control-label" for="Check{!! $target->first()->id !!}">{!! $target->first()->target_group !!}</label>
                                 </div> <!-- form-check.// -->
                             @endforeach
@@ -119,8 +119,8 @@
                     <div class="filter-content">
                         <div class="card-body">
                             @foreach($baseActivity->groupBy('region') as $re)
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" name="regios[]" class="custom-control-input" id="regio{!! $re->first()->id !!}" value="{!! $re->first()->region !!}" {!! \Illuminate\Support\Facades\Input::has('regios') ? (in_array($re->first()->region, \Illuminate\Support\Facades\Input::get('regios')) ? 'checked' : '') : 'nu' !!} />
+                                <div class="custom-control text-truncate custom-checkbox">
+                                    <input type="checkbox" name="regios[]" class="custom-control-input" id="regio{!! $re->first()->id !!}" value="{!! $re->first()->region !!}" {!! !empty($filter['regios']) ? (in_array($re->first()->region, $filter['regios']) ? 'checked' : '') : 'nu' !!} />
                                     <label class="custom-control-label" for="regio{!! $re->first()->id !!}">{!! $re->first()->region !!}</label>
                                 </div> <!-- form-check.// -->
                             @endforeach
@@ -133,7 +133,7 @@
                 {!! Form::close() !!}
                 <br>
             </div>
-            <div class="col-9">
+            <div class="col-md-9">
 
                 <div style="margin-top: -7px;">
                     @if($events->count() > 1)
@@ -247,18 +247,14 @@
             }, 1500);
         }
         function submitForm(){
-            console.log('test');
             $( "#filterForm" ).submit();
         }
         $('#datetimepicker1').change(function() {
-            console.log('date');
-
             intervalTimer();
         });
 
         $('#filterForm').change(function() {
-            console.log('renew');
-            intervalTimer();
+             intervalTimer();
         });
 
         Date.prototype.addDays = function(days) {
@@ -268,23 +264,29 @@
 
         var today = new Date().addDays(2);
 
+        $('#datumprikker').datetimepicker({
+            useCurrent: false,
+            minDate: new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), today.getMinutes()),
+            autoclose: true,
+            format: 'YYYY/MM/DD HH:mm',
+            inline: true,
+            sideBySide: true
+        }, 9);
+
         $('#datetimepicker1').datetimepicker({
             useCurrent: false,
             minDate: new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), today.getMinutes()),
             autoclose: true,
-            todayBtn: true,
             format: 'YYYY/MM/DD'
-        });
+        }, 9);
         $('#datetimepicker2').datetimepicker({
             useCurrent: false,
             minDate: new Date(today.getFullYear(), today.getMonth(), today.getDate()),
             autoclose: true,
             format: 'YYYY/MM/DD'
         });
-        {{--$('#datetimepicker2').datetimepicker('minDate', {!! \Illuminate\Support\Facades\Input::has('van_datum') ? \Illuminate\Support\Facades\Input::get('van_datum') : '' !!});--}}
-        {{--$('#datetimepicker1').datetimepicker('maxDate', {!! \Illuminate\Support\Facades\Input::has('tot_datum') ? \Illuminate\Support\Facades\Input::get('tot_datum') : '' !!});--}}
+
         $("#datetimepicker1").on("change.datetimepicker", function (e) {
-            // console.log(e.date);
             $('#datetimepicker2').datetimepicker('minDate', e.date);
              intervalTimer();
         });
@@ -292,6 +294,10 @@
             $('#datetimepicker1').datetimepicker('maxDate', e.date);
             intervalTimer();
         });
+
+        if ($('#datetimepicker1').data().date != null){
+            $('#datetimepicker2').datetimepicker('minDate', $('#datetimepicker1').data().date);
+        }
     });
 </script>
 @endpush
