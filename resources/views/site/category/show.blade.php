@@ -197,7 +197,7 @@
         font-weight: 400;
         line-height: 1.42857143;
         text-align: left;
-        text-align: start;
+        /*text-align: start;*/
         text-decoration: none;
         text-shadow: none;
         text-transform: none;
@@ -221,7 +221,6 @@
 
 <script type="text/javascript">
     $( document ).ready(function() {
-
         $("#countdown")
             .countdown("2017/01/01", function(event) {
                 $(this).text(
