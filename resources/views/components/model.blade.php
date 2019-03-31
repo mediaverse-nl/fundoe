@@ -3,10 +3,10 @@
     <div data-toggle="modal" data-target="#{!! $id !!}" data-placement="top">
         <i class="{!! $btnIcon or '' !!}" style="color: #FFFFFF !important;" ></i>
         @if(!empty($btnTitle))
-            {!! $btnTitle !!}
+             {!! $btnTitle !!}
         @endif
-    </div>
-</a>
+     </div>
+ </a>
 
 <!-- Modal -->
 <div class="modal fade" id="{!! $id !!}" tabindex="-1" role="dialog" aria-labelledby="{!! $id !!}Label" aria-hidden="true">
@@ -28,7 +28,9 @@
                         {!! Form::submit('Proceed', ['class' => 'btn btn-primary', 'style' => "border-radius: 0px;"]) !!}
                     {!! Form::close() !!}
                 @elseif(str_contains($title, 'Refund'))
-                    {!! Form::submit('Proceed', ['class' => 'btn btn-primary', 'style' => "border-radius: 0px;"]) !!}
+                    {!! Form::open(['url' => $actionRoute, 'method' => 'patch']) !!}
+                        {!! Form::submit('Proceed', ['class' => 'btn btn-primary', 'style' => "border-radius: 0px;"]) !!}
+                    {!! Form::close() !!}
                 @elseif(str_contains($title, 'Edit'))
                     {!! Form::submit('Proceed', ['class' => 'btn btn-primary', 'style' => "border-radius: 0px;"]) !!}
                 @elseif(str_contains($title, 'Create'))

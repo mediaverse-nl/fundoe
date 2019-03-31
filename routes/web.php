@@ -66,7 +66,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.', 'mi
     Route::resource('order', 'OrderController');
     Route::resource('activity', 'ActivityController');
 
-    Route::get('mollie-refund/test', 'MollieController@refund')->name('mollie.refund');
+    Route::patch('mollie-refund-{id}', 'MollieController@refund')->name('mollie.refund');
 
     Route::resource('faq', 'FaqController');
     Route::patch('editor/{id}/update', 'TextController@update')->name('text-editor.update');

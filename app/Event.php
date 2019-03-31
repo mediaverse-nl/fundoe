@@ -160,6 +160,14 @@ class Event extends Model
         return collect(['kinderen' => 'kinderen', 'tieners' => 'tieners', 'jongvolwassenen' => 'jongvolwassenen', 'volwassenen' => 'volwassenen', 'ouderen' => 'ouderen', 'stelletjes' => 'stelletjes', 'iedereen' => 'iedereen'])->toArray();
     }
 
+    public function reachGoal()
+    {
+        if ($this->countSoldTickets() <= $this->min_number_of_people){
+            return true;
+        }
+        return false;
+    }
+
 //    public function getPriceAttribute()
 //    {
 //        return $this->activity()->price_per_hour ;

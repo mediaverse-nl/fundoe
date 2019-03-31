@@ -35,7 +35,7 @@
                                 <div class="input-group-append" data-target="#datetimepicker" data-toggle="datetimepicker" style="-moz-border-radius-bottomleft: .25rem;">
                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                 </div>
-                                {!! Form::text('start_datetime', $event->start_datetime->format('Y-m-d H:i'), ['class' => 'datetimepicker-input form-control'.(!$errors->has('start_datetime') ? '': ' is-invalid '), 'data-toggle' => 'datetimepicker', 'data-target' => '#datetimepicker']) !!}
+                                {!! Form::text('start_datetime', $event->start_datetime->format('Y-m-d H:i'), ['class' => 'datetimepicker-input form-control'.(!$errors->has('start_datetime') ? '': ' is-invalid '), 'data-toggle' => 'datetimepicker', 'data-target' => '#datetimepicker', 'autocomplete' => 'off']) !!}
                             </div>
                             @include('components.error', ['field' => 'start_datetime'])
                         </div>
@@ -57,7 +57,12 @@
             <div class="card">
                 <div class="card-body">
 
-                    <a href="" class="btn btn-danger">annuleren</a>
+                    <b>goal:</b>
+                    {!! $event->countSoldTickets() !!} / {!! $event->activity->min_number_of_people .' ~'. $event->activity->max_number_of_people !!}
+                    <br>
+                    <br>
+
+                    {{--<a href="" class="btn btn-danger btn-block">cancel event</a>--}}
 {{--                    {!! ($event->publicTicketSelection()) !!}--}}
                 </div>
             </div>
@@ -78,7 +83,7 @@
                             </div>
                             <div class="col-6">
 
-                                {!! $order->total_paid !!}<br>
+                                &euro;{!! $order->total_paid !!}<br>
                                 {!! $order->payment_id !!}<br>
                                 {!! $order->payment_method !!}<br><br>
 
@@ -92,13 +97,18 @@
                 </div>
             @endforeach
 
+
+            {{--<div class="card">--}}
+                {{--<div class="card-header">--}}
+                    {{--Tickets--}}
+                {{--</div>--}}
+                {{--<div class="card-body">--}}
+                    {{--sdasd--}}
+                {{--</div>--}}
+            {{--</div>--}}
         </div>
         <div class="col-6">
-            <div class="card">
-                <div class="card-body">
-                    sdasd
-                </div>
-            </div>
+
         </div>
     </div>
 
@@ -116,9 +126,14 @@
             $('#datetimepicker').datetimepicker({
                 minDate: new Date(today.getFullYear(), today.getMonth(), (today.getDate() + 2), today.getHours(), today.getMinutes()),
                 autoclose: true,
-                useCurrent: false,
-                todayBtn: true,
-                format: 'YYYY-MM-DD HH:mm'
+                useCurrent: true,
+                // todayBtn: true,
+                // format: 'YYYY-MM-DD HH:mm'
+
+                // useCurrent: false,
+                // minDate: new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), today.getMinutes()),
+                // autoclose: true,
+                format: 'YYYY/MM/DD HH:mm',
             });
         });
     </script>

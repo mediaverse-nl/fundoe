@@ -129,6 +129,38 @@
                 </div>
                 <!-- /.row -->
 
+                <div class="multiple-items">
+                    <div style="padding: 5px 10px 10px 0px;">
+                        <div class="card">
+                            <div class="card-body">
+                                asdasd
+                            </div>
+                        </div>
+                    </div>
+                    <div style="padding: 5px 10px 10px 0px;">
+                        <div class="card">
+                            <div class="card-body">
+                                asdasd
+                            </div>
+                        </div>
+                    </div>
+                    <div style="padding: 5px 10px 10px 0px;">
+                        <div class="card">
+                            <div class="card-body">
+                                asdasd
+                            </div>
+                        </div>
+                    </div>
+                    <div style="padding: 5px 10px 10px 0px;">
+                        <div class="card">
+                            <div class="card-body">
+                                asdasd
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
             <!-- /.col-lg-9 -->
 
@@ -141,6 +173,8 @@
 @endsection
 
 @push('css')
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css"/>
     <link href="{{ asset('/css/site/category.css') }}" rel="stylesheet">
     <style>
         .carousel-inner{
@@ -165,9 +199,40 @@
         {
             content: '';
         }
+
+        .slick-prev:before,
+        .slick-next:before {
+            font-family: FontAwesome;
+            font-size: 15px;
+            line-height: 1;
+            color: red;
+            opacity: 0.75;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .slick-prev:before {
+            content: "\f053";
+        }
+        [dir="rtl"] .slick-prev:before { content: "\f054"; }
+
+        [dir="rtl"] .slick-next { left: -10px; top: 70px; right: auto; }
+        .slick-next:before { content: "\f054"; }
+        [dir="rtl"] .slick-next:before { content: "\f053"; }
+
     </style>
 @endpush
 
 @push('js')
-
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+    <script>
+        $('.multiple-items').slick({
+            infinite: false,
+            slidesToShow: 2,
+            slidesToScroll: 1,
+            arrows: true,
+            // nextArrow: '<button class="slick-next slick-arrow" style="" aria-disabled="false"><i class="fas fa-chevron-right"></i></button>',
+            // prevArrow: '<button class="slick-prev slick-arrow"><i class="fas fa-chevron-left"></i></button>',
+        });
+    </script>
 @endpush

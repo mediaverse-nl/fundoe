@@ -2,32 +2,44 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Mollie\Laravel\Facades\Mollie;
 
 class MollieController extends Controller
 {
+    protected $order;
 
-
-    public function refund()
+    public function __construct(Order $order)
     {
-//        dd();
+        $this->order = $order;
+    }
 
-        $payment = Mollie::api()->payments()->get('tr_3uckDENjWr');
+    public function refund(Request $request, $id)
+    {
+        $order = $this->order->findOrFail($id);
+
+        $payment = Mollie::api()->payments()->get($order->payment_id);
 
         if ($payment->canBeRefunded() && $payment->amountRemaining >= 2.00)
         {
-//            dd($payment,$payment->amount,$payment->amountRemaining);
-            $refund = Mollie::api()->payments()->refund($payment, $payment->amount);
+             $refund = Mollie::api()
+                ->payments()
+                ->refund($payment, $payment->amount);
+
+            $order->status = 'pending';
+            $order->save();
 //            echo "{$refund->amount->currency} {$refund->amount->value} of payment {$paymentId} refunded.", PHP_EOL;
         } else {
             return 'fail';
-            echo "Payment {$paymentId} can not be refunded.", PHP_EOL;
+//            echo "Payment {$paymentId} can not be refunded.", PHP_EOL;
         }
+
+        return redirect()->back();
 //
 
-        dd($refund);
+//        dd($refund);
 
     }
 }
