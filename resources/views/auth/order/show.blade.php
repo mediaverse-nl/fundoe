@@ -17,6 +17,10 @@
                     <div class="card-body">
                         <h2 class="">Bestelling</h2>
 
+                        <table class="table">
+
+                        </table>
+
                         check if event min is made
 
                         else check if payment is recured
@@ -44,8 +48,8 @@
 
                         <br>
                         <br>
-                        <a class="btn btn-success">download</a>
-                        <a class="btn btn-success">bekijken</a>
+                        <a class="btn btn-success text-white">download</a>
+                        <a class="btn btn-success text-white">bekijken</a>
 
                     </div>
                 </div>

@@ -17,8 +17,7 @@ class OrderController extends Controller
 
     public function index()
     {
-
-         return view('auth.order.index');
+        return view('auth.order.index');
     }
 
     public function show($id)
