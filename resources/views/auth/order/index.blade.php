@@ -27,7 +27,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            @foreach(auth()->user()->orders()->get() as $orders)
+                            @foreach(auth()->user()->orders()->orderBy('id', 'DESC')->get() as $orders)
                                 <tr>
                                     <td>
                                         {!! $orders->id !!}

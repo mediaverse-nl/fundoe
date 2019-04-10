@@ -27,7 +27,6 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = $this->category->get();
-
         //default seo
         $this->seo()
             ->setTitle($this->getPageSeo()->title.' | fundoe.nl')
