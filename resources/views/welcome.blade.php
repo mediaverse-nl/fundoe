@@ -65,101 +65,25 @@
             <!-- /.col-lg-3 -->
 
             <div class="col-lg-9">
+                <h2 class="my-4">Best lopende events</h2>
+
+                <div class="multiple-items" style=" ">
+                    @foreach($bestSoldEvent as $i)
+                        @component('components.event-card', ['event' => $i, 'width' => true])
+
+                        @endcomponent
+                    @endforeach
+                </div>
+
                 <h2 class="my-4">Populaire events</h2>
 
-                {{--<div class="row" style="margin-top: -10px;">--}}
-                    {{--@foreach($bestRatedEvent as $event)--}}
-                        {{--@component('components.event-card', ['event' => $event])--}}
-                        {{--@endcomponent--}}
-                    {{--@endforeach--}}
-                {{--</div>--}}
+                <div class="multiple-items" style=" ">
+                    @foreach($bestSoldEvent as $i)
+                        @component('components.event-card', ['event' => $i, 'width' => true])
 
-                <h2 class="my-4">Beste reviews</h2>
-
-                <div class="row">
-
-                    {{--<div class="col-lg-4 col-md-6 mb-4">--}}
-                        {{--<div class="card h-100">--}}
-                            {{--<a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>--}}
-                            {{--<div class="card-body">--}}
-                                {{--<h4 class="card-title">--}}
-                                    {{--<a href="#">Item Four</a>--}}
-                                {{--</h4>--}}
-                                {{--<h5>$24.99</h5>--}}
-                                {{--<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>--}}
-                            {{--</div>--}}
-                            {{--<div class="card-footer">--}}
-                                {{--<small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-
-                    {{--<div class="col-lg-4 col-md-6 mb-4">--}}
-                        {{--<div class="card h-100">--}}
-                            {{--<a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>--}}
-                            {{--<div class="card-body">--}}
-                                {{--<h4 class="card-title">--}}
-                                    {{--<a href="#">Item Five</a>--}}
-                                {{--</h4>--}}
-                                {{--<h5>$24.99</h5>--}}
-                                {{--<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor sit amet.</p>--}}
-                            {{--</div>--}}
-                            {{--<div class="card-footer">--}}
-                                {{--<small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-
-                    {{--<div class="col-lg-4 col-md-6 mb-4">--}}
-                        {{--<div class="card h-100">--}}
-                            {{--<a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>--}}
-                            {{--<div class="card-body">--}}
-                                {{--<h4 class="card-title">--}}
-                                    {{--<a href="#">Item Six</a>--}}
-                                {{--</h4>--}}
-                                {{--<h5>$24.99</h5>--}}
-                                {{--<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>--}}
-                            {{--</div>--}}
-                            {{--<div class="card-footer">--}}
-                                {{--<small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-
+                        @endcomponent
+                    @endforeach
                 </div>
-                <!-- /.row -->
-
-                <div class="multiple-items">
-                    <div style="padding: 5px 10px 10px 0px;">
-                        <div class="card">
-                            <div class="card-body">
-                                asdasd
-                            </div>
-                        </div>
-                    </div>
-                    <div style="padding: 5px 10px 10px 0px;">
-                        <div class="card">
-                            <div class="card-body">
-                                asdasd
-                            </div>
-                        </div>
-                    </div>
-                    <div style="padding: 5px 10px 10px 0px;">
-                        <div class="card">
-                            <div class="card-body">
-                                asdasd
-                            </div>
-                        </div>
-                    </div>
-                    <div style="padding: 5px 10px 10px 0px;">
-                        <div class="card">
-                            <div class="card-body">
-                                asdasd
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
 
             </div>
             <!-- /.col-lg-9 -->
@@ -205,7 +129,7 @@
             font-family: FontAwesome;
             font-size: 15px;
             line-height: 1;
-            color: red;
+            color: #212529;
             opacity: 0.75;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
@@ -220,17 +144,42 @@
         .slick-next:before { content: "\f054"; }
         [dir="rtl"] .slick-next:before { content: "\f053"; }
 
+        /*.slide-container {*/
+            /*!*overflow: hidden;*!*/
+        /*}*/
+
+        /*.multiple-items:nth-child(n+1) {*/
+            /*display: none;*/
+        /*}*/
+
+        /*.slick-initialized,*/
+        /*.multiple-items:first-child {*/
+            /*display: block;*/
+        /*}*/
+
     </style>
 @endpush
 
 @push('js')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-countdown/2.1.0/js/jquery.plugin.min.js"></script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/hilios/jQuery.countdown/2.1.0/dist/jquery.countdown.min.js"></script>
+
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
     <script>
+        $("#countdown")
+            .countdown("2017/01/01", function(event) {
+                $(this).text(
+                    event.strftime('%D days %H:%M:%S')
+                );
+            });
+
         $('.multiple-items').slick({
             infinite: false,
             slidesToShow: 2,
-            slidesToScroll: 1,
+            slidesToScroll: 2,
             arrows: true,
+            variableWidth: false,
+
             // nextArrow: '<button class="slick-next slick-arrow" style="" aria-disabled="false"><i class="fas fa-chevron-right"></i></button>',
             // prevArrow: '<button class="slick-prev slick-arrow"><i class="fas fa-chevron-left"></i></button>',
         });

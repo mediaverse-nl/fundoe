@@ -44,32 +44,18 @@ class WelcomeController extends Controller
             ->whereDate('start_datetime', '>=', $from)
             ->orderBy('start_datetime', 'asc');
 
-
         $bestSoldEvent = $events
-            ->limit(4)
+            ->limit(8)
             ->get();
 
-        $bestRatedEvent = $events
-//            ->whereHas('activity.reviews', function($q) {
-//                $q->havingRaw('AVG(rating) >= ?', [0.1]);
-//            })
-//            ->join('activity', 'activity.id', '=', 'event.activity_id')
-//            ->join('review', 'activity.id', '=', 'review.activity_id')
-
-//            ->selectRaw('AVG(review.rating) AS average_rating')
-//            ->groupBy('event.id')
-
-            //            ->select(DB::raw('avg(rating) as average'))
-//            ->limit(4)
+        $bestRunningEvent = $events
+            ->limit(8)
             ->get();
-
-//        dd($bestRatedEvent);
-
 
         return view('welcome')
             ->with('events', $events)
-            ->with('events', $events)
-            ->with('bestRatedEvent', $bestRatedEvent)
+            ->with('bestSoldEvent', $bestSoldEvent)
+            ->with('bestRunningEvent', $bestRunningEvent)
             ->with('categories', $categories);
     }
 }
