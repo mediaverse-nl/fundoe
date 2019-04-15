@@ -5,10 +5,11 @@ namespace App;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use Nicolaslopezj\Searchable\SearchableTrait;
 
 class Event extends Model
 {
-    use Notifiable;
+    use Notifiable, SearchableTrait;
 
     protected $primaryKey = 'id';
 
@@ -23,6 +24,20 @@ class Event extends Model
     protected $fillable = ['start_datetime', 'end_datetime'];
 
     protected $dates = ['start_datetime', 'end_datetime', 'created_at', 'updated_at', 'deleted_at'];
+
+    protected $searchable = [
+        'columns' => [
+            'event.id' => 10,
+            'event.start_datetime' => 7,
+            'event.price' => 9,
+            'activity.title' => 8,
+            'activity.location' => 3,
+            'activity.region' => 2,
+        ],
+        'joins' => [
+            'activity' => ['event.activity_id','activity.id'],
+        ],
+    ];
 
     public function activity()
     {
@@ -72,6 +87,8 @@ class Event extends Model
             ->where('status', '=', 'paid')
             ->sum('ticket_amount');
     }
+
+
 
     public function scopeReviewRating($q, $input)
     {

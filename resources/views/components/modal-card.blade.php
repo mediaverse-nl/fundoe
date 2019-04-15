@@ -78,6 +78,8 @@
 
                                 {!! Form::open(['route' => ['site.order.store.public'], 'method' => 'POST']) !!}
 
+                                {!! Form::hidden('id', $targetId) !!}
+
                                 <div class="form-group">
                                     <b>Tickets</b>
                                     {!! Form::select('tickets', array_combine($event->publicTicketSelection(), $event->publicTicketSelection()), null, ['class' => 'form-control'.(!$errors->has('tickets') ? '': ' is-invalid ')]) !!}
@@ -169,9 +171,9 @@
 @if(Session::has('id') && $targetId == Session::get('id'))
     @push('js')
         <script type="text/javascript">
-            $(window).on('load',function(){
+            // $(window).on('load',function(){
                 $('.bd-modal-lg-{!! $targetId !!}').modal('show');
-            });
+            // });
         </script>
     @endpush
 @endif

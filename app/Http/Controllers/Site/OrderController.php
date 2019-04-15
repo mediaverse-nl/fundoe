@@ -110,6 +110,8 @@ class OrderController extends Controller
         $order->ticket_amount = $request->tickets;
         $order->save();
 
+
+
         $payment =  $this->mollie->payments()->create([
             "amount"      => number_format($order->total_paid,2),
             "description" => "Order Nr. ". $order->id,

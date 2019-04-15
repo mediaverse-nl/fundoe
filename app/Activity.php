@@ -93,6 +93,11 @@ class Activity extends Model
         return $this->images(1)[0];
     }
 
+    public function getUrlTitleAttribute()
+    {
+        return str_replace('-', '-',  rtrim($this->title));
+    }
+
     public function getActivityNameAttribute()
     {
         return "{$this->id} - {$this->title} - {$this->region}";

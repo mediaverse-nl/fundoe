@@ -42,6 +42,7 @@ Route::group(['namespace' => 'Site', 'as' => 'site.'], function () {
     Route::get('/algemene-voorwaarden', 'PageController@terms')->name('terms');
     Route::get('/privacy-en-cookiebeleid', 'PageController@policy')->name('privacy');
 
+    Route::get('find', 'SearchController@find')->name('search');
 });
 
 //user panel

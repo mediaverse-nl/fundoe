@@ -25,13 +25,11 @@ class PublicOrderStoreRequest extends FormRequest
      */
     public function rules()
     {
-//
-//        dd(1);
         Session::flash('id', (int)$this->request->get('id'));
         Session::flash('activityType', 'public');
 
-        $event = Event::findOrFail($this->request->get('id'));
-//        dd(1);
+        $event = new Event();
+        $event = $event->findOrFail($this->request->get('id'));
         return [
             'tickets' => 'required|numeric|in:'.implode(',', array_combine($event->publicTicketSelection(), $event->publicTicketSelection())),
             'voorwaarden' => 'accepted',

@@ -41,6 +41,7 @@ class WelcomeController extends Controller
         $from = $this->event->ableToOrderDate();
 
         $events = $this->event
+            ->where('status', '=', 'public')
             ->whereDate('start_datetime', '>=', $from)
             ->orderBy('start_datetime', 'asc');
 
