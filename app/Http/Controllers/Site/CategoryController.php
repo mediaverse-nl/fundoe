@@ -137,10 +137,10 @@ class CategoryController extends Controller
             })
             ->where(function ($q) use ($filter){
                 if (!empty($filter['van_datum'])){
-                    $q->where('start_datetime', '>=', $filter['van_datum']);
+                     $q->whereDate('start_datetime', '>=', $filter['van_datum']);
                 }
                 if (!empty($filter['tot_datum'])){
-                    $q->where('end_datetime', '<=', $filter['tot_datum']);
+                    $q->whereDate('start_datetime', '<=', $filter['tot_datum']);
                 }
             })
             ->where(function ($q) use ($filter){

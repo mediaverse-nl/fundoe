@@ -104,6 +104,7 @@
                                 <div id="countdown" data-countdown="{!! $event->timeToOrder('Y/m/d H:i:s') !!}" style="border: 1px solid #cccccc; margin-bottom: 20px; padding: 10px 0; text-align: center;"></div>
 
                                 {!! Form::open(['route' => ['site.order.store.public'], 'method' => 'POST']) !!}
+                                {!! Form::hidden('id', $event->id) !!}
 
                                 <div class="form-group">
                                     <b>Tickets</b>
@@ -127,6 +128,7 @@
                             <div class="tab-pane {!! Session::has('activityType') ? (Session::get('activityType') == 'group' ? 'active show':'') : ''!!}" id="group{!! $event->id !!}" role="tabpanel" aria-labelledby="group-tab">
 
                                 {!! Form::open(['route' => ['site.order.store.group'], 'method' => 'POST']) !!}
+                                {!! Form::hidden('id', $event->id) !!}
 
 
                                 <div class="form-group">

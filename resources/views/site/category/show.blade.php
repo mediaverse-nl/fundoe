@@ -22,7 +22,7 @@
 
                 <br>
 
-                @if(number_format($baseEvents->min('price'),0) !== number_format($baseEvents->max('price'),0))
+                @if(floor($baseEvents->min('price')) !== number_format($baseEvents->max('price'),0))
                     <div class="card shadow-sm bg-white">
                         <header class="card-header">
                             <h6 class="title">Prijs range </h6>
@@ -32,12 +32,12 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-12" style="padding-top: 15px;">
                                         <div class="row text-center">
-                                            <div class="col-2" style="padding: 5px;"><small>{!! number_format($baseEvents->min('price'),0) !!}</small></div>
+                                            <div class="col-2" style="padding: 5px;"><small>{!! floor($baseEvents->min('price')) !!}</small></div>
                                             <div class="col-8" style="padding: 3px 5px;">
                                                 <input style="width: 100% !important;" name="prijs" class="custom-range" type="hidden"
-                                                       data-slider-min="{!! number_format($baseEvents->min('price'),0) !!}"
+                                                       data-slider-min="{!! floor($baseEvents->min('price')) !!}"
                                                        data-slider-max="{!! number_format($baseEvents->max('price'),0) !!}"
-                                                       data-slider-value="[{!! !empty($filter['prijs']) ? explode(',',$filter['prijs'])[0] : number_format($baseEvents->min('price'),0) !!},{!! !empty($filter['prijs']) ? explode(',',$filter['prijs'])[1] : number_format($baseEvents->max('price'),0) !!}]"/>
+                                                       data-slider-value="[{!! !empty($filter['prijs']) ? explode(',',$filter['prijs'])[0] : floor($baseEvents->min('price')) !!},{!! !empty($filter['prijs']) ? explode(',',$filter['prijs'])[1] : number_format($baseEvents->max('price'),0) !!}]"/>
                                             </div>
                                             <div class="col-2" style="padding: 5px;"><small>{!! number_format($baseEvents->max('price'),0) !!}</small></div>
                                         </div>
