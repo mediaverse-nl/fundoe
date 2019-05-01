@@ -41,7 +41,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password-confirm">Herhaal watchwoord</label>
+                            <label for="password-confirm">Herhaal wachtwoord</label>
                             <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             @if ($errors->has('password'))
                                 <span class="help-block">

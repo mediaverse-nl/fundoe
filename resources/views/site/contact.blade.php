@@ -47,7 +47,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="form_need">Orderwerp *</label>
+                                    <label for="form_need">Onderwerp *</label>
                                     <select id="form_need" name="need" class="form-control">
                                         <option value=""> --- </option>
                                         <option value="Vraag offerte aan">Vraag offerte aan</option>
@@ -83,10 +83,10 @@
 
             </div>
             <div class="col-6">
-                <div class="card" style="border-radius: 0px; height: 320px; ">
-                    <iframe width="100%" height="100%" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=daalakkersweg+2.182&key=AIzaSyAEBiBb3bt-BPv07wGskZaTHcwSIk97xUg" allowfullscreen></iframe>
-                </div>
-                <br>
+                {{--<div class="card" style="border-radius: 0px; height: 320px; ">--}}
+                    {{--<iframe width="100%" height="100%" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=daalakkersweg+2.182&key=AIzaSyAEBiBb3bt-BPv07wGskZaTHcwSIk97xUg" allowfullscreen></iframe>--}}
+                {{--</div>--}}
+                {{--<br>--}}
                 @component('components.card')
                     {!! Editor('contact_info_text', 'richtext', false, '
                     Title van dit stuck

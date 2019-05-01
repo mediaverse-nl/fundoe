@@ -13,7 +13,7 @@ class CreateTextTable extends Migration
             $table->string('key_name');
             $table->enum('text_type', ['textarea', 'richtext', 'text']);
             $table->string('option', 1000)->nullable();
-            $table->string('text',  10000)->nullable();
+            $table->string('text',  80000)->nullable();
             $table->unique(['key_name']);
         });
     }
