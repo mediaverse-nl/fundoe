@@ -25,7 +25,7 @@
                 @if(floor($baseEvents->min('price')) !== number_format($baseEvents->max('price'),0))
                     <div class="card shadow-sm bg-white">
                         <header class="card-header">
-                            <h6 class="title">Prijs range </h6>
+                            <h6 class="title">Prijsrange </h6>
                         </header>
                         <div class="filter-content">
                             <div class="card-body">
@@ -95,7 +95,7 @@
 
                 <div class="card shadow-sm bg-white">
                     <header class="card-header">
-                        <h6 class="title">Doel groep </h6>
+                        <h6 class="title">Doelgroep </h6>
                     </header>
                     <div class="filter-content">
                         <div class="card-body">
@@ -144,13 +144,9 @@
                 </div>
 
                 <div class="row">
-
                     @foreach($events as $event)
-
                         @component('components.event-card', ['event' => $event])
-
                         @endcomponent
-
                     @endforeach
                 </div>
 
