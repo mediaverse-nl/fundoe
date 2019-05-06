@@ -35,7 +35,9 @@
                 <h2 class="my-4">Categorieen</h2>
                 <div class="list-group shadow-sm bg-white">
                     @foreach($categories as $category)
-                        <a href="{!! route('site.category.show', $category->id) !!}" class="list-group-item" style="border-radius: 0px !important;">{!! $category->value !!}</a>
+                        <a href="{!! route('site.category.show', $category->id) !!}" class="list-group-item" style="border-radius: 0px !important;">
+                            {!! $category->value !!}
+                        </a>
                     @endforeach
                 </div>
 
@@ -47,7 +49,7 @@
 
                 <div class="multiple-items" style=" ">
                     @foreach($bestSoldEvent as $i)
-                        @component('components.event-card', ['event' => $i, 'width' => true])
+                        @component('components.event-card', ['event' => $i, 'width' => false])
 
                         @endcomponent
                     @endforeach
@@ -57,7 +59,7 @@
 
                 <div class="multiple-items" style=" ">
                     @foreach($bestSoldEvent as $i)
-                        @component('components.event-card', ['event' => $i, 'width' => true])
+                        @component('components.event-card', ['event' => $i, 'width' => false])
 
                         @endcomponent
                     @endforeach
@@ -319,7 +321,8 @@
                         '<div class="list-group search-results-dropdown">'
                     ],
                     suggestion: function (data) {
-                        return '<a href="' + $.trim(data.activity.title.replace(" ", "-")) + '/activiteit-' +data.id + '" class="list-group-item">'
+                        return '<a href="' + $.trim(data.activity.title.replace(" ", "-")) + '/activiteit-'
+                            + data.id + '" class="list-group-item">'
                             + '<h2>' + data.activity.title + '</h2>'
                             + ' ' + data.start_datetime
                             + '</a>'
@@ -342,15 +345,15 @@
                 $this.html(event.strftime('%D dagen %H:%M:%S'));
             });
         });
-        $('.multiple-items').slick({
-            infinite: false,
-            slidesToShow: 2,
-            slidesToScroll: 2,
-            arrows: true,
-            variableWidth: false,
-
-            // nextArrow: '<button class="slick-next slick-arrow" style="" aria-disabled="false"><i class="fas fa-chevron-right"></i></button>',
-            // prevArrow: '<button class="slick-prev slick-arrow"><i class="fas fa-chevron-left"></i></button>',
-        });
+//        $('.multiple-items').slick({
+//            infinite: false,
+//            slidesToShow: 2,
+//            slidesToScroll: 2,
+//            arrows: true,
+//            variableWidth: false,
+//
+//            // nextArrow: '<button class="slick-next slick-arrow" style="" aria-disabled="false"><i class="fas fa-chevron-right"></i></button>',
+//            // prevArrow: '<button class="slick-prev slick-arrow"><i class="fas fa-chevron-left"></i></button>',
+//        });
     </script>
 @endpush
