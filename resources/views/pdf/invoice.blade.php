@@ -115,7 +115,8 @@
                 <table >
                     <tr>
                         <td class="title">
-                            <img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" style="width:270px;">
+                            fundoe.nl
+                            {{--<img src="" style="width:270px;">--}}
                         </td>
                         <td></td>
 
@@ -136,7 +137,7 @@
                 <table>
                     <tr>
                         <td>
-                            <b>domein.nl</b> <br>
+                            <b>fundoe.nl</b> <br>
                             Straatnaam 28,<br>
                             5555 AB Eindhoven,<br>
                             Nederland

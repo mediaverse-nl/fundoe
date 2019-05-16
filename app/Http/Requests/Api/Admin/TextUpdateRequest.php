@@ -30,7 +30,7 @@ class TextUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'text' => 'required|max:10000|min:1'
+            'text' => 'required|max:80000|min:1'
         ];
     }
 }

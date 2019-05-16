@@ -30,6 +30,12 @@
                         <a href="{!! route('home') !!}">Home</a>
                     </li>
                     <li>
+                        <a href="{!! route('site.activiteiten') !!}">Activiteiten</a>
+                    </li>
+                    <li>
+                        <a href="{!! route('site.categorieen') !!}">Categorieen</a>
+                    </li>
+                    <li>
                         <a href="{!! route('site.about') !!}">Over ons</a>
                     </li>
                     <li>
@@ -51,13 +57,19 @@
 
                 <ul class="list-unstyled">
                     <li>
-                        <a href="#!"><i class="fa-fw fab fa-facebook"></i> Facebook</a>
+                        <a href="https://www.facebook.com/fundoe.nl" target="_blank"><i class="fa-fw fab fa-facebook"></i> Facebook</a>
                     </li>
                     <li>
-                        <a href="#!"><i class="fa-fw fab fa-twitter-square"></i> Twitter</a>
+                        <a href="https://www.instagram.com/fundoe.nl" target="_blank"><i class="fa-fw fab fa-instagram"></i> instagram</a>
                     </li>
                     <li>
-                        <a href="#!"><i class="fa-fw fab fa-instagram"></i> instagram</a>
+                        <a href="https://www.twitter.com/fundoe3" target="_blank"><i class="fa-fw fab fa-twitter-square"></i> Twitter</a>
+                    </li>
+                    <li>
+                        <a href="https://www.pinterest.com/fundoeNederland" target="_blank"><i class="fa-fw fab fa-pinterest"></i> Pinterest</a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/company/fundoe" target="_blank"><i class="fa-fw fab fa-linkedin"></i> LinkedIn</a>
                     </li>
                 </ul>
 

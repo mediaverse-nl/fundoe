@@ -17,39 +17,13 @@
                     <div class="card-body">
                         <h2 class="">Bestelling</h2>
 
-                        <table class="table">
-
-                        </table>
-
-                        check if event min is made
-
-                        else check if payment is recured
-
-                        else pendig on recured payment
-                        <br>
-                        {{--{!! $order !!}--}}
-
-                        {!! $order->ticket_amount !!}
+                        We hebben uw bestelling goed ontvangen
                         <br>
                         <br>
-                        {!! $order->total_paid !!}
+                        Zie hier uw factuur
                         <br>
-                        <br>
-                        {!! $order->payment_id !!}
-                        <br>
-                        <br>
-                        {!! $order->status !!}
-                        <br>
-                        <br>
-                        {!! $order->event !!}
-                        <br>
-                        <br>
-                        {!! $order->event->status !!}
-
-                        <br>
-                        <br>
-                        <a class="btn btn-success text-white">download</a>
-                        <a class="btn btn-success text-white">bekijken</a>
+                        <a class="btn btn-success text-white" href="{!! route('auth.order.download', $order->id) !!}" >download</a>
+                        <a class="btn btn-success text-white" href="{!! route('auth.order.view', $order->id) !!}" target="_black">bekijken</a>
 
                     </div>
                 </div>

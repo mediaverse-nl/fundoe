@@ -26,7 +26,7 @@ Route::get('/home', 'WelcomeController')->name('home');
 Route::get('/', 'WelcomeController')->name('home');
 
 Route::group(['namespace' => 'Site', 'as' => 'site.'], function () {
-    Route::get('/categorieen', 'CategoryController@index')->name('category.index');
+    Route::get('/categorie', 'CategoryController@index')->name('category.index');
     Route::get('/c-{id}', 'CategoryController@show')->name('category.show');
     Route::get('/activiteiten', 'ActivityController@index');
     Route::get('{title}/activiteit-{id}', 'ActivityController@show')->name('activity.show');
@@ -39,6 +39,8 @@ Route::group(['namespace' => 'Site', 'as' => 'site.'], function () {
     Route::post('/contact', 'ContactController@store');
     Route::get('/over-ons', 'PageController@about')->name('about');
     Route::get('/faq', 'PageController@faq')->name('faq');
+    Route::get('/categorieen', 'PageController@categories')->name('categorieen');
+    Route::get('/activiteiten', 'PageController@activiteiten')->name('activiteiten');
     Route::get('/algemene-voorwaarden', 'PageController@terms')->name('terms');
     Route::get('/privacy-en-cookiebeleid', 'PageController@policy')->name('privacy');
 
@@ -50,6 +52,9 @@ Route::group(['prefix' => 'panel', 'namespace' => 'Auth', 'as' => 'auth.', 'midd
     Route::get('/', 'PanelController')->name('panel');
     Route::get('/bestellingen', 'OrderController@index')->name('order.index');
     Route::get('/bestelling-{id}', 'OrderController@show')->name('order.show');
+    Route::get('/pdf-{id}-download', 'OrderController@download')->name('order.download');
+    Route::get('/pdf-{id}-bekijken', 'OrderController@view')->name('order.view');
+
     Route::get('/account-wijzigen', 'UserController@edit')->name('account.edit');
     Route::patch('/watchwoord-update', 'UserController@password')->name('account.password');
     Route::patch('/gegevens-update', 'UserController@info')->name('account.info');

@@ -138,12 +138,17 @@ class OrderController extends Controller
     {
         $order = $this->order->findOrFail($id);
 
+        if($order->user_id != auth()->user()->id){
+            abort(403);
+        }
+
         $payment =  $this->mollie->payments()->get($order->payment_id);
 
         if ($payment->isPaid())
         {
             if ($order->status != 'paid'){
-                Mail::to($order->email)->send(new OrderConfirmation($order));
+                Mail::to($order->email)
+                    ->send(new OrderConfirmation($order));
             }
 
             $order->status = self::STATUS_COMPLETED;

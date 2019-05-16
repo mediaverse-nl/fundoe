@@ -95,6 +95,12 @@
             <span class="nav-link-text">Images</span>
         </a>
     </li>
+    <li class="nav-item {{Request::is('admin/editor*') ? 'active' : ''}}">
+        <a class="nav-link" href="{{route('admin.editor.index')}}">
+            <i class="fa fa-fw fa-align-left"></i>
+            <span class="nav-link-text">Text</span>
+        </a>
+    </li>
 
     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Components">
         <a class="nav-link nav-link-collapse {{Request::is('admin/faq*') ? '' : 'collapsed'}}" data-toggle="collapse" href="#faqComponents" data-parent="#exampleAccordion" aria-expanded="false">

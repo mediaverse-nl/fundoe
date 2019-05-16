@@ -44,27 +44,27 @@
             </div>
             <!-- /.col-lg-3 -->
 
+
+            {{--<div class="row">--}}
+
             <div class="col-lg-9">
-                <h2 class="my-4" style="padding: 0px 10px !important;">Best lopende events</h2>
+                <h2 class="my-4" style="">Best lopende events</h2>
 
-                <div class="multiple-items" style=" ">
-                    @foreach($bestSoldEvent as $i)
-                        @component('components.event-card', ['event' => $i, 'width' => false])
-
+                <div class="row">
+                    @foreach($bestSoldEvent as $event)
+                        @component('components.event-card', ['event' => $event])
                         @endcomponent
                     @endforeach
                 </div>
 
-                <h2 class="my-4" style="padding: 0px 10px !important;">Populaire events</h2>
+                <h2 class="my-4" style="padding: 0px 0px !important;">Populaire events</h2>
 
-                <div class="multiple-items" style=" ">
+                <div class="row">
                     @foreach($bestSoldEvent as $i)
-                        @component('components.event-card', ['event' => $i, 'width' => false])
-
-                        @endcomponent
-                    @endforeach
+                             @component('components.event-card', ['event' => $i])
+                            @endcomponent
+                     @endforeach
                 </div>
-
             </div>
             <!-- /.col-lg-9 -->
 
@@ -82,48 +82,52 @@
     <link href="{{ asset('/css/site/category.css') }}" rel="stylesheet">
 
     <style>
-        .carousel-inner{
-            max-height: 500px;
-        }
-        .carousel-inner .carousel-item{
-            max-height: 500px;
-        }
-        .carousel-item img{
-            height: 500px !important;
-            object-position: center !important;
-            object-fit: cover !important;
-        }
-        .splitter-bar::before {
-            content: '|';
-            display: inline-block;
-            margin: 0 7px;
-            font-size: 0.9em;
-            color: #ccc;
-        }
-        .splitter-bar:first-child:before
-        {
-            content: '';
-        }
+        {{--begin slide--}}
+        /*.carousel-inner{*/
+            /*max-height: 500px;*/
+        /*}*/
+        /*.carousel-inner .carousel-item{*/
+            /*max-height: 500px;*/
+        /*}*/
+        /*.carousel-item img{*/
+            /*height: 500px !important;*/
+            /*object-position: center !important;*/
+            /*object-fit: cover !important;*/
+        /*}*/
+        /*.splitter-bar::before {*/
+            /*content: '|';*/
+            /*display: inline-block;*/
+            /*margin: 0 7px;*/
+            /*font-size: 0.9em;*/
+            /*color: #ccc;*/
+        /*}*/
+        /*.splitter-bar:first-child:before*/
+        /*{*/
+            /*content: '';*/
+        /*}*/
 
-        .slick-prev:before,
-        .slick-next:before {
-            font-family: FontAwesome;
-            font-size: 15px;
-            line-height: 1;
-            color: #212529;
-            opacity: 0.75;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
+        /*.slick-prev:before,*/
+        /*.slick-next:before {*/
+            /*font-family: FontAwesome;*/
+            /*font-size: 15px;*/
+            /*line-height: 1;*/
+            /*color: #212529;*/
+            /*opacity: 0.75;*/
+            /*-webkit-font-smoothing: antialiased;*/
+            /*-moz-osx-font-smoothing: grayscale;*/
+        /*}*/
 
-        .slick-prev:before {
-            content: "\f053";
-        }
-        [dir="rtl"] .slick-prev:before { content: "\f054"; }
+        /*.slick-prev:before {*/
+            /*content: "\f053";*/
+        /*}*/
+        /*[dir="rtl"] .slick-prev:before { content: "\f054"; }*/
 
-        [dir="rtl"] .slick-next { left: -10px; top: 70px; right: auto; }
-        .slick-next:before { content: "\f054"; }
-        [dir="rtl"] .slick-next:before { content: "\f053"; }
+        /*[dir="rtl"] .slick-next { left: -10px; top: 70px; right: auto; }*/
+        /*.slick-next:before { content: "\f054"; }*/
+        /*[dir="rtl"] .slick-next:before { content: "\f053"; }*/
+        /*end slider*/
+
+
 
         /*.slide-container {*/
             /*!*overflow: hidden;*!*/
@@ -287,7 +291,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
     <script type="text/javascript" src="https://cdn.rawgit.com/hilios/jQuery.countdown/2.1.0/dist/jquery.countdown.min.js"></script>
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+    {{--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>--}}
     <script>
 
         jQuery(document).ready(function($) {

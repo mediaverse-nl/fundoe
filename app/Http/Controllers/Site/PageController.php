@@ -97,4 +97,42 @@ class PageController extends Controller
         return view('site.page.faq')
             ->with('faqs', $faqs);
     }
+
+    public function activiteiten()
+    {
+        //default seo
+        $this->seo()
+            ->setTitle($this->getPageSeo()->title .' | fundoe.nl')
+            ->setDescription($this->getPageSeo()->description);
+        //opengraph
+        $this->seo()
+            ->opengraph()
+            ->setUrl(url()->current())
+            ->addProperty('type', 'website');
+        //twitter
+        $this->seo()
+            ->twitter()
+            ->setSite('@username');
+
+        return view('site.page.activiteiten');
+    }
+
+    public function categories()
+    {
+        //default seo
+        $this->seo()
+            ->setTitle($this->getPageSeo()->title .' | fundoe.nl')
+            ->setDescription($this->getPageSeo()->description);
+        //opengraph
+        $this->seo()
+            ->opengraph()
+            ->setUrl(url()->current())
+            ->addProperty('type', 'website');
+        //twitter
+        $this->seo()
+            ->twitter()
+            ->setSite('@username');
+
+        return view('site.page.categories');
+    }
 }

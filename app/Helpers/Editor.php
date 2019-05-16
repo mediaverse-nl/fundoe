@@ -40,7 +40,9 @@ if (!function_exists('Editor')) {
         }
 
         if (isset($options)) {
-            foreach ($options['mentions'] as $key => $v) {
+//
+            foreach (collect($options['mentions'])->toArray() as $key => $v) {
+//                dd(collect($options['mentions'])->toArray(), $key, $v);
                 $readableText = str_replace('@'.$key, $v, $readableText);
             }
         }

@@ -2,6 +2,9 @@
 
 namespace App\Mail;
 
+use App\Order;
+use Barryvdh\DomPDF\Facade as PDF;
+
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -11,14 +14,16 @@ class OrderConfirmation extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $order;
+
     /**
      * Create a new message instance.
      *
-     * @return void
+     * @param Order $order
      */
-    public function __construct()
+    public function __construct($order)
     {
-        //
+        $this->order = $order;
     }
 
     /**
@@ -28,6 +33,17 @@ class OrderConfirmation extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.order.confirmation');
+        $order = $this->order;
+
+        $pdf = PDF::loadView('pdf.invoice', [
+            'order' => $order
+        ]);
+        return $this
+            ->from('no-reply@fundoe.nl')
+            ->markdown('emails.order.confirmation')
+            ->attachData($pdf->stream(),'invoice-fundoe-'.$this->order->id.'.pdf', [
+                    'mime' => 'application/pdf',
+                ]
+            );
     }
 }
