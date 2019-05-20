@@ -46,11 +46,11 @@ class WelcomeController extends Controller
             ->orderBy('start_datetime', 'asc');
 
         $bestSoldEvent = $events
-            ->limit(8)
+            ->limit(4)
             ->get();
 
         $bestRunningEvent = $events
-            ->limit(8)
+            ->limit(2)
             ->get();
 
         return view('welcome')
