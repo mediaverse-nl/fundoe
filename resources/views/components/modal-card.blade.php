@@ -82,7 +82,7 @@
 
                                 <div class="form-group">
                                     <b>Tickets</b>
-                                    {!! Form::select('tickets', array_combine($event->publicTicketSelection(), $event->publicTicketSelection()), null, ['class' => 'form-control'.(!$errors->has('tickets') ? '': ' is-invalid ')]) !!}
+                                    {!! Form::select('tickets', array_combine($event->publicTicketSelection(), $event->publicTicketSelection()), null, ['class' => 'datumprikker form-control'.(!$errors->has('tickets') ? '': ' is-invalid ')]) !!}
                                     @include('components.error', ['field' => 'tickets'])
                                 </div>
 
@@ -134,7 +134,7 @@
                                         <div class="input-group-append" data-target="#da etimepicker{!! $targetId !!}" data-toggle="datetimepicker"  style="-moz-border-radius-bottomleft: .25rem;">
                                             <div class="input-group-text" style="border-right: none;"><i class="fa fa-calendar"></i></div>
                                         </div>
-                                        {!! Form::text('activiteit_datum', null, ['class' => 'form-control'.(!$errors->has('activiteit_datum') ? '': ' is-invalid '), 'data-toggle' => 'datet mepicker', 'id' => 'datumprikker', 'data-target' => '#datetimepicker'.$targetId, 'autocomplete' => 'off']) !!}
+                                        {!! Form::text('activiteit_datum', null, ['class' => 'datumprikker form-control'.(!$errors->has('activiteit_datum') ? '': ' is-invalid '), 'data-toggle' => 'datet mepicker', 'id' => 'datumprikker', 'data-target' => '#datetimepicker'.$targetId, 'autocomplete' => 'off']) !!}
                                     </div>
                                     @include('components.error', ['field' => 'activiteit_datum'])
 

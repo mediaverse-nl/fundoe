@@ -210,10 +210,9 @@
 @endpush
 
 @push('js')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-countdown/2.1.0/js/jquery.plugin.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-countdown/2.1.0/js/jquery.plugin.min.js"></script>
 <script type="text/javascript" src="https://cdn.rawgit.com/hilios/jQuery.countdown/2.1.0/dist/jquery.countdown.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.0/bootstrap-slider.min.js"></script>
-
 
 <script type="text/javascript">
     $( document ).ready(function() {
@@ -259,7 +258,7 @@
 
         var today = new Date().addDays(2);
 
-        $('#datumprikker').datetimepicker({
+        $('.datumprikker').datetimepicker({
             useCurrent: false,
             minDate: new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), today.getMinutes()),
             autoclose: true,
