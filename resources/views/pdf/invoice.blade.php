@@ -122,10 +122,10 @@
 
                         <td style="background: #eee;border-bottom: 1px solid #ddd; text-align: right">
                             <b>Factuur #{{$order->id}}</b> <br><br>
-                            Aankoop datum: <br>{{$order->created_at->formatLocalized('%d %B %Y') }} <br><br>
-                            Verval datum: <br>{{Carbon\Carbon::parse($order->created_at->format('M d Y'))
-                                ->addDays(14)
-                                ->formatLocalized('%d %B %Y')}} <br>
+                            Aankoop datum: {{$order->created_at->formatLocalized('%d %B %Y') }}
+                            {{--Verval datum: <br>{{Carbon\Carbon::parse($order->created_at->format('M d Y'))--}}
+                                {{--->addDays(14)--}}
+                                {{--->formatLocalized('%d %B %Y')}} <br>--}}
                         </td>
                     </tr>
                 </table>
@@ -137,10 +137,15 @@
                 <table>
                     <tr>
                         <td>
-                            <b>fundoe.nl</b> <br>
-                            Straatnaam 28,<br>
-                            5555 AB Eindhoven,<br>
-                            Nederland
+                            <b>Fundoe</b> <br>
+                            Evestraat 28,<br>
+                            5503XN Veldhoven,<br>
+                            Nederland<br><br>
+                            Site: www.fundoe.nl <br>
+                            Tel: +31 (0) 6 22527092<br>
+                            E-mail: info@fundoe.nl<br>
+                            BTW: NL030760112B01<br>
+                            KvK: 74494694<br>
                         </td>
                         <td> </td>
 
@@ -196,12 +201,17 @@
             </td>
 
             <td style="text-align: right">
-                Totaal
+                Btw
             </td>
 
             <td style="text-align: right">
-                Btw
+                Totaal
             </td>
+
+
+            {{--<td style="text-align: right">--}}
+                {{--Btw--}}
+            {{--</td>--}}
         </tr>
 
          <tr class="item">
@@ -212,8 +222,10 @@
             </td>
             <td style="padding: 10px 5px;">{!! $order->ticket_amount !!} x</td>
             <td style="text-align: right; padding: 10px 5px;">&euro;{!! number_format($order->total_paid / $order->ticket_amount, 2) !!}</td>
-            <td style="text-align: right; padding: 10px 5px;">&euro;{!!  number_format($order->total_paid, 2) !!}</td>
-            <td style="text-align: right; padding: 10px 5px; width: 60px;">&euro;{!!  number_format($order->total_paid - ($order->total_paid - ($order->total_paid / 121) * 21), 2) !!}</td>
+             <td style="text-align: right; padding: 10px 5px;">21%</td>
+
+             <td style="text-align: right; padding: 10px 5px;">&euro;{!!  number_format($order->total_paid, 2) !!}</td>
+            {{--<td style="text-align: right; padding: 10px 5px; width: 60px;">&euro;{!!  number_format($order->total_paid - ($order->total_paid - ($order->total_paid / 121) * 21), 2) !!}</td>--}}
         </tr>
 
         <tr class="">

@@ -7,7 +7,7 @@
     <div class="container">
         <div class="row">
             <div class="col-6">
-
+                {{--{!! dd($order) !!}--}}
                 {!! Editor('order_status_message', 'richtext', false, 'Here you can use rows and columns here to organize your footer content.', ['mentions' => $order]) !!}
 
             </div>

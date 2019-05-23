@@ -62,6 +62,7 @@ class EventController extends Controller
             ->addMinutes($request->duration)
             ->format('Y-m-d H:i:s');
 
+
         $start_datetime = Carbon::createFromFormat('Y-m-d H:i', $request->start_datetime)
             ->format('Y-m-d H:i:s');
 
@@ -104,12 +105,15 @@ class EventController extends Controller
      */
     public function update(EventUpdateRequest $request, $id)
     {
+
+
         $datetime = $request->start_datetime.':00';
-        $end_datetime = Carbon::createFromFormat('Y-m-d H:i:s', $datetime)
+
+        $end_datetime = Carbon::parse($datetime)
             ->addMinutes($request->duration)
             ->format('Y-m-d H:i:s');
-
-        $start_datetime = Carbon::createFromFormat('Y-m-d H:i', $request->start_datetime)
+//        dd($end_datetime, $datetime);
+        $start_datetime = Carbon::parse($request->start_datetime)
             ->format('Y-m-d H:i:s');
 
         $event = $this->event->findOrFail($id);

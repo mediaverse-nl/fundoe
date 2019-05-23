@@ -35,6 +35,7 @@ class WebhookController extends Controller
         $order = $this->order->findOrFail($payment->metadata->order_id);
 
         $order->status = $payment->status;
+        $order->payment_method = $payment->method;
 
         if ($payment->isPaid()) {
             /*

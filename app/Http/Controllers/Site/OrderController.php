@@ -110,8 +110,6 @@ class OrderController extends Controller
         $order->ticket_amount = $request->tickets;
         $order->save();
 
-
-
         $payment =  $this->mollie->payments()->create([
             "amount"      => number_format($order->total_paid,2),
             "description" => "Order Nr. ". $order->id,
@@ -136,9 +134,26 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        $order = $this->order->findOrFail($id);
 
-        if($order->user_id != auth()->user()->id){
+        $order = $this->order->findOrFail($id, [
+            'country',
+            'city',
+            'postal_code',
+            'address',
+            'address_number',
+            'name',
+            'email',
+            'telephone',
+            'ticket_amount',
+            'total_paid',
+            'administration_cost',
+            'payment_id',
+            'payment_method',
+            'status',
+            'user_id',
+        ]);
+//        dd($order->user_id);
+         if($order->user_id != auth()->user()->id){
             abort(403);
         }
 
@@ -152,16 +167,18 @@ class OrderController extends Controller
             }
 
             $order->status = self::STATUS_COMPLETED;
+            $order->save();
+
+            return view('site.order.show')
+                ->with('order', $order->toArray())
+                ->with('payment', $payment);
         } elseif (! $payment->isOpen())
         {
             $order->status = self::STATUS_CANCELLED;
+            $order->save();
+            abort(404);
         }
-        $order->payment_method = $payment->method;
 
-        $order->save();
 
-        return view('site.order.show')
-            ->with('order', $order)
-            ->with('payment', $payment);
     }
 }
