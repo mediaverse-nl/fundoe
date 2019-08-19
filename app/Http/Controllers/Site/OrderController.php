@@ -61,6 +61,23 @@ class OrderController extends Controller
         $order->ticket_amount = $request->tickets;
         $order->save();
 
+        $credit = auth()->user()->credit;
+
+        if ($order->total_paid >= $credit){
+            $newCreditTotal = $credit - $order->total_paid;
+
+            $user = auth()->user();
+            $user->credit = $newCreditTotal;
+            $user->save();
+
+            $order->update([
+                'status' => 'paid',
+                'payment_method' => 'credits',
+            ]);
+//            dd($order);
+            return redirect()->route('site.order.show', $order->id);
+        }
+
         $payment =  $this->mollie->payments()->create([
             "amount"      => number_format($order->total_paid,2),
             "description" => "Order Nr. ". $order->id,
@@ -110,6 +127,22 @@ class OrderController extends Controller
         $order->ticket_amount = $request->tickets;
         $order->save();
 
+        $credit = auth()->user()->credit;
+
+        if ($order->total_paid >= $credit){
+            $newCreditTotal = $credit - $order->total_paid;
+
+            $user = auth()->user();
+            $user->credit = $newCreditTotal;
+            $user->save();
+
+            $order->update([
+                'status' => 'paid',
+                'payment_method' => 'credits',
+            ]);
+            return redirect()->route('site.order.show', $order->id);
+        }
+
         $payment =  $this->mollie->payments()->create([
             "amount"      => number_format($order->total_paid,2),
             "description" => "Order Nr. ". $order->id,
@@ -134,7 +167,6 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-
         $order = $this->order->findOrFail($id, [
             'country',
             'city',
@@ -156,29 +188,40 @@ class OrderController extends Controller
          if($order->user_id != auth()->user()->id){
             abort(403);
         }
+//        dd($order->status );
 
-        $payment =  $this->mollie->payments()->get($order->payment_id);
-
-        if ($payment->isPaid())
-        {
-            if ($order->status != 'paid'){
-                Mail::to($order->email)
-                    ->send(new OrderConfirmation($order));
-            }
+        if ($order->status == 'paid' && $order->payment_method == 'credits'){
+            Mail::to($order->email)
+                ->send(new OrderConfirmation($order));
 
             $order->status = self::STATUS_COMPLETED;
             $order->save();
 
             return view('site.order.show')
-                ->with('order', $order->toArray())
-                ->with('payment', $payment);
-        } elseif (! $payment->isOpen())
-        {
-            $order->status = self::STATUS_CANCELLED;
-            $order->save();
-            abort(404);
-        }
+                ->with('order', $order->toArray());
+        }else{
+            $payment =  $this->mollie->payments()->get($order->payment_id);
 
+            if ($payment->isPaid())
+            {
+                if ($order->status != 'paid'){
+                    Mail::to($order->email)
+                        ->send(new OrderConfirmation($order));
+                }
+
+                $order->status = self::STATUS_COMPLETED;
+                $order->save();
+
+                return view('site.order.show')
+                    ->with('order', $order->toArray())
+                    ->with('payment', $payment);
+            } elseif (! $payment->isOpen())
+            {
+                $order->status = self::STATUS_CANCELLED;
+                $order->save();
+                abort(404);
+            }
+        }
 
     }
 }

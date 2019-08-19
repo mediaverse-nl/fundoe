@@ -37,9 +37,5 @@ class MollieController extends Controller
         }
 
         return redirect()->back();
-//
-
-//        dd($refund);
-
     }
 }

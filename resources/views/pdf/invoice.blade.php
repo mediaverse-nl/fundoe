@@ -122,7 +122,7 @@
 
                         <td style="background: #eee;border-bottom: 1px solid #ddd; text-align: right">
                             <b>Factuur #{{$order->id}}</b> <br><br>
-                            Aankoop datum: {{$order->created_at->formatLocalized('%d %B %Y') }}
+                            Aankoop datum: {{$order->created_at }}
                             {{--Verval datum: <br>{{Carbon\Carbon::parse($order->created_at->format('M d Y'))--}}
                                 {{--->addDays(14)--}}
                                 {{--->formatLocalized('%d %B %Y')}} <br>--}}
@@ -216,9 +216,9 @@
 
          <tr class="item">
             <td  style="padding: 10px 5px;">
-                {!! $order->event->activity->title !!} <br>
-                {!! $order->event->start_datetime->formatLocalized('%A, %d %B %Y') !!} <br>
-                van {!! $order->event->start_datetime->formatLocalized('%H:%M') !!} t/m {!! $order->event->end_datetime->formatLocalized('%H:%M') !!} uur
+{{--                {!! $order->event->activity->title !!} <br>--}}
+{{--                {!! $order->event->start_datetime->formatLocalized('%A, %d %B %Y') !!} <br>--}}
+{{--                van {!! $order->event->start_datetime->formatLocalized('%H:%M') !!} t/m {!! $order->event->end_datetime->formatLocalized('%H:%M') !!} uur--}}
             </td>
             <td style="padding: 10px 5px;">{!! $order->ticket_amount !!} x</td>
             <td style="text-align: right; padding: 10px 5px;">&euro;{!! number_format($order->total_paid / $order->ticket_amount, 2) !!}</td>

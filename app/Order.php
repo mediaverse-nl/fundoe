@@ -13,7 +13,7 @@ class Order extends Model
 
     public $timestamps = true;
 
-    protected $fillable = ['payment_id'];
+    protected $fillable = ['payment_id', 'status', 'payment_method'];
 
     protected $dates = ['created_at', 'updated_at'];
 
@@ -26,4 +26,5 @@ class Order extends Model
     {
         return $this->belongsTo('App\User', 'user_id', 'id');
     }
+
 }

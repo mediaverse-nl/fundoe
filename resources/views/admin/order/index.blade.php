@@ -37,7 +37,8 @@
                                     @component('components.model', [
                                         'id' => 'orderTableBtn'.$order->id,
                                         'title' => 'Refund',
-                                        'actionRoute' => route('admin.mollie.refund', $order->id),
+                                        //'actionRoute' => route('admin.mollie.refund', $order->id),
+                                        'actionRoute' => route('admin.order.chargeback', $order->id),
                                         'btnClass' => 'rounded-circle delete',
                                         'btnIcon' => 'fa fa-inbox'
                                     ])

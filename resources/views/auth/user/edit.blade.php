@@ -20,7 +20,28 @@
                 @component('components.card')
                     {!! Form::model(auth()->user(), ['route' => ['auth.account.password'], 'method' => 'PATCH']) !!}
                         <h2>Account</h2>
-                        <div class="form-group">
+
+
+                    {!! Form::label('credit', 'te goed') !!}
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">&euro;</span>
+                            </div>
+                            {!! Form::number('credit', number_format(auth()->user()->credit, 2), ['class' => 'form-control'.(!$errors->has('gebruikersnaam') ? '': ' is-invalid '), 'disabled', 'step' => 'any']) !!}
+                        </div>
+                        <small>
+                            Het te goed kan gebruikt woorden om je bij een event te registeren. <br>
+                            Het te goed kan alleen gebruikt worden als het te goed bedrag hoger is dan de prijs van het event.<br>
+                            Het te goed word automatisch gebruikt.
+                        </small>
+                    </div>
+
+                    <div class="form-group">
+                        @include('components.error', ['field' => 'gebruikersnaam'])
+                    </div>
+
+                    <div class="form-group">
                             {!! Form::label('email', 'E-Mail adres') !!}
                             {!! Form::text('email', auth()->user()->email, ['class' => 'form-control', 'disabled']) !!}
                         </div>

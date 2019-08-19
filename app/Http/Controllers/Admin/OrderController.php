@@ -30,4 +30,23 @@ class OrderController extends Controller
         return view('admin.order.show')
             ->with('order', $order);
     }
+
+    public function chargeback(Request $request, $id)
+    {
+        $order = $this->order->findOrFail($id);
+        $user = $order->user;
+
+        if ($order->status != 'refunded'
+            && $order->status == 'paid')
+        {
+            $user->credit = $user->credit + $order->total_paid;
+            $user->save();
+        }
+
+        $order->status = 'refunded';
+        $order->save();
+
+        return redirect()
+            ->back();
+    }
 }

@@ -71,8 +71,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.', 'mi
     Route::resource('comment', 'CommentController');
     Route::resource('order', 'OrderController');
     Route::resource('activity', 'ActivityController');
+    Route::patch('order-refund-{id}', 'orderController@chargeback')->name('order.chargeback');
 
-    Route::patch('mollie-refund-{id}', 'MollieController@refund')->name('mollie.refund');
+//    Route::patch('mollie-refund-{id}', 'MollieController@refund')->name('mollie.refund');
 
     Route::resource('faq', 'FaqController');
     Route::patch('editor/{id}/update', 'TextController@update')->name('text-editor.update');

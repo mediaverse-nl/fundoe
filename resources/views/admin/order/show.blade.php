@@ -63,10 +63,11 @@
                                 @component('components.model', [
                                     'id' => 'orderTableBtn'.$order->id,
                                     'title' => 'Refund',
-                                    'actionRoute' => route('admin.mollie.refund', $order->id),
+                                    //'actionRoute' => route('admin.mollie.refund', $order->id),
+                                    'actionRoute' => route('admin.order.chargeback', $order->id),
                                     'btnClass' => 'btn btn-danger btn-block',
                                     'btnIcon' => 'fa fa-inbox',
-                                    'btnTitle' => 'refund'
+                                    'btnTitle' => 'refund to credits'
                                 ])
                                     @slot('description')
                                         If u proceed u will refund this order # {!! $order->id !!}
