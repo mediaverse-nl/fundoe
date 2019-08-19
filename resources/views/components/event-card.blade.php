@@ -28,14 +28,14 @@
                 </div>
             </div>
             <footer class="post-footer d-flex align-items-center" style="margin-top: 10px;">
-                <div class="row">
-                    <div class="splitter-bar">
+                <div class=" ">
+                    <div class="splitter-bar" style="display: inline-block;">
                         <i class="fas fa-clock"></i> {!! $event->diffInTime()!!}min
                     </div>
-                    <div class="splitter-bar">
+                    <div class="splitter-bar" style="display: inline-block;">
                         <i class="fas fa-comments"></i> {!! $event->activity->reviews->count('id') !!} reviews
                     </div>
-                    <div class="splitter-bar">
+                    <div class="splitter-bar" style="display: inline-block;">
                         <i class="fas fa-star"></i> {!! $event->activity->reviews->count('id') !== 0 ? number_format($event->activity->reviews->avg('rating'), 1).'/5' : 'n.v.t.' !!}
                     </div>
                 </div>

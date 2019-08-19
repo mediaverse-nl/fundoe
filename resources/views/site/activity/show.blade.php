@@ -151,13 +151,26 @@
 
                                 <div class="form-group">
                                     <b>Selecteer een datum en tijd</b>
-                                    <div class="input-group datetimepicker{!! (!$errors->has('activiteit_datum') ? '': ' is-invalid ') !!}" id="datetimepicker" data-target-input="nearest" data-date-min-date="0" data-date-today-highlight="true" data-date-format="YYYY-MM-DD HH:mm" style="margin-bottom: 5px; border-radius: 5px;">
-                                        <div class="input-group-append" data-target="#datetimepicker" data-toggle="datetimepicker"  style="-moz-border-radius-bottomleft: .25rem;">
+
+                                    <div class="input-group {!! (!$errors->has('activiteit_datum') ? '': ' is-invalid ') !!}" id="datetimepicker" data-target-input="nearest" data-date-min-date="0" data-date-today-highlight="true" data-date-format="YYYY-MM-DD HH:mm" style="margin-bottom: 5px; border-radius: 5px;">
+                                        <div class="input-group-append" data-target="#da etimepicker" data-toggle="datetimepicker"  style="-moz-border-radius-bottomleft: .25rem;">
                                             <div class="input-group-text" style="border-right: none;"><i class="fa fa-calendar"></i></div>
                                         </div>
-                                        {!! Form::text('activiteit_datum', null, ['class' => 'datetimepicker-input form-control'.(!$errors->has('activiteit_datum') ? '': ' is-invalid '), 'data-toggle' => 'datetimepicker', 'data-target' => '#datetimepicker', 'autocomplete' => 'off', 'id' => 'datetimepicker']) !!}
+                                        {!! Form::text('activiteit_datum', null, ['class' => 'datumprikker form-control'.(!$errors->has('activiteit_datum') ? '': ' is-invalid '), 'data-toggle' => 'datet mepicker', 'id' => 'datumprikker', 'data-target' => '#datetimepicker', 'autocomplete' => 'off']) !!}
                                     </div>
                                     @include('components.error', ['field' => 'activiteit_datum'])
+
+
+                                    {{--<div class="input-group datetimepicker{!! (!$errors->has('activiteit_datum') ? '': ' is-invalid ') !!}" id="datetimepicker" data-target-input="nearest" data-date-min-date="0" data-date-today-highlight="true" data-date-format="YYYY-MM-DD HH:mm" style="margin-bottom: 5px; border-radius: 5px;">--}}
+                                        {{--<div class="input-group-append" data-target="#datetimepicker" data-toggle="datetimepicker"  style="-moz-border-radius-bottomleft: .25rem;">--}}
+                                            {{--<div class="input-group-text" style="border-right: none;"><i class="fa fa-calendar"></i></div>--}}
+                                        {{--</div>--}}
+                                        {{--{!! Form::text('activiteit_datum', null, ['class' => 'datetimepicker-input form-control'.(!$errors->has('activiteit_datum') ? '': ' is-invalid '), 'data-toggle' => 'datetimepicker', 'data-target' => '#datetimepicker', 'autocomplete' => 'off', 'id' => 'datetimepicker']) !!}--}}
+
+{{--                                        {!! Form::text('activiteit_datum', null, ['class' => 'datumprikker form-control'.(!$errors->has('activiteit_datum') ? '': ' is-invalid '), 'data-toggle' => 'datet mepicker', 'id' => 'datumprikker', 'data-target' => '#datetimepicker', 'autocomplete' => 'off']) !!}--}}
+
+                                    {{--</div>--}}
+                                    {{--@include('components.error', ['field' => 'activiteit_datum'])--}}
 
                                 </div>
 

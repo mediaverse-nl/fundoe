@@ -61,8 +61,8 @@
 
                 <div class="row">
                     @foreach($bestSoldEvent as $i)
-                             @component('components.event-card', ['event' => $i])
-                            @endcomponent
+                        @component('components.event-card', ['event' => $i])
+                        @endcomponent
                      @endforeach
                 </div>
             </div>
@@ -335,6 +335,23 @@
             });
         });
 
+
+        Date.prototype.addDays = function(days) {
+            this.setDate(this.getDate() + parseInt(days));
+            return this;
+        };
+
+        var today = new Date().addDays(2);
+
+        $('.datumprikker').datetimepicker({
+            useCurrent: false,
+            minDate: new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), today.getMinutes()),
+//            autoclose: true,
+            todayBtn: true,
+            format: 'YYYY/MM/DD HH:mm',
+            inline: true,
+            sideBySide: true
+        });
 
         $("#countdown")
             .countdown("2017/01/01", function(event) {
