@@ -58,6 +58,7 @@ Route::group(['prefix' => 'panel', 'namespace' => 'Auth', 'as' => 'auth.', 'midd
     Route::get('/account-wijzigen', 'UserController@edit')->name('account.edit');
     Route::patch('/watchwoord-update', 'UserController@password')->name('account.password');
     Route::patch('/gegevens-update', 'UserController@info')->name('account.info');
+    Route::patch('/charge-back', 'UserController@chargeback')->name('account.chargeback');
 });
 
 //admin
@@ -71,7 +72,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.', 'mi
     Route::resource('comment', 'CommentController');
     Route::resource('order', 'OrderController');
     Route::resource('activity', 'ActivityController');
-    Route::patch('order-refund-{id}', 'orderController@chargeback')->name('order.chargeback');
+    Route::patch('order-refund-{id}', 'OrderController@chargeback')->name('order.chargeback');
+    Route::patch('user-refunded-{id}', 'UserController@chargeback')->name('user.chargeback');
 
 //    Route::patch('mollie-refund-{id}', 'MollieController@refund')->name('mollie.refund');
 

@@ -63,7 +63,7 @@ class OrderController extends Controller
 
         $credit = auth()->user()->credit;
 
-        if ($order->total_paid >= $credit){
+        if ($credit >= $order->total_paid){
             $newCreditTotal = $credit - $order->total_paid;
 
             $user = auth()->user();
@@ -74,7 +74,7 @@ class OrderController extends Controller
                 'status' => 'paid',
                 'payment_method' => 'credits',
             ]);
-//            dd($order);
+
             return redirect()->route('site.order.show', $order->id);
         }
 
@@ -129,7 +129,7 @@ class OrderController extends Controller
 
         $credit = auth()->user()->credit;
 
-        if ($order->total_paid >= $credit){
+        if ($credit >= $order->total_paid){
             $newCreditTotal = $credit - $order->total_paid;
 
             $user = auth()->user();
@@ -184,13 +184,15 @@ class OrderController extends Controller
             'status',
             'user_id',
         ]);
-//        dd($order->user_id);
+
          if($order->user_id != auth()->user()->id){
             abort(403);
         }
 //        dd($order->status );
 
+
         if ($order->status == 'paid' && $order->payment_method == 'credits'){
+//            dd($order->email);
             Mail::to($order->email)
                 ->send(new OrderConfirmation($order));
 

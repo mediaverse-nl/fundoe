@@ -119,7 +119,39 @@
                     @endcomponent
                 </div>
             </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <h3>Charge backs requests</h3>
+                    @foreach($user->chargeBacks()->orderByDesc('id')->get() as $refunds)
+                        @if(!$refunds->status)
+                            <span class="badge badge-warning">pending</span><br>
+                        @else
+                            <span class="badge badge-success">paid out</span><br>
+                        @endif
+                        <b>Name: </b> {!! $refunds->name !!}<br>
+                        <b>IBAN: </b> {!! $refunds->iban !!}<br>
+                        <b>Amount: </b> &euro;{!! number_format($refunds->total_refund_amount, 2) !!}<br>
+                        <b>Administration Costs: </b> &euro;{!! number_format( $refunds->administration_costs, 2) !!}<br>
+                        @if(!$refunds->status)
+                            @component('components.model', [
+                             'id' => 'userPayOutBtn'.$user->id,
+                             'title' => 'Charge Back ',
+                             'actionRoute' => route('admin.user.chargeback', $refunds->id),
+                             'btnClass' => 'btn btn-warning btn-block',
+                             'btnTitle' => 'Charge Back',
+                         ])
+                                @slot('description')
+                                    This action is not reversible
+                                @endslot
+                            @endcomponent
+                        @endif
+                            <hr>
+                    @endforeach
+                </div>
+            </div>
         </div>
+
     </div>
 
     @component('components.rich-textarea-editor')

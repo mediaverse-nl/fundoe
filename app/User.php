@@ -37,6 +37,10 @@ class User extends Authenticatable
         return $this->hasMany('App\SocialIdentity');
     }
 
+    public function chargeBacks() {
+        return $this->hasMany('App\ChargeBack','user_id', 'id');
+    }
+
     public function orders()
     {
         return $this->hasMany('App\Order','user_id', 'id');

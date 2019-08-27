@@ -36,10 +36,16 @@ class OrderController extends Controller
         $order = $this->order->findOrFail($id);
         $user = $order->user;
 
+//        dd($user);
+
+        $credit = $user->credit;
+
+//        dd($credit != null ? $credit : 0);
+
         if ($order->status != 'refunded'
             && $order->status == 'paid')
         {
-            $user->credit = $user->credit + $order->total_paid;
+            $user->credit = ($credit != null ? $credit : 0) + $order->total_paid;
             $user->save();
         }
 

@@ -12,6 +12,7 @@
             @component('components.datatable')
                 @slot('head')
                     <th>id</th>
+                    <th>event</th>
                     <th>email</th>
                     <th>ticket_amount</th>
                     <th>price</th>
@@ -24,6 +25,7 @@
                     @foreach($orders as $order)
                         <tr>
                             <td>{{$order->id}}</td>
+                            <td>{{$order->event->activity->title}} - {{$order->event->activity->region}} - {{$order->event->start_datetime}}</td>
                             <td>{{$order->email}}</td>
                             <td>{{$order->ticket_amount}}x</td>
                             <td>{{number_format($order->total_paid, 2)}}</td>

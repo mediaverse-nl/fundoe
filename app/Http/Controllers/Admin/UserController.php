@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\ChargeBack;
 use App\Http\Requests\Admin\UserUpdateRequest;
 use App\User;
 use Illuminate\Http\Request;
@@ -10,10 +11,12 @@ use App\Http\Controllers\Controller;
 class UserController extends Controller
 {
     protected $user;
+    protected $chargeBack;
 
-    public function __construct(User $user)
+    public function __construct(User $user, ChargeBack $chargeBack)
     {
         $this->user = $user;
+        $this->chargeBack = $chargeBack;
     }
 
     public function index()
@@ -65,5 +68,14 @@ class UserController extends Controller
 
         return redirect()
             ->route('admin.user.index');
+    }
+
+    public function chargeback(Request $request, $id)
+    {
+        $chargeBack = $this->chargeBack->findOrFail($id);
+        $chargeBack->status = 1;
+        $chargeBack->save();
+
+        return redirect()->back();
     }
 }

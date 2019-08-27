@@ -18,9 +18,7 @@
             <div class="col-lg-9">
 
                 @component('components.card')
-                    {!! Form::model(auth()->user(), ['route' => ['auth.account.password'], 'method' => 'PATCH']) !!}
-                        <h2>Account</h2>
-
+                    <h2>Credit Terugboeken</h2>
 
                     {!! Form::label('credit', 'te goed') !!}
                     <div class="form-group">
@@ -33,15 +31,61 @@
                         <small>
                             Het te goed kan gebruikt woorden om je bij een event te registeren. <br>
                             Het te goed kan alleen gebruikt worden als het te goed bedrag hoger is dan de prijs van het event.<br>
-                            Het te goed word automatisch gebruikt.
+                            Het te goed word automatisch gebruikt. <br>
                         </small>
                     </div>
+
+                    @if(!(auth()->user()->credit <= 5))
+                        @component('components.model', [
+                            'btnClass' => 'btn btn-primary',
+                            'btnTitle' => 'Terugboeken',
+                            'id' => 'terugboeken',
+                            'title' => 'Terugboeken',
+                            'actionRoute' => route('home')
+                        ])
+                            @slot('description')
+
+                                {!! Form::model(auth()->user(), ['route' => ['auth.account.chargeback'], 'method' => 'PATCH']) !!}
+
+                                <div class="form-group">
+                                    {!! Form::label('credit', 'Credit') !!}
+                                    {!! Form::number('credit', number_format(auth()->user()->credit, 2), ['class' => 'form-control', 'disabled', 'step' => 'any']) !!}
+                                </div>
+                                <div class="form-group">
+                                    {!! Form::label('name', 'Naam') !!}
+                                    {!! Form::text('name', substr(auth()->user()->first_name, 0, 1).'. '.auth()->user()->last_name, ['class' => 'form-control', 'required']) !!}
+                                </div>
+                                <div class="form-group">
+                                    {!! Form::label('iban', 'IBAN') !!}
+                                    {!! Form::text('iban', null, ['class' => 'form-control', 'required']) !!}
+                                </div>
+
+                                {!! Form::submit('aanvragen', ['class' => 'btn btn-primary', 'style' => "border-radius: 0px;"]) !!}
+                                {!! Form::close() !!}
+                            @endslot
+                        @endcomponent
+                    @else
+                        <a class="btn btn-dark disabled"  style="color: #FFFFFF;">
+                             {{ auth()->user()->chargeBacks()->where('status', '=', 0)->count() ? 'Terugboeking inbehandeling' : 'Terugboeken'}}
+                        </a>
+                    @endif
+                    {{--<button type="submit" class="btn btn-primary">Terugboeken</button>--}}
+                    <br>
+                    <small>
+                        *Bij het terugstorten van het credit naar uw eigen bank worden er administratiekosten inrekening gebracht <b>&euro;3.50</b>.
+                        <br>
+                        *Terugboeking is te verwachten binnen <b>7</b> werkdagen.
+                    </small>
 
                     <div class="form-group">
                         @include('components.error', ['field' => 'gebruikersnaam'])
                     </div>
 
-                    <div class="form-group">
+                    <hr>
+                    <h2>Watchwoord wijzigen</h2>
+
+                    {!! Form::model(auth()->user(), ['route' => ['auth.account.password'], 'method' => 'PATCH']) !!}
+                        <div class="form-group">
                             {!! Form::label('email', 'E-Mail adres') !!}
                             {!! Form::text('email', auth()->user()->email, ['class' => 'form-control', 'disabled']) !!}
                         </div>

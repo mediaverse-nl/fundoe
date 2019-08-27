@@ -14,6 +14,8 @@
                     <th>id</th>
                     <th>name</th>
                     <th>email</th>
+                    <th>credit</th>
+                    <th>requests</th>
                     <th>created at</th>
                     <th class="no-sort"></th>
                 @endslot
@@ -24,6 +26,14 @@
                             <td>{{$user->id}}</td>
                             <td>{{$user->name}}</td>
                             <td>{{$user->email}}</td>
+                            <td>{{$user->credit ? $user->credit : '-'}}</td>
+                            <td>
+                                @if($user->chargeBacks()->where('status', '=', '0')->count())
+                                    <b>credit refund</b> -
+                                    {{$user->chargeBacks()->where('status', '=', '0')->count() ? '' : ''}}
+                                    <small>{!! $user->chargeBacks()->where('status', '=', '0')->first()->created_at->format('Y-m-d') !!}</small>
+                                @endif
+                            </td>
                             <td>{{$user->created_at->format('d-m-Y')}}</td>
                             <td>
                                 @component('components.model', [
