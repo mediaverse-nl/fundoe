@@ -31,11 +31,11 @@
                                 @endif
                             </div>
 
-                            <div class="custom-control custom-checkbox mb-3">
-                                {{--<input type="checkbox" class="custom-control-input" id="customCheck1">--}}
-                                <input type="checkbox" class="custom-control-input" name="remember" {{ old('remember') ? 'checked' : '' }}>
+                            <div class="custom-control text-truncate custom-checkbox" style="">
+                                <input type="checkbox" class="custom-control-input" id="regio6"  name="remember" {{ old('remember') ? 'checked' : '' }}>
 
-                                <label class="custom-control-label" for="customCheck1">Wachtwoord onthouden</label>
+{{--                                <input type="checkbox" class="custom-control-input" value="Eindhoven" checked="">--}}
+                                <label class="custom-control-label" for="regio6">Account onthouden</label>
                             </div>
 
                             <a class="btn btn-block btn-link" href="{{ route('password.request') }}">

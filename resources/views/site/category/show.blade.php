@@ -22,7 +22,8 @@
 
                 <br>
 
-                @if(floor($baseEvents->min('price')) !== number_format($baseEvents->max('price'),0))
+                @if(floor($baseEvents->min('price')) !== number_format($baseEvents->max('price'),0)
+                    && $baseEvents->min('price') !== $baseEvents->max('price'))
                     <div class="card shadow-sm bg-white">
                         <header class="card-header">
                             <h6 class="title">Prijsrange </h6>
@@ -36,10 +37,10 @@
                                             <div class="col-8" style="padding: 3px 5px;">
                                                 <input style="width: 100% !important;" name="prijs" class="custom-range" type="hidden"
                                                        data-slider-min="{!! floor($baseEvents->min('price')) !!}"
-                                                       data-slider-max="{!! number_format($baseEvents->max('price'),0) !!}"
-                                                       data-slider-value="[{!! !empty($filter['prijs']) ? explode(',',$filter['prijs'])[0] : floor($baseEvents->min('price')) !!},{!! !empty($filter['prijs']) ? explode(',',$filter['prijs'])[1] : number_format($baseEvents->max('price'),0) !!}]"/>
+                                                       data-slider-max="{!! ceil($baseEvents->max('price')) !!}"
+                                                       data-slider-value="[{!! !empty($filter['prijs']) ? explode(',',$filter['prijs'])[0] : floor($baseEvents->min('price')) !!},{!! !empty($filter['prijs']) ? explode(',',$filter['prijs'])[1] : ceil($baseEvents->max('price')) !!}]"/>
                                             </div>
-                                            <div class="col-2" style="padding: 5px;"><small>{!! number_format($baseEvents->max('price'),0) !!}</small></div>
+                                            <div class="col-2" style="padding: 5px;"><small>{!! ceil($baseEvents->max('price')) !!}</small></div>
                                         </div>
                                     </div>
                                 </div>
@@ -60,7 +61,8 @@
                                 <div class="form-group col-md-12">
                                      <div class="input-group date" id="datetimepicker1" data-target-input="nearest" style="margin-bottom: 5px;">
                                         <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker" style="-moz-border-radius-bottomleft: .25rem;">
-                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                            <div class="input-group-text"
+                                            ><i class="fa fa-calendar"></i></div>
                                         </div>
                                          <input class="datetimepicker-input form-control"
                                                 name="van_datum"
@@ -71,7 +73,7 @@
                                                 placeholder="datum vanaf"
                                                 type="text">
                                     </div>
-                                     <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
+                                     <div class="input-group date" id="datetimepicker2" data-target-input="nearest" style="">
                                         <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker" style="-moz-border-radius-bottomleft: .25rem;">
                                             <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                         </div>
@@ -161,6 +163,9 @@
 <link href="{{ asset('/css/site/category.css') }}" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.0/css/bootstrap-slider.min.css" rel="stylesheet">
 <style>
+    .bootstrap-datetimepicker-widget{
+        z-index: 9999;
+    }
     .filter-content .form-group{
         margin-bottom: 0px;
     }
@@ -185,7 +190,7 @@
     }
     .tooltip {
         position: absolute;
-        z-index: 1070;
+        z-index: 1000;
         display: block;
         font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
         font-size: 12px;
@@ -258,20 +263,22 @@
 
         var today = new Date().addDays(2);
 
-        $('.datumprikker').datetimepicker({
+        $('#datetimepicker').datetimepicker({
+            inline: true,
+            // sideBySide: true,
             useCurrent: false,
             minDate: new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), today.getMinutes()),
-            autoclose: true,
-            format: 'YYYY/MM/DD HH:mm',
-            inline: true,
-            sideBySide: true
+            // autoclose: true,
+            format: 'YYYY/MM/DD HH:mm'
         }, 9);
 
         $('#datetimepicker1').datetimepicker({
             useCurrent: false,
             minDate: new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), today.getMinutes()),
             autoclose: true,
-            format: 'YYYY/MM/DD'
+            format: 'YYYY/MM/DD',
+            // inline: false,
+            // sideBySide: false
         }, 9);
         $('#datetimepicker2').datetimepicker({
             useCurrent: false,

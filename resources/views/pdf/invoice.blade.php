@@ -142,9 +142,9 @@
                             5503XN Veldhoven,<br>
                             Nederland<br><br>
                             Site: www.fundoe.nl <br>
-                            Tel: +31 (0) 6 22527092<br>
-                            E-mail: info@fundoe.nl<br>
-                            BTW: NL030760112B01<br>
+{{--                            Tel: +31 (0) 6 22527092<br>--}}
+                            E-mail: contact@fundoe.nl<br>
+{{--                            BTW: NL030760112B01<br>--}}
                             KvK: 74494694<br>
                         </td>
                         <td> </td>
@@ -201,7 +201,7 @@
             </td>
 
             <td style="text-align: right">
-                Btw
+{{--                Btw--}}
             </td>
 
             <td style="text-align: right">
@@ -216,13 +216,16 @@
 
          <tr class="item">
             <td  style="padding: 10px 5px;">
-{{--                {!! $order->event->activity->title !!} <br>--}}
-{{--                {!! $order->event->start_datetime->formatLocalized('%A, %d %B %Y') !!} <br>--}}
-{{--                van {!! $order->event->start_datetime->formatLocalized('%H:%M') !!} t/m {!! $order->event->end_datetime->formatLocalized('%H:%M') !!} uur--}}
+                {!! !empty($order->event->activity['title']) ? $order->event->activity->title : ''!!} <br>
+                {!! !empty($order->event['start_datetime']) ? $order->event->start_datetime->formatLocalized('%A, %d %B %Y') : ''!!} <br>
+                van {!! !empty($order->event['start_datetime']) ? $order->event->start_datetime->formatLocalized('%H:%M') : ''!!}
+                t/m {!! !empty($order->event['end_datetime']) ?  $order->event->end_datetime->formatLocalized('%H:%M') : ''!!} uur
             </td>
             <td style="padding: 10px 5px;">{!! $order->ticket_amount !!} x</td>
             <td style="text-align: right; padding: 10px 5px;">&euro;{!! number_format($order->total_paid / $order->ticket_amount, 2) !!}</td>
-             <td style="text-align: right; padding: 10px 5px;">21%</td>
+             <td style="text-align: right; padding: 10px 5px;">
+{{--                 21%--}}
+             </td>
 
              <td style="text-align: right; padding: 10px 5px;">&euro;{!!  number_format($order->total_paid, 2) !!}</td>
             {{--<td style="text-align: right; padding: 10px 5px; width: 60px;">&euro;{!!  number_format($order->total_paid - ($order->total_paid - ($order->total_paid / 121) * 21), 2) !!}</td>--}}
@@ -235,7 +238,7 @@
             <td colspan="2" style="text-align: right">
                 <br>
                 <br>
-                <b>BTW: <span >€{{number_format($order->total_paid - ($order->total_paid - ($order->total_paid / 121) * 21), 2)}}</span></b>
+{{--                <b>BTW: <span >€{{number_format($order->total_paid - ($order->total_paid - ($order->total_paid / 121) * 21), 2)}}</span></b>--}}
             </td>
         </tr>
 

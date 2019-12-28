@@ -130,14 +130,19 @@ class EventController extends Controller
         return redirect()->back();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        $event = $this->event
+//            ->withTrashed()
+            ->findOrFail($id);
+
+//        if ($event->trashed()){
+//            $event->restore();
+//        }else{
+            $event->delete();
+//        }
+
+        return redirect()
+            ->route('admin.event.index');
     }
 }

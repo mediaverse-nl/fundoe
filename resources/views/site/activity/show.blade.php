@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('breadcrumb')
-     {!! Breadcrumbs::render('site.activity.show', $event) !!}
+{{--    {!! dd($event) !!}--}}
+     {!! Breadcrumbs::render('site.activity.show', $event->activity) !!}
 @endsection
 
 @section('content')
@@ -149,30 +150,47 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <b>Selecteer een datum en tijd</b>
+{{--                                <div class="form-group">--}}
+{{--                                    <b>Selecteer een datum en tijd</b>--}}
 
-                                    <div class="input-group {!! (!$errors->has('activiteit_datum') ? '': ' is-invalid ') !!}" id="datetimepicker" data-target-input="nearest" data-date-min-date="0" data-date-today-highlight="true" data-date-format="YYYY-MM-DD HH:mm" style="margin-bottom: 5px; border-radius: 5px;">
-                                        <div class="input-group-append" data-target="#da etimepicker" data-toggle="datetimepicker"  style="-moz-border-radius-bottomleft: .25rem;">
-                                            <div class="input-group-text" style="border-right: none;"><i class="fa fa-calendar"></i></div>
-                                        </div>
-                                        {!! Form::text('activiteit_datum', null, ['class' => 'datumprikker form-control'.(!$errors->has('activiteit_datum') ? '': ' is-invalid '), 'data-toggle' => 'datet mepicker', 'id' => 'datumprikker', 'data-target' => '#datetimepicker', 'autocomplete' => 'off']) !!}
-                                    </div>
-                                    @include('components.error', ['field' => 'activiteit_datum'])
+{{--                                    <div class="input-group {!! (!$errors->has('activiteit_datum') ? '': ' is-invalid ') !!}" id="datetimepicker" data-target-input="nearest" data-date-min-date="0" data-date-today-highlight="true" data-date-format="YYYY-MM-DD HH:mm" style="margin-bottom: 5px; border-radius: 5px;">--}}
+{{--                                        <div class="input-group-append" data-target="#da etimepicker" data-toggle="datetimepicker"  style="-moz-border-radius-bottomleft: .25rem;">--}}
+{{--                                            <div class="input-group-text" style="border-right: none;"><i class="fa fa-calendar"></i></div>--}}
+{{--                                        </div>--}}
+{{--                                        {!! Form::text('activiteit_datum', null, ['class' => 'datumprikker form-control'.(!$errors->has('activiteit_datum') ? '': ' is-invalid '), 'data-toggle' => 'datet mepicker', 'id' => 'datumprikker', 'data-target' => '#datetimepicker', 'autocomplete' => 'off']) !!}--}}
+{{--                                    </div>--}}
+{{--                                    @include('components.error', ['field' => 'activiteit_datum'])--}}
 
 
-                                    {{--<div class="input-group datetimepicker{!! (!$errors->has('activiteit_datum') ? '': ' is-invalid ') !!}" id="datetimepicker" data-target-input="nearest" data-date-min-date="0" data-date-today-highlight="true" data-date-format="YYYY-MM-DD HH:mm" style="margin-bottom: 5px; border-radius: 5px;">--}}
-                                        {{--<div class="input-group-append" data-target="#datetimepicker" data-toggle="datetimepicker"  style="-moz-border-radius-bottomleft: .25rem;">--}}
-                                            {{--<div class="input-group-text" style="border-right: none;"><i class="fa fa-calendar"></i></div>--}}
-                                        {{--</div>--}}
-                                        {{--{!! Form::text('activiteit_datum', null, ['class' => 'datetimepicker-input form-control'.(!$errors->has('activiteit_datum') ? '': ' is-invalid '), 'data-toggle' => 'datetimepicker', 'data-target' => '#datetimepicker', 'autocomplete' => 'off', 'id' => 'datetimepicker']) !!}--}}
+{{--                                    <div class="input-group datetimepicker{!! (!$errors->has('activiteit_datum') ? '': ' is-invalid ') !!}" id="datetimepicker" data-target-input="nearest" data-date-min-date="0" data-date-today-highlight="true" data-date-format="YYYY-MM-DD HH:mm" style="margin-bottom: 5px; border-radius: 5px;">--}}
+{{--                                        <div class="input-group-append" data-target="#datetimepicker" data-toggle="datetimepicker"  style="-moz-border-radius-bottomleft: .25rem;">--}}
+{{--                                            <div class="input-group-text" style="border-right: none;"><i class="fa fa-calendar"></i></div>--}}
+{{--                                        </div>--}}
+{{--                                        {!! Form::text('activiteit_datum', null, ['class' => 'datetimepicker-input form-control'.(!$errors->has('activiteit_datum') ? '': ' is-invalid '), 'data-toggle' => 'datetimepicker', 'data-target' => '#datetimepicker', 'autocomplete' => 'off', 'id' => 'datetimepicker']) !!}--}}
 
 {{--                                        {!! Form::text('activiteit_datum', null, ['class' => 'datumprikker form-control'.(!$errors->has('activiteit_datum') ? '': ' is-invalid '), 'data-toggle' => 'datet mepicker', 'id' => 'datumprikker', 'data-target' => '#datetimepicker', 'autocomplete' => 'off']) !!}--}}
 
-                                    {{--</div>--}}
-                                    {{--@include('components.error', ['field' => 'activiteit_datum'])--}}
+{{--                                    </div>--}}
+{{--                                    @include('components.error', ['field' => 'activiteit_datum'])--}}
+
+
+{{--                                </div>--}}
+
+                                <div class="form-group">
+                                    <b>Selecteer een datum en tijd</b>
+{{--                                    <div class="input-group {!! (!$errors->has('activiteit_datum') ? '': ' is-invalid ') !!}" id="datetimepicker " data-target-input="nearest" data-date-min-date="0" data-date-today-highlight="true" data-date-format="YYYY-MM-DD HH:mm" style="margin-bottom: 5px; border-radius: 5px;">--}}
+{{--                                        <div class="input-group-append" data-target="#datetimepicker " data-toggle="datetimepicker"  style="-moz-border-radius-bottomleft: .25rem;">--}}
+{{--                                            <div class="input-group-text" style="border-right: none;"><i class="fa fa-calendar"></i></div>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+                                    <br>
+                                    {!! Form::text('activiteit_datum', null, ['id' => '', 'class' => 'datetimepicker form-control'.(!$errors->has('activiteit_datum') ? '': ' is-invalid '), 'data-toggle' => 'datet mepicker', 'id' => 'datetimepicker', 'data-target' => '#datetimepicker', 'autocomplete' => 'off']) !!}
+
+
+                                    @include('components.error', ['field' => 'activiteit_datum'])
 
                                 </div>
+
 
                                 <div class="custom-control custom-checkbox">
                                     {!! Form::checkbox('voorwaarden', null, false,['class' => 'custom-control-input'.(!$errors->has('voorwaarden') ? '': ' is-invalid '), 'id' => 'algemeneVoorwaardenA'.$event->id]) !!}
@@ -270,20 +288,20 @@
                 });
             });
 
-
+            //
             Date.prototype.addDays = function(days) {
                 this.setDate(this.getDate() + parseInt(days));
                 return this;
             };
-
+            //
             var today = new Date().addDays(2);
 
             $('#datetimepicker').datetimepicker({
                 useCurrent: false,
                 minDate: new Date(today.getFullYear(), today.getMonth(), today.getDate(), today.getHours(), today.getMinutes()),
-                autoclose: true,
-                todayBtn: true,
-                format: 'YYYY/MM/DD',
+                autoclose: false,
+                todayBtn: false,
+                format: 'YYYY-MM-DD HH:mm',
                 inline: true,
                 sideBySide: true
             });

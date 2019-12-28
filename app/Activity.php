@@ -103,4 +103,9 @@ class Activity extends Model
         return "{$this->id} - {$this->title} - {$this->region}";
     }
 
+    public function getCategoryAttribute()
+    {
+        return  $this->category_id;
+    }
+
 }

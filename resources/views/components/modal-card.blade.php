@@ -111,7 +111,7 @@
                                 {!! Form::hidden('id', $targetId) !!}
 
                                 <div class="form-group">
-                                    <h3><small>Prijs per uur </small> € {!! $event->activity->price_per_hour !!} <small>p.p.</small></h3>
+                                    <h3><small>Prijs per uur </small> € {!! number_format($event->activity->price_per_hour, 2) !!} <small>p.p.</small></h3>
                                 </div>
 
                                 <div class="row">
@@ -128,14 +128,28 @@
                                     </div>
                                 </div>
 
+{{--                                <div class="col-sm-6" style="height:130px;">--}}
+{{--                                    <div class="form-group">--}}
+{{--                                        <div class='input-group date datumprikker' >--}}
+{{--                                            <input type='text' class="form-control" />--}}
+{{--                                            <span class="input-group-addon">--}}
+{{--                                                <span class="fa fa-calendar">--}}
+{{--                                                </span>--}}
+{{--                                            </span>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
                                 <div class="form-group">
                                     <b>Selecteer een datum en tijd</b>
-                                    <div class="input-group {!! (!$errors->has('activiteit_datum') ? '': ' is-invalid ') !!}" id="datetimepicker{!! $targetId !!}" data-target-input="nearest" data-date-min-date="0" data-date-today-highlight="true" data-date-format="YYYY-MM-DD HH:mm" style="margin-bottom: 5px; border-radius: 5px;">
-                                        <div class="input-group-append" data-target="#da etimepicker{!! $targetId !!}" data-toggle="datetimepicker"  style="-moz-border-radius-bottomleft: .25rem;">
+
+                                    <div class="input-group {!! (!$errors->has('activiteit_datum') ? '': ' is-invalid ') !!}" id="datetimepicker" data-date-auto-close="true" data-date-min-date="{!! \Carbon\Carbon::now()->addDay(3)->format('Y-m-d H:i') !!}" data-target-input="nearest" data-date-side-by-side="true" data-date-today-highlight="true" data-date-format="YYYY-MM-DD HH:mm" style="margin-bottom: 5px; border-radius: 5px;">
+                                        {!! Form::datetime('activiteit_datum', null, ['id' => 'datetimepicker', 'class' => 'datetimepicker form-control'.(!$errors->has('activiteit_datum') ? '': ' is-invalid '), 'data-toggle' => 'datet mepicker', 'id' => 'datumprikker', 'data-target' => '#datetimepicker', 'autocomplete' => 'off']) !!}
+
+                                        <div class="input-group-append" data-target="#datetimepicker " data-toggle="datetimepicker"  style="-moz-border-radius-bottomleft: .25rem;">
                                             <div class="input-group-text" style="border-right: none;"><i class="fa fa-calendar"></i></div>
                                         </div>
-                                        {!! Form::text('activiteit_datum', null, ['class' => 'datumprikker form-control'.(!$errors->has('activiteit_datum') ? '': ' is-invalid '), 'data-toggle' => 'datet mepicker', 'id' => 'datumprikker', 'data-target' => '#datetimepicker'.$targetId, 'autocomplete' => 'off']) !!}
                                     </div>
+
                                     @include('components.error', ['field' => 'activiteit_datum'])
 
                                 </div>

@@ -20,7 +20,7 @@
 
                         <div class="form-group">
                             {!! Form::label('activity', 'Activity') !!}
-                            {!! Form::select('activity', $activities->pluck('activityName', 'id'), null, ['class' => 'form-control'.(!$errors->has('activity') ? '': ' is-invalid ')]) !!}
+                            {!! Form::select('activity', $activities->pluck('activityName', 'id'), $event->activity_id, ['class' => 'form-control'.(!$errors->has('activity') ? '': ' is-invalid ')]) !!}
                             @include('components.error', ['field' => 'activity'])
                         </div>
                         <div class="form-group">

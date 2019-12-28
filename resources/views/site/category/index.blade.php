@@ -14,8 +14,8 @@
                     <div class="card shadow-sm bg-white" style="border-radius: 0px;">
                         <a href="{!! route('site.category.show', $category->id) !!}">
                             <div class="filter-content">
-                                <div class="card-body" style="margin-top: -10px; padding: 35px 0px;">
-                                    <h1 class="text-center display-4" >{!! $category->value !!}</h1>
+                                <div class="card-body" style="margin-top: -10px; padding: 35px 0px; height: 120px;">
+                                    <h2 class="text-center display-4" style="font-size: 1.5rem;">{!! $category->value !!}</h2>
                                 </div> <!-- card-body.// -->
                             </div>
                         </a>

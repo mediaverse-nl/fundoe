@@ -163,15 +163,15 @@ Breadcrumbs::register('site.category.index', function ($breadcrumbs) {
 // site category show
 Breadcrumbs::register('site.category.show', function ($breadcrumbs, $model) use ($edit_name) {
     $breadcrumbs->parent('site.category.index');
+//    dd($model);
     $breadcrumbs->push($model->value, route('site.category.show', $model->id));
 });
 
 // site category event show
 Breadcrumbs::register('site.activity.show', function ($breadcrumbs, $model) {
-    $breadcrumbs->parent('site.category.show', $model->activity->category);
-    $breadcrumbs->push($model->activity->title, route('site.activity.show', [$model->title, $model->id]));
+    $breadcrumbs->parent('site.category.show', $model->category()->first() );
+    $breadcrumbs->push($model->activity.'', route('site.activity.show', [$model->title, $model->id]));
 });
-
 
 // auth panel
 Breadcrumbs::register('auth.panel', function ($breadcrumbs) {

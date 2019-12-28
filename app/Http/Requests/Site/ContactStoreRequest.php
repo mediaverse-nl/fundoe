@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Admin;
+namespace App\Http\Requests\Site;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CategoryUpdateRequest extends FormRequest
+class ContactStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,11 +23,12 @@ class CategoryUpdateRequest extends FormRequest
      */
     public function rules()
     {
-//        dd($this);
         return [
-            'value' => 'required|unique:category,id,'.$this->id.',id,value,'.$this->value
-
-//            'value' => 'required|min:1|max:30|unique:category,value,' . $this->
+            'email' => 'required|email',
+            'voornaam' => 'required|max:60',
+            'achternaam' => 'required|max:60',
+            'onderwerp' => 'required',
+            'bericht' => 'required|max:500',
         ];
     }
 }

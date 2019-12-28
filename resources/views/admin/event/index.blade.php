@@ -24,12 +24,18 @@
                         {!!  \Carbon\Carbon::now()->addHours(48) > $event->start_datetime ? 'table-danger' : ''!!}
                         {!!  \Carbon\Carbon::now()->addHours(100) > $event->start_datetime ? 'table-warning' : ''!!}">
                     <td>{!! $event->id !!}</td>
-                    <td>{!! $event->activity->title !!}</td>
-                    <td>{!! $event->activity->region !!}</td>
+                    <td>{!! !empty($event->activity['title']) ? $event->activity->title : '' !!}</td>
+                    <td>{!! !empty($event->activity['region']) ? $event->activity->region : ''  !!}</td>
                     <td>{!! $event->start_datetime->format('d-m-y h:i') !!}</td>
                     <td>{!! $event->diffInTime() !!}min</td>
                     <td>€{!! number_format($event->price, 2)!!}</td>
-                    <td>{!! $event->countSoldTickets() !!}/{!! $event->activity->min_number_of_people !!}~{!! $event->activity->max_number_of_people !!}</td>
+                    <td>
+                        {!! $event->countSoldTickets() !!}/
+                        {!! !empty($event->activity['min_number_of_people']) ? $event->activity->min_number_of_people : ''  !!}~
+                        {!! !empty($event->activity['max_number_of_people']) ? $event->activity->max_number_of_people : ''  !!}
+{{--                        {!! $event->activity->min_number_of_people !!}--}}
+{{--                        {!! $event->activity->max_number_of_people !!}--}}
+                    </td>
                     <td>
                         @component('components.model', [
                                 'id' => 'eventTableBtn'.$event->id,

@@ -109,7 +109,7 @@
                                          </div>
                                      </div>
                                     <div class="form-group row">
-                                        {!! Form::label('street_nr', 'Adres nr', ['class' => 'col-sm-3']) !!}
+                                        {!! Form::label('street_nr', 'Huisnummer', ['class' => 'col-sm-3']) !!}
                                         <div class="col-sm-9">
                                             {!! Form::text('street_nr', null, ['class' => 'form-control', 'disabled']) !!}
                                          </div>

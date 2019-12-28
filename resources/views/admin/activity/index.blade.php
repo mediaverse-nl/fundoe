@@ -13,6 +13,7 @@
             <th>activiteit</th>
             <th>sold tickets</th>
             <th>regions</th>
+            <th>price_per_hour</th>
             <th>events running</th>
             <th class="no-sort"></th>
         @endslot
@@ -23,6 +24,7 @@
                     <td>{!! $activity->title !!}</td>
                     <td>1/{!! $activity->min_number_of_people !!}~{!! $activity->max_number_of_people !!}</td>
                     <td>{!! $activity->region !!}</td>
+                    <td>{!! number_format($activity->price_per_hour, 2) !!}</td>
                     <td>{!! $activity->currentlyRunningEvents() !!}x</td>
                     <td>
                         @component('components.model', [

@@ -18,9 +18,9 @@
             <div class="col-lg-9">
 
                 @component('components.card')
-                    <h2>Credit Terugboeken</h2>
+                    <h2>Tegoed terugboeken</h2>
 
-                    {!! Form::label('credit', 'te goed') !!}
+                    {!! Form::label('credit', 'Tegoed') !!}
                     <div class="form-group">
                         <div class="input-group">
                             <div class="input-group-prepend">
@@ -29,9 +29,12 @@
                             {!! Form::number('credit', number_format(auth()->user()->credit, 2), ['class' => 'form-control'.(!$errors->has('gebruikersnaam') ? '': ' is-invalid '), 'disabled', 'step' => 'any']) !!}
                         </div>
                         <small>
-                            Het te goed kan gebruikt woorden om je bij een event te registeren. <br>
-                            Het te goed kan alleen gebruikt worden als het te goed bedrag hoger is dan de prijs van het event.<br>
-                            Het te goed word automatisch gebruikt. <br>
+                            Spelregels tegoed: <br>
+                            Het tegoed kan gebruikt worden om je bij een activiteit te registreren.<br>
+                            Het tegoed kan alleen worden gebruikt wanneer het tegoed hoger is dan de te betalen prijs.<br>
+                            In dat geval wordt het tegoed automatisch afgeschreven van je account.
+
+
                         </small>
                     </div>
 
@@ -72,9 +75,9 @@
                     {{--<button type="submit" class="btn btn-primary">Terugboeken</button>--}}
                     <br>
                     <small>
-                        *Bij het terugstorten van het credit naar uw eigen bank worden er administratiekosten inrekening gebracht <b>&euro;3.50</b>.
+                        <b>*</b> Voor het terugboeken van het tegoed naar uw bankrekening worden administratiekosten in rekening gebracht. De administratiekosten bedragen € 3,50 per terugboeking.
                         <br>
-                        *Terugboeking is te verwachten binnen <b>7</b> werkdagen.
+                        <b>*</b> Binnen 7 werkdagen kunt u het bedrag van de terugboeking op uw rekening verwachten.
                     </small>
 
                     <div class="form-group">
@@ -82,7 +85,7 @@
                     </div>
 
                     <hr>
-                    <h2>Watchwoord wijzigen</h2>
+                    <h2>Wachtwoord wijzigen</h2>
 
                     {!! Form::model(auth()->user(), ['route' => ['auth.account.password'], 'method' => 'PATCH']) !!}
                         <div class="form-group">
@@ -121,7 +124,7 @@
                             @include('components.error', ['field' => 'gebruikersnaam'])
                         </div>
 
-                        {!! Form::label('telefoon_nr', 'telefoon nr') !!}
+                        {!! Form::label('telefoon_nr', 'telefoonnummer') !!}
                         <div class="form-group">
                             <div class="input-group">
                                 <div class="input-group-prepend">
@@ -163,7 +166,7 @@
                             @include('components.error', ['field' => 'straat'])
                         </div>
                         <div class="form-group">
-                            {!! Form::label('straat_nr', 'straat nr *') !!}
+                            {!! Form::label('straat_nr', 'Huisnummer *') !!}
                             {!! Form::text('straat_nr', auth()->user()->street_nr, ['class' => 'form-control'.(!$errors->has('straat_nr') ? '': ' is-invalid ')]) !!}
                             @include('components.error', ['field' => 'straat_nr'])
                         </div>

@@ -48,7 +48,7 @@
 
                     <div class="form-group">
                         {!! Form::label('price_per_hour', 'price per hour') !!}
-                        {!! Form::number('price_per_hour', null, ['class' => 'form-control'.(!$errors->has('price_per_hour') ? '': ' is-invalid ')]) !!}
+                        {!! Form::number('price_per_hour', null, ['class' => 'form-control'.(!$errors->has('price_per_hour') ? '': ' is-invalid '), 'step' => 'any']) !!}
                         <small class="muted">*use . to separate</small>
                         @include('components.error', ['field' => 'price_per_hour'])
                     </div>

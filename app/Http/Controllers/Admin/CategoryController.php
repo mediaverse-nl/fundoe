@@ -44,6 +44,8 @@ class CategoryController extends Controller
 
     public function update(CategoryUpdateRequest $request, $id)
     {
+//        dd($request);
+
         $category = $this->category
             ->withTrashed()
             ->findOrFail($id);

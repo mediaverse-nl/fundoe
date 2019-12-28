@@ -10,12 +10,12 @@
             <div class="col-10 mx-auto">
                 <h1 class="py-3">Frequently Asked Questions</h1>
                 <div class="accordion" id="faq">
-                    @foreach($faqs as $faq)
+                    @foreach($faqs->sortBy('title') as $faq)
                         <div class="card">
                             <div class="card-header" id="heading{!! $loop->index !!}">
                                 <h3 class="mb-0">
                                     <button class="btn btn-link text-left" type="button" data-toggle="collapse" data-target="#collapse{!! $loop->index !!}" aria-expanded="true" aria-controls="collapse{!! $loop->index !!}" style="width: 100%;">
-                                        {!! $faq->title !!}
+                                        {!! ltrim($faq->title, '0') !!}
                                     </button>
                                 </h3>
                             </div>
@@ -34,9 +34,6 @@
         <!--/row-->
     </div>
     <!--container-->
-
-
-
 @endsection
 
 @push('css')

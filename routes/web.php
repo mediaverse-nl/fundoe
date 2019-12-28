@@ -36,7 +36,7 @@ Route::group(['namespace' => 'Site', 'as' => 'site.'], function () {
     Route::post('/publiek-order-aanmaken', 'OrderController@storePublic')->name('order.store.public')->middleware('can.order');
     Route::get('/order-{id}', 'OrderController@show')->name('order.show');
     Route::get('/contact', 'ContactController@index')->name('contact.index');
-    Route::post('/contact', 'ContactController@store');
+    Route::post('/contact', 'ContactController@store')->name('contact.store');
     Route::get('/over-ons', 'PageController@about')->name('about');
     Route::get('/faq', 'PageController@faq')->name('faq');
     Route::get('/categorieen', 'PageController@categories')->name('categorieen');
